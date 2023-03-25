@@ -46,7 +46,7 @@
 <!--end::Aside menu-->
 <!--begin::Footer-->
 <div class="aside-footer flex-column-auto pb-5 d-none" id="kt_aside_footer">
-    <a href="{{ route('admin.dashboard') }}" class="btn btn-light-primary w-100">Button</a>
+    <a href="{{ route('dashboard.main') }}" class="btn btn-light-primary w-100">Button</a>
 </div>
 <!--end::Footer-->
 </div>
@@ -80,7 +80,7 @@
                 </div>
                 <!--end::Aside Toggle-->
                 <!--begin::Logo-->
-                <a href="{{ route('admin.dashboard') }}" class="d-lg-none">
+                <a href="{{ route('dashboard.main') }}" class="d-lg-none">
                     <img alt="Logo" src="{{ asset('dash_assets/media/logos/logo.png') }}" class="mh-40px" />
                 </a>
                 <!--end::Logo-->
@@ -159,7 +159,7 @@
 
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <form action="{{ route('logout') }}" method="post">
+                                <form action="{{ route('dashboard.logout') }}" method="post">
                                     @csrf
                                     <button style="background: transparent;
                                     border: none;
@@ -201,7 +201,7 @@
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb fw-bold fs-base my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard.main') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item text-muted">Dashboards</li>
                         <li class="breadcrumb-item text-dark">@yield('page_title' , 'Not Set Yet')</li>

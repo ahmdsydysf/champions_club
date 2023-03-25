@@ -44,14 +44,14 @@
                     <img style="width:150px !important;height:150px !important"
                         src="{{ asset('web_assets/ico/favicon.png') }}" alt="" srcset="">
                     <h5 class="text-center">Login Now</h5>
-                    <a href="{{ route('login') }}"> {{ __('Already registered?') }} </a>
+                    <a href="{{ route('register') }}"> {{ __('Make New Account') }} </a>
 
                 </div>
 
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                <form method="POST" action="{{ route('site.login') }}">
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
 
 

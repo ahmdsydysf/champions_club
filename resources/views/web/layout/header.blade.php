@@ -147,7 +147,7 @@
                 <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">Profile</a> </div>
                 <!-- end sandwich-btn -->
                 @else
-                <div class="search-btn font-weight-bold"> <a href="{{ route('web.login') }}">Sign In</a> </div>
+                <div class="search-btn font-weight-bold"> <a href="{{ route('login') }}">Sign In</a> </div>
                 <!-- end search-btn -->
                 <div class="search-btn font-weight-bold"> <a href="{{ route('register') }}">Sign Up</a> </div>
                 <!-- end sandwich-btn -->
@@ -220,7 +220,7 @@
                         <a href="contact.html">تواصل معنا</a>
                     </li>
                 </ul>
-                <!-- end nav-menu -->endforeach
+                <!-- end nav-menu -->
                 <ul class="language">
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <li>
@@ -245,7 +245,7 @@
                 <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">بياناتي</a> </div>
                 <!-- end sandwich-btn -->
                 @else
-                <div class="search-btn font-weight-bold"> <a href="{{ route('web.login') }}">تسجيل دخول </a> </div>
+                <div class="search-btn font-weight-bold"> <a href="{{ route('login') }}">تسجيل دخول </a> </div>
                 <!-- end search-btn -->
                 <div class="search-btn font-weight-bold"> <a href="{{ route('register') }}"> تسجيل جديد </a> </div>
                 <!-- end sandwich-btn -->

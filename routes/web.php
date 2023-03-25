@@ -49,21 +49,15 @@ Route::group(
                 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
             });
 
-            Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');
+            // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');
 
-            Route::get('/web-login' , [AuthenticatedSessionController::class , 'webLogin'])->name('web.login');
-            });
+            // Route::get('/web-login' , [AuthenticatedSessionController::class , 'webLogin'])->name('web.login');
 
-            /*
-            ----------------------------------
-            ========== Admin Dashboard =======
-            ----------------------------------
-            */
-            Route::post('dashboard/login' , [Auth_dash::class , 'store']);
-            Route::middleware(['auth', 'user-access:admin' , 'verified'])->group(function () {
-                Route::get('/dashboard', [HomeController::class , 'adminHome'])->name('admin.dashboard');
-            });
+
+        });
+
 
 //=========================================================================
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
