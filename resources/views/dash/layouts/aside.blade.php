@@ -28,7 +28,9 @@
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <div class="menu-item">
-                        <a class="menu-link active" href="slider_images.html">
+
+                        <a class="menu-link {{ Request::segment(2) == 'slider_image' ? 'active' : '' }} "
+                            href="{{ route('dashboard.slider_image.index') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
@@ -130,12 +132,13 @@
                                     <!--end::Avatar-->
                                     <!--begin::Username-->
                                     <div class="d-flex flex-column">
-                                        <div class="fw-bolder d-flex align-items-center fs-5">Admin Manager
-                                            <span
-                                                class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+
+                                        <div class="fw-bolder d-flex align-items-center fs-5">{{
+                                            Auth::guard('admin')->user()->name }}
+
                                         </div>
-                                        <a href="#"
-                                            class="fw-bold text-muted text-hover-primary fs-7">Admin@example.com</a>
+                                        <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{
+                                            Auth::guard('admin')->user()->email }}</a>
                                     </div>
                                     <!--end::Username-->
                                 </div>

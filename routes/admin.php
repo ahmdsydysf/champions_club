@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SliderImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AuthenticateDashboard;
@@ -33,6 +34,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
                     Route::get('/' , function(){
                         return view('dashboard');
                     })->name('main');
+                    // slider images route
+                    Route::resource('slider_image' , SliderImageController::class);
                 });
 
 

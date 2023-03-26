@@ -40,16 +40,16 @@
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
                         <a href="../dist/index.html" class="py-9 pt-lg-20">
-                            <img alt="Logo" src="{{ asset('dash_assets/media/logos/logo-ellipse.svg')}}"
-                                class="h-70px" />
+                            <img alt="Logo" src="{{ asset('dash_assets/media/logos/logo.png')}}"
+                                class="h-70px h-md-150px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
-                        <h1 class="fw-bolder text-white fs-2qx pb-5 pb-md-10">Welcome to Craft</h1>
+                        <h1 class="fw-bolder text-white fs-2qx pb-5 pb-md-10">Welcome to Champion's</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
-                        <p class="fw-bold fs-2 text-white">Plan your blog post by choosing a topic creating
-                            <br />an outline and checking facts
+                        <p class="fw-bold fs-2 text-white">Manage your website will be easyer with us
+                            <br />Convert Dreams to Facts
                         </p>
                         <!--end::Description-->
                     </div>
@@ -134,20 +134,7 @@
                     <!--end::Wrapper-->
                 </div>
                 <!--end::Content-->
-                <!--begin::Footer-->
-                <div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
-                    <!--begin::Links-->
-                    <div class="d-flex flex-center fw-bold fs-6">
-                        <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2"
-                            target="_blank">About</a>
-                        <a href="https://devs.keenthemes.com" class="text-muted text-hover-primary px-2"
-                            target="_blank">Support</a>
-                        <a href="https://themes.getbootstrap.com/product/craft-bootstrap-5-admin-dashboard-theme"
-                            class="text-muted text-hover-primary px-2" target="_blank">Purchase</a>
-                    </div>
-                    <!--end::Links-->
-                </div>
-                <!--end::Footer-->
+
             </div>
             <!--end::Body-->
         </div>

@@ -69,6 +69,7 @@
 <script src="{{ asset('dash_assets/js/custom/utilities/modals/create-app.js')}}"></script>
 <script src="{{ asset('dash_assets/js/custom/utilities/modals/users-search.js')}}"></script>
 <!--end::Page Custom Javascript-->
+@yield('custome_js')
 <!--end::Javascript-->
 </body>
 <!--end::Body-->

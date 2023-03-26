@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 
 class SliderImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $data = SliderImage::paginate(5);
+
+        return view('dash.slider_image.all_slider_images' , compact('data'));
     }
 
     /**

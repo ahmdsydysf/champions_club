@@ -22,6 +22,7 @@
     <link href="{{ asset('dash_assets/plugins/custom/leaflet/leaflet.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('dash_assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet"
         type="text/css" />
+    @yield('custome_css')
     <!--end::Page Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="{{ asset('dash_assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -46,7 +47,7 @@
                 <!--begin::Brand-->
                 <div class="aside-logo flex-column-auto pt-9 pb-5" id="kt_aside_logo">
                     <!--begin::Logo-->
-                    <a href="../dist/index.html">
+                    <a href="{{ route('dashboard.main') }}">
                         <img alt="Logo" src="{{ asset('dash_assets/media/logos/logo.png')}}"
                             class="w-250px  max-h-50px logo-default" />
                         <img alt="Logo" src="{{ asset('dash_assets/media/logos/favicon.png')}}"
