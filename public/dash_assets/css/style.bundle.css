@@ -48820,3 +48820,13 @@ body {
   background-color: #ffffff;
   border: 0;
 }
+.del-btn {
+    background: none;
+    border: none;
+}
+
+.del-btn:hover {
+    transition: color 0.2s ease, background-color 0.2s ease;
+    background-color: #F1FAFF;
+    color: #00A3FF;
+}

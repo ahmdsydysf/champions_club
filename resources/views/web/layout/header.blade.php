@@ -144,7 +144,8 @@
                     </form>
                 </div>
                 <!-- end search-btn -->
-                <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">Profile</a> </div>
+                <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">{{ Auth::user()->name
+                        }}</a> </div>
                 <!-- end sandwich-btn -->
                 @else
                 <div class="search-btn font-weight-bold"> <a href="{{ route('login') }}">Sign In</a> </div>
@@ -242,7 +243,8 @@
                     </form>
                 </div>
                 <!-- end search-btn -->
-                <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">بياناتي</a> </div>
+                <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">{{ Auth::user()->name
+                        }}</a> </div>
                 <!-- end sandwich-btn -->
                 @else
                 <div class="search-btn font-weight-bold"> <a href="{{ route('login') }}">تسجيل دخول </a> </div>

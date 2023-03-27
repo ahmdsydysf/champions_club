@@ -206,7 +206,6 @@
                         <li class="breadcrumb-item text-muted">
                             <a href="{{ route('dashboard.main') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
-                        <li class="breadcrumb-item text-muted">Dashboards</li>
                         <li class="breadcrumb-item text-dark">@yield('page_title' , 'Not Set Yet')</li>
                     </ul>
                     <!--end::Breadcrumb-->
