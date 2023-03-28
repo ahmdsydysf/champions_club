@@ -21,7 +21,8 @@
     <!--begin::Card body-->
     <div class="card-body pt-0">
         <!--begin::Table-->
-        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sliders_table">
+        <table class="table align-middle table-row-dashed fs-6 gy-5 table-striped-columns"
+            id="kt_ecommerce_sliders_table">
             <!--begin::Table head-->
             <thead>
                 <!--begin::Table row-->
@@ -31,12 +32,12 @@
                     <th class="text-end ">Title_ar</th>
                     <th class="text-end ">Subtitle_en</th>
                     <th class="text-end ">Subtitle_ar</th>
-                    <th class="text-end ">nav_title_en</th>
-                    <th class="text-end ">nav_title_ar</th>
-                    <th class="text-end ">nav_subtitle_en</th>
+                    {{-- <th class="text-end ">nav_title_en</th>
+                    <th class="text-end ">nav_title_ar</th> --}}
+                    {{-- <th class="text-end ">nav_subtitle_en</th>
                     <th class="text-end ">nav_subtitle_ar</th>
                     <th class="text-end ">Overview_en</th>
-                    <th class="text-end ">Overview_ar</th>
+                    <th class="text-end ">Overview_ar</th> --}}
                     <th class="text-end ">Actions</th>
                 </tr>
                 <!--end::Table row-->
@@ -82,6 +83,7 @@
                         <span class="fw-bolder">{{ $row->subtitle_ar }}</span>
                     </td>
                     <!--end::SKU=-->
+                    {{--
                     <!--begin::SKU=-->
                     <td class="text-end pe-0">
                         <span class="fw-bolder">{{ $row->nav_title_en }}</span>
@@ -91,7 +93,8 @@
                     <td class="text-end pe-0">
                         <span class="fw-bolder">{{ $row->nav_title_ar }}</span>
                     </td>
-                    <!--end::SKU=-->
+                    <!--end::SKU=--> --}}
+                    {{--
                     <!--begin::SKU=-->
                     <td class="text-end pe-0">
                         <span class="fw-bolder">{{ $row->nav_subtitle_en }}</span>
@@ -111,7 +114,7 @@
                     <td class="text-end pe-0">
                         <span class="fw-bolder">{{ $row->overview_ar }}</span>
                     </td>
-                    <!--end::SKU=-->
+                    <!--end::SKU=--> --}}
 
                     <!--begin::Action=-->
                     <td class="text-end">
@@ -136,18 +139,14 @@
                                 <a href="{{ route('dashboard.slider_image.edit' , ['slider_image' => $row->id ]) }}"
                                     class="menu-link px-3">Edit</a>
                             </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
                             <div class="menu-item px-3">
-                                <form class=""
-                                    action="{{ route('dashboard.slider_image.destroy' , ['slider_image' => $row->id ]) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="menu-link px-3 del-btn w-100"
-                                        data-kt-ecommerce-slider-filter="delete_row">Delete</button>
-                                </form>
+                                <button type="button" class="menu-link px-3 del-btn w-100" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModaldelete_{{ $row->id }}">
+                                    Delete
+                                </button>
                             </div>
+
+
                             <!--end::Menu item-->
                         </div>
                         <!--end::Menu-->
@@ -155,6 +154,47 @@
                     <!--end::Action=-->
                 </tr>
                 <!--end::Table row-->
+                <!-- Modal -->
+                <div class="modal fade " id="exampleModaldelete_{{ $row->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Deleting...
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <span class="svg-icon svg-icon-5tx svg-icon-danger mb-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black">
+                                        </rect>
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)"
+                                            fill="black"></rect>
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)"
+                                            fill="black"></rect>
+                                    </svg>
+                                </span>
+                                <h3>Are you Sure You want to Delete This Item</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline btn-outline-danger btn-active-danger m-2"
+                                    data-bs-dismiss="modal">Close</button>
+                                <form
+                                    action="{{ route('dashboard.slider_image.destroy' , ['slider_image' => $row->id ]) }}"
+                                    method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger m-2">Delete</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
 
             </tbody>

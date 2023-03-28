@@ -118,10 +118,7 @@
                                         @error('title_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider EN Title is required and recommended to be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -137,10 +134,7 @@
                                         @error('title_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider AR Title is required and recommended to be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -156,11 +150,7 @@
                                         @error('title_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider EN Sub-Title is required and recommended
-                                            to be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -176,11 +166,7 @@
                                         @error('title_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider AR Sub-Title is required and recommended
-                                            to be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -196,11 +182,7 @@
                                         @error('nav_title_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider EN Nav-Title is required and recommended
-                                            to be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -216,11 +198,7 @@
                                         @error('nav_title_ar')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider AR Nav-Title is required and recommended
-                                            to be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -237,12 +215,7 @@
                                         @error('nav_subtitle_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider EN Nav-SubTitle is required and
-                                            recommended to
-                                            be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -259,12 +232,7 @@
                                         @error('nav_subtitle_ar')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider EN Nav-SubTitle is required and
-                                            recommended to
-                                            be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -281,12 +249,7 @@
                                         @error('overview_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider EN Overview is required and
-                                            recommended to
-                                            be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
@@ -302,12 +265,7 @@
                                         @error('overview_ar')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <!--begin::Description-->
-                                        <div class="text-muted fs-7">A Slider ar Overview is required and
-                                            recommended to
-                                            be
-                                            unique.</div>
-                                        <!--end::Description-->
+
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
