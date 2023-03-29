@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SocialLinkSeeder extends Seeder
 {
@@ -14,6 +15,12 @@ class SocialLinkSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('social_links')->insert([
+            'facebook' => 'facebook',
+            'twitter' => 'twitter',
+            'instgram' => 'instgram',
+            'youtube' => 'youtube',
+            'linkedin' => 'linkedin',
+        ]);
     }
 }

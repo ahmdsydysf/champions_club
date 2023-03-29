@@ -57,6 +57,13 @@
                             </span>
                             <span class="menu-title">Branchs</span>
                         </a>
+                        <a class="menu-link {{ Request::segment(2) == 'social' ? 'active' : '' }} "
+                            href="{{ route('dashboard.social.edit' , ['social' => 1]) }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Social Links</span>
+                        </a>
                     </div>
 
                 </div>

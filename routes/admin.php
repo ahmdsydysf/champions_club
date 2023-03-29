@@ -7,6 +7,7 @@ use App\Http\Middleware\AuthenticateDashboard;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\SportController;
 
 /*
@@ -44,6 +45,8 @@ use App\Http\Controllers\SportController;
                         'sport' => SportController::class ,
                         'branch' => BranchController::class ,
                     ]);
+
+                    Route::resource('social' , SocialLinkController::class)->only(['edit' , 'update']);
                 });
 
 

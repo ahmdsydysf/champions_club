@@ -178,9 +178,20 @@
                                         <label class="required form-label">master_branch</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="master_branch" class="form-control mb-2"
-                                            placeholder="master_branch" value="{{ old('master_branch') }}">
-                                        <!--end::Input-->
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input m-3" checked name="master_branch"
+                                                type="radio" value="1" id="flexRadioDefault" />
+                                            <label class="form-check-label m-3" for="flexRadioDefault">
+                                                1
+                                            </label>
+                                            <input class="form-check-input m-3" name="master_branch" type="radio"
+                                                value="0" id="flexRadioDefault2" />
+                                            <label class="form-check-label m-3" for="flexRadioDefault2">
+                                                0
+                                            </label>
+                                        </div>
+
+
                                         @error('master_branch')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror

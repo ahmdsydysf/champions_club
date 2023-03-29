@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\SliderImage;
+use App\Models\SocialLink;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::model('slider_image' , SliderImage::class);
+        Route::model('social' , SocialLink::class);
 
         $this->configureRateLimiting();
 
