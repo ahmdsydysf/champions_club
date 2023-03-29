@@ -392,26 +392,33 @@
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
-                    <h2>خدمـــاتنا</h2>
-                    <h6>من مميزات النادي الرياضي فكرة النادي الرياضي تتعدى فكرة لعب الرياضة فقط، بل في النادي تزيد
-                        معرفتك في
-                        الناس وتتعرف على أشخاص آخرين وتكوين صداقات جديدة تعزز من حياتك الاجتماعية </h6>
+                    <a href="allnews-ar.html">
+                        <h2>خدمـــاتنا</h2>
+                        <h6 style="color: white;">من مميزات النادي الرياضي فكرة النادي الرياضي تتعدى فكرة لعب الرياضة
+                            فقط، بل في
+                            النادي تزيد معرفتك في
+                            الناس وتتعرف على أشخاص آخرين وتكوين صداقات جديدة تعزز من حياتك الاجتماعية </h6>
+                    </a>
                 </div>
                 <!-- end section-title -->
             </div>
             <!-- end col-12 -->
-            <div class="col-12">
+            <div class="col-12 owl-carousel">
                 <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image01.jpg')}}" alt="Image"></figure>
+                    <figure><img src="{{ asset('web_assets/images/image01.jpg') }}" alt="Image"></figure>
                     <h4>تدريبات خاصة</h4>
                     <p>يعد التدريب الشخصي خدمة رائعة لتقديمها لأنها تتيح للأعضاء العمل بشكل فردي مع اللياقة البدنية
-                        محترف يمكنه إنشاء خطط تمرين مخصصة وتقديم التوجيه والتحفيز الشخصي.
+                        محترف يمكنه أولئك الذين لديهم احتياجات أو أولئك الذين لديهم احتياجات أو إنشاء خطط تمرين مخصصة
+                        وتقديم
+                        التوجيه والتحفيز الشخصي.
                         يمكن أن تكون هذه الخدمة مفيدة بشكل خاص للمبتدئين أو أولئك الذين لديهم احتياجات أو أهداف لياقة
                         معينة.</p>
+                    <a class="dis-btn-service" href="single-news-ar.html" data-swiper-parallax="200">تعرف
+                        اكثر<span></span></a>
                 </div>
                 <!-- end content-box -->
                 <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image02.jpg.webp')}}" alt="Image"></figure>
+                    <figure><img src="{{ asset('web_assets/images/image02.jpg.webp') }}" alt="Image"></figure>
                     <h4>فصول لياقة جماعية</h4>
                     <p>تعتبر فصول اللياقة الجماعية طريقة شائعة للأعضاء للبقاء متحفزين ومشاركين أثناء ممارسة الرياضة.
                         هؤلاء
@@ -419,12 +426,14 @@
                         والمزيد. بواسطة
                         تقدم الأندية الرياضية مجموعة متنوعة من الفصول ، ويمكن أن تروق للأعضاء ذوي الاهتمامات واللياقة
                         البدنية
-                        المختلفة
-                        المستويات.</p>
+                        ا</p>
+                    <a class="dis-btn-service" href="single-news-ar.html" data-swiper-parallax="200">تعرف
+                        اكثر<span></span></a>
+
                 </div>
                 <!-- end content-box -->
                 <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image03.jpg')}}" alt="Image"></figure>
+                    <figure><img src="{{ asset('web_assets/images/image03.jpg') }}" alt="Image"></figure>
                     <h4>المنشآت الرياضية</h4>
                     <p>بالنسبة للعديد من الأعضاء ، يعد الوصول إلى المرافق الرياضية عالية الجودة سببًا رئيسيًا للانضمام
                         إلى نادٍ
@@ -435,6 +444,9 @@
                         والذين
                         يرغبون في ذلك
                         للتدريب في بيئة مهنية.</p>
+                    <a class="dis-btn-service" href="single-news-ar.html" data-swiper-parallax="200">تعرف
+                        اكثر<span></span></a>
+
                 </div>
                 <!-- end content-box -->
             </div>

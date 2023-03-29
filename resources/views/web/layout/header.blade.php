@@ -1,18 +1,3 @@
-{{-- @if (Route::has('login'))
-<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-    @auth
-    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-    @else
-    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-    @if (Route::has('register'))
-    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-    @endif
-    @endauth
-</div>
-@endif --}}
-
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -98,8 +83,9 @@
                 </div>
                 <!-- end logo -->
                 <ul class="nav-menu">
-                    <li><a href="{{ url('/') }}" class="active">Home</a></li>
-                    <li><a href="#">Sports</a>
+                    <li><a href="{{ url('/') }}" class="{{ Request::segment(2) == null ? 'active' : '' }}">Home</a></li>
+                    <li><a href="{{ route('sport') }}"
+                            class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">Sports</a>
                         <ul class="dropdown">
                             <li><a href="#">Football</a></li>
                             <li><a href="#">Handball</a></li>
@@ -111,13 +97,16 @@
                     </li>
 
                     <li>
-                        <a href="#">News and Events</a>
+                        <a href="{{ route('allNews') }}"
+                            class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">News and Events</a>
                     </li>
                     <li>
-                        <a href="#">Media</a>
+                        <a href="{{ route('media') }}"
+                            class="{{ Request::segment(2) == 'media' ? 'active' : '' }}">Media</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact Us</a>
+                        <a href="{{ route('contact') }}"
+                            class="{{ Request::segment(2) == 'contact' ? 'active' : '' }}">Contact Us</a>
                     </li>
                 </ul>
                 <!-- end nav-menu -->
@@ -199,8 +188,10 @@
                 </div>
                 <!-- end logo -->
                 <ul class="nav-menu">
-                    <li><a href="{{ url('/') }}">الرئيسية</a></li>
-                    <li><a href="#">رياضات</a>
+                    <li><a href="{{ url('/') }}" class="{{ Request::segment(2) == null ? 'active' : '' }}">الرئيسية</a>
+                    </li>
+                    <li><a href="{{ route('sport') }}"
+                            class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">رياضات</a>
                         <ul class="dropdown">
                             <li><a href="#">كرة قدم</a></li>
                             <li><a href="#">كرة يد</a></li>
@@ -212,13 +203,16 @@
                     </li>
 
                     <li>
-                        <a href="#">أخبار وأحداث</a>
+                        <a href="{{ route('allNews') }}"
+                            class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">أخبار وأحداث</a>
                     </li>
                     <li>
-                        <a href="#">ميديا</a>
+                        <a href="{{ route('media') }}"
+                            class="{{ Request::segment(2) == 'media' ? 'active' : '' }}">ميديا</a>
                     </li>
                     <li>
-                        <a href="contact.html">تواصل معنا</a>
+                        <a href="{{ route('contact') }}"
+                            class="{{ Request::segment(2) == 'contact' ? 'active' : '' }}">تواصل معنا</a>
                     </li>
                 </ul>
                 <!-- end nav-menu -->

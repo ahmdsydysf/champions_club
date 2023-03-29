@@ -36,8 +36,18 @@ Route::group(
             */
             Route::get('/', [HomeController::class , 'index'])->name('welcome');
             // Route::middleware(['auth', 'user-access:user' , 'verified'])->group(function () {
-            //     Route::get('/', [HomeController::class , 'index'])->name('welcome');
-            // });
+                //     Route::get('/', [HomeController::class , 'index'])->name('welcome');
+                // });
+                // some front test routes
+
+            Route::get('/news', [HomeController::class , 'news'])->name('allNews');
+            Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
+            Route::get('/media', [HomeController::class , 'media'])->name('media');
+            Route::get('/singleNews', [HomeController::class , 'singleNews'])->name('singleNews');
+            Route::get('/sport', [HomeController::class , 'sport'])->name('sport');
+
+
+
             /*
             ----------------------------------
             ========== user profile ==========
@@ -54,10 +64,10 @@ Route::group(
             // Route::get('/web-login' , [AuthenticatedSessionController::class , 'webLogin'])->name('web.login');
 
 
+            require __DIR__.'/auth.php';
         });
 
 
 //=========================================================================
 
-require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

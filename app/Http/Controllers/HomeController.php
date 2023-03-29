@@ -31,6 +31,46 @@ class HomeController extends Controller
             return view('welcome_ar');
         }
     }
+    public function news()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.all_news');
+        }else{
+            return view('web.all_news_ar');
+        }
+    }
+    public function contact()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.contact');
+        }else{
+            return view('web.contact_ar');
+        }
+    }
+    public function media()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.media');
+        }else{
+            return view('web.media_ar');
+        }
+    }
+    public function singleNews()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.single_news');
+        }else{
+            return view('web.single_news_ar');
+        }
+    }
+    public function sport()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.sports');
+        }else{
+            return view('web.sports_ar');
+        }
+    }
 
     /**
      * Show the application dashboard.

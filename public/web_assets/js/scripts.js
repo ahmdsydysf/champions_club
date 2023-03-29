@@ -1,46 +1,46 @@
 (function($) {
 	$(document).ready(function() {
 		"use strict";
-		
+
 		// TOOLTIP
 		$('[data-toggle="tooltip"]').tooltip()
 
-		
-		
+
+
 		// HAMBURGER
 		$('.menu-btn').on('click', function(e) {
 		$(".menu-btn").toggleClass("active");
 		$(".bars .bar").toggleClass("rotated");
 		$(".navbar .navbar-nav").toggleClass("active");
-		
+
 		});
-		
-		
+
+
 		// SANDWICH BUTTON
 		$('.sandwich-btn').on('click', function(e) {
 			$(this).toggleClass("open")
 			$(".sandwich-menu").toggleClass("open")
 			});
 
-		
+
 		// SEARCH
 		$('.search-btn').on('click', function(e) {
 			$(".search-box").addClass("open")
 			});
-		
-		
+
+
 		$('.close-btn').on('click', function(e) {
 			$(".search-box").removeClass("open")
 			});
-		
-		
+
+
 		// MOBILE MENU
 		$('.navbar-nav .nav-item a').on('click', function(e) {
 			$(this).parent().children('.navbar-nav .dropdown-menu, .navbar-nav .sub-dropdown-menu').slideToggle(300);
 			return true;
 	  	});
-		
-		
+
+
 		// DATA BACKGROUND IMAGE
 			var pageSection = $(".bg-image");
 			pageSection.each(function(indx){
@@ -48,8 +48,8 @@
 					$(this).css("background-image", "url(" + $(this).data("background") + ")");
 				}
 			});
-	
-	
+
+
 		// DATA BACKGROUND COLOR
 			var pageSection = $(".bg-color");
 			pageSection.each(function(indx){
@@ -57,24 +57,24 @@
 					$(this).css("background-color", $(this).data("background"));
 				}
 			});
-		
-		
+
+
 		// TREE MENU
 		$('.sandwich-menu .nav-menu li a').on('click', function(e) {
 	  	$(this).parent().children('.sandwich-menu .dropdown').slideToggle(300);
         return true;
 	  	});
-		
-		
-		
+
+
+
 		// SIDE TREE MENU
 		$('.solutions .sidebar ul li a').on('click', function(e) {
 	  	$(this).parent().children('.solutions .sidebar ul li ul').slideToggle(300);
         return true;
 	  	});
-		
-		
-		
+
+
+
 		// GO TO TOP
 		$(window).scroll(function () {
 			if ($(this).scrollTop() > 100) {
@@ -90,43 +90,43 @@
 			}, 600);
 			return false;
     	});
-	
-		
+
+
 
 		});
 		// END JQUERY
-		
-		
-		// COUNTER 
+
+
+		// COUNTER
 		if (!document.getElementById("counter")) {
-		} 
+		}
 		else {
-		
+
 		var lastWasLower = false;
 			$(document).scroll(function(){
-			
+
 			var p = $( "#counter" );
 			var position = p.position();
 			var position2 = position.top;
-		
+
 			if ($(document).scrollTop() > position2-300){
 			if (!lastWasLower)
 				$('#1').html('1700');
 				$('#2').html('88');
 				$('#3').html('96');
 				$('#4').html('94329');
-		
+
 			lastWasLower = true;
 				} else {
 			lastWasLower = false;
 			}
-			});		
+			});
 		};
-	
-	
 
 
-		// WOW ANIMATION 
+
+
+		// WOW ANIMATION
 		wow = new WOW(
       	{
        		animateClass: 'animated',
@@ -134,8 +134,8 @@
       	}
     	);
     	wow.init();
-	
-	
+
+
 		// SLIDER
 		var menu = [];
 		jQuery('.swiper-slide').each( function(index){
@@ -168,7 +168,7 @@
 				var innerTranslate = slideProgress * innerOffset;
 				swiper.slides[i].querySelector(".slide-inner").style.transform =
 				  "translate3d(" + innerTranslate + "px, 0, 0)";
-			  }      
+			  }
 			},
 			touchStart: function() {
 			  var swiper = this;
@@ -190,7 +190,7 @@
 		var swiper = new Swiper(".swiper-container", swiperOptions);
 
 
-	
+
 		// CAROUSEL
 		var swiper2 = new Swiper('.swiper-carousel', {
 			slidesPerView: 3,
@@ -235,7 +235,7 @@
       	},
 		  	spaceBetween: 14,
 		   // Navigation arrows
-		
+
 			breakpoints: {
 					1024: {
 					  slidesPerView: 3,
@@ -255,9 +255,9 @@
 					}
 				  }
 		});
-		//-----------------------		
-	
-		// TESTIMONIALS 
+		//-----------------------
+
+		// TESTIMONIALS
 		var swiper3 = new Swiper('.swiper-testimonials', {
 		  	slidesPerView: 1,
 		  	spaceBetween: 0,
@@ -272,9 +272,9 @@
 		  prevEl: '.swiper-button-prev',
 		}
 		});
-	
-	
-	
+
+
+
 		// MASONRY
 		var $container = $('.masonry').imagesLoaded( function() {
 			$container.isotope({
@@ -282,11 +282,11 @@
 			  layoutMode: 'masonry'
 			});
     	});
-	
-	
-	
-		
-	
+
+
+
+
+
 		// ISOTOPE FILTER
 			var $container = $('.masonry');
 			$container.isotope({
@@ -312,20 +312,21 @@
 				}
 			});
 			return false;
-			}); 
+			});
 
 
 			var owl = $('.owl-carousel');
 			owl.owlCarousel({
-				items: 4,
+				items: 3,
 				loop: true,
 				margin: 10,
 				autoplay: true,
-				autoplayTimeout: 2200,
+				autoplayTimeout: 3200,
 				autoplayHoverPause: true
 			});
-		
 
-		
-		
+
+
+
+
 })(jQuery);

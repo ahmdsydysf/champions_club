@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Auth\LoginRequest;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -18,7 +19,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('auth.login');
+        }else{
+            return view('auth.login_ar');
+        }
+
     }
 
     /**

@@ -387,47 +387,58 @@
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
-                    <h2>Our services</h2>
-                    <h6>Because they may falsely report what happened wither<br> knowingly or simply due to
-                        confusion</h6>
+                    <a href="allnews.html">
+                        <h2>Our services</h2>
+                        <h6 style="color: white;">Because they may falsely report what happened wither<br> knowingly or
+                            simply due
+                            to confusion</h6>
+                    </a>
                 </div>
                 <!-- end section-title -->
             </div>
             <!-- end col-12 -->
-            <div class="col-12">
-                <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image01.jpg')}}" alt="Image"></figure>
+            <div class="col-12 owl-carousel">
+                <div class="content-box service-container wow fadeIn">
+                    <figure><img src="{{ asset('web_assets/images/image01.jpg') }}" alt="Image"></figure>
                     <h4>Personal Training</h4>
                     <p>Personal training is a great service to offer as it allows members to work one-on-one with a
                         fitness
                         professional who can create customized workout plans and provide personalized guidance and
                         motivation.
-                        This service can be especially beneficial for beginners or those with specific fitness needs
-                        or goals.</p>
+                        This service can be especially beneficial for beginners or those with specific fitness needs or
+                        goals.</p>
+                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
+                        More<span></span></a>
                 </div>
                 <!-- end content-box -->
-                <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image02.jpg.webp')}}" alt="Image"></figure>
+                <div class="content-box service-container wow fadeIn">
+                    <figure><img src="{{ asset('web_assets/images/image02.jpg.webp') }}" alt="Image"></figure>
                     <h4>Group Fitness Classes</h4>
                     <p>Group fitness classes are a popular way for members to stay motivated and engaged while
                         exercising. These
-                        classes can include a wide range of activities such as yoga, Pilates, spinning, Zumba, and
-                        more. By
-                        offering a variety of classes, sport clubs can appeal to members with different interests
-                        and fitness
+                        classes can include a wide range of activities such as yoga, Pilates, spinning, Zumba, and more.
+                        By
+                        offering a variety of classes, sport clubs can appeal to members with different interests and
+                        fitness
                         levels.</p>
+                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
+                        More<span></span></a>
+
                 </div>
                 <!-- end content-box -->
-                <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image03.jpg')}}" alt="Image"></figure>
+                <div class="content-box service-container wow fadeIn">
+                    <figure><img src="{{ asset('web_assets/images/image03.jpg') }}" alt="Image"></figure>
                     <h4>Sports Facilities</h4>
-                    <p>For many members, access to high-quality sports facilities is a key reason for joining a
-                        sport club.
-                        These facilities can include swimming pools, tennis courts, basketball courts, soccer
-                        fields, and more. By
+                    <p>For many members, access to high-quality sports facilities is a key reason for joining a sport
+                        club.
+                        These facilities can include swimming pools, tennis courts, basketball courts, soccer fields,
+                        and more. By
                         providing top-notch facilities, sport clubs can attract members who are serious about their
                         sport and want
-                        to train in a professional environment.</p>
+                        to train in a profession.</p>
+                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
+                        More<span></span></a>
+
                 </div>
                 <!-- end content-box -->
             </div>
@@ -444,7 +455,7 @@
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
-                    <h2>Our Blogs</h2>
+                    <h2>News and Events</h2>
                     <h6>As the seed falls to the ground, it floats <br>along air currents due to its wing</h6>
                 </div>
                 <!-- end section-title -->
@@ -466,7 +477,7 @@
                     <img class="blog-main-img" src="{{ asset('web_assets/images/blog2.jpg')}}" alt="" srcset="">
                     <h4>We asked some of the leading business women</h4>
                     <small>February 21,2018</small>
-                    <p>The smaller male cones release pollen</p>
+                    <p>The smaller mate cones release pollen</p>
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
                 <!-- end content-box -->
@@ -474,7 +485,7 @@
                     <img class="blog-main-img" src="{{ asset('web_assets/images/blog3.jpg')}}" alt="" srcset="">
                     <h4>How to develope item for our marketplace</h4>
                     <small>February 21,2018</small>
-                    <p>Which fertilizes the female cones’ ovula.</p>
+                    <p>Which fertilizes the femate cones’ ovula.</p>
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
                 <!-- end content-box -->
@@ -482,7 +493,7 @@
                     <img class="blog-main-img" src="{{ asset('web_assets/images/blog4.jpg')}}" alt="" srcset="">
                     <h4>Never underestimate the power of social media</h4>
                     <small>February 21,2018</small>
-                    <p>After this pollen release, male cones</p>
+                    <p>After this pollen release, mate cones</p>
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
                 <!-- end content-box -->
@@ -498,7 +509,7 @@
     <div class="container wow fadeIn">
         <h3>
             About Membership</h3>
-        <h6>The pollinated female cones remain attached to the branches?</h6>
+        <h6>The pollinated femate cones remain attached to the branches?</h6>
         <p>The climate of coastal California and Oregon creates the ideal environment<br> for the trees a redwood
             tree
             needs </p>
