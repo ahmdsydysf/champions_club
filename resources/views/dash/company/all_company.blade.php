@@ -1,6 +1,6 @@
 @extends('dash.layouts.app')
 
-@section('page_title' , 'Slider Images')
+@section('page_title' , 'Companies')
 
 @section('content')
 
@@ -12,7 +12,7 @@
         <!--begin::Card toolbar-->
         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
             <!--begin::Add slider-->
-            <a href="{{ route('dashboard.slider_image.create') }}" class="btn btn-primary">Add New</a>
+            <a href="{{ route('dashboard.company.create') }}" class="btn btn-primary">Add New</a>
             <!--end::Add slider-->
         </div>
         <!--end::Card toolbar-->
@@ -27,11 +27,12 @@
             <thead>
                 <!--begin::Table row-->
                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0 ">
-                    <th class="text-end ">slider</th>
-                    <th class="text-end ">Title en</th>
-                    <th class="text-end ">Title ar</th>
-                    <th class="text-end ">Subtitle en</th>
-                    <th class="text-end ">Subtitle ar</th>
+                    <th class="text-end ">about master en</th>
+                    <th class="text-end ">about master ar</th>
+                    <th class="text-end ">sports title en</th>
+                    <th class="text-end ">sports title ar</th>
+                    <th class="text-end ">services title en</th>
+                    <th class="text-end ">services title ar</th>
 
                     <th class="text-end ">Actions</th>
                 </tr>
@@ -46,36 +47,35 @@
                 <!--begin::Table row-->
                 <tr>
 
-                    <!--begin::Category=-->
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <!--begin::Thumbnail-->
-                            <a href="edit-slider.html" class="symbol symbol-50px">
-                                <span class="symbol-label"
-                                    style="background-image:url('{{ asset('uploads/slider/' . $row->image) }}');"></span>
-                            </a>
 
-                        </div>
-                    </td>
-                    <!--end::Category=-->
                     <!--begin::SKU=-->
                     <td class="text-end pe-0">
-                        <span class="fw-bolder">{{ $row->title_en }}</span>
+                        <span class="fw-bolder">{{ $row->about_master_en }}</span>
                     </td>
                     <!--end::SKU=-->
                     <!--begin::SKU=-->
                     <td class="text-end pe-0">
-                        <span class="fw-bolder">{{ $row->title_ar }}</span>
+                        <span class="fw-bolder">{{ $row->about_master_ar }}</span>
                     </td>
                     <!--end::SKU=-->
                     <!--begin::SKU=-->
                     <td class="text-end pe-0">
-                        <span class="fw-bolder">{{ $row->subtitle_en }}</span>
+                        <span class="fw-bolder">{{ $row->sports_title_en }}</span>
                     </td>
                     <!--end::SKU=-->
                     <!--begin::SKU=-->
                     <td class="text-end pe-0">
-                        <span class="fw-bolder">{{ $row->subtitle_ar }}</span>
+                        <span class="fw-bolder">{{ $row->sports_title_ar }}</span>
+                    </td>
+                    <!--end::SKU=-->
+                    <!--begin::SKU=-->
+                    <td class="text-end pe-0">
+                        <span class="fw-bolder">{{ $row->services_title_en }}</span>
+                    </td>
+                    <!--end::SKU=-->
+                    <!--begin::SKU=-->
+                    <td class="text-end pe-0">
+                        <span class="fw-bolder">{{ $row->services_title_ar }}</span>
                     </td>
                     <!--end::SKU=-->
 
@@ -100,7 +100,7 @@
                             data-kt-menu="true">
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-                                <a href="{{ route('dashboard.slider_image.edit' , ['slider_image' => $row->id ]) }}"
+                                <a href="{{ route('dashboard.company.edit' , ['company' => $row->id ]) }}"
                                     class="menu-link px-3">Edit</a>
                             </div>
                             <div class="menu-item px-3">
@@ -147,8 +147,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline btn-outline-danger btn-active-danger m-2"
                                     data-bs-dismiss="modal">Close</button>
-                                <form
-                                    action="{{ route('dashboard.slider_image.destroy' , ['slider_image' => $row->id ]) }}"
+                                <form action="{{ route('dashboard.company.destroy' , ['company' => $row->id ]) }}"
                                     method="post">
                                     @csrf
                                     @method('DELETE')

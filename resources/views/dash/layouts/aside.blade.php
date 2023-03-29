@@ -36,6 +36,27 @@
                             </span>
                             <span class="menu-title">Slider Images</span>
                         </a>
+                        <a class="menu-link {{ Request::segment(2) == 'company' ? 'active' : '' }} "
+                            href="{{ route('dashboard.company.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Companies</span>
+                        </a>
+                        <a class="menu-link {{ Request::segment(2) == 'sport' ? 'active' : '' }} "
+                            href="{{ route('dashboard.sport.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Sports</span>
+                        </a>
+                        <a class="menu-link {{ Request::segment(2) == 'branch' ? 'active' : '' }} "
+                            href="{{ route('dashboard.branch.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Branchs</span>
+                        </a>
                     </div>
 
                 </div>

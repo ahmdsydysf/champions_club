@@ -13,7 +13,7 @@ class SliderImageController extends Controller
 
     public function index()
     {
-        $data = SliderImage::paginate(5);
+        $data = SliderImage::select('id' ,'image', 'title_en', 'title_ar', 'subtitle_en', 'subtitle_ar')->paginate(5);
 
         return view('dash.slider_image.all_slider_images' , compact('data'));
     }
@@ -110,8 +110,6 @@ class SliderImageController extends Controller
 
     public function destroy(SliderImage $sliderImage)
     {
-
-
         if ($sliderImage->image != 'default_slider.jpg') {
             Storage::disk('public_uploads')->delete("/slider/$sliderImage->image");
         }

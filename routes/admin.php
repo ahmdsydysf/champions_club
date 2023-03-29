@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AuthenticateDashboard;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\SportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +38,12 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
                         return view('dashboard');
                     })->name('main');
                     // slider images route
-                    Route::resource('slider_image' , SliderImageController::class);
+                    Route::resources([
+                        'slider_image' => SliderImageController::class ,
+                        'company' => CompanyController::class ,
+                        'sport' => SportController::class ,
+                        'branch' => BranchController::class ,
+                    ]);
                 });
 
 

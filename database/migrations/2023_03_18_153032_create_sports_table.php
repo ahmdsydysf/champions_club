@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('sport_title_ar')->nullable();
             $table->string('sport_subtitle_en')->nullable();
             $table->string('sport_subtitle_ar')->nullable();
-            $table->string('sport_image')->nullable();
+            $table->string('sport_image')->default('default_sport.jpg');
             $table->text('sport_overview_en')->nullable();
             $table->text('sport_overview_ar')->nullable();
             $table->timestamps();

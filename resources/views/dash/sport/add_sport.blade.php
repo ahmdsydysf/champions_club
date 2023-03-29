@@ -1,6 +1,6 @@
 @extends('dash.layouts.app')
 
-@section('page_title' , 'Add Slider Images')
+@section('page_title' , 'Add Sport')
 
 @section('content')
 
@@ -11,8 +11,8 @@
         <!--begin::Form-->
         <form id="kt_ecommerce_add_product_form"
             class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework"
-            data-kt-redirect="{{ route('dashboard.slider_image.index') }}" method="POST" enctype="multipart/form-data"
-            action="{{ route('dashboard.slider_image.store') }}">
+            data-kt-redirect="{{ route('dashboard.sport.index') }}" method="POST" enctype="multipart/form-data"
+            action="{{ route('dashboard.sport.store') }}">
             @csrf
             <!--begin::Aside column-->
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -22,7 +22,7 @@
                     <div class="card-header">
                         <!--begin::Card title-->
                         <div class="card-title">
-                            <h2>Slider Image</h2>
+                            <h2>Sport Image</h2>
                         </div>
                         <!--end::Card title-->
                     </div>
@@ -31,7 +31,7 @@
                     <div class="card-body text-center pt-0">
                         <!--begin::Image input-->
                         <div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true"
-                            style="background-image: url({{ asset('uploads/slider/default_slider.jpg') }})">
+                            style="background-image: url({{ asset('uploads/sport/default_sport.jpg') }})">
                             <!--begin::Preview existing avatar-->
                             <div class="image-input-wrapper w-150px h-150px"></div>
                             <!--end::Preview existing avatar-->
@@ -67,7 +67,7 @@
                         <div class="text-muted fs-7">Set the thumbnail image. Only *.png, *.jpg and *.jpeg
                             images are accepted</div>
                         <!--end::Description-->
-                        @error('image')
+                        @error('sport_image')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -108,13 +108,13 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
-                                        <label class="required form-label">Slider EN Title</label>
+                                        <label class="required form-label">sport_title_en</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="title_en" class="form-control mb-2"
-                                            placeholder="Slider EN Title" value="{{ old('title_en') }}">
+                                        <input type="text" name="sport_title_en" class="form-control mb-2"
+                                            placeholder="sport_title_en" value="{{ old('sport_title_en') }}">
                                         <!--end::Input-->
-                                        @error('title_en')
+                                        @error('sport_title_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
@@ -124,13 +124,13 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
-                                        <label class="required form-label">Slider AR Title</label>
+                                        <label class="required form-label">sport_title_ar</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="title_ar" class="form-control mb-2"
-                                            placeholder="Slider AR Title" value="{{ old('title_ar') }}">
+                                        <input type="text" name="sport_title_ar" class="form-control mb-2"
+                                            placeholder="sport_title_ar" value="{{ old('sport_title_ar') }}">
                                         <!--end::Input-->
-                                        @error('title_ar')
+                                        @error('sport_title_ar')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
@@ -140,13 +140,13 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
-                                        <label class="required form-label">Slider EN Sub-Title</label>
+                                        <label class="required form-label">sport_subtitle_en</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="subtitle_en" class="form-control mb-2"
-                                            placeholder="Slider EN Sub-Title" value="{{ old('subtitle_en') }}">
+                                        <input type="text" name="sport_subtitle_en" class="form-control mb-2"
+                                            placeholder="sport_subtitle_en" value="{{ old('sport_subtitle_en') }}">
                                         <!--end::Input-->
-                                        @error('subtitle_en')
+                                        @error('sport_subtitle_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
@@ -156,13 +156,13 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
-                                        <label class="required form-label">Slider AR Sub-Title</label>
+                                        <label class="required form-label">sport_subtitle_ar</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="subtitle_ar" class="form-control mb-2"
-                                            placeholder="Slider AR Sub-Title" value="{{ old('subtitle_ar') }}">
+                                        <input type="text" name="sport_subtitle_ar" class="form-control mb-2"
+                                            placeholder="sport_subtitle_ar" value="{{ old('sport_subtitle_ar') }}">
                                         <!--end::Input-->
-                                        @error('subtitle_ar')
+                                        @error('sport_subtitle_ar')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
@@ -172,13 +172,13 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
-                                        <label class="required form-label">Slider EN Nav-Title</label>
+                                        <label class="required form-label">sport_overview_en</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="nav_title_en" class="form-control mb-2"
-                                            placeholder="Slider EN Nav-Title" value="{{ old('nav_title_en') }}">
+                                        <input type="text" name="sport_overview_en" class="form-control mb-2"
+                                            placeholder="sport_overview_en" value="{{ old('sport_overview_en') }}">
                                         <!--end::Input-->
-                                        @error('nav_title_en')
+                                        @error('sport_overview_en')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
@@ -188,82 +188,20 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
-                                        <label class="required form-label">Slider AR Nav-Title</label>
+                                        <label class="required form-label">sport_overview_ar</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="nav_title_ar" class="form-control mb-2"
-                                            placeholder="Slider AR Nav-Title" value="{{ old('nav_title_ar') }}">
+                                        <input type="text" name="sport_overview_ar" class="form-control mb-2"
+                                            placeholder="sport_overview_ar" value="{{ old('sport_overview_ar') }}">
                                         <!--end::Input-->
-                                        @error('nav_title_ar')
+                                        @error('sport_overview_ar')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="mb-10 fv-row fv-plugins-icon-container">
-                                        <!--begin::Label-->
-                                        <label class="required form-label">Slider EN Nav-SubTitle</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="nav_subtitle_en" class="form-control mb-2"
-                                            placeholder="Slider EN Nav-SubTitle" value="{{ old('nav_subtitle_en') }}">
-                                        <!--end::Input-->
-                                        @error('nav_subtitle_en')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
 
-                                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="mb-10 fv-row fv-plugins-icon-container">
-                                        <!--begin::Label-->
-                                        <label class="required form-label">Slider AR Nav-SubTitle</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="nav_subtitle_ar" class="form-control mb-2"
-                                            placeholder="Slider EN Nav-SubTitle" value="{{ old('nav_subtitle_ar') }}">
-                                        <!--end::Input-->
-                                        @error('nav_subtitle_ar')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div>
-                                        <!--begin::Label-->
-                                        <label class="required form-label">Slider EN Overview</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="overview_en" class="form-control mb-2"
-                                            placeholder="Slider EN Nav-SubTitle" value="{{ old('overview_en') }}">
-                                        <!--end::Input-->
-                                        @error('overview_en')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    </div>
-                                    <!--end::Input group-->
-                                    <div>
-                                        <!--begin::Label-->
-                                        <label class="required form-label">Slider AR Overview</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="overview_ar" class="form-control mb-2"
-                                            placeholder="Slider EN Nav-SubTitle" value="{{ old('overview_ar') }}">
-                                        <!--end::Input-->
-                                        @error('overview_ar')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                                    </div>
-                                    <!--end::Input group-->
 
                                 </div>
                                 <!--end::Card header-->
@@ -278,7 +216,7 @@
                 <!--end::Tab content-->
                 <div class="d-flex justify-content-end">
                     <!--begin::Button-->
-                    <a href="{{ route('dashboard.slider_image.index') }}" id="kt_ecommerce_add_product_cancel"
+                    <a href="{{ route('dashboard.sport.index') }}" id="kt_ecommerce_add_product_cancel"
                         class="btn btn-light me-5">Cancel</a>
                     <!--end::Button-->
                     <!--begin::Button-->
