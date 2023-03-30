@@ -40,11 +40,11 @@ Route::group(
                 // });
                 // some front test routes
 
-            Route::get('/news', [HomeController::class , 'news'])->name('allNews');
-            Route::get('/contact', [HomeController::class , 'contact'])->name('contact');
-            Route::get('/media', [HomeController::class , 'media'])->name('media');
-            Route::get('/singleNews', [HomeController::class , 'singleNews'])->name('singleNews');
-            Route::get('/sport', [HomeController::class , 'sport'])->name('sport');
+            Route::get('/news', [HomeController::class , 'news'])->name('allNews')->withoutMiddleware(['auth']);
+            Route::get('/contact', [HomeController::class , 'contact'])->name('contact')->withoutMiddleware(['auth']);
+            Route::get('/media', [HomeController::class , 'media'])->name('media')->withoutMiddleware(['auth']);
+            Route::get('/singleNews', [HomeController::class , 'singleNews'])->name('singleNews')->withoutMiddleware(['auth']);
+            Route::get('/sport', [HomeController::class , 'sport'])->name('sport')->withoutMiddleware(['auth']);
 
 
 

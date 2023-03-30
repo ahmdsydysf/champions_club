@@ -30,8 +30,8 @@
                             التأليف
                             والنشر
                             معقدة ، </p>
-                        <a href="news-single.html"> <img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"> </a>
+                        <a href="{{ route('singleNews') }}"> <img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"> </a>
                     </div>
 
                 </div>
@@ -48,8 +48,8 @@
                             التأليف
                             والنشر
                             معقدة ، </p>
-                        <a href="news-single.html"> <img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"> </a>
+                        <a href="{{ route('singleNews') }}"> <img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"> </a>
                     </div>
 
                 </div>
@@ -65,8 +65,8 @@
                             الآخرين الذين يريدون نسخه لأغراض مختلفة. في أي حال ، يمكن أن يكون الجانب القانوني لحقوق
                             التأليف والنشر
                             معقدة ، </p>
-                        <a href="news-single.html"> <img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"> </a>
+                        <a href="{{ route('singleNews') }}"> <img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"> </a>
                     </div>
 
                 </div>
@@ -82,8 +82,8 @@
                             الآخرين الذين يريدون نسخه لأغراض مختلفة. في أي حال ، يمكن أن يكون الجانب القانوني لحقوق
                             التأليف والنشر
                             معقدة ، </p>
-                        <a href="news-single.html"> <img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"> </a>
+                        <a href="{{ route('singleNews') }}"> <img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"> </a>
                     </div>
 
                 </div>
@@ -99,8 +99,8 @@
                             الآخرين الذين يريدون نسخه لأغراض مختلفة. في أي حال ، يمكن أن يكون الجانب القانوني لحقوق
                             التأليف والنشر
                             معقدة ، </p>
-                        <a href="news-single.html"> <img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"> </a>
+                        <a href="{{ route('singleNews') }}"> <img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"> </a>
                     </div>
 
                 </div>

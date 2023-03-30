@@ -30,8 +30,8 @@
                             others who want to copy it for various purposes. In any case, the legal side of copyrights
                             can be
                             complex,</p>
-                        <a href="news-single.html"><img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"></a>
+                        <a href="{{ route('singleNews') }}"><img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"></a>
                     </div>
                     <!-- end post-content -->
                 </div>
@@ -48,8 +48,8 @@
                             others who want to copy it for various purposes. In any case, the legal side of copyrights
                             can be
                             complex,</p>
-                        <a href="news-single.html"><img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"></a>
+                        <a href="{{ route('singleNews') }}"><img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"></a>
                     </div>
                     <!-- end post-content -->
                 </div>
@@ -66,8 +66,8 @@
                             others who want to copy it for various purposes. In any case, the legal side of copyrights
                             can be
                             complex,</p>
-                        <a href="news-single.html"><img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"></a>
+                        <a href="{{ route('singleNews') }}"><img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"></a>
                     </div>
                     <!-- end post-content -->
                 </div>
@@ -84,8 +84,8 @@
                             others who want to copy it for various purposes. In any case, the legal side of copyrights
                             can be
                             complex,</p>
-                        <a href="news-single.html"><img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"></a>
+                        <a href="{{ route('singleNews') }}"><img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"></a>
                     </div>
                     <!-- end post-content -->
                 </div>
@@ -102,8 +102,8 @@
                             others who want to copy it for various purposes. In any case, the legal side of copyrights
                             can be
                             complex,</p>
-                        <a href="news-single.html"><img src="{{ asset('web_assets/images/icon-right-arrow.svg') }}"
-                                alt="Image"></a>
+                        <a href="{{ route('singleNews') }}"><img
+                                src="{{ asset('web_assets/images/icon-right-arrow.svg') }}" alt="Image"></a>
                     </div>
                     <!-- end post-content -->
                 </div>

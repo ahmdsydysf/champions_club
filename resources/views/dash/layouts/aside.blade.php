@@ -37,7 +37,7 @@
                             <span class="menu-title">Slider Images</span>
                         </a>
                         <a class="menu-link {{ Request::segment(2) == 'company' ? 'active' : '' }} "
-                            href="{{ route('dashboard.company.index') }}">
+                            href="{{ route('dashboard.company.edit' , ['company' => 1]) }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>

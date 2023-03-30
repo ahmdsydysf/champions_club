@@ -41,11 +41,12 @@ use App\Http\Controllers\SportController;
                     // slider images route
                     Route::resources([
                         'slider_image' => SliderImageController::class ,
-                        'company' => CompanyController::class ,
                         'sport' => SportController::class ,
                         'branch' => BranchController::class ,
+
                     ]);
 
+                    Route::resource('company' , CompanyController::class)->only(['edit' , 'update']);
                     Route::resource('social' , SocialLinkController::class)->only(['edit' , 'update']);
                 });
 

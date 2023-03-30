@@ -10,9 +10,8 @@
     <div class="container-xxl">
         <!--begin::Form-->
         <form id="kt_ecommerce_add_product_form"
-            class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework"
-            data-kt-redirect="{{ route('dashboard.company.index') }}" method="POST"
-            action="{{ route('dashboard.company.update' , ['company' => $company->id]) }}">
+            class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
+            action="{{ route('dashboard.company.update' , ['company' => 1]) }}">
             @csrf
             @method('PUT')
 
@@ -396,10 +395,7 @@
                 </div>
                 <!--end::Tab content-->
                 <div class="d-flex justify-content-end">
-                    <!--begin::Button-->
-                    <a href="{{ route('dashboard.company.index') }}" id="kt_ecommerce_add_product_cancel"
-                        class="btn btn-light me-5">Cancel</a>
-                    <!--end::Button-->
+
                     <!--begin::Button-->
                     <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
                         <span class="indicator-label">Save Changes</span>

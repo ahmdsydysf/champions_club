@@ -38,8 +38,8 @@
                 <div class="col-12">
                     <ul class="masonry">
                         <li class="wow fadeIn one">
-                            <figure> <a href="images/image01.jpg" data-fancybox> <img src="images/image01.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/image01.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/image01.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة ريدوود </h6>
                                     <small> تطوير الأعمال </small>
@@ -47,8 +47,8 @@
                             </figure>
                         </li>
                         <li class="wow fadeIn two">
-                            <figure> <a href="images/slide01.jpg" data-fancybox> <img src="images/slide01.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/slide01.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/slide01.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة الجبل </h6>
                                     <small> تطوير الأعمال </small>
@@ -56,8 +56,8 @@
                             </figure>
                         </li>
                         <li class="double wow fadeIn three">
-                            <figure> <a href="images/trophy-3.webp" data-fancybox> <img src="images/trophy-3.webp"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/trophy-3.webp') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/trophy-3.webp') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة POLLEN INC </h6>
                                     <small> تطوير الأعمال </small>
@@ -65,8 +65,8 @@
                             </figure>
                         </li>
                         <li class="double wow fadeIn four">
-                            <figure> <a href="images/slide03.jpg" data-fancybox> <img src="images/slide03.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/slide03.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/slide03.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة SEEDS </h6>
                                     <small> تطوير الأعمال </small>
@@ -74,8 +74,8 @@
                             </figure>
                         </li>
                         <li class="double wow fadeIn one">
-                            <figure> <a href="images/image15.jpg" data-fancybox> <img src="images/image15.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/image15.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/image15.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة SEEDS </h6>
                                     <small> تطوير الأعمال </small>
@@ -83,8 +83,8 @@
                             </figure>
                         </li>
                         <li class="double wow fadeIn two">
-                            <figure> <a href="images/image14.jpg" data-fancybox> <img src="images/image14.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/image14.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/image14.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة POLLEN INC </h6>
                                     <small> تطوير الأعمال </small>
@@ -92,8 +92,8 @@
                             </figure>
                         </li>
                         <li class="wow fadeIn three">
-                            <figure> <a href="images/image16.jpg" data-fancybox> <img src="images/image16.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/image16.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/image16.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة ريدوود </h6>
                                     <small> تطوير الأعمال </small>
@@ -101,8 +101,8 @@
                             </figure>
                         </li>
                         <li class="wow fadeIn four">
-                            <figure> <a href="images/image17.jpg" data-fancybox> <img src="images/image17.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/image17.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/image17.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة الجبل </h6>
                                     <small> تطوير الأعمال </small>
@@ -110,8 +110,8 @@
                             </figure>
                         </li>
                         <li class="wow fadeIn phone">
-                            <figure> <a href="images/image03.jpg" data-fancybox> <img src="images/image03.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/image03.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/image03.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة الجبل </h6>
                                     <small> تطوير الأعمال </small>
@@ -119,8 +119,8 @@
                             </figure>
                         </li>
                         <li class="double wow fadeIn two">
-                            <figure> <a href="images/image19.jpg" data-fancybox> <img src="images/image19.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/image19.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/image19.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة SEEDS </h6>
                                     <small> تطوير الأعمال </small>
@@ -128,8 +128,8 @@
                             </figure>
                         </li>
                         <li class="wow fadeIn three">
-                            <figure> <a href="images/trophy-5.jpg" data-fancybox> <img src="images/trophy-5.jpg"
-                                        alt="Image"> </a>
+                            <figure> <a href="{{ asset('web_assets/images/trophy-5.jpg') }}" data-fancybox> <img
+                                        src="{{ asset('web_assets/images/trophy-5.jpg') }}" alt="Image"> </a>
                                 <figcaption>
                                     <h6> شركة الجبل </h6>
                                     <small> تطوير الأعمال </small>
