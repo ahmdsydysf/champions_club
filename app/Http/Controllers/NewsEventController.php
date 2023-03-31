@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsEvent;
 use Illuminate\Http\Request;
-
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 class NewsEventController extends Controller
 {
     /**
@@ -14,18 +15,11 @@ class NewsEventController extends Controller
      */
     public function index()
     {
-        //
+        $data = NewsEvent::paginate(5);
+
+        return view('dash.news_event.all_news_event' , compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,30 +29,32 @@ class NewsEventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+        'title_en' => 'required',
+        'title_ar' => 'required',
+        'date' => 'required',
+        'brief_en' => 'required',
+        'brief_ar' => 'required',
+        'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $request_data = $request->except('image', '_token');
+
+        if ($request->file('image')) {
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(255, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/event/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
+        NewsEvent::create($request_data);
+
+        toast('Success Adding New Event','success');
+
+        return redirect()->route('dashboard.news_event.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\NewsEvent  $newsEvent
-     * @return \Illuminate\Http\Response
-     */
-    public function show(NewsEvent $newsEvent)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\NewsEvent  $newsEvent
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(NewsEvent $newsEvent)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +65,34 @@ class NewsEventController extends Controller
      */
     public function update(Request $request, NewsEvent $newsEvent)
     {
-        //
+        $request->validate([
+            'title_en' => 'required',
+            'title_ar' => 'required',
+            'date' => 'required',
+            'brief_en' => 'required',
+            'brief_ar' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
+            $request_data = $request->except('image', '_token');
+
+            if ($request->file('image')) {
+
+                if ($newsEvent->image != 'default_event.jpg') {
+                    Storage::disk('public_uploads')->delete("/event/$newsEvent->image");
+                }
+                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+                Image::make($request->file('image'))->resize(250, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/event/' . $myimageName));
+                $request_data['image'] = $myimageName;
+            }
+
+            $newsEvent->update($request_data);
+
+            toast('Success Updating Event','warning');
+
+            return redirect()->route('dashboard.news_event.index');
     }
 
     /**
@@ -80,6 +103,11 @@ class NewsEventController extends Controller
      */
     public function destroy(NewsEvent $newsEvent)
     {
-        //
+        if ($newsEvent->image != 'default_event.jpg') {
+            Storage::disk('public_uploads')->delete("/event/$newsEvent->image");
+        }
+        $newsEvent->delete();
+        toast('Success Deleteing event','error');
+        return redirect()->route('dashboard.news_event.index');
     }
 }

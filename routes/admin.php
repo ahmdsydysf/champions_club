@@ -7,6 +7,7 @@ use App\Http\Middleware\AuthenticateDashboard;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\SportController;
 
@@ -43,7 +44,7 @@ use App\Http\Controllers\SportController;
                         'slider_image' => SliderImageController::class ,
                         'sport' => SportController::class ,
                         'branch' => BranchController::class ,
-
+                        'news_event' => NewsEventController::class ,
                     ]);
 
                     Route::resource('company' , CompanyController::class)->only(['edit' , 'update']);

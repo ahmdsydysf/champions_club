@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->string('brief_en')->nullable();
             $table->string('brief_ar')->nullable();
-            $table->text('image')->nullable();
+            $table->string('image')->default('default_event.jpg');
             $table->timestamps();
         });
     }

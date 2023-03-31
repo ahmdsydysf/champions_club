@@ -64,6 +64,13 @@
                             </span>
                             <span class="menu-title">Social Links</span>
                         </a>
+                        <a class="menu-link {{ Request::segment(2) == 'news_event' ? 'active' : '' }} "
+                            href="{{ route('dashboard.news_event.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">News Events</span>
+                        </a>
                     </div>
 
                 </div>
