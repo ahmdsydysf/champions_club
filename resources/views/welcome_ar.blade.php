@@ -387,14 +387,15 @@
     <!-- end container -->
 </section>
 <!-- end icon-content-box -->
-<section class="image-content-box" style="background: #405089;">
+<section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
                     <a href="allnews-ar.html">
-                        <h2>خدمـــاتنا</h2>
-                        <h6 style="color: white;">من مميزات النادي الرياضي فكرة النادي الرياضي تتعدى فكرة لعب الرياضة
+                        <h2 style="color: white;">خدمـــاتنا</h2>
+                        <h6 style=" color: white;">من مميزات النادي الرياضي فكرة النادي الرياضي تتعدى فكرة لعب
+                            الرياضة
                             فقط، بل في
                             النادي تزيد معرفتك في
                             الناس وتتعرف على أشخاص آخرين وتكوين صداقات جديدة تعزز من حياتك الاجتماعية </h6>
@@ -528,19 +529,6 @@
 <section class="request-form">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 wow fadeIn">
-                <div class="section-title light">
-                    <h2>الرعاة</h2>
-                    <h6>وفقًا لشركة Statista ، بلغت قيمة سوق الرعاية الرياضية العالمية 57 مليار دولار في عام 2020 وهي
-                        كذلك
-                        من المتوقع أن يرتفع إلى 90 مليار دولار أمريكي بحلول عام 2027. ويتم إنشاء أكثر من ثلث هذا المبلغ
-                        في أمريكا
-                        الشمالية
-                        كميات</h6>
-                </div>
-                <!-- end section-title -->
-            </div>
-            <!-- end col-5 -->
 
             <div class="col-lg-12 sponsers">
                 <div class="logos wow fadeIn">

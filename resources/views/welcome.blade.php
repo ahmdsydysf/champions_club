@@ -382,13 +382,13 @@
     <!-- end container -->
 </section>
 <!-- end icon-content-box -->
-<section class="image-content-box" style="background: #405089;">
+<section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
                     <a href="allnews.html">
-                        <h2>Our services</h2>
+                        <h2 style="color: white;">Our services</h2>
                         <h6 style="color: white;">Because they may falsely report what happened wither<br> knowingly or
                             simply due
                             to confusion</h6>
