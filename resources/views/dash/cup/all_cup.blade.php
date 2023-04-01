@@ -1,6 +1,6 @@
 @extends('dash.layouts.app')
 
-@section('page_title' , 'All News Events')
+@section('page_title' , 'All Cups')
 
 @section('content')
 
@@ -13,7 +13,7 @@
         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
             <!--begin::Add slider-->
             <button class="btn btn-sm btn-light btn-active-light-primary" data-bs-toggle="modal"
-                data-bs-target="#kt_modal_new_card_news_event">Add New</button>
+                data-bs-target="#kt_modal_new_card_cup">Add New</button>
             <!--end::Add slider-->
         </div>
         <!--end::Card toolbar-->
@@ -31,8 +31,8 @@
                     <th class="text-center ">image</th>
                     <th class="text-center ">title_en</th>
                     <th class="text-center ">title_ar</th>
-                    <th class="text-center ">Date</th>
-
+                    <th class="text-center ">brief_en</th>
+                    <th class="text-center ">brief_ar</th>
 
                     <th class="text-center ">Actions</th>
                 </tr>
@@ -53,7 +53,7 @@
                             <!--begin::Thumbnail-->
                             <a href="edit-slider.html" class="symbol symbol-50px">
                                 <span class="symbol-label"
-                                    style="background-image:url('{{ asset('uploads/event/' . $row->image) }}');"></span>
+                                    style="background-image:url('{{ asset('uploads/cups/' . $row->image) }}');"></span>
                             </a>
 
                         </div>
@@ -71,7 +71,12 @@
                     <!--end::SKU=-->
                     <!--begin::SKU=-->
                     <td class="text-center pe-0">
-                        <span class="fw-bolder">{{ $row->date }}</span>
+                        <span class="fw-bolder">{{ $row->brief_ar }}</span>
+                    </td>
+                    <!--end::SKU=-->
+                    <!--begin::SKU=-->
+                    <td class="text-center pe-0">
+                        <span class="fw-bolder">{{ $row->brief_en }}</span>
                     </td>
                     <!--end::SKU=-->
 
@@ -97,11 +102,9 @@
                             data-kt-menu="true">
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-
                                 <button class="btn btn-sm btn-light btn-active-light-primary w-100"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_new_card_news_event_edit_{{ $row->id }}">Edit</button>
-
+                                    data-bs-target="#kt_modal_new_card_cup_edit_{{ $row->id }}">Edit</button>
                             </div>
 
                             <div class="menu-item px-3">
@@ -109,9 +112,6 @@
                                     data-bs-toggle="modal" data-bs-target="#kt_modal_{{ $row->id }}_del">
                                     delete
                                 </button>
-
-
-
                             </div>
 
 
@@ -127,8 +127,7 @@
 
                 {{-- edit model --}}
                 <!--begin::Modal - New Card-->
-                <div class="modal fade" id="kt_modal_new_card_news_event_edit_{{ $row->id }}" tabindex="-1"
-                    aria-hidden="true">
+                <div class="modal fade" id="kt_modal_new_card_cup_edit_{{ $row->id }}" tabindex="-1" aria-hidden="true">
                     <!--begin::Modal dialog-->
                     <div class="modal-dialog modal-dialog-centered mw-650px">
                         <!--begin::Modal content-->
@@ -160,14 +159,14 @@
                                 <!--begin::Form-->
                                 <form id="kt_modal_new_card_form_{{ $row->id }}" method="post"
                                     enctype="multipart/form-data" class="form text-center"
-                                    action="{{ route('dashboard.news_event.update' , ['news_event' => $row->id ]) }}">
+                                    action="{{ route('dashboard.cup.update' , ['cup' => $row->id ]) }}">
                                     @csrf
                                     @method('PUT')
                                     <div class="image-input image-input-outline" data-kt-image-input="true"
-                                        style="background-image: url('{{ asset('uploads/event/' . $row->image) }}')">
+                                        style="background-image: url('{{ asset('uploads/cups/' . $row->image) }}')">
                                         <!--begin::Preview existing avatar-->
                                         <div class="image-input-wrapper w-100px h-100px"
-                                            style="background-image: url('{{ asset('uploads/event/' . $row->image) }}')">
+                                            style="background-image: url('{{ asset('uploads/cups/' . $row->image) }}')">
                                         </div>
                                         <!--end::Preview existing avatar-->
                                         <!--begin::Edit-->
@@ -261,17 +260,7 @@
                                     </div>
 
                                     <!--end::Input group-->
-                                    <div class="mb-10 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required form-label">Event Date</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input name="date" class="form-control mb-2"
-                                            class="form-control  form-control-solid dPick" placeholder="Event Date"
-                                            id="kt_datepicker_2" value="{{ $row->date }}" />
 
-
-                                    </div>
 
                                     <!--begin::Actions-->
                                     <div class="text-center pt-15">
@@ -321,15 +310,14 @@
                                             fill="black"></rect>
                                     </svg>
                                 </span>
-                                <p>This is {{ $row->title_en }} - Event</p>
+                                <p>This is {{ $row->title_en }} - cup</p>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline btn-outline-danger btn-active-danger m-2"
                                     data-bs-dismiss="modal">Close</button>
                                 <form id="kt_modal_{{ $row->id }}_del_form"
-                                    action="{{ route('dashboard.news_event.destroy' , ['news_event' => $row->id ]) }}"
-                                    method="post">
+                                    action="{{ route('dashboard.cup.destroy' , ['cup' => $row->id ]) }}" method="post">
                                     @csrf
                                     @method('DELETE')
 
@@ -358,7 +346,7 @@
 <!--end::sliders-->
 
 <!--begin::Modal - New Card-->
-<div class="modal fade" id="kt_modal_new_card_news_event" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="kt_modal_new_card_cup" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <!--begin::Modal content-->
@@ -388,13 +376,13 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
                 <form id="kt_modal_new_card_form" method="post" enctype="multipart/form-data" class="form text-center"
-                    action="{{ route('dashboard.news_event.store') }}">
+                    action="{{ route('dashboard.cup.store') }}">
                     @csrf
                     <div class="image-input image-input-outline" data-kt-image-input="true"
-                        style="background-image: url('{{ asset('uploads/event/default_event.jpg') }}')">
+                        style="background-image: url('{{ asset('uploads/cups/default_cup.jpg') }}')">
                         <!--begin::Preview existing avatar-->
                         <div class="image-input-wrapper w-100px h-100px"
-                            style="background-image: url('{{ asset('uploads/event/default_event.jpg') }}')"></div>
+                            style="background-image: url('{{ asset('uploads/cups/default_cup.jpg') }}')"></div>
                         <!--end::Preview existing avatar-->
                         <!--begin::Edit-->
                         <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -479,17 +467,7 @@
                         <!--end::Input wrapper-->
                     </div>
 
-                    <!--end::Input group-->
-                    <div class="mb-10 fv-row">
-                        <!--begin::Label-->
-                        <label class="required form-label">Event Date</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input name="date" class="form-control mb-2" class="form-control  form-control-solid dPick"
-                            placeholder="Event Date" id="kt_datepicker_1" value="" />
 
-
-                    </div>
 
                     <!--begin::Actions-->
                     <div class="text-center pt-15">
@@ -512,12 +490,4 @@
 </div>
 <!--end::Modal - New Card-->
 
-@endsection
-
-
-@section('custome_js')
-<script>
-    $("#kt_datepicker_1").flatpickr();
-    $("#kt_datepicker_2").flatpickr();
-</script>
 @endsection

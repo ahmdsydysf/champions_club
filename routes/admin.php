@@ -7,8 +7,12 @@ use App\Http\Middleware\AuthenticateDashboard;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CupController;
+use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\NewsEventController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SocialLinkController;
+use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SportController;
 
 /*
@@ -45,6 +49,10 @@ use App\Http\Controllers\SportController;
                         'sport' => SportController::class ,
                         'branch' => BranchController::class ,
                         'news_event' => NewsEventController::class ,
+                        'service' => ServiceController::class ,
+                        'cup' => CupController::class ,
+                        'general_service' => GeneralServiceController::class ,
+                        'sponsor' => SponsorController::class ,
                     ]);
 
                     Route::resource('company' , CompanyController::class)->only(['edit' , 'update']);

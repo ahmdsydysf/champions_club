@@ -1,6 +1,6 @@
 @extends('dash.layouts.app')
 
-@section('page_title' , 'All News Events')
+@section('page_title' , 'All General Services')
 
 @section('content')
 
@@ -13,7 +13,7 @@
         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
             <!--begin::Add slider-->
             <button class="btn btn-sm btn-light btn-active-light-primary" data-bs-toggle="modal"
-                data-bs-target="#kt_modal_new_card_news_event">Add New</button>
+                data-bs-target="#kt_modal_new_general_service">Add New</button>
             <!--end::Add slider-->
         </div>
         <!--end::Card toolbar-->
@@ -28,11 +28,11 @@
             <thead>
                 <!--begin::Table row-->
                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0 ">
-                    <th class="text-center ">image</th>
-                    <th class="text-center ">title_en</th>
-                    <th class="text-center ">title_ar</th>
-                    <th class="text-center ">Date</th>
 
+                    <th class="text-center ">service_en</th>
+                    <th class="text-center ">service_ar</th>
+                    <th class="text-center ">overview_en</th>
+                    <th class="text-center ">overview_ar</th>
 
                     <th class="text-center ">Actions</th>
                 </tr>
@@ -47,31 +47,25 @@
                 <!--begin::Table row-->
                 <tr>
 
-                    <!--begin::Category=-->
-                    <td class="text-center pe-0">
-                        <div class="d-flex justify-content-center">
-                            <!--begin::Thumbnail-->
-                            <a href="edit-slider.html" class="symbol symbol-50px">
-                                <span class="symbol-label"
-                                    style="background-image:url('{{ asset('uploads/event/' . $row->image) }}');"></span>
-                            </a>
 
-                        </div>
-                    </td>
-                    <!--end::Category=-->
                     <!--begin::SKU=-->
                     <td class="text-center pe-0">
-                        <span class="fw-bolder">{{ $row->title_en }}</span>
+                        <span class="fw-bolder">{{ $row->service_en }}</span>
                     </td>
                     <!--end::SKU=-->
                     <!--begin::SKU=-->
                     <td class="text-center pe-0">
-                        <span class="fw-bolder">{{ $row->title_ar }}</span>
+                        <span class="fw-bolder">{{ $row->service_ar }}</span>
                     </td>
                     <!--end::SKU=-->
                     <!--begin::SKU=-->
                     <td class="text-center pe-0">
-                        <span class="fw-bolder">{{ $row->date }}</span>
+                        <span class="fw-bolder">{{ $row->overview_ar }}</span>
+                    </td>
+                    <!--end::SKU=-->
+                    <!--begin::SKU=-->
+                    <td class="text-center pe-0">
+                        <span class="fw-bolder">{{ $row->overview_en }}</span>
                     </td>
                     <!--end::SKU=-->
 
@@ -97,11 +91,9 @@
                             data-kt-menu="true">
                             <!--begin::Menu item-->
                             <div class="menu-item px-3">
-
                                 <button class="btn btn-sm btn-light btn-active-light-primary w-100"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_new_card_news_event_edit_{{ $row->id }}">Edit</button>
-
+                                    data-bs-target="#kt_modal_new_general_service_edit_{{ $row->id }}">Edit</button>
                             </div>
 
                             <div class="menu-item px-3">
@@ -109,9 +101,6 @@
                                     data-bs-toggle="modal" data-bs-target="#kt_modal_{{ $row->id }}_del">
                                     delete
                                 </button>
-
-
-
                             </div>
 
 
@@ -127,7 +116,7 @@
 
                 {{-- edit model --}}
                 <!--begin::Modal - New Card-->
-                <div class="modal fade" id="kt_modal_new_card_news_event_edit_{{ $row->id }}" tabindex="-1"
+                <div class="modal fade" id="kt_modal_new_general_service_edit_{{ $row->id }}" tabindex="-1"
                     aria-hidden="true">
                     <!--begin::Modal dialog-->
                     <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -160,55 +149,19 @@
                                 <!--begin::Form-->
                                 <form id="kt_modal_new_card_form_{{ $row->id }}" method="post"
                                     enctype="multipart/form-data" class="form text-center"
-                                    action="{{ route('dashboard.news_event.update' , ['news_event' => $row->id ]) }}">
+                                    action="{{ route('dashboard.general_service.update' , ['general_service' => $row->id ]) }}">
                                     @csrf
                                     @method('PUT')
-                                    <div class="image-input image-input-outline" data-kt-image-input="true"
-                                        style="background-image: url('{{ asset('uploads/event/' . $row->image) }}')">
-                                        <!--begin::Preview existing avatar-->
-                                        <div class="image-input-wrapper w-100px h-100px"
-                                            style="background-image: url('{{ asset('uploads/event/' . $row->image) }}')">
-                                        </div>
-                                        <!--end::Preview existing avatar-->
-                                        <!--begin::Edit-->
-                                        <label
-                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
-                                            data-bs-original-title="Change avatar">
-                                            <i class="bi bi-pencil-fill fs-7"></i>
-                                            <!--begin::Inputs-->
-                                            <input type="file" name="image" accept=".png, .jpg, .jpeg">
-                                            <input type="hidden" name="avatar_remove">
-                                            <!--end::Inputs-->
-                                        </label>
-                                        <!--end::Edit-->
-                                        <!--begin::Cancel-->
-                                        <span
-                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title=""
-                                            data-bs-original-title="Cancel avatar">
-                                            <i class="bi bi-x fs-2"></i>
-                                        </span>
-                                        <!--end::Cancel-->
-                                        <!--begin::Remove-->
-                                        <span
-                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" title=""
-                                            data-bs-original-title="Remove avatar">
-                                            <i class="bi bi-x fs-2"></i>
-                                        </span>
-                                        <!--end::Remove-->
-                                    </div>
                                     <div class="d-flex flex-column mb-7 fv-row">
                                         <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Title EN</label>
+                                        <label class="required fs-6 fw-bold form-label mb-2">service EN</label>
                                         <!--end::Label-->
                                         <!--begin::Input wrapper-->
                                         <div class="position-relative">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                placeholder="Enter Title EN" name="title_en"
-                                                value="{{ $row->title_en }}" />
+                                                placeholder="Enter service EN" name="service_en"
+                                                value="{{ $row->service_en }}" />
                                             <!--end::Input-->
 
                                         </div>
@@ -216,14 +169,14 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 fv-row">
                                         <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Title AR</label>
+                                        <label class="required fs-6 fw-bold form-label mb-2">service AR</label>
                                         <!--end::Label-->
                                         <!--begin::Input wrapper-->
                                         <div class="position-relative">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                placeholder="Enter Title AR" name="title_ar"
-                                                value="{{ $row->title_ar }}" />
+                                                placeholder="Enter service AR" name="service_ar"
+                                                value="{{ $row->service_ar }}" />
                                             <!--end::Input-->
 
                                         </div>
@@ -231,14 +184,14 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 fv-row">
                                         <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Brief EN</label>
+                                        <label class="required fs-6 fw-bold form-label mb-2">overview EN</label>
                                         <!--end::Label-->
                                         <!--begin::Input wrapper-->
                                         <div class="position-relative">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                placeholder="Enter Brief EN" name="brief_en"
-                                                value="{{ $row->brief_en }}" />
+                                                placeholder="Enter overview EN" name="overview_en"
+                                                value="{{ $row->overview_en }}" />
                                             <!--end::Input-->
 
                                         </div>
@@ -246,14 +199,14 @@
                                     </div>
                                     <div class="d-flex flex-column mb-7 fv-row">
                                         <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Brief AR</label>
+                                        <label class="required fs-6 fw-bold form-label mb-2">overview AR</label>
                                         <!--end::Label-->
                                         <!--begin::Input wrapper-->
                                         <div class="position-relative">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                placeholder="Enter Brief AR" name="brief_ar"
-                                                value="{{ $row->brief_ar }}" />
+                                                placeholder="Enter overview AR" name="overview_ar"
+                                                value="{{ $row->overview_ar }}" />
                                             <!--end::Input-->
 
                                         </div>
@@ -261,17 +214,7 @@
                                     </div>
 
                                     <!--end::Input group-->
-                                    <div class="mb-10 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required form-label">Event Date</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input name="date" class="form-control mb-2"
-                                            class="form-control  form-control-solid dPick" placeholder="Event Date"
-                                            id="kt_datepicker_2" value="{{ $row->date }}" />
 
-
-                                    </div>
 
                                     <!--begin::Actions-->
                                     <div class="text-center pt-15">
@@ -321,14 +264,14 @@
                                             fill="black"></rect>
                                     </svg>
                                 </span>
-                                <p>This is {{ $row->title_en }} - Event</p>
+                                <p>This is {{ $row->service_en }} - general service</p>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline btn-outline-danger btn-active-danger m-2"
                                     data-bs-dismiss="modal">Close</button>
                                 <form id="kt_modal_{{ $row->id }}_del_form"
-                                    action="{{ route('dashboard.news_event.destroy' , ['news_event' => $row->id ]) }}"
+                                    action="{{ route('dashboard.general_service.destroy' , ['general_service' => $row->id ]) }}"
                                     method="post">
                                     @csrf
                                     @method('DELETE')
@@ -358,7 +301,7 @@
 <!--end::sliders-->
 
 <!--begin::Modal - New Card-->
-<div class="modal fade" id="kt_modal_new_card_news_event" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="kt_modal_new_general_service" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <!--begin::Modal content-->
@@ -388,49 +331,18 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
                 <form id="kt_modal_new_card_form" method="post" enctype="multipart/form-data" class="form text-center"
-                    action="{{ route('dashboard.news_event.store') }}">
+                    action="{{ route('dashboard.general_service.store') }}">
                     @csrf
-                    <div class="image-input image-input-outline" data-kt-image-input="true"
-                        style="background-image: url('{{ asset('uploads/event/default_event.jpg') }}')">
-                        <!--begin::Preview existing avatar-->
-                        <div class="image-input-wrapper w-100px h-100px"
-                            style="background-image: url('{{ asset('uploads/event/default_event.jpg') }}')"></div>
-                        <!--end::Preview existing avatar-->
-                        <!--begin::Edit-->
-                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
-                            data-bs-original-title="Change avatar">
-                            <i class="bi bi-pencil-fill fs-7"></i>
-                            <!--begin::Inputs-->
-                            <input type="file" name="image" accept=".png, .jpg, .jpeg">
-                            <input type="hidden" name="avatar_remove">
-                            <!--end::Inputs-->
-                        </label>
-                        <!--end::Edit-->
-                        <!--begin::Cancel-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title=""
-                            data-bs-original-title="Cancel avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Cancel-->
-                        <!--begin::Remove-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" title=""
-                            data-bs-original-title="Remove avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Remove-->
-                    </div>
+
                     <div class="d-flex flex-column mb-7 fv-row">
                         <!--begin::Label-->
-                        <label class="required fs-6 fw-bold form-label mb-2">Title EN</label>
+                        <label class="required fs-6 fw-bold form-label mb-2">service EN</label>
                         <!--end::Label-->
                         <!--begin::Input wrapper-->
                         <div class="position-relative">
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Title EN"
-                                name="title_en" value="{{ old('title_en') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter service EN"
+                                name="service_en" value="{{ old('service_en') }}" />
                             <!--end::Input-->
 
                         </div>
@@ -438,13 +350,13 @@
                     </div>
                     <div class="d-flex flex-column mb-7 fv-row">
                         <!--begin::Label-->
-                        <label class="required fs-6 fw-bold form-label mb-2">Title AR</label>
+                        <label class="required fs-6 fw-bold form-label mb-2">service AR</label>
                         <!--end::Label-->
                         <!--begin::Input wrapper-->
                         <div class="position-relative">
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Title AR"
-                                name="title_ar" value="{{ old('title_ar') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter service AR"
+                                name="service_ar" value="{{ old('service_ar') }}" />
                             <!--end::Input-->
 
                         </div>
@@ -452,13 +364,13 @@
                     </div>
                     <div class="d-flex flex-column mb-7 fv-row">
                         <!--begin::Label-->
-                        <label class="required fs-6 fw-bold form-label mb-2">Brief EN</label>
+                        <label class="required fs-6 fw-bold form-label mb-2">overview EN</label>
                         <!--end::Label-->
                         <!--begin::Input wrapper-->
                         <div class="position-relative">
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Brief EN"
-                                name="brief_en" value="{{ old('brief_en') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter overview EN"
+                                name="overview_en" value="{{ old('overview_en') }}" />
                             <!--end::Input-->
 
                         </div>
@@ -466,30 +378,20 @@
                     </div>
                     <div class="d-flex flex-column mb-7 fv-row">
                         <!--begin::Label-->
-                        <label class="required fs-6 fw-bold form-label mb-2">Brief AR</label>
+                        <label class="required fs-6 fw-bold form-label mb-2">overview AR</label>
                         <!--end::Label-->
                         <!--begin::Input wrapper-->
                         <div class="position-relative">
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Brief AR"
-                                name="brief_ar" value="{{ old('brief_ar') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter overview AR"
+                                name="overview_ar" value="{{ old('overview_ar') }}" />
                             <!--end::Input-->
 
                         </div>
                         <!--end::Input wrapper-->
                     </div>
 
-                    <!--end::Input group-->
-                    <div class="mb-10 fv-row">
-                        <!--begin::Label-->
-                        <label class="required form-label">Event Date</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input name="date" class="form-control mb-2" class="form-control  form-control-solid dPick"
-                            placeholder="Event Date" id="kt_datepicker_1" value="" />
 
-
-                    </div>
 
                     <!--begin::Actions-->
                     <div class="text-center pt-15">
@@ -512,12 +414,4 @@
 </div>
 <!--end::Modal - New Card-->
 
-@endsection
-
-
-@section('custome_js')
-<script>
-    $("#kt_datepicker_1").flatpickr();
-    $("#kt_datepicker_2").flatpickr();
-</script>
 @endsection

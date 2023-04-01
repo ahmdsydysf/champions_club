@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sponsors', function (Blueprint $table) {
             $table->id();
-            $table->text('image');
+            $table->string('image')->default('default_sponsor.png');
             $table->timestamps();
         });
     }

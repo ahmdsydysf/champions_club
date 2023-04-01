@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title_en')->nullable();
             $table->string('title_ar')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->default('default_cup.jpg');
             $table->string('brief_en')->nullable();
             $table->string('brief_ar')->nullable();
             $table->timestamps();

@@ -71,6 +71,34 @@
                             </span>
                             <span class="menu-title">News Events</span>
                         </a>
+                        <a class="menu-link {{ Request::segment(2) == 'service' ? 'active' : '' }} "
+                            href="{{ route('dashboard.service.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Services</span>
+                        </a>
+                        <a class="menu-link {{ Request::segment(2) == 'cup' ? 'active' : '' }} "
+                            href="{{ route('dashboard.cup.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Cups</span>
+                        </a>
+                        <a class="menu-link {{ Request::segment(2) == 'general_service' ? 'active' : '' }} "
+                            href="{{ route('dashboard.general_service.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Genaral Services</span>
+                        </a>
+                        <a class="menu-link {{ Request::segment(2) == 'sponsor' ? 'active' : '' }} "
+                            href="{{ route('dashboard.sponsor.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Sponsors</span>
+                        </a>
                     </div>
 
                 </div>

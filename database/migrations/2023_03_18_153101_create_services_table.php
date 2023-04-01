@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title_ar')->nullable();
             $table->text('brief_en')->nullable();
             $table->text('brief_ar')->nullable();
-            $table->text('image')->nullable();
+            $table->string('image')->default('default_service.jpg');
             $table->timestamps();
         });
     }

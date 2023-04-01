@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Sponsor;
 use Illuminate\Http\Request;
-
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 class SponsorController extends Controller
 {
     /**
@@ -14,17 +15,9 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $data = Sponsor::paginate(5);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('dash.sponsor.all_sponsor' , compact('data'));
     }
 
     /**
@@ -35,30 +28,28 @@ class SponsorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
+            $request_data = $request->except('image', '_token');
+
+            if ($request->file('image')) {
+                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+                Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/sponsor/' . $myimageName));
+                $request_data['image'] = $myimageName;
+            }
+            Sponsor::create($request_data);
+
+            toast('Success Adding New Sponsor','success');
+
+            return redirect()->route('dashboard.sponsor.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Sponsor  $sponsor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Sponsor $sponsor)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Sponsor  $sponsor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Sponsor $sponsor)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +60,30 @@ class SponsorController extends Controller
      */
     public function update(Request $request, Sponsor $sponsor)
     {
-        //
+        $request->validate([
+
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
+            $request_data = $request->except('image', '_token');
+
+            if ($request->file('image')) {
+
+                if ($sponsor->image != 'default_sponsor.png') {
+                    Storage::disk('public_uploads')->delete("/sponsor/$sponsor->image");
+                }
+                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+                Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/sponsor/' . $myimageName));
+                $request_data['image'] = $myimageName;
+            }
+
+            $sponsor->update($request_data);
+
+            toast('Success Updating sponsor','warning');
+
+            return redirect()->route('dashboard.sponsor.index');
     }
 
     /**
@@ -80,6 +94,11 @@ class SponsorController extends Controller
      */
     public function destroy(Sponsor $sponsor)
     {
-        //
+        if ($sponsor->image != 'default_sponsor.png') {
+            Storage::disk('public_uploads')->delete("/sponsor/$sponsor->image");
+        }
+        $sponsor->delete();
+        toast('Success Deleteing sponsor','error');
+        return redirect()->route('dashboard.sponsor.index');
     }
 }
