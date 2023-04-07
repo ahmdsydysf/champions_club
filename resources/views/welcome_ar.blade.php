@@ -6,7 +6,23 @@
 <section class="slider">
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            @foreach ( $sliderData as $row )
             <div class="swiper-slide">
+                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider/' . $row->image ) }}"
+                    data-text="كيف تهتم<span>{{ $row->title_ar }}</span>">
+                    <div class="container">
+                        <h6 data-swiper-parallax="100">{{ $row->title_ar }}</h6>
+                        <h2 data-swiper-parallax="200"><span>.</span>{{ $row->subtitle_ar }}</h2>
+                        <p data-swiper-parallax="300">{{ $row->overview_ar }}</p>
+                        <div class="clearfix"></div>
+                        <a href="#" data-swiper-parallax="200">اكتشف اكثر<span></span></a>
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end slide-inner -->
+            </div>
+            @endforeach
+            {{-- <div class="swiper-slide">
                 <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide01.jpg')}}"
                     data-text="كيف تهتم<span>بصحتك العضلية</span>">
                     <div class="container">
@@ -54,7 +70,7 @@
                 </div>
                 <!-- end slide-inner -->
             </div>
-            <!-- end swiper-slide -->
+            <!-- end swiper-slide --> --}}
         </div>
         <!-- end swiper-wrapper -->
         <div class="swiper-custom-pagination"></div>
@@ -66,7 +82,14 @@
 <section class="featured-services">
     <div class="content-wrapper">
         <div class="container">
+            @foreach ($sliderData as $row )
             <div class="content-box wow fadeIn"> <span></span>
+                <h3>{{ $row->nav_title_ar }}</h3>
+                <p>{{ $row->nav_subtitle_ar }}</p>
+                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
+            </div>
+            @endforeach
+            {{-- <div class="content-box wow fadeIn"> <span></span>
                 <h3>تمرين شخصي</h3>
                 <p>تقدم العديد من النوادي الرياضية جلسات تدريب شخصية فردية مع مدربين معتمدين يمكنهم مساعدة الأعضاء
                     تطوير خطط تمرين شخصية </p>
@@ -86,7 +109,7 @@
                     الرياضي. هؤلاء
                     يمكن أن تشمل المرافق حمامات السباحة وملاعب التنس وملاعب كرة السلة وملاعب كرة القدم والمزيد</p>
                 <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-            </div>
+            </div> --}}
             <!-- end content-box -->
         </div>
         <!-- end container -->
@@ -98,10 +121,10 @@
 <section class="side-image-content moved-space" id="counter">
     <div class="sides bg-image wow fadeIn" data-background="{{ asset('web_assets/images/side-image01.jpg')}}">
         <div class="video">
-            <video src="{{ asset('web_assets/videos/video.mp4')}}" loop autoplay muted></video>
+            <video src="{{ $aboutUs->about_video }}" loop autoplay muted></video>
         </div>
         <!-- end video -->
-        <a href="{{ asset('web_assets/videos/video.mp4')}}" class="play-btn" data-fancybox>
+        <a href="{{$aboutUs->about_video}}" class="play-btn" data-fancybox>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                 y="0px" viewBox="0 0 104 104" enable-background="new 0 0 104 104" xml:space="preserve">
                 <path fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" d="M26,35h52L52,81L26,35z" />
@@ -115,13 +138,7 @@
         <div class="inner">
             <div class="section-title light">
                 <h2>تعرف علينا</h2>
-                <h6>من أهم مميزات النادي الرياضي هذه النقطة وخصوصاً إذا ما كنت مبتدئ في ممارسة التمارين فتحتاج إلى
-                    ممارسة
-                    التمارين بطريقة صحيحة . بإمكانك البحث على الإنترنت عن فيديوهات تختص بالرياضة ولكنك تحتاج للتوجيه
-                    للقيام
-                    بالتمارين بشكل صحيح . فأدائك للتمرين داخل النادي الرياضي يضمن سلامة أدائك للتمارين الرياضة بالشكل
-                    الصحيح
-                    لوجود مدربين و أخصائيين تغذية وأجهزة حديثة </h6>
+                <h6{{ $aboutUs->about_master_ar }}</h6>
             </div>
             <!-- end section-title -->
             <ul class="counter">
@@ -129,12 +146,7 @@
                 <li> <span class="odometer" id="2"></span><span class="symbol">k</span> <small>أعضاء</small> </li>
                 <li> <span class="odometer" id="3"></span><span class="symbol">%</span> <small>الرضاء</small> </li>
             </ul>
-            <p>إذا كنت لا تستخدم بنشاط <strong> Facebook </strong> و <strong> Twitter </strong> ووسائل التواصل الاجتماعي
-                الأخرى
-                المنصات ، خذ الوقت الكافي للقيام بذلك. اعتد على تحديث صفحة عملك أو <u> التغريدات </u> في
-                نفس الوقت كل يوم. </p>
-            <p> استفد من <u> البرنامج </u> الذي يمكن أن يساعد في تحويل مدوناتك إلى تغريدات ومعرفة الوقت المناسب
-                من اليوم هو التواصل مع قاعدتك.</p>
+            <p>{{ $aboutUs->about_details_ar }}</p>
 
         </div>
         <!-- end inner -->
@@ -147,14 +159,8 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="section-title wow fadeIn">
-                    <h2>الرياضات</h2>
-                    <h6>كما يلزمك تمارين رياضية لتقوية عضلاتك تحتاج أيضا إلى غذاء يتناسب مع طبيعة هذه التمارين. لذلك
-                        يتواجد أفضل
-                        خبراء التغذية لتقديم النصائح التي تهمك وعمل جدول غذائي خاص بك وتقديم كل ما يلزم لتحصل على الغذاء
-                        المناسب
-                        من بروتين وألياف وأغذية أخرى بشكل متوازن. هذا الأمر يعتبر من احدى مميزات النادي الرياضي.
-
-                    </h6>
+                    <h2>{{ $aboutUs->sports_title_ar }}</h2>
+                    <h6>{{ $aboutUs->sports_text_ar }}</h6>
                 </div>
                 <!-- end section-title -->
             </div>
@@ -163,7 +169,17 @@
             <div class="col-lg-8">
                 <div class="swiper-carousel wow fadeIn">
                     <div class="swiper-wrapper">
+                        @foreach ( $sports as $row )
                         <div class="swiper-slide">
+                            <figure> <img src="{{ asset('uploads/sport/' . $row->sport_image)}}" alt="Image">
+                                <figcaption>
+                                    <h4>{{ $row->sport_title_ar }}</h4>
+                                    <small>{{ $row->sport_subtitle_ar }}</small>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        @endforeach
+                        {{-- <div class="swiper-slide">
                             <figure> <img src="{{ asset('web_assets/images/image04.jpg')}}" alt="Image">
                                 <figcaption>
                                     <h4>كرة قدم</h4>
@@ -216,7 +232,7 @@
                                 </figcaption>
                             </figure>
                         </div>
-                        <!-- end swiper-slide -->
+                        <!-- end swiper-slide --> --}}
                     </div>
                     <!--end swiper-wrapper -->
                     <div class="swiper-button-next"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}"
@@ -387,14 +403,15 @@
     <!-- end container -->
 </section>
 <!-- end icon-content-box -->
-<section class="image-content-box" style="background: #405089;">
+<section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
                     <a href="allnews-ar.html">
-                        <h2>خدمـــاتنا</h2>
-                        <h6 style="color: white;">من مميزات النادي الرياضي فكرة النادي الرياضي تتعدى فكرة لعب الرياضة
+                        <h2 style="color: white;">خدمـــاتنا</h2>
+                        <h6 style=" color: white;">من مميزات النادي الرياضي فكرة النادي الرياضي تتعدى فكرة لعب
+                            الرياضة
                             فقط، بل في
                             النادي تزيد معرفتك في
                             الناس وتتعرف على أشخاص آخرين وتكوين صداقات جديدة تعزز من حياتك الاجتماعية </h6>
@@ -528,19 +545,6 @@
 <section class="request-form">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 wow fadeIn">
-                <div class="section-title light">
-                    <h2>الرعاة</h2>
-                    <h6>وفقًا لشركة Statista ، بلغت قيمة سوق الرعاية الرياضية العالمية 57 مليار دولار في عام 2020 وهي
-                        كذلك
-                        من المتوقع أن يرتفع إلى 90 مليار دولار أمريكي بحلول عام 2027. ويتم إنشاء أكثر من ثلث هذا المبلغ
-                        في أمريكا
-                        الشمالية
-                        كميات</h6>
-                </div>
-                <!-- end section-title -->
-            </div>
-            <!-- end col-5 -->
 
             <div class="col-lg-12 sponsers">
                 <div class="logos wow fadeIn">

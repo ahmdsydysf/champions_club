@@ -50,7 +50,7 @@ class SliderImageController extends Controller
 
         if ($request->file('image')) {
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(1900, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(700, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/slider/' . $myimageName));
             $request_data['image'] = $myimageName;
@@ -95,7 +95,7 @@ class SliderImageController extends Controller
                 Storage::disk('public_uploads')->delete("/slider/$sliderImage->image");
             }
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(1900, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(700, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/slider/' . $myimageName));
             $request_data['image'] = $myimageName;

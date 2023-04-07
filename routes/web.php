@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Auth_dash;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Middleware\AuthenticateDashboard;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -34,7 +35,7 @@ Route::group(
             ========== User Website ==========
             ----------------------------------
             */
-            Route::get('/', [HomeController::class , 'index'])->name('welcome');
+            Route::get('/', [HomePageController::class , 'index'])->name('welcome');
             // Route::middleware(['auth', 'user-access:user' , 'verified'])->group(function () {
                 //     Route::get('/', [HomeController::class , 'index'])->name('welcome');
                 // });
