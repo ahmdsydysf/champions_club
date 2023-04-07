@@ -5,7 +5,24 @@
 <section class="slider">
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            @foreach ( $sliderData as $row )
             <div class="swiper-slide">
+                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider/' . $row->image ) }}"
+                    data-text="HOW WE Make<span>{{ $row->title_en }}</span>">
+                    <div class="container">
+
+                        <h6 data-swiper-parallax="100">{{ $row->title_en }}</h6>
+                        <h2 data-swiper-parallax="200"><span>.</span>{{ $row->subtitle_en }}</h2>
+                        <p data-swiper-parallax="300">{{ $row->overview_en }}</p>
+                        <div class="clearfix"></div>
+                        <a href="#" data-swiper-parallax="200">Discover More<span></span></a>
+                    </div>
+                    <!-- end container -->
+                </div>
+                <!-- end slide-inner -->
+            </div>
+            @endforeach
+            {{-- <div class="swiper-slide">
                 <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide01.jpg')}}"
                     data-text="HOW WE Make<span>Body</span>">
                     <div class="container">
@@ -55,7 +72,7 @@
                 </div>
                 <!-- end slide-inner -->
             </div>
-            <!-- end swiper-slide -->
+            <!-- end swiper-slide --> --}}
         </div>
         <!-- end swiper-wrapper -->
         <div class="swiper-custom-pagination"></div>
@@ -67,7 +84,14 @@
 <section class="featured-services">
     <div class="content-wrapper">
         <div class="container">
+            @foreach ($sliderData as $row )
             <div class="content-box wow fadeIn"> <span></span>
+                <h3>{{ $row->nav_title_en }}</h3>
+                <p>{{ $row->nav_subtitle_en }}</p>
+                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
+            </div>
+            @endforeach
+            {{-- <div class="content-box wow fadeIn"> <span></span>
                 <h3>Personal Training</h3>
                 <p>Many sports clubs offer one-on-one personal training sessions with certified trainers who can
                     help members
@@ -90,21 +114,23 @@
                 </p>
                 <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
             </div>
-            <!-- end content-box -->
+            <!-- end content-box --> --}}
         </div>
         <!-- end container -->
     </div>
     <!-- end content-wrapper -->
 
 </section>
+
+
 <!-- end featured-services -->
 <section class="side-image-content moved-space" id="counter">
     <div class="sides bg-image wow fadeIn" data-background="{{ asset('web_assets/images/side-image01.jpg')}}">
         <div class="video">
-            <video src="{{ asset('web_assets/videos/video.mp4')}}" loop autoplay muted></video>
+            <video src="{{ $aboutUs->about_video }}" loop autoplay muted></video>
         </div>
         <!-- end video -->
-        <a href="videos/video.mp4" class="play-btn" data-fancybox>
+        <a href="{{ $aboutUs->about_video }}" class="play-btn" data-fancybox>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                 y="0px" viewBox="0 0 104 104" enable-background="new 0 0 104 104" xml:space="preserve">
                 <path fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" d="M26,35h52L52,81L26,35z" />
@@ -118,7 +144,7 @@
         <div class="inner">
             <div class="section-title light">
                 <h2>About Us</h2>
-                <h6>Do this for both directions of traffic if it’s<br> necessary. In busy traffic, this</h6>
+                <h6>{{ $aboutUs->about_master_en }}</h6>
             </div>
             <!-- end section-title -->
             <ul class="counter">
@@ -128,15 +154,7 @@
                 <li> <span class="odometer" id="3"></span><span class="symbol">%</span> <small>Satisfaction</small>
                 </li>
             </ul>
-            <p>If you are not actively using <strong>Facebook</strong>, <strong>Twitter</strong> and other social
-                media
-                platforms, take the time to do so. Get into the habit of updating your business page or
-                <u>tweets</u> at the
-                same time every day.
-            </p>
-            <p>Take advantage of the <u>software</u> that can help turn your blogs into tweets and know when the
-                best time
-                of day is to connect with your base.</p>
+            <p>{{ $aboutUs->about_details_en }}</p>
 
         </div>
         <!-- end inner -->
@@ -144,18 +162,15 @@
     <!-- end sides -->
 </section>
 <!-- end side-image-content -->
+
+
 <section class="image-content-over-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
                 <div class="section-title wow fadeIn">
-                    <h2>Sports</h2>
-                    <h6>You will likely need proof to show your insurance company
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at eos sint corporis
-                        libero amet
-                        perferendis facilis perspiciatis illo. Eos, delectus culpa? Inventore.
-
-                    </h6>
+                    <h2>{{ $aboutUs->sports_title_en }}</h2>
+                    <h6>{{ $aboutUs->sports_text_en }}</h6>
                 </div>
                 <!-- end section-title -->
             </div>
@@ -164,7 +179,17 @@
             <div class="col-lg-8">
                 <div class="swiper-carousel wow fadeIn">
                     <div class="swiper-wrapper">
+                        @foreach ( $sports as $row )
                         <div class="swiper-slide">
+                            <figure> <img src="{{ asset('uploads/sport/' . $row->sport_image)}}" alt="Image">
+                                <figcaption>
+                                    <h4>{{ $row->sport_title_en }}</h4>
+                                    <small>{{ $row->sport_subtitle_en }}</small>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        @endforeach
+                        {{-- <div class="swiper-slide">
                             <figure> <img src="{{ asset('web_assets/images/image04.jpg')}}" alt="Image">
                                 <figcaption>
                                     <h4>Football</h4>
@@ -217,7 +242,7 @@
                                 </figcaption>
                             </figure>
                         </div>
-                        <!-- end swiper-slide -->
+                        <!-- end swiper-slide --> --}}
                     </div>
                     <!--end swiper-wrapper -->
                     <div class="swiper-button-next"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}"
