@@ -7,7 +7,7 @@
         <div class="swiper-wrapper">
             @foreach ( $sliderData as $row )
             <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider/' . $row->image ) }}"
+                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider/' . $row->image) }}"
                     data-text="HOW WE Make<span>{{ $row->title_en }}</span>">
                     <div class="container">
 

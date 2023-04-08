@@ -41,7 +41,7 @@
                                 data-bs-original-title="Change avatar">
                                 <i class="bi bi-pencil-fill fs-7"></i>
                                 <!--begin::Inputs-->
-                                <input type="file" name="image">
+                                <input type="file" name="sport_image">
                                 <input type="hidden" name="avatar_remove">
                                 <!--end::Inputs-->
                             </label>
