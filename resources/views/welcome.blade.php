@@ -7,7 +7,7 @@
         <div class="swiper-wrapper">
             @foreach ( $sliderData as $row )
             <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider/' . $row->image) }}"
+                <div class="slide-inner bg-image" data-background="{{asset('uploads/slider')}}/{{$row->image}}"
                     data-text="HOW WE Make<span>{{ $row->title_en }}</span>">
                     <div class="container">
 
@@ -273,22 +273,22 @@
                 <div class="col-lg-12">
                     <div class="swiper-carousel2 wow fadeIn">
                         <div class="swiper-wrapper ">
+                            @foreach ( $cups as $row )
                             <div class="swiper-slide">
                                 <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
                                     data-v_text_align="center">
                                     <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
                                         <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-1.jpg')}}"
-                                                    alt="Image"> </figure>
+                                            <figure> <img src="{{ asset('uploads/cups/' . $row->image) }}" alt="Image">
+                                            </figure>
                                         </div>
                                         <!-- end inner -->
                                     </div>
                                     <!-- end flip-box-front -->
                                     <div class="flip-box-back">
                                         <div class="inner">
-                                            <h4>Tennis Cup</h4>
-                                            <p>Instead of giving up immediately, go back to the drawing doesn't
-                                                something need.</p>
+                                            <h4>{{ $row->title_en }}</h4>
+                                            <p>{{ $row->brief_en }}</p>
                                         </div>
                                         <!-- end inner -->
                                     </div>
@@ -296,6 +296,8 @@
                                 </div>
                                 <!-- end flip-box -->
                             </div>
+                            @endforeach
+                            {{--
                             <!-- end swiper-slide -->
                             <div class="swiper-slide">
                                 <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
@@ -393,7 +395,7 @@
                                 </div>
                                 <!-- end flip-box -->
                             </div>
-                            <!-- end swiper-slide -->
+                            <!-- end swiper-slide --> --}}
                         </div>
                         <!--end swiper-wrapper -->
 
@@ -413,28 +415,24 @@
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
                     <a href="allnews.html">
-                        <h2 style="color: white;">Our services</h2>
-                        <h6 style="color: white;">Because they may falsely report what happened wither<br> knowingly or
-                            simply due
-                            to confusion</h6>
+                        <h2 style="color: white;">{{ $aboutUs->services_title_en }}</h2>
+                        <h6 style="color: white;">{{ $aboutUs->services_text_en }}</h6>
                     </a>
                 </div>
                 <!-- end section-title -->
             </div>
             <!-- end col-12 -->
             <div class="col-12 owl-carousel">
+                @foreach ($services as $row )
                 <div class="content-box service-container wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image01.jpg') }}" alt="Image"></figure>
-                    <h4>Personal Training</h4>
-                    <p>Personal training is a great service to offer as it allows members to work one-on-one with a
-                        fitness
-                        professional who can create customized workout plans and provide personalized guidance and
-                        motivation.
-                        This service can be especially beneficial for beginners or those with specific fitness needs or
-                        goals.</p>
+                    <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
+                    <h4>{{ $row->title_en }}</h4>
+                    <p>{{ $row->brief_en }}</p>
                     <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
                         More<span></span></a>
                 </div>
+                @endforeach
+                {{--
                 <!-- end content-box -->
                 <div class="content-box service-container wow fadeIn">
                     <figure><img src="{{ asset('web_assets/images/image02.jpg.webp') }}" alt="Image"></figure>
@@ -465,7 +463,7 @@
                         More<span></span></a>
 
                 </div>
-                <!-- end content-box -->
+                <!-- end content-box --> --}}
             </div>
             <!-- end col-12 -->
         </div>
@@ -480,15 +478,25 @@
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
-                    <h2>News and Events</h2>
-                    <h6>As the seed falls to the ground, it floats <br>along air currents due to its wing</h6>
+                    <h2>{{ $aboutUs->news_title_en }}</h2>
+                    <h6>{{ $aboutUs->news_text_en }}</h6>
                 </div>
                 <!-- end section-title -->
             </div>
             <!-- end col-12 -->
-
             <div class="col-12 blogs-data">
+                @foreach ( $news as $row )
+
                 <div class="content-box wow fadeIn">
+                    <span>{{ $row->title_en }}</span>
+                    <img class="blog-main-img" src="{{ asset('uploads/event/' . $row->image) }}" alt="" srcset="">
+                    <h4>{{ $row->title_en }}</h4>
+                    <small>{{ $row->date }}</small>
+                    <p>{{ $row->brief_en }}</p>
+                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
+                </div>
+                @endforeach
+                {{-- <div class="content-box wow fadeIn">
                     <span>Business, Tips,
                         Account</span>
                     <img class="blog-main-img" src="{{ asset('web_assets/images/blog.jpg')}}" alt="" srcset="">
@@ -521,7 +529,7 @@
                     <p>After this pollen release, mate cones</p>
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
-                <!-- end content-box -->
+                <!-- end content-box --> --}}
             </div>
             <!-- end col-12 -->
         </div>
@@ -532,14 +540,10 @@
 <!-- end latest-news -->
 <section class="info-box">
     <div class="container wow fadeIn">
-        <h3>
-            About Membership</h3>
-        <h6>The pollinated femate cones remain attached to the branches?</h6>
-        <p>The climate of coastal California and Oregon creates the ideal environment<br> for the trees a redwood
-            tree
-            needs </p>
-        <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
-        <a href="#" class="join-us btn">Join Us<span> Now</span></a>
+        <h3>{{ $aboutUs->membership_title_en }}</h3>
+        <h6>{{ $aboutUs->membership_text_en }}</p>
+            <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
+            <a href="{{ route('register') }}" class="join-us btn">Join Us<span> Now</span></a>
     </div>
 </section>
 <!-- end info-box -->
@@ -551,14 +555,12 @@
                 <div class="logos wow fadeIn">
 
                     <ul class="row justify-content-between owl-carousel">
-                        <li><img src="{{ asset('web_assets/images/logo01.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo02.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo03.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo04.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo05.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo06.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo07.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo08.png')}}" alt="Image"></li>
+                        @foreach ( $sponsors as $row )
+
+                        <li><img src="{{ asset('uploads/sponsor/' . $row->image) }}" alt="Image"></li>
+
+                        @endforeach
+
                     </ul>
 
                 </div>

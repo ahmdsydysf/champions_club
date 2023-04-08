@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('membership_text_en')->nullable();
             $table->string('membership_text_ar')->nullable();
             $table->string('membership_title_en')->nullable();
-            $table->string('membership_title_ar')->nullable();
+            $table->string('membership_title_ar')->nullable(); 
             $table->string('news_text_en')->nullable();
             $table->string('news_text_ar')->nullable();
             $table->string('news_title_en')->nullable();
