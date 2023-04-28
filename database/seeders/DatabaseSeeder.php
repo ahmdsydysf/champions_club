@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             SocialLinkSeeder::class,
             CompanySeeder::class,
+            DaysSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();

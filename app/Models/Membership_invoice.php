@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Membership_invoice extends Model
 {
     use HasFactory;
+    protected $table = 'membership_invoices';
+    protected $guarded = [];
 }
