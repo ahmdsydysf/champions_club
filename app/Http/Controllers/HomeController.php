@@ -72,6 +72,22 @@ class HomeController extends Controller
         }
     }
 
+
+    public function child_sport()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.add_child_sport');
+
+        }else{
+            return view('web.add_child_sport_ar');
+
+        }
+    }
+    public function storeChildSport()
+    {
+
+    }
+
     /**
      * Show the application dashboard.
      *

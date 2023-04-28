@@ -46,6 +46,8 @@ Route::group(
             Route::get('/media', [HomeController::class , 'media'])->name('media')->withoutMiddleware(['auth']);
             Route::get('/singleNews', [HomeController::class , 'singleNews'])->name('singleNews')->withoutMiddleware(['auth']);
             Route::get('/sport', [HomeController::class , 'sport'])->name('sport')->withoutMiddleware(['auth']);
+            Route::get('/child/sport', [HomeController::class , 'child_sport'])->name('childSport');
+            Route::post('/child/sport/add', [HomeController::class , 'storeChildSport'])->name('addChildSport');
 
 
 

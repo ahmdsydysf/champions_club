@@ -126,7 +126,6 @@
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Sports</a></li>
             <li class="breadcrumb-item active" aria-current="page">Children Sport</li>
         </ol>
         <h2>Children Sport</h2>
@@ -137,7 +136,7 @@
 <!-- end page-header -->
 <section class="contact">
     <div class="container">
-        <form id="add-player" action="" method="" enctype="multipart/form-data">
+        <form id="add-player" action="{{ route('addChildSport') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-container">
                 <div class="row g-3 add-new-player-form p-5">
@@ -188,7 +187,16 @@
                             <option>professional</option>
                         </select>
                     </div>
-                    <div class="col-md-8 my-md-3  order-md-9 order-sm-10 order-9 start-end-date">
+                    <div class="col-md-3 col-sm-4 my-md-3  col-12  order-md-9 order-9 trainer-days row">
+                        <label for="inputState12" class="form-label col-4">Select Days</label>
+                        <select id="inputState12" name="select_days_0"
+                            class="form-control custom-select important-input col-8">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 my-md-3  order-md-10 order-sm-11 order-10 start-end-date">
                         <div class="form-group row">
                             <label for="start-date" class="col-2">Start Date:</label>
                             <input type="date" class="form-control col-4 important-date" name="start_date_0"
@@ -198,50 +206,49 @@
                                 value="" disabled>
                         </div>
                     </div>
-
                     <script>
                         let tomorrow = new Date();
-                    tomorrow.setDate(tomorrow.getDate() + 1);
-                    // Set the default start date to tomorrow
-                    document.getElementById("start-date").valueAsDate = tomorrow;
+                            tomorrow.setDate(tomorrow.getDate() + 1);
+                            // Set the default start date to tomorrow
+                            document.getElementById("start-date").valueAsDate = tomorrow;
 
 
-                    let startDate = new Date(document.getElementById("start-date").value);
-                    let endDate = new Date(startDate);
-                    endDate.setMonth(endDate.getMonth() + 1);
-                    document.getElementById("end-date").valueAsDate = endDate;
-
-                    function adjustDate(event) {
-                        event.setAttribute('data-status', 'on');
-                        var targetDiv = document.querySelector('input[data-status]');
-                        if (document.contains(targetDiv)) {
-                        // Get tomorrow's date
-                        function updateEndDate() {
-                            let startDate = new Date(targetDiv.value);
-                            let selectedDate = new Date(targetDiv.value);
-                            if (selectedDate < tomorrow) {
-                            targetDiv.valueAsDate = tomorrow;
-                            } else {
-
+                            let startDate = new Date(document.getElementById("start-date").value);
                             let endDate = new Date(startDate);
                             endDate.setMonth(endDate.getMonth() + 1);
-                            targetDiv.nextElementSibling.nextElementSibling.valueAsDate = endDate;
+                            document.getElementById("end-date").valueAsDate = endDate;
+
+                            function adjustDate(event) {
+                                event.setAttribute('data-status', 'on');
+                                var targetDiv = document.querySelector('input[data-status]');
+                                if (document.contains(targetDiv)) {
+                                // Get tomorrow's date
+                                function updateEndDate() {
+                                    let startDate = new Date(targetDiv.value);
+                                    let selectedDate = new Date(targetDiv.value);
+                                    if (selectedDate < tomorrow) {
+                                    targetDiv.valueAsDate = tomorrow;
+                                    } else {
+
+                                    let endDate = new Date(startDate);
+                                    endDate.setMonth(endDate.getMonth() + 1);
+                                    targetDiv.nextElementSibling.nextElementSibling.valueAsDate = endDate;
+                                    }
+                                }
+
+                        // Function to update the end date when the start date is changed
+
+                                updateEndDate();
+                                event.removeAttribute('data-status');
+                                }
+
+
+
                             }
-                        }
-
-                  // Function to update the end date when the start date is changed
-
-                        updateEndDate();
-                        event.removeAttribute('data-status');
-                        }
-
-
-
-                    }
 
                     </script>
                     <fieldset
-                        class="col-md-4 col-sm-4 row align-items-baseline trained-before order-md-10 order-sm-9 order-10">
+                        class="col-md-4 col-sm-4 row align-items-baseline trained-before order-md-11 order-sm-10 order-11">
                         <label for="" class="col-6">Trained before?</label>
 
                         <div class="col-6 row my-3">
@@ -257,7 +264,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <div class="container col-12 order-11 sport-details my-3">
+                    <div class="container col-12 order-12 sport-details my-3">
                         <div class="row col-sm-12">
                             <div class="card col-sm-6 ">
                                 <div class="card-header">
@@ -363,7 +370,7 @@
             newFormGroup.appendChild(newNameInput);
           }
 
-          inputsArray = ['.username-input', '.birthdate-input', '.height-input', '.weight-input', '.personal-photo', '.birth-certificate', '.select-sport', '.trainer-level', '.start-end-date', '.trained-before', '.sport-details']
+          inputsArray = ['.username-input', '.birthdate-input', '.height-input', '.weight-input', '.personal-photo', '.birth-certificate', '.select-sport','.select-days','.trainer-level', '.start-end-date', '.trained-before', '.sport-details']
 
           // Call the function with the input classes
           inputsArray.forEach(function (elem) {
