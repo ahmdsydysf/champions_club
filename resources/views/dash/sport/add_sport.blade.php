@@ -201,7 +201,54 @@
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
+<!--begin::Input group-->
+<div class="mb-10 fv-row fv-plugins-icon-container">
+    <!--begin::Label-->
+    <label class="required form-label">membership_fees</label>
+    <!--end::Label-->
+    <!--begin::Input-->
+    <input type="text" name="membership_fees" class="form-control mb-2"
+        placeholder="membership_fees" value="{{ old('membership_fees') }}">
+    <!--end::Input-->
+    @error('membership_fees')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
+    <div class="fv-plugins-message-container invalid-feedback"></div>
+</div>
+<!--end::Input group-->
+ <!--begin::Input group-->
+ <div class="mb-10 fv-row fv-plugins-icon-container">
+    <!--begin::Label-->
+    <label class="required form-label">membership_en_notes</label>
+    <!--end::Label-->
+    <!--begin::Input-->
+    <input type="text" name="membership_en_notes" class="form-control mb-2"
+        placeholder="membership_en_notes" value="{{ old('membership_en_notes') }}">
+    <!--end::Input-->
+    @error('membership_en_notes')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
+    <div class="fv-plugins-message-container invalid-feedback"></div>
+</div>
+<!--end::Input group-->
+ <!--begin::Input group-->
+ <div class="mb-10 fv-row fv-plugins-icon-container">
+    <!--begin::Label-->
+    <label class="required form-label">membership_ar_notes</label>
+    <!--end::Label-->
+    <!--begin::Input-->
+    <input type="text" name="membership_ar_notes" class="form-control mb-2"
+        placeholder="membership_ar_notes" value="{{ old('membership_ar_notes') }}">
+    <!--end::Input-->
+    @error('membership_ar_notes')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
+    <div class="fv-plugins-message-container invalid-feedback"></div>
+</div>
+<!--end::Input group-->
 
                                 </div>
                                 <!--end::Card header-->

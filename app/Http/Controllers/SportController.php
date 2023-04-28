@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Day_new;
 use App\Models\Sport;
+use App\Models\Sports_day;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 class SportController extends Controller
 {
     /**
@@ -46,6 +49,9 @@ class SportController extends Controller
             'sport_image' => 'image|mimes:jpeg,png,jpg|max:2048' ,
             'sport_overview_en' => 'required',
             'sport_overview_ar' => 'required',
+            'membership_fees' => 'required' ,
+            'membership_en_notes' => 'required' ,
+            'membership_ar_notes' => 'required' ,
         ]);
 
         $request_data = $request->except('sport_image', '_token');
@@ -73,7 +79,9 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
-        return view('dash.sport.edit_sport' , compact('sport'));
+        $sportDays = Sports_day::where('sport_id',$sport->id)->get();
+        $days=Day_new::all();
+        return view('dash.sport.edit_sport' , compact('sport','sportDays','days'));
 
     }
 
@@ -86,6 +94,11 @@ class SportController extends Controller
      */
     public function update(Request $request, Sport $sport)
     {
+        DB::beginTransaction();
+        try {
+            // Disable foreign key checks!
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         $request->validate([
             'sport_title_en' => 'required' ,
             'sport_title_ar' => 'required' ,
@@ -94,6 +107,9 @@ class SportController extends Controller
             'sport_image' => 'image|mimes:jpeg,png,jpg|max:2048' ,
             'sport_overview_en' => 'required',
             'sport_overview_ar' => 'required',
+            'membership_fees' => 'required' ,
+            'membership_en_notes' => 'required' ,
+            'membership_ar_notes' => 'required' ,
         ]);
 
         $request_data = $request->except('sport_image', '_token');
@@ -111,10 +127,39 @@ class SportController extends Controller
         }
 
         $sport->update($request_data);
+        //update sport days
+        $sportDay = Sports_day::where('sport_id', $sport->id)->first();
+
+if ($sportDay !== null) {
+    $sportDay->update(
+        ['firstday_id' => request('firstday_id'),
+        'secondday_id' => request('secondday_id'),
+        'sport_time' => request('sport_time')],
+
+    );
+} else {
+    $sportDay = Sports_day::create(
+        ['sport_id' => $sport->id,
+        'firstday_id' => request('firstday_id'),
+        'secondday_id' => request('secondday_id'),
+        'sport_time' => request('sport_time')],
+    );
+}
+  DB::commit();
+        //Enable foreign key checks!
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         toast('Success Updating Sport','warning');
 
         return redirect()->route('dashboard.sport.index');
+    } catch (\Throwable$e) {
+        // throw $th;
+        DB::rollback();
+        dd($e->getMessage());
+        // return redirect()->back()->withInput()->withErrors($e->getMessage());
+
+    }
+
     }
 
     /**
