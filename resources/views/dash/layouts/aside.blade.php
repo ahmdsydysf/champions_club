@@ -99,6 +99,14 @@
                             </span>
                             <span class="menu-title">Sponsors</span>
                         </a>
+
+                        <a class="menu-link {{ Request::segment(2) == 'memberships' ? 'active' : '' }} "
+                        href="{{ route('dashboard.memberships.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Memberships</span>
+                    </a>
                     </div>
 
                 </div>
