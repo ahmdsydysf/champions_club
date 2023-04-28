@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('user_childrens', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->date('bithdate')->nullable();
+            $table->date('birthdate')->nullable();
             $table->string('personal_image')->nullable();
             $table->string('birth_image')->nullable();
             $table->double('height', 8, 2)->nullable();
