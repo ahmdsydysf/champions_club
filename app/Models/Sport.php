@@ -22,6 +22,9 @@ class Sport extends Model
         'sport_image' ,
         'sport_overview_en',
         'sport_overview_ar',
+        'membership_fees' ,
+        'membership_en_notes',
+        'membership_ar_notes',
     ];
 
 
