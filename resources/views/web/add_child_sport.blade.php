@@ -36,7 +36,7 @@
         appearance: none;
     }
 
-    button[type="submit"] {
+    button.submit-btn {
         border: none;
         background: #f65935;
         color: #fff;
@@ -46,7 +46,7 @@
         font-weight: 600;
     }
 
-    button[type="submit"]:hover {
+    button.submit-btn:hover {
         border: none;
         background: #405089;
         color: #f65935;
@@ -143,34 +143,34 @@
 
                     <div class="col-md-3 col-sm-4 col-12 order-md-1 order-1 username-input">
                         <label for="inputEmail4" class="form-label">Username</label>
-                        <input type="text" name="username_0" class="form-control important-input" id="inputEmail4"
+                        <input type="text" name="name[0]" class="form-control important-input" id="inputEmail4"
                             placeholder="Full Name">
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-2 order-2 birthdate-input">
                         <label for="inputPassword4" class="form-label">Birthdate</label>
-                        <input type="date" name="birthdate_0" class="form-control important-input" id="inputPassword4">
+                        <input type="date" name="birthdate[0]" class="form-control important-input" id="inputPassword4">
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-3 order-3 height-input">
                         <label for="inputAddress" class="form-label">Height</label>
-                        <input type="number" name="hight_0" class="form-control important-input" min="100"
+                        <input type="number" name="hight[0]" class="form-control important-input" min="100"
                             id="inputAddress" placeholder="Height">
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-4 order-4 weight-input">
                         <label for="inputAddress2" class="form-label">Weight</label>
-                        <input type="number" name="weight_0" class="form-control important-input" min="35"
+                        <input type="number" name="weight[0]" class="form-control important-input" min="35"
                             id="inputAddress2" placeholder="Weight">
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-5 order-5 personal-photo">
                         <label for="formFile" class="form-label">Trainee Photo</label>
-                        <input class="form-control important-input" name="trainer_photo_0" type="file" id="formFile">
+                        <input class="form-control important-input" name="personal_image[0]" type="file" id="formFile">
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-6 order-6 birth-certificate">
                         <label for="formFile2" class="form-label">birth certificate</label>
-                        <input class="form-control important-input" name="child_birth_day_0" type="file" id="formFile2">
+                        <input class="form-control important-input" name="birth_image[0]" type="file" id="formFile2">
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-7 order-7 select-sport">
                         <label for="inputState" class="form-label">Select Sport</label>
-                        <select id="inputState" name="select_sport_0"
+                        <select id="inputState" name="select_sport[0]"
                             class="form-control custom-select important-input">
                             <option selected>Football</option>
                             <option>Handball</option>
@@ -180,8 +180,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-8 order-8 trainer-level">
                         <label for="inputState1" class="form-label">Trainee level</label>
-                        <select id="inputState1" name="select_level_0"
-                            class="form-control custom-select important-input">
+                        <select id="inputState1" name="level[0]" class="form-control custom-select important-input">
                             <option selected>Amateur</option>
                             <option>Mid level</option>
                             <option>professional</option>
@@ -189,7 +188,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 my-md-3  col-12  order-md-9 order-9 trainer-days row">
                         <label for="inputState12" class="form-label col-4">Select Days</label>
-                        <select id="inputState12" name="select_days_0"
+                        <select id="inputState12" name="select_days[0]"
                             class="form-control custom-select important-input col-8">
                             <option selected>1</option>
                             <option>2</option>
@@ -199,15 +198,66 @@
                     <div class="col-md-5 my-md-3  order-md-10 order-sm-11 order-10 start-end-date">
                         <div class="form-group row">
                             <label for="start-date" class="col-2">Start Date:</label>
-                            <input type="date" class="form-control col-4 important-date" name="start_date_0"
-                                id="start-date" value="" onchange="adjustDate(this)">
+                            <input type="date" class="form-control col-4 important-date" name="start_date[0]"
+                                id="start-date" onchange="adjustDate(this)">
                             <label for="end-date" class="col-2">End Date:</label>
-                            <input type="date" class="form-control col-4 important-date" name="end_date_0" id="end-date"
-                                value="" disabled>
+                            <input type="date" class="form-control col-4 important-date" name="end_date[0]"
+                                id="end-date" disabled>
                         </div>
                     </div>
-                    <script>
-                        let tomorrow = new Date();
+                    <fieldset
+                        class="col-md-4 col-sm-4 row align-items-baseline trained-before order-md-11 order-sm-10 order-11">
+                        <label for="" class="col-6">Trained before?</label>
+
+                        <div class="col-6 row my-3">
+                            <div class="custom-control custom-radio col">
+                                <input id="credit" value="1" name="paymentMethod[0]" type="radio"
+                                    class="custom-control-input important-radio" checked="" required="">
+                                <label class="custom-control-label" for="credit">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio col">
+                                <input id="debit" value="0" name="paymentMethod[0]" type="radio"
+                                    class="custom-control-input important-radio" required="">
+                                <label class="custom-control-label" for="debit">No</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="container col-12 order-12 sport-details my-3">
+                        <div class="row col-sm-12">
+                            <div class="card col-sm-6 ">
+                                <div class="card-header">
+                                    Sport Details
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Special title treatment</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                    <h5 class="card-title">Sport Cost</h5>
+                                    <p class="card-text">210 EGP</p>
+
+                                </div>
+                            </div>
+                            <div class="form-floating col-sm-6">
+                                <textarea name="user_comment[0]" class="form-control h-100 important-input"
+                                    placeholder="Leave a comment here" id="floatingTextarea2"></textarea>
+                                <label for="floatingTextarea2">notice</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-6 my-5 ">
+                <button form="add-player" class="submit-btn btn btn-primary reg float-left">Register</button>
+            </div>
+            <div class="col-6 my-5 ">
+                <button type="button" class="btn btn-primary add-new float-right">Add New</button>
+            </div>
+        </div>
+        <script>
+            let tomorrow = new Date();
                             tomorrow.setDate(tomorrow.getDate() + 1);
                             // Set the default start date to tomorrow
                             document.getElementById("start-date").valueAsDate = tomorrow;
@@ -241,71 +291,15 @@
                                 updateEndDate();
                                 event.removeAttribute('data-status');
                                 }
-
-
-
                             }
 
-                    </script>
-                    <fieldset
-                        class="col-md-4 col-sm-4 row align-items-baseline trained-before order-md-11 order-sm-10 order-11">
-                        <label for="" class="col-6">Trained before?</label>
-
-                        <div class="col-6 row my-3">
-                            <div class="custom-control custom-radio col">
-                                <input id="credit" name="paymentMethod_0" type="radio"
-                                    class="custom-control-input important-radio" checked="" required="">
-                                <label class="custom-control-label" for="credit">Yes</label>
-                            </div>
-                            <div class="custom-control custom-radio col">
-                                <input id="debit" name="paymentMethod_0" type="radio"
-                                    class="custom-control-input important-radio" required="">
-                                <label class="custom-control-label" for="debit">No</label>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <div class="container col-12 order-12 sport-details my-3">
-                        <div class="row col-sm-12">
-                            <div class="card col-sm-6 ">
-                                <div class="card-header">
-                                    Sport Details
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.</p>
-                                    <h5 class="card-title">Sport Cost</h5>
-                                    <p class="card-text">210 EGP</p>
-
-                                </div>
-                            </div>
-                            <div class="form-floating col-sm-6">
-                                <textarea name="comments_0" class="form-control h-100 important-input"
-                                    placeholder="Leave a comment here" id="floatingTextarea2"></textarea>
-                                <label for="floatingTextarea2">notice</label>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div class="row">
-            <div class="col-6 my-5 ">
-                <button type="submit" form="add-player" id="submit"
-                    class="btn btn-primary reg float-left">Register</button>
-            </div>
-            <div class="col-6 my-5 ">
-                <button type="button" class="btn btn-primary add-new float-right">Add New</button>
-            </div>
-        </div>
-        <script>
             // Get the "Add New" button and the submit button
         const addNewBtn = document.querySelector('.add-new');
         const submitBtn = document.querySelector('.reg');
         const addNewPlayerForm = document.querySelector('.add-new-player-form');
         const formContainer = document.querySelector('.form-container');
-        let cloneCount = 0;
+        let cloneCount = 1;
+        let counter = 1;
 
         // Add an event listener to the "Add New" button
         addNewBtn.addEventListener('click', function () {
@@ -335,9 +329,9 @@
             elementsInsideDiv.forEach((element) => {
               const oldid = element.getAttribute('id'); // get the id attribute of the element
               const newId = oldid + '_' + cloneCount; // generate unique ID
-              const oldName = element.getAttribute('name'); // get the id attribute of the element
-              const newName = oldName + '_' + cloneCount; // generate unique ID
-              element.setAttribute('name', newName); // set the new ID
+            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
+            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
+            //   element.setAttribute('name', newName); // set the new ID
               element.setAttribute('id', newId); // set the new ID
               cloneCount++;
             });
@@ -350,38 +344,71 @@
               cloneCount++;
 
             });
-            radioInsideDiv.forEach((element) => {
-              const oldName = element.getAttribute('name'); // get the id attribute of the element
-              const newName = oldName + '_' + cloneCount; // generate unique ID
-              element.setAttribute('name', newName); // set the new ID
-            });
+            // radioInsideDiv.forEach((element) => {
+            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
+            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
+            //   element.setAttribute('name', newName); // set the new ID
+            // });
 
             const dateInsideDiv = newNameInput.querySelectorAll('.important-date'); // select all radio within the div
             dateInsideDiv.forEach((element) => {
               const oldid = element.getAttribute('id'); // get the id attribute of the element
               const newId = oldid + '_' + cloneCount; // generate unique ID
               element.setAttribute('id', newId); // set the new ID
-              const oldName = element.getAttribute('name'); // get the id attribute of the element
-              const newName = oldName + '_' + cloneCount; // generate unique ID
-              element.setAttribute('name', newName); // set the new ID
+            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
+            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
+            //   element.setAttribute('name', newName); // set the new ID
               cloneCount++;
 
             });
+            const allInputsNames = newNameInput.querySelectorAll('[name]'); // select all radio within the div
+
+            allInputsNames.forEach((element) => {
+              const oldName = element.getAttribute('name'); // get the id attribute of the element
+              const newName = oldName.replace('[0]' , '[' + counter + ']')  ; // generate unique ID
+              element.setAttribute('name', newName); // set the new ID
+            });
             newFormGroup.appendChild(newNameInput);
+
           }
 
-          inputsArray = ['.username-input', '.birthdate-input', '.height-input', '.weight-input', '.personal-photo', '.birth-certificate', '.select-sport','.select-days','.trainer-level', '.start-end-date', '.trained-before', '.sport-details']
+          inputsArray = ['.username-input', '.birthdate-input', '.height-input', '.weight-input', '.personal-photo', '.birth-certificate', '.select-sport','.trainer-level','.trainer-days', '.start-end-date', '.trained-before', '.sport-details']
 
           // Call the function with the input classes
           inputsArray.forEach(function (elem) {
             cloneAndClearInputFields(elem);
-          });
+        });
 
+        counter++;
         });
 
         function del_form(dv) {
           dv.parentElement.parentElement.parentElement.remove();
         }
+
+
+        const form = document.querySelector('form#add-player');
+
+        form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const disabledInputs = document.querySelectorAll('input[disabled]');
+                disabledInputs.forEach(element => {
+                    element.removeAttribute('disabled');
+                });
+        // Submit the form using JavaScript
+        form.submit();
+        });
+        // function changeDisabled(event) {
+        //         event.preventDefault();
+
+        //         const form = document.querySelector('form#add-player');
+        //         console.log(form);
+        //         form.submit();
+        // }
+
+
+
         </script>
     </div>
 </section>

@@ -83,9 +83,9 @@ class HomeController extends Controller
 
         }
     }
-    public function storeChildSport()
+    public function storeChildSport(Request $request)
     {
-
+        dd($request);
     }
 
     /**
