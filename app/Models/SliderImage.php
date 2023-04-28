@@ -27,4 +27,5 @@ class SliderImage extends Model
         'nav_subtitle_en',
         'nav_subtitle_ar',
     ];
+
 }

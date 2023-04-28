@@ -45,7 +45,7 @@ class CupController extends Controller
                 $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
                 Image::make($request->file('image'))->resize(800, null, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save(public_path('uploads/cup/' . $myimageName));
+                })->save(public_path('uploads/cups/' . $myimageName));
                 $request_data['image'] = $myimageName;
             }
             Cup::create($request_data);
@@ -78,12 +78,12 @@ class CupController extends Controller
             if ($request->file('image')) {
 
                 if ($cup->image != 'default_cup.jpg') {
-                    Storage::disk('public_uploads')->delete("/cup/$cup->image");
+                    Storage::disk('public_uploads')->delete("/cups/$cup->image");
                 }
                 $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
                 Image::make($request->file('image'))->resize(800, null, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save(public_path('uploads/cup/' . $myimageName));
+                })->save(public_path('uploads/cups/' . $myimageName));
                 $request_data['image'] = $myimageName;
             }
 
@@ -103,7 +103,7 @@ class CupController extends Controller
     public function destroy(Cup $cup)
     {
         if ($cup->image != 'default_cup.jpg') {
-            Storage::disk('public_uploads')->delete("/cup/$cup->image");
+            Storage::disk('public_uploads')->delete("/cups/$cup->image");
         }
         $cup->delete();
         toast('Success Deleteing Cup','error');

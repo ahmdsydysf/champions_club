@@ -8,7 +8,7 @@
         <div class="swiper-wrapper">
             @foreach ( $sliderData as $row )
             <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider/' . $row->image ) }}"
+                <div class="slide-inner bg-image" data-background="{{asset('uploads/slider')}}/{{$row->image}}"
                     data-text="كيف تهتم<span>{{ $row->title_ar }}</span>">
                     <div class="container">
                         <h6 data-swiper-parallax="100">{{ $row->title_ar }}</h6>
@@ -138,7 +138,7 @@
         <div class="inner">
             <div class="section-title light">
                 <h2>تعرف علينا</h2>
-                <h6{{ $aboutUs->about_master_ar }}</h6>
+                <h6>{{ $aboutUs->about_master_ar }}</h6>
             </div>
             <!-- end section-title -->
             <ul class="counter">
@@ -263,7 +263,31 @@
                 <div class="col-lg-12">
                     <div class="swiper-carousel2 wow fadeIn">
                         <div class="swiper-wrapper ">
+                            @foreach ( $cups as $row )
                             <div class="swiper-slide">
+                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
+                                    data-v_text_align="center">
+                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
+                                        <div class="inner">
+                                            <figure> <img src="{{ asset('uploads/cups/' . $row->image) }}" alt="Image">
+                                            </figure>
+                                        </div>
+                                        <!-- end inner -->
+                                    </div>
+                                    <!-- end flip-box-front -->
+                                    <div class="flip-box-back">
+                                        <div class="inner">
+                                            <h4>{{ $row->title_ar }}</h4>
+                                            <p>{{ $row->brief_ar }}</p>
+                                        </div>
+                                        <!-- end inner -->
+                                    </div>
+                                    <!-- end end flip-box-back -->
+                                </div>
+                                <!-- end flip-box -->
+                            </div>
+                            @endforeach
+                            {{-- <div class="swiper-slide">
                                 <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
                                     data-v_text_align="center">
                                     <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
@@ -389,7 +413,7 @@
                                 </div>
                                 <!-- end flip-box -->
                             </div>
-                            <!-- end swiper-slide -->
+                            <!-- end swiper-slide --> --}}
                         </div>
                         <!--end swiper-wrapper -->
 
@@ -409,19 +433,24 @@
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
                     <a href="allnews-ar.html">
-                        <h2 style="color: white;">خدمـــاتنا</h2>
-                        <h6 style=" color: white;">من مميزات النادي الرياضي فكرة النادي الرياضي تتعدى فكرة لعب
-                            الرياضة
-                            فقط، بل في
-                            النادي تزيد معرفتك في
-                            الناس وتتعرف على أشخاص آخرين وتكوين صداقات جديدة تعزز من حياتك الاجتماعية </h6>
+                        <h2 style="color: white;">{{ $aboutUs->services_title_ar }}</h2>
+                        <h6 style=" color: white;">{{ $aboutUs->services_text_ar }}</h6>
                     </a>
                 </div>
                 <!-- end section-title -->
             </div>
             <!-- end col-12 -->
             <div class="col-12 owl-carousel">
-                <div class="content-box wow fadeIn">
+                @foreach ($services as $row )
+                <div class="content-box service-container wow fadeIn">
+                    <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
+                    <h4>{{ $row->title_ar }}</h4>
+                    <p>{{ $row->brief_ar }}</p>
+                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
+                        More<span></span></a>
+                </div>
+                @endforeach
+                {{-- <div class="content-box wow fadeIn">
                     <figure><img src="{{ asset('web_assets/images/image01.jpg') }}" alt="Image"></figure>
                     <h4>تدريبات خاصة</h4>
                     <p>يعد التدريب الشخصي خدمة رائعة لتقديمها لأنها تتيح للأعضاء العمل بشكل فردي مع اللياقة البدنية
@@ -465,7 +494,7 @@
                         اكثر<span></span></a>
 
                 </div>
-                <!-- end content-box -->
+                <!-- end content-box --> --}}
             </div>
             <!-- end col-12 -->
         </div>
@@ -480,23 +509,26 @@
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
-                    <h2>مدوناتنا</h2>
-                    <h6>عندما تسقط البذرة على الأرض ، تطفو على طول التيارات الهوائية بسبب جناحها</h6>
+                    <h2>{{ $aboutUs->news_title_ar }}</h2>
+                    <h6>{{ $aboutUs->news_text_ar }}</h6>
                 </div>
                 <!-- end section-title -->
             </div>
             <!-- end col-12 -->
 
             <div class="col-12 blogs-data">
+                @foreach ( $news as $row )
+
                 <div class="content-box wow fadeIn">
-                    <span>الأعمال ، نصائح ،
-                        حساب</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog.jpg')}}" alt="" srcset="">
-                    <h4>كيفية تطوير عنصر للغابات</h4>
-                    <small>21 فبراير 2018</small>
-                    <p>توقف عن إضاعة الوقت والمال على التكنولوجيا</p>
+                    <span>{{ $row->title_ar }}</span>
+                    <img class="blog-main-img" src="{{ asset('uploads/event/' . $row->image) }}" alt="" srcset="">
+                    <h4>{{ $row->title_ar }}</h4>
+                    <small>{{ $row->date }}</small>
+                    <p>{{ $row->brief_ar }}</p>
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
+                @endforeach
+                {{--
                 <!-- end content-box -->
                 <div class="content-box wow fadeIn"> <span>نصائح ، تقنية ، تطوير</span>
                     <img class="blog-main-img" src="{{ asset('web_assets/images/blog2.jpg')}}" alt="" srcset="">
@@ -521,7 +553,7 @@
                     <p>دائما علي تواصل مباشر ومتاحينا علطول</p>
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
-                <!-- end content-box -->
+                <!-- end content-box --> --}}
             </div>
             <!-- end col-12 -->
         </div>
@@ -532,13 +564,15 @@
 <!-- end latest-news -->
 <section class="info-box">
     <div class="container wow fadeIn">
-        <h3>
+        {{-- <h3>
             عن العضوية</h3>
         <h6>لنتعرف علي اهم المميزات في الاشتراكات معانا</h6>
         <p>ويرجع السبب في ذلك عدم وجود دافع للالتزام و الكسل، و لتخلص من هذا الأمر يأتي دور مميزات النادي الرياضي حيث
-            يعطيك الشعور بالالتزام وتنظيم وقتك. فتكون أيام التمرين بمعدل ستة أو خمسة أيام في الأسبوع،</p>
-        <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
-        <a href="#" class="join-us btn">اشترك معـــنا<span> الان</span></a>
+            يعطيك الشعور بالالتزام وتنظيم وقتك. فتكون أيام التمرين بمعدل ستة أو خمسة أيام في الأسبوع،</p> --}}
+        <h3>{{ $aboutUs->membership_title_ar }}</h3>
+        <h6>{{ $aboutUs->membership_text_ar }}</p>
+            <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
+            <a href="{{ route('register') }}" class="join-us btn">اشترك معـــنا<span> الان</span></a>
     </div>
 </section>
 <!-- end info-box -->
@@ -550,14 +584,11 @@
                 <div class="logos wow fadeIn">
 
                     <ul class="row justify-content-between owl-carousel">
-                        <li><img src="{{ asset('web_assets/images/logo01.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo02.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo03.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo04.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo05.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo06.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo07.png')}}" alt="Image"></li>
-                        <li><img src="{{ asset('web_assets/images/logo08.png')}}" alt="Image"></li>
+                        @foreach ( $sponsors as $row )
+
+                        <li><img src="{{ asset('uploads/sponsor/' . $row->image) }}" alt="Image"></li>
+
+                        @endforeach
                     </ul>
 
                 </div>
