@@ -9,6 +9,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CupController;
 use App\Http\Controllers\GeneralServiceController;
+use App\Http\Controllers\MembershipsController;
 use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SocialLinkController;
@@ -53,6 +54,7 @@ use App\Http\Controllers\SportController;
                         'cup' => CupController::class ,
                         'general_service' => GeneralServiceController::class ,
                         'sponsor' => SponsorController::class ,
+                        'memberships' => MembershipsController::class ,
                     ]);
 
                     Route::resource('company' , CompanyController::class)->only(['edit' , 'update']);
