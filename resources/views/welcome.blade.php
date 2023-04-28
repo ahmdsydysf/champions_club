@@ -7,7 +7,7 @@
         <div class="swiper-wrapper">
             @foreach ( $sliderData as $row )
             <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider/' . $row->image ) }}"
+                <div class="slide-inner bg-image" data-background="{{ asset('uploads/slider') }}/{{$row->image}}"
                     data-text="HOW WE Make<span>{{ $row->title_en }}</span>">
                     <div class="container">
 
@@ -127,10 +127,10 @@
 <section class="side-image-content moved-space" id="counter">
     <div class="sides bg-image wow fadeIn" data-background="{{ asset('web_assets/images/side-image01.jpg')}}">
         <div class="video">
-            <video src="{{ $aboutUs->about_video }}" loop autoplay muted></video>
+            <video src="{{ $aboutUs->about_video ?? '' }}" loop autoplay muted></video>
         </div>
         <!-- end video -->
-        <a href="{{ $aboutUs->about_video }}" class="play-btn" data-fancybox>
+        <a href="{{ $aboutUs->about_video ??'' }}" class="play-btn" data-fancybox>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                 y="0px" viewBox="0 0 104 104" enable-background="new 0 0 104 104" xml:space="preserve">
                 <path fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" d="M26,35h52L52,81L26,35z" />
@@ -144,7 +144,7 @@
         <div class="inner">
             <div class="section-title light">
                 <h2>About Us</h2>
-                <h6>{{ $aboutUs->about_master_en }}</h6>
+                <h6>{{ $aboutUs->about_master_en ?? ''}}</h6>
             </div>
             <!-- end section-title -->
             <ul class="counter">
@@ -154,7 +154,7 @@
                 <li> <span class="odometer" id="3"></span><span class="symbol">%</span> <small>Satisfaction</small>
                 </li>
             </ul>
-            <p>{{ $aboutUs->about_details_en }}</p>
+            <p>{{ $aboutUs->about_details_en ?? '' }}</p>
 
         </div>
         <!-- end inner -->
@@ -169,8 +169,8 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="section-title wow fadeIn">
-                    <h2>{{ $aboutUs->sports_title_en }}</h2>
-                    <h6>{{ $aboutUs->sports_text_en }}</h6>
+                    <h2>{{ $aboutUs->sports_title_en ?? ''}}</h2>
+                    <h6>{{ $aboutUs->sports_text_en ?? ''}}</h6>
                 </div>
                 <!-- end section-title -->
             </div>
