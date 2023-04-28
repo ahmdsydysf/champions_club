@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('day_news', function (Blueprint $table) {
             $table->id();
             $table->string('en_day', 250)->nullable();
-            $table->string('dt_day', 250)->nullable();
+            $table->string('ar_day', 250)->nullable();
             $table->timestamps();
         });
     }
