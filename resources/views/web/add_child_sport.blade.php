@@ -198,10 +198,10 @@
                     <div class="col-md-5 my-md-3  order-md-10 order-sm-11 order-10 start-end-date">
                         <div class="form-group row">
                             <label for="start-date" class="col-2">Start Date:</label>
-                            <input type="date" class="form-control col-4 important-date" name="start_date[0]"
+                            <input type="date" required class="form-control col-4 important-date" name="start_date[0]"
                                 id="start-date" onchange="adjustDate(this)">
                             <label for="end-date" class="col-2">End Date:</label>
-                            <input type="date" class="form-control col-4 important-date" name="end_date[0]"
+                            <input type="date" required class="form-control col-4 important-date" name="end_date[0]"
                                 id="end-date" disabled>
                         </div>
                     </div>
@@ -258,33 +258,33 @@
         </div>
         <script>
             let tomorrow = new Date();
-                            tomorrow.setDate(tomorrow.getDate() + 1);
-                            // Set the default start date to tomorrow
-                            document.getElementById("start-date").valueAsDate = tomorrow;
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            // Set the default start date to tomorrow
+            document.getElementById("start-date").valueAsDate = tomorrow;
 
 
-                            let startDate = new Date(document.getElementById("start-date").value);
-                            let endDate = new Date(startDate);
-                            endDate.setMonth(endDate.getMonth() + 1);
-                            document.getElementById("end-date").valueAsDate = endDate;
+            let startDate = new Date(document.getElementById("start-date").value);
+            let endDate = new Date(startDate);
+            endDate.setMonth(endDate.getMonth() + 1);
+            document.getElementById("end-date").valueAsDate = endDate;
 
-                            function adjustDate(event) {
-                                event.setAttribute('data-status', 'on');
-                                var targetDiv = document.querySelector('input[data-status]');
-                                if (document.contains(targetDiv)) {
-                                // Get tomorrow's date
-                                function updateEndDate() {
-                                    let startDate = new Date(targetDiv.value);
-                                    let selectedDate = new Date(targetDiv.value);
-                                    if (selectedDate < tomorrow) {
-                                    targetDiv.valueAsDate = tomorrow;
-                                    } else {
+            function adjustDate(event) {
+                event.setAttribute('data-status', 'on');
+                var targetDiv = document.querySelector('input[data-status]');
+                if (document.contains(targetDiv)) {
+                // Get tomorrow's date
+                function updateEndDate() {
+                    let startDate = new Date(targetDiv.value);
+                    let selectedDate = new Date(targetDiv.value);
+                    if (selectedDate < tomorrow) {
+                    targetDiv.valueAsDate = tomorrow;
+                    } else {
 
-                                    let endDate = new Date(startDate);
-                                    endDate.setMonth(endDate.getMonth() + 1);
-                                    targetDiv.nextElementSibling.nextElementSibling.valueAsDate = endDate;
-                                    }
-                                }
+                    let endDate = new Date(startDate);
+                    endDate.setMonth(endDate.getMonth() + 1);
+                    targetDiv.nextElementSibling.nextElementSibling.valueAsDate = endDate;
+                    }
+                }
 
                         // Function to update the end date when the start date is changed
 
@@ -324,53 +324,41 @@
           function cloneAndClearInputFields(inputClass) {
             const nameInput = document.querySelector(inputClass);
             const newNameInput = nameInput.cloneNode(true);
-            newNameInput.value = '';
+
             const elementsInsideDiv = newNameInput.querySelectorAll('.important-input'); // select all elements within the div
             elementsInsideDiv.forEach((element) => {
-              const oldid = element.getAttribute('id'); // get the id attribute of the element
-              const newId = oldid + '_' + cloneCount; // generate unique ID
-            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
-            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
-            //   element.setAttribute('name', newName); // set the new ID
-              element.setAttribute('id', newId); // set the new ID
-              cloneCount++;
+                const oldid = element.getAttribute('id'); // get the id attribute of the element
+                const newId = oldid + '_' + cloneCount; // generate unique ID
+                element.setAttribute('id', newId); // set the new ID
+                newNameInput.value = '';
+                cloneCount++;
             });
             const radioInsideDiv = newNameInput.querySelectorAll('.important-radio'); // select all radio within the div
             radioInsideDiv.forEach((element) => {
-              const oldid = element.getAttribute('id'); // get the id attribute of the element
-              const newId = oldid + '_' + cloneCount; // generate unique ID
-              element.setAttribute('id', newId); // set the new ID
-              element.nextElementSibling.setAttribute('for', newId)
-              cloneCount++;
+                const oldid = element.getAttribute('id'); // get the id attribute of the element
+                const newId = oldid + '_' + cloneCount; // generate unique ID
+                element.setAttribute('id', newId); // set the new ID
+                element.nextElementSibling.setAttribute('for', newId)
+                newNameInput.value = '';
+                cloneCount++;
 
             });
-            // radioInsideDiv.forEach((element) => {
-            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
-            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
-            //   element.setAttribute('name', newName); // set the new ID
-            // });
-
             const dateInsideDiv = newNameInput.querySelectorAll('.important-date'); // select all radio within the div
             dateInsideDiv.forEach((element) => {
-              const oldid = element.getAttribute('id'); // get the id attribute of the element
-              const newId = oldid + '_' + cloneCount; // generate unique ID
-              element.setAttribute('id', newId); // set the new ID
-            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
-            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
-            //   element.setAttribute('name', newName); // set the new ID
-              cloneCount++;
-
+                const oldid = element.getAttribute('id'); // get the id attribute of the element
+                const newId = oldid + '_' + cloneCount; // generate unique ID
+                element.setAttribute('id', newId); // set the new ID
+                cloneCount++;
             });
             const allInputsNames = newNameInput.querySelectorAll('[name]'); // select all radio within the div
-
             allInputsNames.forEach((element) => {
-              const oldName = element.getAttribute('name'); // get the id attribute of the element
-              const newName = oldName.replace('[0]' , '[' + counter + ']')  ; // generate unique ID
-              element.setAttribute('name', newName); // set the new ID
+                const oldName = element.getAttribute('name'); // get the id attribute of the element
+                const newName = oldName.replace('[0]' , '[' + counter + ']')  ; // generate unique ID
+                element.setAttribute('name', newName); // set the new ID
+                element.value = ''; // clear the input value
             });
             newFormGroup.appendChild(newNameInput);
-
-          }
+        }
 
           inputsArray = ['.username-input', '.birthdate-input', '.height-input', '.weight-input', '.personal-photo', '.birth-certificate', '.select-sport','.trainer-level','.trainer-days', '.start-end-date', '.trained-before', '.sport-details']
 
