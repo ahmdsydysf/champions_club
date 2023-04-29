@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\Membership_detail;
 use Illuminate\Http\Request;
 
@@ -60,7 +61,8 @@ class MembershipsController extends Controller
     public function show($id)
     {
       $row=Membership_detail::where('id',$id)->first();
-      return view($this->viewName.'show', compact('row'));
+      $attendance=Attendance::where('membership_details_id',$id)->get();
+      return view($this->viewName.'show', compact('row','attendance'));
 
     }
 
@@ -72,7 +74,9 @@ class MembershipsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $row=Membership_detail::where('id',$id)->first();
+        $attendance=Attendance::where('membership_details_id',$id)->get();
+        return view($this->viewName.'attendance', compact('row','attendance'));
     }
 
     /**

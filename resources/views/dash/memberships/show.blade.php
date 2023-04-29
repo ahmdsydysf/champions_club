@@ -10,9 +10,8 @@
         <div class="container-xxl">
             <!--begin::Form-->
             <form id="kt_ecommerce_add_product_form"
-                class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework"
-
-                <!--begin::Aside column-->
+                class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" <!--begin::Aside
+                column-->
                 <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                     <!--begin::Thumbnail settings-->
                     <div class="card card-flush py-4">
@@ -148,101 +147,155 @@
                                     <!--begin::Card header-->
                                     <div class="card-header">
                                         <div class="card-title">
-                                            <h2>General Data</h2>
+                                            <h2>Membership Data</h2>
                                         </div>
                                     </div>
                                     <!--end::Card header-->
                                     <!--begin::Card body-->
                                     <div class="card-body pt-0">
                                         <!--begin::Input group-->
-                                        <div style="border:1px solid #ccc"> <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">Member name</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="name" class="form-control mb-2"
-                                                placeholder="name" value="{{ $row->child->name ?? ''  }}">
-                                            <!--end::Input-->
+                                        <div>
+                                            <div class="d-flex flex-wrap gap-5">
+
+                                            <div class="fv-row w-100 flex-md-root">                                                <!--begin::Label-->
+                                                <label class="required form-label">Member name</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="name" class="form-control mb-2"
+                                                    placeholder="name" value="{{ $row->child->name ?? '' }}">
+                                                <!--end::Input-->
 
 
+
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row w-100 flex-md-root">                                                <!--begin::Label-->
+                                                <label class="required form-label">bithdate</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="bithdate" class="form-control mb-2"
+                                                    placeholder="bithdate" value="{{ $row->child->bithdate ?? '' }}">
+                                                <!--end::Input-->
+
+                                            </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="d-flex flex-wrap gap-5">
+
+                                                <div class="fv-row w-100 flex-md-root">                                                <!--begin::Label-->
+                                                    <!--begin::Label-->
+                                                <label class="required form-label">height</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="height" class="form-control mb-2"
+                                                    placeholder="height" value="{{ $row->child->height ?? '' }}">
+                                                <!--end::Input-->
+
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row w-100 flex-md-root">                                                <!--begin::Label-->
+                                                <!--begin::Label-->
+                                                <label class="required form-label">width</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="width" class="form-control mb-2"
+                                                    placeholder="width" value="{{ $row->child->width ?? '' }}">
+                                                <!--end::Input-->
+
+                                            </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <div class="d-flex flex-wrap gap-5">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row w-100 flex-md-root">                                                <!--begin::Label-->
+
+                                                <!--begin::Label-->
+                                                <label class="required form-label">level</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="level" class="form-control mb-2"
+                                                    placeholder="level" value="{{ $row->child->level ?? '' }}">
+                                                <!--end::Input-->
+
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row w-100 flex-md-root">                                                <!--begin::Label-->
+
+                                                <!--begin::Label-->
+                                                <label class="required form-label">User</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="user_id " class="form-control mb-2"
+                                                    placeholder="user_id " value="{{ $row->child->user->name ?? '' }}">
+                                                <!--end::Input-->
+
+                                            </div>
+                                        </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                <!--begin::Label-->
+                                                <label class="required form-label">user_relationship</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="user_relationship" class="form-control mb-2"
+                                                    placeholder="user_relationship"
+                                                    value="{{ $row->child->user_relationship ?? '' }}">
+                                                <!--end::Input-->
+
+                                            </div>
+                                            <!--end::Input group-->
 
                                         </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">bithdate</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="bithdate" class="form-control mb-2"
-                                                placeholder="bithdate" value="{{ $row->child->bithdate ?? '' }}">
-                                            <!--end::Input-->
-
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">height</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="height" class="form-control mb-2"
-                                                placeholder="height" value="{{ $row->child->height ?? '' }}">
-                                            <!--end::Input-->
-
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">width</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="width" class="form-control mb-2"
-                                                placeholder="width" value="{{ $row->child->width ?? '' }}">
-                                            <!--end::Input-->
-
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">level</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="level" class="form-control mb-2"
-                                                placeholder="level" value="{{ $row->child->level ?? '' }}">
-                                            <!--end::Input-->
-
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">User</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="user_id " class="form-control mb-2"
-                                                placeholder="user_id " value="{{ $row->child->user->name ?? '' }}">
-                                            <!--end::Input-->
-
-                                        </div>
-                                        <!--end::Input group-->
-                                         <!--begin::Input group-->
-                                         <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">user_relationship</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="user_relationship" class="form-control mb-2"
-                                                placeholder="user_relationship" value="{{ $row->child->user_relationship ?? '' }}">
-                                            <!--end::Input-->
-
-                                        </div>
-                                        <!--end::Input group-->
-
+<hr>
+<div class="card-header">
+    <div class="card-title">
+        <h2>Sport Data</h2>
+    </div>
 </div>
+<div>
+    <div class="mb-10 fv-row fv-plugins-icon-container" style="margin-top: 20px">
+        <!--begin::Label-->
+        <label class="required form-label">sport name</label>
+        <!--end::Label-->
+        <!--begin::Input-->
+        <input type="text" name="name" class="form-control mb-2"
+            placeholder="name" value="{{$row->sport->sport_title_en ?? '' }}">
+        <!--end::Input-->
 
+
+
+    </div>
+    <!--end::Input group-->
+    <!--begin::Input group-->
+    <div class="mb-10 fv-row fv-plugins-icon-container">
+        <!--begin::Label-->
+        <label class="required form-label">Member Fees</label>
+        <!--end::Label-->
+        <!--begin::Input-->
+        <input type="text" name="bithdate" class="form-control mb-2"
+            placeholder="bithdate" value="{{ $row->sport->membership_fees ?? '' }}">
+        <!--end::Input-->
+
+    </div>
+    <!--end::Input group-->
+      <!--begin::Input group-->
+      <div class="mb-10 fv-row fv-plugins-icon-container">
+        <!--begin::Label-->
+        <label class="required form-label">Sport Days</label>
+        <!--end::Label-->
+        <!--begin::Input-->
+        <input type="text" name="bithdate" class="form-control mb-2"
+            placeholder="bithdate" value="{{ $row->sportDays->firstday->en_day ?? '' }} - {{ $row->sportDays->secondday->en_day ?? ''  }}">
+        <!--end::Input-->
+
+    </div>
+    <!--end::Input group-->
+</div>
 
                                     </div>
                                     <!--end::Card header-->
@@ -261,7 +314,7 @@
                                     <!--begin::Card header-->
                                     <div class="card-header">
                                         <div class="card-title">
-                                            <h2>Days</h2>
+                                            <h2>Attendance - {{ $row->child->name ?? '' }} ({{ $row->start_date ?? '' }} - {{ $row->end_date ?? '' }}) </h2>
                                         </div>
                                     </div>
                                     <!--end::Card header-->
@@ -270,62 +323,54 @@
                                     <div class="card-body pt-0">
                                         <!--begin::Input group-->
                                         <!--begin::Input group-->
+@foreach ($attendance as $attend)
+
 
                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                             <!--begin::Label-->
-                                            <label class="required form-label">First Day</label>
+                                            <label class="required form-label">Session Date</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select class="form-select" name="firstday_id"
-                                                data-placeholder="Select a variation"
-                                                data-kt-ecommerce-catalog-add-product="product_option">
-                                                <option></option>
-                                                {{-- @foreach ($days as $day)
-                                                    <option value="{{ $day->id }}"
-                                                        @foreach ($sportDays as $sublist)
-                                                        {{ $sublist->firstday_id  == $day->id ? 'selected' : '' }}
-                                                         @endforeach >
-                                                        {{ $day->en_day }}</option>
-                                                @endforeach --}}
-                                            </select>
+                                            <input type="text" name="bithdate" class="form-control mb-2"
+                                            placeholder="bithdate" value="{{ $attend->session_date ?? '' }}">
                                         </div>
 
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                             <!--begin::Label-->
-                                            <label class="required form-label">second Day</label>
+                                            <label class="required form-label">Session no</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select class="form-select" name="secondday_id"
-                                                data-placeholder="Select a variation"
-                                                data-kt-ecommerce-catalog-add-product="product_option">
-                                                <option></option>
-                                                {{-- @foreach ($days as $day)
-
-                                                    <option value="{{ $day->id }}"
-                                                        @foreach ($sportDays as $sublist)
-                                                        {{ $sublist->secondday_id  == $day->id ? 'selected' : '' }}
-                                                         @endforeach >
-                                                        {{ $day->en_day }}</option>
-                                                @endforeach --}}
-                                            </select>
+                                            <input type="text" name="bithdate" class="form-control mb-2"
+                                            placeholder="bithdate" value="{{ $attend->session_no ?? '' }}">
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                             <!--begin::Label-->
-                                            <label class="required form-label">sport time</label>
+                                            <label class="required form-label">attend</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
 
-                                            <input
-                                            class="form-control  form-control-solid tPick"
-                                            name="sport_time"
-                                            {{-- @isset($sportDays[0])
-                                            value="{{ $sportDays[0]->sport_time }}"
-                                            @endisset --}}
-                                             />
+                                            <div class="form-group">
+                                                <div class="icheck-success d-inline">
+                                                    <input type="radio" name="is_atend{{ $counter }}"
+                                                        onchange="func({{ $counter }})" value="1"
+                                                        @if ($attend->attend == 1) checked @endif id="radioSuccess1">
+                                                    <label for="radioSuccess1">
+                                                        حضور
+                                                    </label>
+                                                </div>
+                                                <div class="icheck-danger d-inline">
+                                                    <input type="radio" name="is_atend{{ $counter }}"
+                                                        onchange="func({{ $counter }})"
+                                                        @if ($attend->attend == 0) checked @endif value="2"
+                                                        id="radioSuccess2">
+                                                    <label for="radioSuccess2">
+                                                        غياب
+                                                    </label>
+                                                </div>
 
                                         </div>
                                         <!--end::Input group-->
@@ -333,6 +378,8 @@
 
                                     {{-- end body --}}
                                 </div>
+
+                                @endforeach
                             </div>
                         </div>
                         {{-- end tab --}}
@@ -363,4 +410,3 @@
 
 
 @endsection
-
