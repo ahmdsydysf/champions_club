@@ -193,6 +193,8 @@
 <script src="{{ asset('web_assets/js/wow.min.js') }}"></script>
 <script src="{{ asset('web_assets/js/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('web_assets/js/scripts.js') }}"></script>
+
+@yield('custom_js')
 </body>
 
 </html>

@@ -48,6 +48,7 @@ Route::group(
             Route::get('/sport', [HomeController::class , 'sport'])->name('sport')->withoutMiddleware(['auth']);
             Route::get('/child/sport', [HomeController::class , 'child_sport'])->name('childSport');
             Route::post('/child/sport/add', [HomeController::class , 'storeChildSport'])->name('addChildSport');
+            Route::post('/child/sports/data', [HomeController::class , 'childSportData'])->name('childSportData');
 
 
 
