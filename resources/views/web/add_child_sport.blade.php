@@ -171,11 +171,14 @@
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-7 order-7 select-sport">
                         <label for="inputState" class="form-label">Select Sport</label>
                         <select id="inputState" name="select_sport[0]"
-                            class="form-control custom-select important-input">
-                            <option selected>Football</option>
-                            <option>Handball</option>
-                            <option>Basketball</option>
-                            <option>Swemming</option>
+                            class="form-control custom-select allSports important-input">
+                            <option value="" selected>Select Sport</option>
+                            @foreach ($sports as $sport)
+
+                            <option value="{{ $sport->id }}">{{ $sport->sport_title_en }}</option>
+
+                            @endforeach
+
                         </select>
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-8 order-8 trainer-level">
@@ -189,19 +192,17 @@
                     <div class="col-md-3 col-sm-4 my-md-3  col-12  order-md-9 order-9 trainer-days row">
                         <label for="inputState12" class="form-label col-4">Select Days</label>
                         <select id="inputState12" name="select_days[0]"
-                            class="form-control custom-select important-input col-8">
+                            class="form-control custom-select selected-days important-input col-8">
                             <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
                         </select>
                     </div>
                     <div class="col-md-5 my-md-3  order-md-10 order-sm-11 order-10 start-end-date">
                         <div class="form-group row">
                             <label for="start-date" class="col-2">Start Date:</label>
-                            <input type="date" class="form-control col-4 important-date" name="start_date[0]"
+                            <input type="date" required class="form-control col-4 important-date" name="start_date[0]"
                                 id="start-date" onchange="adjustDate(this)">
                             <label for="end-date" class="col-2">End Date:</label>
-                            <input type="date" class="form-control col-4 important-date" name="end_date[0]"
+                            <input type="date" required class="form-control col-4 important-date" name="end_date[0]"
                                 id="end-date" disabled>
                         </div>
                     </div>
@@ -224,17 +225,15 @@
                     </fieldset>
                     <div class="container col-12 order-12 sport-details my-3">
                         <div class="row col-sm-12">
-                            <div class="card col-sm-6 ">
-                                <div class="card-header">
-                                    Sport Details
+                            <div class="card col-sm-6 full_sport_details">
+                                <div class="card-header sport_title">
+                                    .......... Details
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.</p>
+                                    <h5 class="card-title sport_subtitle">.............</h5>
+                                    <p class="card-text sport_overview">.......................</p>
                                     <h5 class="card-title">Sport Cost</h5>
-                                    <p class="card-text">210 EGP</p>
-
+                                    <p class="card-text membership_fees">...... EGP</p>
                                 </div>
                             </div>
                             <div class="form-floating col-sm-6">
@@ -256,160 +255,169 @@
                 <button type="button" class="btn btn-primary add-new float-right">Add New</button>
             </div>
         </div>
+
+        @section('custom_js')
         <script>
             let tomorrow = new Date();
-                            tomorrow.setDate(tomorrow.getDate() + 1);
-                            // Set the default start date to tomorrow
-                            document.getElementById("start-date").valueAsDate = tomorrow;
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            // Set the default start date to tomorrow
+            document.getElementById("start-date").valueAsDate = tomorrow;
 
 
-                            let startDate = new Date(document.getElementById("start-date").value);
+            let startDate = new Date(document.getElementById("start-date").value);
+            let endDate = new Date(startDate);
+            endDate.setMonth(endDate.getMonth() + 1);
+            document.getElementById("end-date").valueAsDate = endDate;
+
+            function adjustDate(event) {
+                event.setAttribute('data-status', 'on');
+                var targetDiv = document.querySelector('input[data-status]');
+                if (document.contains(targetDiv)) {
+                    // Get tomorrow's date
+                    function updateEndDate() {
+                        let startDate = new Date(targetDiv.value);
+                        let selectedDate = new Date(targetDiv.value);
+                        if (selectedDate < tomorrow) {
+                            targetDiv.valueAsDate = tomorrow;
+                        } else {
+
                             let endDate = new Date(startDate);
                             endDate.setMonth(endDate.getMonth() + 1);
-                            document.getElementById("end-date").valueAsDate = endDate;
+                            targetDiv.nextElementSibling.nextElementSibling.valueAsDate = endDate;
+                        }
+                    }
 
-                            function adjustDate(event) {
-                                event.setAttribute('data-status', 'on');
-                                var targetDiv = document.querySelector('input[data-status]');
-                                if (document.contains(targetDiv)) {
-                                // Get tomorrow's date
-                                function updateEndDate() {
-                                    let startDate = new Date(targetDiv.value);
-                                    let selectedDate = new Date(targetDiv.value);
-                                    if (selectedDate < tomorrow) {
-                                    targetDiv.valueAsDate = tomorrow;
-                                    } else {
+                    // Function to update the end date when the start date is changed
 
-                                    let endDate = new Date(startDate);
-                                    endDate.setMonth(endDate.getMonth() + 1);
-                                    targetDiv.nextElementSibling.nextElementSibling.valueAsDate = endDate;
-                                    }
-                                }
-
-                        // Function to update the end date when the start date is changed
-
-                                updateEndDate();
-                                event.removeAttribute('data-status');
-                                }
-                            }
+                    updateEndDate();
+                    event.removeAttribute('data-status');
+                }
+            }
 
             // Get the "Add New" button and the submit button
-        const addNewBtn = document.querySelector('.add-new');
-        const submitBtn = document.querySelector('.reg');
-        const addNewPlayerForm = document.querySelector('.add-new-player-form');
-        const formContainer = document.querySelector('.form-container');
-        let cloneCount = 1;
-        let counter = 1;
+            const addNewBtn = document.querySelector('.add-new');
+            const submitBtn = document.querySelector('.reg');
+            const addNewPlayerForm = document.querySelector('.add-new-player-form');
+            const formContainer = document.querySelector('.form-container');
+            let cloneCount = 1;
+            let counter = 1;
 
-        // Add an event listener to the "Add New" button
-        addNewBtn.addEventListener('click', function () {
+            // Add an event listener to the "Add New" button
+            addNewBtn.addEventListener('click', function () {
 
 
-          const newFormGroup = document.createElement('div');
-          const newcloseFormBTN = document.createElement('span');
-          newcloseFormBTN.innerHTML = `
+                const newFormGroup = document.createElement('div');
+                const newcloseFormBTN = document.createElement('span');
+                newcloseFormBTN.innerHTML = `
           <span>
             <button type="button" onclick='del_form(this)' class="cls-form">
               <i class="fa fa-remove"></i>
             </button>
           </span>` ;
 
-          newFormGroup.classList.add('form-group', 'row', 'p-5', 'add-new-player-form', 'g-3', 'mt-5');
+                newFormGroup.classList.add('form-group', 'row', 'p-5', 'add-new-player-form', 'g-3', 'mt-5');
 
-          newFormGroup.appendChild(newcloseFormBTN);
-          addNewPlayerForm.insertAdjacentElement('afterend', newFormGroup)
+                newFormGroup.appendChild(newcloseFormBTN);
+                addNewPlayerForm.insertAdjacentElement('afterend', newFormGroup)
 
 
-          // Get the input fields from the register form
-          function cloneAndClearInputFields(inputClass) {
-            const nameInput = document.querySelector(inputClass);
-            const newNameInput = nameInput.cloneNode(true);
-            newNameInput.value = '';
-            const elementsInsideDiv = newNameInput.querySelectorAll('.important-input'); // select all elements within the div
-            elementsInsideDiv.forEach((element) => {
-              const oldid = element.getAttribute('id'); // get the id attribute of the element
-              const newId = oldid + '_' + cloneCount; // generate unique ID
-            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
-            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
-            //   element.setAttribute('name', newName); // set the new ID
-              element.setAttribute('id', newId); // set the new ID
-              cloneCount++;
+                // Get the input fields from the register form
+                function cloneAndClearInputFields(inputClass) {
+                    const nameInput = document.querySelector(inputClass);
+                    const newNameInput = nameInput.cloneNode(true);
+
+                    const elementsInsideDiv = newNameInput.querySelectorAll('.important-input'); // select all elements within the div
+                    elementsInsideDiv.forEach((element) => {
+                        const oldid = element.getAttribute('id'); // get the id attribute of the element
+                        const newId = oldid + '_' + cloneCount; // generate unique ID
+                        element.setAttribute('id', newId); // set the new ID
+                        newNameInput.value = '';
+                        cloneCount++;
+                    });
+                    const radioInsideDiv = newNameInput.querySelectorAll('.important-radio'); // select all radio within the div
+                    radioInsideDiv.forEach((element) => {
+                        const oldid = element.getAttribute('id'); // get the id attribute of the element
+                        const newId = oldid + '_' + cloneCount; // generate unique ID
+                        element.setAttribute('id', newId); // set the new ID
+                        element.nextElementSibling.setAttribute('for', newId)
+                        newNameInput.value = '';
+                        cloneCount++;
+
+                    });
+                    const dateInsideDiv = newNameInput.querySelectorAll('.important-date'); // select all radio within the div
+                    dateInsideDiv.forEach((element) => {
+                        const oldid = element.getAttribute('id'); // get the id attribute of the element
+                        const newId = oldid + '_' + cloneCount; // generate unique ID
+                        element.setAttribute('id', newId); // set the new ID
+                        cloneCount++;
+                    });
+                    const allInputsNames = newNameInput.querySelectorAll('[name]'); // select all radio within the div
+                    allInputsNames.forEach((element) => {
+                        const oldName = element.getAttribute('name'); // get the id attribute of the element
+                        const newName = oldName.replace('[0]', '[' + counter + ']'); // generate unique ID
+                        element.setAttribute('name', newName); // set the new ID
+                        element.value = ''; // clear the input value
+                    });
+                    newFormGroup.appendChild(newNameInput);
+                }
+
+                inputsArray = ['.username-input', '.birthdate-input', '.height-input', '.weight-input', '.personal-photo', '.birth-certificate', '.select-sport', '.trainer-level', '.trainer-days', '.start-end-date', '.trained-before', '.sport-details']
+
+                // Call the function with the input classes
+                inputsArray.forEach(function (elem) {
+                    cloneAndClearInputFields(elem);
+                });
+
+                counter++;
             });
-            const radioInsideDiv = newNameInput.querySelectorAll('.important-radio'); // select all radio within the div
-            radioInsideDiv.forEach((element) => {
-              const oldid = element.getAttribute('id'); // get the id attribute of the element
-              const newId = oldid + '_' + cloneCount; // generate unique ID
-              element.setAttribute('id', newId); // set the new ID
-              element.nextElementSibling.setAttribute('for', newId)
-              cloneCount++;
 
-            });
-            // radioInsideDiv.forEach((element) => {
-            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
-            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
-            //   element.setAttribute('name', newName); // set the new ID
-            // });
-
-            const dateInsideDiv = newNameInput.querySelectorAll('.important-date'); // select all radio within the div
-            dateInsideDiv.forEach((element) => {
-              const oldid = element.getAttribute('id'); // get the id attribute of the element
-              const newId = oldid + '_' + cloneCount; // generate unique ID
-              element.setAttribute('id', newId); // set the new ID
-            //   const oldName = element.getAttribute('name'); // get the id attribute of the element
-            //   const newName = oldName + '[' + counter + ']'; // generate unique ID
-            //   element.setAttribute('name', newName); // set the new ID
-              cloneCount++;
-
-            });
-            const allInputsNames = newNameInput.querySelectorAll('[name]'); // select all radio within the div
-
-            allInputsNames.forEach((element) => {
-              const oldName = element.getAttribute('name'); // get the id attribute of the element
-              const newName = oldName.replace('[0]' , '[' + counter + ']')  ; // generate unique ID
-              element.setAttribute('name', newName); // set the new ID
-            });
-            newFormGroup.appendChild(newNameInput);
-
-          }
-
-          inputsArray = ['.username-input', '.birthdate-input', '.height-input', '.weight-input', '.personal-photo', '.birth-certificate', '.select-sport','.trainer-level','.trainer-days', '.start-end-date', '.trained-before', '.sport-details']
-
-          // Call the function with the input classes
-          inputsArray.forEach(function (elem) {
-            cloneAndClearInputFields(elem);
-        });
-
-        counter++;
-        });
-
-        function del_form(dv) {
-          dv.parentElement.parentElement.parentElement.remove();
-        }
+            function del_form(dv) {
+                dv.parentElement.parentElement.parentElement.remove();
+            }
 
 
-        const form = document.querySelector('form#add-player');
+            const form = document.querySelector('form#add-player');
 
-        form.addEventListener('submit', (event) => {
-        event.preventDefault();
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
 
-        const disabledInputs = document.querySelectorAll('input[disabled]');
+                const disabledInputs = document.querySelectorAll('input[disabled]');
                 disabledInputs.forEach(element => {
                     element.removeAttribute('disabled');
                 });
-        // Submit the form using JavaScript
-        form.submit();
-        });
-        // function changeDisabled(event) {
-        //         event.preventDefault();
-
-        //         const form = document.querySelector('form#add-player');
-        //         console.log(form);
-        //         form.submit();
-        // }
+                // Submit the form using JavaScript
+                form.submit();
+            });
 
 
+            // ajax to get sport selected data
+            $(document).ready(function () {
+                $('.custom-select.allSports').on('change', function () {
+                    let sportId = $(this).val();
+                    let trigger = $(this);
+
+                    let _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: '{{ route('childSportData') }}',
+                        type: 'POST',
+                        data: { sport_id: sportId, _token: _token },
+                        success: function (response) {
+console.log(response);
+                            trigger.parent().parent().find(".full_sport_details").html(response.data);
+                            trigger.parent().parent().find(".selected-days").html(`<option selected>${response.firstday}</option> <option selected>${response.secondday}</option>`);
+
+                        },
+                        error: function (xhr, status, error) {
+                            var err = eval("(" + xhr.responseText + ")");
+                            alert(err.Message);
+                        }
+                    });
+                });
+            });
 
         </script>
+        @endsection
+
     </div>
 </section>
 <!-- end contact -->

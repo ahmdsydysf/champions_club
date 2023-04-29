@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Day_new;
+use App\Models\Sport;
+use App\Models\Sports_day;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -75,17 +81,81 @@ class HomeController extends Controller
 
     public function child_sport()
     {
+        $sports = Sport::all();
         if(LaravelLocalization::getCurrentLocale() == 'en'){
-            return view('web.add_child_sport');
+
+            return view('web.add_child_sport', compact('sports'));
 
         }else{
-            return view('web.add_child_sport_ar');
+            return view('web.add_child_sport_ar', compact('sports'));
 
         }
     }
+
+    public function childSportData(Request $request){
+        $sport_id = $request->get('sport_id');
+
+        $SportData = Sport::where('id', $sport_id)->get();
+        $sportDays = Sports_day::where('id', $sport_id)->firstOrFail();
+        $firstday_name = Day_new::where('id', $sportDays->firstday_id)->firstOrFail();
+        $secondday_name =Day_new::where('id', $sportDays->secondday_id)->firstOrFail();
+        $output = '
+                <div class="card-header sport_title">' .
+                $SportData[0]->sport_title_en  .'Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_en .'</h5>
+                    <p class="card-text sport_overview">'. $SportData[0]->sport_overview_en .'</p>
+                    <h5 class="card-title">Sport Cost</h5>
+                    <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' EGP</p>
+                </div>
+        ';
+
+
+        return response()->json(['data' => $output , 'firstday' => $firstday_name->en_day , 'secondday' => $secondday_name->en_day]);
+    }
     public function storeChildSport(Request $request)
     {
-        dd($request);
+
+
+    DB::beginTransaction();
+
+    try {
+
+        $data = $request->all();
+
+
+        DB::table('user_childrens')->insert([
+            'name' => $data['column1'],
+            'birthdate' => $data['column2'],
+            'personal_image' => $data['column2'],
+            'birth_image' => $data['column2'],
+            'height' => $data['column2'],
+            'width' => $data['column2'],
+            'level' => $data['column2'],
+            'user_id' => Auth::user()->id,
+        ]);
+
+
+        $id = DB::getPdo()->lastInsertId();
+
+
+        DB::table()->insert([
+
+        ]);
+
+
+        DB::commit();
+
+    } catch (\Exception $e) {
+
+        DB::rollback();
+
+
+        Log::error($e->getMessage());
+
+
+    }
     }
 
     /**
