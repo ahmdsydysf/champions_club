@@ -1,6 +1,7 @@
 @extends('web.layout.app')
 
 @section('custom_css')
+<script src="{{ asset('web_assets/js/jquery.min.js') }}"></script>
 <style>
     input:not('radio') {
         height: calc(2.25rem + 2px) !important;
@@ -170,7 +171,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-7 order-7 select-sport">
                         <label for="inputState" class="form-label">Select Sport</label>
-                        <select id="inputState" name="select_sport[0]"
+                        <select id="inputState" onchange="handleSportChange($(this))" name="select_sport[0]"
                             class="form-control custom-select allSports important-input">
                             <option value="" selected>Select Sport</option>
                             @foreach ($sports as $sport)
@@ -193,7 +194,7 @@
                         <label for="inputState12" class="form-label col-4">Select Days</label>
                         <select id="inputState12" name="select_days[0]"
                             class="form-control custom-select selected-days important-input col-8">
-                            <option selected>1</option>
+                            <option selected>Days From Here</option>
                         </select>
                     </div>
                     <div class="col-md-5 my-md-3  order-md-10 order-sm-11 order-10 start-end-date">
@@ -358,6 +359,12 @@
                         element.setAttribute('name', newName); // set the new ID
                         element.value = ''; // clear the input value
                     });
+
+                    // if(){
+                    //     clonedElement.on('change', function() {
+                    //     // Do something
+                    //     });
+                    // }
                     newFormGroup.appendChild(newNameInput);
                 }
 
@@ -391,29 +398,23 @@
 
 
             // ajax to get sport selected data
-            $(document).ready(function () {
-                $('.custom-select.allSports').on('change', function () {
-                    let sportId = $(this).val();
-                    let trigger = $(this);
-
-                    let _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: '{{ route('childSportData') }}',
-                        type: 'POST',
-                        data: { sport_id: sportId, _token: _token },
-                        success: function (response) {
-console.log(response);
-                            trigger.parent().parent().find(".full_sport_details").html(response.data);
-                            trigger.parent().parent().find(".selected-days").html(`<option selected>${response.firstday}</option> <option selected>${response.secondday}</option>`);
-
-                        },
-                        error: function (xhr, status, error) {
-                            var err = eval("(" + xhr.responseText + ")");
-                            alert(err.Message);
-                        }
-                    });
+            function handleSportChange(trigger) {
+                let sportId = trigger.val();
+                let _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: '{{ route('childSportData') }}',
+                    type: 'POST',
+                    data: { sport_id: sportId, _token: _token },
+                    success: function (response) {
+                        trigger.parent().parent().find('.full_sport_details').html(response.data);
+                        trigger.parent().parent().find('.selected-days').html(`<option selected>${response.firstday} & ${response.secondday}</option>`);
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval('(' + xhr.responseText + ')');
+                        alert(err.Message);
+                    }
                 });
-            });
+            }
 
         </script>
         @endsection
