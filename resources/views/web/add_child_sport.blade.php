@@ -192,7 +192,7 @@
                     <div class="col-md-3 col-sm-4 my-md-3  col-12  order-md-9 order-9 trainer-days row">
                         <label for="inputState12" class="form-label col-4">Select Days</label>
                         <select id="inputState12" name="select_days[0]"
-                            class="form-control custom-select important-input col-8">
+                            class="form-control custom-select selected-days important-input col-8">
                             <option selected>1</option>
                         </select>
                     </div>
@@ -401,8 +401,11 @@
                         url: '{{ route('childSportData') }}',
                         type: 'POST',
                         data: { sport_id: sportId, _token: _token },
-                        success: function (data) {
-                            trigger.parent().parent().find(".full_sport_details").html(data);
+                        success: function (response) {
+console.log(response);
+                            trigger.parent().parent().find(".full_sport_details").html(response.data);
+                            trigger.parent().parent().find(".selected-days").html(`<option selected>${response.firstday}</option> <option selected>${response.secondday}</option>`);
+
                         },
                         error: function (xhr, status, error) {
                             var err = eval("(" + xhr.responseText + ")");

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Day_new;
 use App\Models\Sport;
+use App\Models\Sports_day;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -94,7 +96,9 @@ class HomeController extends Controller
         $sport_id = $request->get('sport_id');
 
         $SportData = Sport::where('id', $sport_id)->get();
-
+        $sportDays = Sports_day::where('id', $sport_id)->firstOrFail();
+        $firstday_name = Day_new::where('id', $sportDays->firstday_id)->firstOrFail();
+        $secondday_name =Day_new::where('id', $sportDays->secondday_id)->firstOrFail();
         $output = '
                 <div class="card-header sport_title">' .
                 $SportData[0]->sport_title_en  .'Details
@@ -108,11 +112,11 @@ class HomeController extends Controller
         ';
 
 
-        echo $output;
+        return response()->json(['data' => $output , 'firstday' => $firstday_name->en_day , 'secondday' => $secondday_name->en_day]);
     }
     public function storeChildSport(Request $request)
     {
-        dd($request);
+
 
     DB::beginTransaction();
 
