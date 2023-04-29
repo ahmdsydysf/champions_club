@@ -56,7 +56,7 @@
                     <td class="text-end pe-0">
 
                             <!--begin::Thumbnail-->
-                            <a href="edit-slider.html" class="symbol symbol-50px">
+                            <a href="{{ route('dashboard.memberships.show' ,$row->id ) }}" class="symbol symbol-50px">
                                 <span class="fw-bolder">{{ $row->child->name ?? '' }}</span>
                             </a>
 
@@ -87,7 +87,7 @@
 
                      <!--begin::SKU=-->
                      <td class="text-end pe-0">
-                        <span class="fw-bolder">{{ $row->start_date }} - {{ $row->end_date }}</span>
+                        <span class="fw-bolder">{{ $row->sportDays->firstday->en_day ?? '' }} - {{ $row->sportDays->secondday->en_day ?? ''  }}</span>
                     </td>
                     <!--end::SKU=-->
                 </tr>

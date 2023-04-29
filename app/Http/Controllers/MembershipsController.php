@@ -59,7 +59,9 @@ class MembershipsController extends Controller
      */
     public function show($id)
     {
-        //
+      $row=Membership_detail::where('id',$id)->first();
+      return view($this->viewName.'show', compact('row'));
+
     }
 
     /**

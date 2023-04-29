@@ -18,4 +18,13 @@ class Sports_day extends Model
         'sport_time',
     ];
 
+    public function firstday(){
+        return $this->belongsTo(Day_new::class,'firstday_id');
+
+    }
+
+    public function secondday(){
+        return $this->belongsTo(Day_new::class,'secondday_id');
+
+    }
 }
