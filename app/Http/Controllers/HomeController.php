@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Day_new;
 use App\Models\Sport;
+use App\Models\Day_new;
 use App\Models\Sports_day;
+use App\Models\SliderImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -112,50 +115,121 @@ class HomeController extends Controller
         ';
 
 
-        return response()->json(['data' => $output , 'firstday' => $firstday_name->en_day , 'secondday' => $secondday_name->en_day]);
+        return response()->json(['data' => $output , 'firstday' => $firstday_name->en_day , 'secondday' => $secondday_name->en_day , 'dayid' =>$sportDays->id ]);
     }
     public function storeChildSport(Request $request)
     {
+        DB::beginTransaction();
+        try {
+                $names = $request->input('name');
+                $birthdates = $request->input('birthdate');
+                $hights = $request->input('hight');
+                $weights = $request->input('weight');
+                $selectSports = $request->input('select_sport');
+                $levels = $request->input('level');
+                $selectDays = $request->input('select_days');
+                $startDates = $request->input('start_date');
+                $endDates = $request->input('end_date');
+                $paymentMethods = $request->input('paymentMethod');
+                $userComments = $request->input('user_comments');
+                $personal_image = $request->file('personal_image');
+                $birth_image = $request->file('birth_image');
 
+                $totalFees = 0 ;
+                for ($i = 0; $i < count($names); $i++) {
 
-    DB::beginTransaction();
+                // $request->validate([
+                //             'personal_image['.$i.']' => 'image|mimes:jpeg,png,jpg|max:4048',
+                //             'birth_image['.$i.']' => 'image|mimes:jpeg,png,jpg|max:4048',
+                //             'name['.$i.']' => 'required',
+                //             'birthdate['.$i.']' => 'required|date',
+                //             'hight['.$i.']' => 'required',
+                //             'weight['.$i.']' => 'required',
+                //             'selectSport['.$i.']' => 'required',
+                //             'level['.$i.']' => 'required',
+                //             'selectDay['.$i.']' => 'required',
+                //             'startDate['.$i.']' => 'required',
+                //             'endDate['.$i.']' => 'required',
+                //             'paymentMethod['.$i.']' => 'required',
+                //             'userComment['.$i.']' => 'required',
+                //         ]);
+                //         dd('first');
 
-    try {
+                $request_data = $request->except('personal_image['.$i.']', 'birth_image['.$i.']' ,'_token');
+                if ($personal_image[$i]) {
+                            $myimageName = uniqid() . $personal_image[$i]->getClientOriginalName();
+                            Image::make($personal_image[$i])->resize(300, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                            })->save(public_path('uploads/children_data/' . $myimageName));
+                            $personal_image[$i] = $myimageName;
+                    }
+                if ($birth_image[$i]) {
+                            $myimageName = uniqid() . $birth_image[$i]->getClientOriginalName();
+                            Image::make($birth_image[$i])->resize(400, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                            })->save(public_path('uploads/children_data/' . $myimageName));
+                            $birth_image[$i] = $myimageName;
+                    }
+                    DB::table('user_childrens')->insert([
+                                'name' => $names[$i],
+                                'birthdate' => $birthdates[$i],
+                                'personal_image' => $personal_image[$i],
+                                'birth_image' => $birth_image[$i],
+                                'height' => $hights[$i],
+                                'width' => $weights[$i],
+                                'level' => $levels[$i],
+                                'user_id' => Auth::user()->id,
+                    ]);
+                    $id = DB::getPdo()->lastInsertId();
+                    $sportFees = Sport::select('membership_fees')->where('id',$selectSports[$i])->first();
+                
+                    DB::table('membership_details')->insert([
+                        'child_id' => $id,
+                        'sport_id' => $selectSports[$i],
+                        'sport_days_id' => $selectDays[$i],
+                        'start_date' => $startDates[$i],
+                        'end_date' => $endDates[$i],
+                        'fees' => $sportFees->membership_fees,
+                        'user_comment' =>$userComments[$i]
+                    ]);
+                    $id3 = DB::getPdo()->lastInsertId();
 
-        $data = $request->all();
+                    
+                    DB::table('membership_invoices')->insert([
+                        'invoice_date' => now(),
+                        'vat_perc' => '0.14',
+                        'user_id' => Auth::user()->id,
+                    ]);
 
+                    $id2 = DB::getPdo()->lastInsertId();
 
-        DB::table('user_childrens')->insert([
-            'name' => $data['column1'],
-            'birthdate' => $data['column2'],
-            'personal_image' => $data['column2'],
-            'birth_image' => $data['column2'],
-            'height' => $data['column2'],
-            'width' => $data['column2'],
-            'level' => $data['column2'],
-            'user_id' => Auth::user()->id,
-        ]);
+                    DB::table('membership_details')
+                    ->where('id', $id3)
+                    ->update(['invoice_id' => $id2]);
 
-
-        $id = DB::getPdo()->lastInsertId();
-
-
-        DB::table()->insert([
-
-        ]);
-
-
-        DB::commit();
-
-    } catch (\Exception $e) {
-
-        DB::rollback();
-
-
-        Log::error($e->getMessage());
-
-
+                    $totalFees += $sportFees->membership_fees ;
+                    
+                    DB::commit();
     }
+
+            DB::table('membership_invoices')
+            ->where('id', $id2)
+            ->update(['order_total' => $totalFees * 0.14 + $totalFees]);
+            
+            DB::commit();
+
+                 } catch (\Exception $e) {
+
+                    dd($e);
+                        DB::rollback();
+
+
+                        Log::error($e->getMessage());
+
+
+                    }
+
+    
     }
 
     /**
