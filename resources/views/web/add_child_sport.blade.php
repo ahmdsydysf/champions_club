@@ -137,6 +137,9 @@
 <!-- end page-header -->
 <section class="contact">
     <div class="container">
+        @if($errors->any())
+        <div class="alert-danger">PLZ Check your Data carfully !! and Try Again</div>
+        @endif
         <form id="add-player" action="{{ route('addChildSport') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-container">
@@ -144,68 +147,137 @@
 
                     <div class="col-md-3 col-sm-4 col-12 order-md-1 order-1 username-input">
                         <label for="inputEmail4" class="form-label">Username</label>
-                        <input type="text" name="name[0]" class="form-control important-input" id="inputEmail4"
-                            placeholder="Full Name">
+                        <input data-reset='on' type="text" name="name[0]" class="form-control important-input"
+                            id="inputEmail4" placeholder="Full Name">
+                        @if($errors->any())
+                        @error('name.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
+                        {{-- @error('name[0]')
+                        <div class="alert-danger">{{ $message }}</div>
+                        @enderror --}}
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-2 order-2 birthdate-input">
                         <label for="inputPassword4" class="form-label">Birthdate</label>
-                        <input type="date" name="birthdate[0]" class="form-control important-input" id="inputPassword4">
+                        <input data-reset='on' type="date" name="birthdate[0]" class="form-control important-input"
+                            id="inputPassword4">
+                        @if($errors->any())
+                        @error('birthdate.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-3 order-3 height-input">
                         <label for="inputAddress" class="form-label">Height</label>
-                        <input type="number" name="hight[0]" class="form-control important-input" min="100"
-                            id="inputAddress" placeholder="Height">
+                        <input data-reset='on' type="number" name="hight[0]" class="form-control important-input"
+                            min="100" id="inputAddress" placeholder="Height">
+                        @if($errors->any())
+                        @error('hight.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-4 order-4 weight-input">
                         <label for="inputAddress2" class="form-label">Weight</label>
-                        <input type="number" name="weight[0]" class="form-control important-input" min="35"
-                            id="inputAddress2" placeholder="Weight">
+                        <input data-reset='on' type="number" name="weight[0]" class="form-control important-input"
+                            min="35" id="inputAddress2" placeholder="Weight">
+                        @if($errors->any())
+
+                        @error('weight.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-5 order-5 personal-photo">
                         <label for="formFile" class="form-label">Trainee Photo</label>
-                        <input class="form-control important-input" name="personal_image[0]" type="file" id="formFile">
+                        <input data-reset='on' class="form-control important-input" name="personal_image[0]" type="file"
+                            id="formFile">
+                        @if($errors->any())
+
+                        @error('personal_image.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-6 order-6 birth-certificate">
                         <label for="formFile2" class="form-label">birth certificate</label>
-                        <input class="form-control important-input" name="birth_image[0]" type="file" id="formFile2">
+                        <input data-reset='on' class="form-control important-input" name="birth_image[0]" type="file"
+                            id="formFile2">
+                        @if($errors->any())
+
+                        @error('birth_image.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-7 order-7 select-sport">
                         <label for="inputState" class="form-label">Select Sport</label>
                         <select id="inputState" onchange="handleSportChange($(this))" name="select_sport[0]"
                             class="form-control custom-select allSports important-input">
                             <option value="" selected>Select Sport</option>
+
+
                             @foreach ($sports as $sport)
 
                             <option value="{{ $sport->id }}">{{ $sport->sport_title_en }}</option>
 
                             @endforeach
 
+
                         </select>
+                        @if($errors->any())
+                        @error('select_sport.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
+
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-8 order-8 trainer-level">
                         <label for="inputState1" class="form-label">Trainee level</label>
                         <select id="inputState1" name="level[0]" class="form-control custom-select important-input">
-                            <option selected>Amateur</option>
-                            <option>Mid level</option>
-                            <option>professional</option>
+                            <option value="1" selected>Amateur</option>
+                            <option value="2">Mid level</option>
+                            <option value="3">professional</option>
                         </select>
+                        @if($errors->any())
+
+                        @error('level.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
+
                     </div>
                     <div class="col-md-3 col-sm-4 my-md-3  col-12  order-md-9 order-9 trainer-days row">
                         <label for="inputState12" class="form-label col-4">Select Days</label>
-                        <select id="inputState12" name="select_days[0]"
+                        <select data-reset='clear' id="inputState12" name="select_days[0]"
                             class="form-control custom-select selected-days important-input col-8">
                             <option selected>Days From Here</option>
                         </select>
+                        @if($errors->any())
+
+                        @error('select_days.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
+
                     </div>
                     <div class="col-md-5 my-md-3  order-md-10 order-sm-11 order-10 start-end-date">
                         <div class="form-group row">
                             <label for="start-date" class="col-2">Start Date:</label>
-                            <input type="date" required class="form-control col-4 important-date" name="start_date[0]"
-                                id="start-date" onchange="adjustDate(this)">
+                            <input type="date" required class="startDate form-control col-4 important-date"
+                                name="start_date[0]" id="start-date" onchange="adjustDate(this)">
                             <label for="end-date" class="col-2">End Date:</label>
-                            <input type="date" required class="form-control col-4 important-date" name="end_date[0]"
-                                id="end-date" disabled>
+                            <input type="date" required class="endDate form-control col-4 important-date"
+                                name="end_date[0]" id="end-date" disabled>
                         </div>
+                        @if($errors->any())
+
+                        @error('start_date.'.$i)
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        @endif
+
                     </div>
                     <fieldset
                         class="col-md-4 col-sm-4 row align-items-baseline trained-before order-md-11 order-sm-10 order-11">
@@ -222,6 +294,13 @@
                                     class="custom-control-input important-radio" required="">
                                 <label class="custom-control-label" for="debit">No</label>
                             </div>
+                            @if($errors->any())
+
+                            @error('paymentMethod.'.$i)
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            @endif
+
                         </div>
                     </fieldset>
                     <div class="container col-12 order-12 sport-details my-3">
@@ -238,9 +317,17 @@
                                 </div>
                             </div>
                             <div class="form-floating col-sm-6">
-                                <textarea name="user_comment[0]" class="form-control h-100 important-input"
-                                    placeholder="Leave a comment here" id="floatingTextarea2"></textarea>
+                                <textarea data-reset="textarea" class="form-control h-100 important-input"
+                                    placeholder="Leave a comment here" id="floatingTextarea2"
+                                    name="user_comments[0]"></textarea>
                                 <label for="floatingTextarea2">notice</label>
+                                @if($errors->any())
+
+                                @error('user_comments.'.$i)
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                @endif
+
                             </div>
                         </div>
 
@@ -310,11 +397,11 @@
                 const newFormGroup = document.createElement('div');
                 const newcloseFormBTN = document.createElement('span');
                 newcloseFormBTN.innerHTML = `
-          <span>
-            <button type="button" onclick='del_form(this)' class="cls-form">
-              <i class="fa fa-remove"></i>
-            </button>
-          </span>` ;
+                <span>
+                    <button type="button" onclick='del_form(this)' class="cls-form">
+                    <i class="fa fa-remove"></i>
+                    </button>
+                </span>` ;
 
                 newFormGroup.classList.add('form-group', 'row', 'p-5', 'add-new-player-form', 'g-3', 'mt-5');
 
@@ -335,6 +422,7 @@
                         newNameInput.value = '';
                         cloneCount++;
                     });
+
                     const radioInsideDiv = newNameInput.querySelectorAll('.important-radio'); // select all radio within the div
                     radioInsideDiv.forEach((element) => {
                         const oldid = element.getAttribute('id'); // get the id attribute of the element
@@ -345,26 +433,53 @@
                         cloneCount++;
 
                     });
-                    const dateInsideDiv = newNameInput.querySelectorAll('.important-date'); // select all radio within the div
+                    const dateInsideDiv = newNameInput.querySelectorAll('.important-date'); // select   within the div
                     dateInsideDiv.forEach((element) => {
                         const oldid = element.getAttribute('id'); // get the id attribute of the element
                         const newId = oldid + '_' + cloneCount; // generate unique ID
                         element.setAttribute('id', newId); // set the new ID
                         cloneCount++;
                     });
-                    const allInputsNames = newNameInput.querySelectorAll('[name]'); // select all radio within the div
+                    const allInputsNames = newNameInput.querySelectorAll('[name]');
+
                     allInputsNames.forEach((element) => {
                         const oldName = element.getAttribute('name'); // get the id attribute of the element
                         const newName = oldName.replace('[0]', '[' + counter + ']'); // generate unique ID
                         element.setAttribute('name', newName); // set the new ID
-                        element.value = ''; // clear the input value
+
+                        // element.value = ''; // clear the input value
+                        if (element.getAttribute('data-reset') == 'on') {
+                            element.value = '';
+                        }
+                        if (element.getAttribute('data-reset') == 'clear') {
+                            element.innerHTML = `<option selected>Days From Here</option>`;
+                        }
+
                     });
 
-                    // if(){
-                    //     clonedElement.on('change', function() {
-                    //     // Do something
-                    //     });
-                    // }
+                    if (inputClass == '.sport-details') {
+                        newNameInput.innerHTML = `
+                        <div class="row col-sm-12">
+                            <div class="card col-sm-6 full_sport_details">
+                                <div class="card-header sport_title">
+                                    .......... Details
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title sport_subtitle">.............</h5>
+                                    <p class="card-text sport_overview">.......................</p>
+                                    <h5 class="card-title">Sport Cost</h5>
+                                    <p class="card-text membership_fees">...... EGP</p>
+                                </div>
+                            </div>
+                            <div class="form-floating col-sm-6">
+                                <textarea name="user_comments[${counter}]" class="form-control h-100 important-input"
+                                    placeholder="Leave a comment here" id="floatingTextarea2"></textarea>
+                                <label for="floatingTextarea2">notice</label>
+                            </div>
+                        </div>
+
+                        `
+                    }
                     newFormGroup.appendChild(newNameInput);
                 }
 
@@ -373,6 +488,7 @@
                 // Call the function with the input classes
                 inputsArray.forEach(function (elem) {
                     cloneAndClearInputFields(elem);
+
                 });
 
                 counter++;
@@ -406,8 +522,9 @@
                     type: 'POST',
                     data: { sport_id: sportId, _token: _token },
                     success: function (response) {
+                        console.log(response);
                         trigger.parent().parent().find('.full_sport_details').html(response.data);
-                        trigger.parent().parent().find('.selected-days').html(`<option selected>${response.firstday} & ${response.secondday}</option>`);
+                        trigger.parent().parent().find('.selected-days').html(`<option selected value='${response.dayid}'>${response.firstday} & ${response.secondday}</option>`);
                     },
                     error: function (xhr, status, error) {
                         var err = eval('(' + xhr.responseText + ')');
