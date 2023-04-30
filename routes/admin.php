@@ -59,6 +59,7 @@ use App\Http\Controllers\SportController;
 
                     Route::resource('company' , CompanyController::class)->only(['edit' , 'update']);
                     Route::resource('social' , SocialLinkController::class)->only(['edit' , 'update']);
+                    Route::post('/storeAttend',[MembershipsController::class, 'saveAttend'])->name('storeAttend');
                 });
 
 

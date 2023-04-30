@@ -131,10 +131,10 @@
                                 href="#kt_ecommerce_add_product_general">General Data</a>
                         </li>
                         <!--end:::Tab item-->
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
                                 href="#kt_ecommerce_add_days_advanced">Attendance</a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <!--end:::Tabs-->
                     <!--begin::Tab content-->
@@ -323,63 +323,7 @@
                                     <div class="card-body pt-0">
                                         <!--begin::Input group-->
                                         <!--begin::Input group-->
-@foreach ($attendance as $attend)
 
-
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">Session Date</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="bithdate" class="form-control mb-2"
-                                            placeholder="bithdate" value="{{ $attend->session_date ?? '' }}">
-                                        </div>
-
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">Session no</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="bithdate" class="form-control mb-2"
-                                            placeholder="bithdate" value="{{ $attend->session_no ?? '' }}">
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                                            <!--begin::Label-->
-                                            <label class="required form-label">attend</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-
-                                            <div class="form-group">
-                                                <div class="icheck-success d-inline">
-                                                    <input type="radio" name="is_atend{{ $counter }}"
-                                                        onchange="func({{ $counter }})" value="1"
-                                                        @if ($attend->attend == 1) checked @endif id="radioSuccess1">
-                                                    <label for="radioSuccess1">
-                                                        حضور
-                                                    </label>
-                                                </div>
-                                                <div class="icheck-danger d-inline">
-                                                    <input type="radio" name="is_atend{{ $counter }}"
-                                                        onchange="func({{ $counter }})"
-                                                        @if ($attend->attend == 0) checked @endif value="2"
-                                                        id="radioSuccess2">
-                                                    <label for="radioSuccess2">
-                                                        غياب
-                                                    </label>
-                                                </div>
-
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-
-                                    {{-- end body --}}
-                                </div>
-
-                                @endforeach
                             </div>
                         </div>
                         {{-- end tab --}}

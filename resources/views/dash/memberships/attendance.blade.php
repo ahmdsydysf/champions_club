@@ -49,18 +49,18 @@
                                         <?php
                                         $counterrrr = 1;
                                         ?>
-                                        <form action="#" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('dashboard.storeAttend') }}" method="post" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <table class="table align-middle table-row-dashed fs-6 gy-5 table-striped-columns"
             id="kt_ecommerce_sliders_table">  <thead>
                                                     <tr>
                                                         <th data-field="state" data-checkbox="false"></th>
-                                                        <th data-field="id">#</th>
-                                                        <th> Member Name</th>
-                                                        <th> Absent/ Attend </th>
-                                                        <th> Session Date</th>
-                                                        <th> Session no</th>
 
+
+
+                                                        <th> Session no</th>
+                                                        <th> Session Date</th>
+                                                        <th> Absent/ Attend </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -70,13 +70,21 @@
 
                                                         <tr>
                                                             <td></td>
-                                                            <td>{{ $index + 1 }}</td>
-                                                            <td>
 
-                                                                <input type="hidden" name="session_id" value="{{ $attend->session_id }}">
+                                                                <td>
+                                                                    <input type="hidden" name="session_id{{ $counter }}" value="{{ $attend->id }}">
 
-                                                                {{ $row->child->name ?? '' }}
-                                                            </td>
+                                                                    <input type="text" name="session_no{{ $counter }}"
+                                                                        value="{{ $attend->session_no ?? '' }}" class="form-control"
+                                                                        id="room_rent_paid{{ $counter }}" placeholder="25">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="session_date{{ $counter }}" readonly
+                                                                        value="{{ $attend->session_date ?? '' }}" class="form-control"
+                                                                        id="room_rent_fees{{ $counter }}"
+                                                                        placeholder="{{ $attend->session_date ?? '' }}">
+                                                                </td>
+
                                                             <td width="15%">
                                                                 <div class="form-group">
                                                                     <div class="icheck-success d-inline">
@@ -90,7 +98,7 @@
                                                                     <div class="icheck-danger d-inline">
                                                                         <input type="radio" name="is_atend{{ $counter }}"
                                                                             onchange="func({{ $counter }})"
-                                                                            @if ( $attend->attend == 0) checked @endif value="2"
+                                                                            @if ( $attend->attend == 0) checked @endif value="0"
                                                                             id="radioSuccess2">
                                                                         <label for="radioSuccess2">
                                                                             غياب
@@ -98,23 +106,9 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>
-                                                                <input type="text" name="room_rent_fees{{ $counter }}" readonly
-                                                                    value="{{ $attend->session_date ?? '' }}" class="form-control"
-                                                                    id="room_rent_fees{{ $counter }}"
-                                                                    placeholder="{{ $attend->session_date ?? '' }}">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="room_rent_paid{{ $counter }}"
-                                                                    value="{{ $attend->session_no ?? '' }}" class="form-control"
-                                                                    id="room_rent_paid{{ $counter }}" placeholder="25">
-                                                            </td>
 
 
-                                                            <td>
-                                                                <input type="text" name="notes{{ $counter }}" value="{{ $attend->notes }}"
-                                                                    class="form-control" id="" placeholder="ملاحظات">
-                                                            </td>
+
                                                         </tr>
                                                         <?php
                                                         ++$counter;
@@ -164,6 +158,11 @@
     <!--end::Container-->
 </div>
 
+
+
+@endsection
+
+@section('custome_js')
 
 
 @endsection

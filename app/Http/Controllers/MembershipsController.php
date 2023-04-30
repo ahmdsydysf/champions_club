@@ -101,4 +101,20 @@ class MembershipsController extends Controller
     {
         //
     }
+
+    public function saveAttend(Request $request){
+
+        $count = $request->counter;
+        $details = [];
+
+        for ($i = 1; $i <= $count; $i++) {
+            $row = Attendance::where('id', $request->get('session_id'.$i))->first();
+
+            $row->update([
+                'attend' =>$request->get('is_atend'.$i),
+            ]);
+    }
+    return redirect()->back()->with('flash_success', 'update done successfully!');
+
+}
 }
