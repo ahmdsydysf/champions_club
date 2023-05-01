@@ -51,6 +51,7 @@ Route::group(
             Route::post('/child/sports/data', [HomeController::class , 'childSportData'])->name('childSportData');
 
 
+            Route::get('/user/children/cart', [HomeController::class , 'viewUserCart'])->name('viewUserCart');
 
             /*
             ----------------------------------

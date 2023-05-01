@@ -80,6 +80,14 @@ class HomeController extends Controller
             return view('web.sports_ar');
         }
     }
+    public function viewUserCart()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.user_children_cart');
+        }else{
+            return view('web.user_children_cart_ar');
+        }
+    }
 
 
     public function child_sport()
@@ -182,7 +190,7 @@ class HomeController extends Controller
                     ]);
                     $id = DB::getPdo()->lastInsertId();
                     $sportFees = Sport::select('membership_fees')->where('id',$selectSports[$i])->first();
-                
+
                     DB::table('membership_details')->insert([
                         'child_id' => $id,
                         'sport_id' => $selectSports[$i],
@@ -194,7 +202,7 @@ class HomeController extends Controller
                     ]);
                     $id3 = DB::getPdo()->lastInsertId();
 
-                    
+
                     DB::table('membership_invoices')->insert([
                         'invoice_date' => now(),
                         'vat_perc' => '0.14',
@@ -208,14 +216,14 @@ class HomeController extends Controller
                     ->update(['invoice_id' => $id2]);
 
                     $totalFees += $sportFees->membership_fees ;
-                    
+
                     DB::commit();
     }
 
             DB::table('membership_invoices')
             ->where('id', $id2)
             ->update(['order_total' => $totalFees * 0.14 + $totalFees]);
-            
+
             DB::commit();
 
                  } catch (\Exception $e) {
@@ -229,7 +237,7 @@ class HomeController extends Controller
 
                     }
 
-    
+
     }
 
     /**
