@@ -11,4 +11,11 @@ class Attendance extends Model
 
     protected $table = 'attendances';
     protected $guarded = [];
+    protected $fillable = [
+        'session_date',
+        'session_no',
+        'membership_details_id',
+        'child_id',
+        'attend',
+    ];
 }

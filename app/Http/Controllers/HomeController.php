@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Sport;
 use App\Models\Day_new;
 use App\Models\Sports_day;
-use App\Models\SliderImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -78,6 +79,14 @@ class HomeController extends Controller
             return view('web.sports');
         }else{
             return view('web.sports_ar');
+        }
+    }
+    public function viewUserCart()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.user_children_cart');
+        }else{
+            return view('web.user_children_cart_ar');
         }
     }
 
@@ -207,7 +216,95 @@ class HomeController extends Controller
                     ->where('id', $id3)
                     ->update(['invoice_id' => $id2]);
 
+                    $id4 = DB::getPdo()->lastInsertId();
+
                     $totalFees += $sportFees->membership_fees ;
+
+
+                    $start_date = $startDates[$i]; // replace with user input
+
+                    $start_date1 = Carbon::createFromFormat('Y-m-d', $start_date);
+                    $start_date2 = Carbon::createFromFormat('Y-m-d', $start_date);
+
+                    // $end_date = $start_date->copy()->addDays(30);
+                     $end_date = $start_date2->copy()->addMonth();
+
+
+                    $firstDay = Sports_day::where('sport_id' ,$selectSports[$i])->first();
+
+
+                    $objDays = [];
+                    while ($start_date1 <= $end_date) {
+
+
+                        if($start_date1->dayOfWeek ==0){
+                            $start_date1->dayOfWeek==7;
+                        }
+
+                            if ($start_date1->dayOfWeek == $firstDay->firstday_id) {
+
+
+                                 array_push($objDays,  Carbon::parse($start_date1));
+                                $start_date1->addDay();
+
+
+                            } elseif ($start_date1->dayOfWeek == $firstDay->secondday_id) {
+
+                               array_push($objDays, Carbon::parse($start_date1));
+                                $start_date1->addDay();
+
+
+                            }else{
+                                $start_date1->addDay();
+                            }
+
+
+
+                    }
+                    $Counter = 1;
+
+                    for ($x = 0; $x <8; $x++) {
+
+                        $attendances = new Attendance();
+                        $attendances->membership_details_id =$id3;
+                        $attendances->session_no = $Counter;
+                        $attendances->session_date = $objDays[$x];
+                        $attendances->child_id = $id;
+
+                        $attendances->save();
+
+                        $Counter++;
+                    }
+
+
+                    // foreach ($firstDays as $f) {
+                    //     DB::table('attendances')->insert([
+                    //         'session_date' => $f,
+                    //         'membership_details_id' => $id3,
+                    //         'child_id' => $id,
+                    //     ]);
+                    // }
+
+                    // foreach ($secondDays as $s) {
+                    //     DB::table('attendances')->insert([
+                    //         'session_date' => $s,
+                    //         'membership_details_id' => $id3,
+                    //         'child_id' => $id,
+                    //     ]);
+                    // }
+                    // $totalDaysCount =count($firstDays) + count($secondDays) ;
+                    // // get data from database table sorted by session_date from oldest to newest
+                    // $dataOfAttend = DB::table('attendances')
+                    //             ->orderBy('session_date', 'asc')
+                    //             ->get();
+
+                    // // loop through data and update session_no column of each row
+                    // foreach ($dataOfAttend as $i => $row) {
+                    //     DB::table('attendances')
+                    //         ->where('id', $row->id)
+                    //         ->update(['session_no' => $i + 1]);
+                    // }
+
 
                     DB::commit();
     }
@@ -216,7 +313,11 @@ class HomeController extends Controller
             ->where('id', $id2)
             ->update(['order_total' => $totalFees * 0.14 + $totalFees]);
 
+
             DB::commit();
+
+            // DB::commit();
+
 
                  } catch (\Exception $e) {
 
