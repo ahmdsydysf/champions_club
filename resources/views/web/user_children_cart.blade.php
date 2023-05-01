@@ -1,5 +1,100 @@
 @extends('web.layout.app')
 
+@section('custom_css')
+<style>
+    .career .job-list li span:first-child {
+        width: 20% !important;
+    }
+
+    .career .job-list li span {
+        width: 20% !important;
+        float: left;
+    }
+
+    .total {
+        width: 100%;
+        line-height: 20px;
+        margin: 0;
+        padding: 0 30px;
+        list-style: none;
+        border-bottom: 1px solid #eaebee;
+        font-weight: 600;
+        color: #526199;
+        background: #eaebee;
+    }
+
+
+    h4 span,
+    h5 span {
+        color: #526199;
+    }
+
+    blockquote {
+        width: 100%;
+        display: block;
+        background: #405089;
+        padding: 20px;
+        color: #fff;
+    }
+
+    thead {
+        width: 100%;
+        margin: 0;
+        padding: 0 30px;
+        list-style: none;
+        border-bottom: 1px solid #eaebee;
+        font-weight: 600;
+        color: #fff;
+        background: #526199;
+    }
+
+    tbody tr td:last-child {
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        background: #f65935;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 800;
+        font-size: 14px;
+    }
+
+    .total-price {
+
+        color: #f65935;
+
+
+        font-weight: 800;
+        font-size: 20px;
+    }
+
+    tfoot tr td {
+        text-align: start;
+        font-size: 20px
+    }
+
+    button.submit-btn {
+        border: none;
+        background: #f65935;
+        color: #fff;
+        height: 54px;
+        border: 1px solid #eaebee;
+        padding: 0 40px;
+        font-weight: 600;
+    }
+
+    button.submit-btn:hover {
+        border: none;
+        background: #405089;
+        color: #f65935;
+        height: 54px;
+        border: 1px solid #405089;
+        padding: 0 40px;
+        font-weight: 600;
+    }
+</style>
+@endsection
+
 @section('content')
 <section class="page-header">
     <div class="container">
@@ -17,25 +112,10 @@
 <!-- end page-header -->
 <section class="blog">
     <style>
-        h4 span,
-        h5 span {
-            color: #526199;
-        }
-
-        blockquote {
-            width: 100%;
-            display: block;
-            background: #405089;
-            padding: 20px;
-            color: #fff;
-        }
-
-        .download-box {
-            width: 100%;
-            border: none;
-            background: #f65935;
-            color: #fff;
-            padding: 20px;
+        .row .child-full-data {
+            background-color: #dee2e6;
+            border-radius: 5px;
+            margin-bottom: 25px;
         }
     </style>
     <div class="container">
@@ -194,15 +274,67 @@
                         </div>
                         <!-- end col-12 -->
                         <div class="col-12">
-                            <ul class="job-list">
-                                <li><span>Position</span><span>Code</span><span>Location</span><span> </span></li>
-                                <li><span>UI-UX Designer &amp; Front-End Dev</span><span>WEBDSN001</span><span>Kiev -
-                                        Ukraine</span><span><a href="#">APPLY</a> </span></li>
-                                <li><span>UI-UX Designer &amp; Front-End Dev</span><span>WEBDSN001</span><span>Kiev -
-                                        Ukraine</span><span><a href="#">APPLY</a> </span></li>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">name</th>
+                                        <th scope="col">sport</th>
+                                        <th scope="col">start</th>
+                                        <th scope="col">end</th>
+                                        <th scope="col">cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Ahmed sayed</th>
+                                        <td>Football</td>
+                                        <td>20-02-2000</td>
+                                        <td>20-03-2000</td>
+                                        <td>1300 LE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Ahmed sayed</th>
+                                        <td>Football</td>
+                                        <td>20-02-2000</td>
+                                        <td>20-03-2000</td>
+                                        <td>1300 LE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Ahmed sayed</th>
+                                        <td>Football</td>
+                                        <td>20-02-2000</td>
+                                        <td>20-03-2000</td>
+                                        <td>1300 LE</td>
+                                    </tr>
 
-                            </ul>
+                                </tbody>
+                                <tfoot>
+                                    <tr class='total'>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="total-price">3900 LE</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div class="row">
+                                <div class="col-12 row justify-content-center">
+                                    <button form="add-player" class="submit-btn btn btn-primary reg float-left">Confirm
+                                        Data</button>
+                                </div>
+
+                            </div>
+
                         </div>
+
                         <!-- end col-12 -->
 
 

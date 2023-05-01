@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Sport;
 use App\Models\Day_new;
 use App\Models\Sports_day;
-use App\Models\SliderImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -210,12 +210,67 @@ class HomeController extends Controller
                     ]);
 
                     $id2 = DB::getPdo()->lastInsertId();
-
+                    
                     DB::table('membership_details')
                     ->where('id', $id3)
                     ->update(['invoice_id' => $id2]);
+                    
+                    $id4 = DB::getPdo()->lastInsertId();
 
                     $totalFees += $sportFees->membership_fees ;
+
+
+                    $start_date = $startDates[$i]; // replace with user input
+                    $start_date = Carbon::createFromFormat('Y-m-d', $start_date);
+
+
+                    $end_date = $start_date->copy()->addDays(30);
+
+                    $firstDay = Sports_day::select('firstday_id')->where('sport_id' ,$selectSports[$i])->first();
+                    $secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
+
+
+                    $firstDays = [];
+                    $secondDays = [];
+
+                    $current_date = $start_date->copy();
+
+                    while ($current_date <= $end_date) {
+                        if ($current_date->dayOfWeek == $firstDay->firstday_id) {
+                            $firstDays[] = $current_date->format('Y-m-d');
+                        } elseif ($current_date->dayOfWeek == $firstDay->secondday_id) {
+                            $secondDays[] = $current_date->format('Y-m-d');
+                        }
+                        $current_date->addDay();
+                    }
+
+                    foreach ($firstDays as $f) {
+                        DB::table('attendances')->insert([
+                            'session_date' => $f,
+                            'membership_details_id' => $id3,
+                            'child_id' => $id,
+                        ]);
+                    }
+
+                    foreach ($secondDays as $s) {
+                        DB::table('attendances')->insert([
+                            'session_date' => $s,
+                            'membership_details_id' => $id3,
+                            'child_id' => $id,
+                        ]);
+                    }
+                    $totalDaysCount =count($firstDays) + count($secondDays) ;
+                    // get data from database table sorted by session_date from oldest to newest
+                    $dataOfAttend = DB::table('attendances')
+                                ->orderBy('session_date', 'asc')
+                                ->get();
+
+                    // loop through data and update session_no column of each row
+                    foreach ($dataOfAttend as $i => $row) {
+                        DB::table('attendances')
+                            ->where('id', $row->id)
+                            ->update(['session_no' => $i + 1]);
+                    }
 
                     DB::commit();
     }
@@ -224,7 +279,7 @@ class HomeController extends Controller
             ->where('id', $id2)
             ->update(['order_total' => $totalFees * 0.14 + $totalFees]);
 
-            DB::commit();
+            // DB::commit();
 
                  } catch (\Exception $e) {
 
