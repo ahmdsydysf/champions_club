@@ -12,7 +12,7 @@ class User_children extends Model
     protected $guarded = [];
     protected $fillable = [
         'name',
-        'bithdate',
+        'birthdate',
         'personal_image',
         'birth_image',
         'height',

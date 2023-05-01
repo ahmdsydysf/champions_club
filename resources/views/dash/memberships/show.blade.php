@@ -171,11 +171,11 @@
                                             <!--end::Input group-->
                                             <!--begin::Input group-->
                                             <div class="fv-row w-100 flex-md-root">                                                <!--begin::Label-->
-                                                <label class="required form-label">bithdate</label>
+                                                <label class="required form-label">birthdate</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="bithdate" class="form-control mb-2"
-                                                    placeholder="bithdate" value="{{ $row->child->bithdate ?? '' }}">
+                                                <input type="text" name="birthdate" class="form-control mb-2"
+                                                    placeholder="birthdate" value="{{ $row->child->birthdate ?? '' }}">
                                                 <!--end::Input-->
 
                                             </div>
@@ -277,8 +277,8 @@
         <label class="required form-label">Member Fees</label>
         <!--end::Label-->
         <!--begin::Input-->
-        <input type="text" name="bithdate" class="form-control mb-2"
-            placeholder="bithdate" value="{{ $row->sport->membership_fees ?? '' }}">
+        <input type="text" name="birthdate" class="form-control mb-2"
+            placeholder="birthdate" value="{{ $row->sport->membership_fees ?? '' }}">
         <!--end::Input-->
 
     </div>
@@ -289,8 +289,8 @@
         <label class="required form-label">Sport Days</label>
         <!--end::Label-->
         <!--begin::Input-->
-        <input type="text" name="bithdate" class="form-control mb-2"
-            placeholder="bithdate" value="{{ $row->sportDays->firstday->en_day ?? '' }} - {{ $row->sportDays->secondday->en_day ?? ''  }}">
+        <input type="text" name="birthdate" class="form-control mb-2"
+            placeholder="birthdate" value="{{ $row->sportDays->firstday->en_day ?? '' }} - {{ $row->sportDays->secondday->en_day ?? ''  }}">
         <!--end::Input-->
 
     </div>
