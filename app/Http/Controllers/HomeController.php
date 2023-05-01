@@ -210,67 +210,47 @@ class HomeController extends Controller
                     ]);
 
                     $id2 = DB::getPdo()->lastInsertId();
-                    
+
                     DB::table('membership_details')
                     ->where('id', $id3)
                     ->update(['invoice_id' => $id2]);
-                    
+
                     $id4 = DB::getPdo()->lastInsertId();
 
                     $totalFees += $sportFees->membership_fees ;
 
-
-                    $start_date = $startDates[$i]; // replace with user input
-                    $start_date = Carbon::createFromFormat('Y-m-d', $start_date);
-
-
-                    $end_date = $start_date->copy()->addDays(30);
-
                     $firstDay = Sports_day::select('firstday_id')->where('sport_id' ,$selectSports[$i])->first();
-                    $secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
+$secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
+function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
+    $days = array();
+    $currentDate = strtotime($startDate);
+    $endDate = strtotime($endDate);
 
+    while ($currentDate <= $endDate) {
+        $dayNumber = date('N', $currentDate);
+        if ($dayNumber == $day1 || $dayNumber == $day2) {
+            $days[] = date('Y-m-d', $currentDate);
+        }
+        $currentDate = strtotime('+1 day', $currentDate);
+    }
 
-                    $firstDays = [];
-                    $secondDays = [];
+    if (count($days) > 8) {
+        $days = array_slice($days, 0, 8);
+    }
 
-                    $current_date = $start_date->copy();
+    return $days;
+}
+                $childSessionDays = getDaysBetweenDates($startDates[$i], $endDates[$i], (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
 
-                    while ($current_date <= $end_date) {
-                        if ($current_date->dayOfWeek == $firstDay->firstday_id) {
-                            $firstDays[] = $current_date->format('Y-m-d');
-                        } elseif ($current_date->dayOfWeek == $firstDay->secondday_id) {
-                            $secondDays[] = $current_date->format('Y-m-d');
-                        }
-                        $current_date->addDay();
-                    }
+                foreach($childSessionDays as $key => $value){
+                    DB::table('attendances')->insert([
+                                'session_date' => $value,
+                                'session_no' => $key + 1 ,
+                                'membership_details_id' => $id3,
+                                'child_id' => $id,
+                            ]);
+                }
 
-                    foreach ($firstDays as $f) {
-                        DB::table('attendances')->insert([
-                            'session_date' => $f,
-                            'membership_details_id' => $id3,
-                            'child_id' => $id,
-                        ]);
-                    }
-
-                    foreach ($secondDays as $s) {
-                        DB::table('attendances')->insert([
-                            'session_date' => $s,
-                            'membership_details_id' => $id3,
-                            'child_id' => $id,
-                        ]);
-                    }
-                    $totalDaysCount =count($firstDays) + count($secondDays) ;
-                    // get data from database table sorted by session_date from oldest to newest
-                    $dataOfAttend = DB::table('attendances')
-                                ->orderBy('session_date', 'asc')
-                                ->get();
-
-                    // loop through data and update session_no column of each row
-                    foreach ($dataOfAttend as $i => $row) {
-                        DB::table('attendances')
-                            ->where('id', $row->id)
-                            ->update(['session_no' => $i + 1]);
-                    }
 
                     DB::commit();
     }
