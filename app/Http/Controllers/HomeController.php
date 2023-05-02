@@ -170,6 +170,7 @@ class HomeController extends Controller
                 $totalFees = 0 ;
 
                 $cartChildrenData= [];
+                $cildrenIds = [];
 
                 for ($i = 0; $i < count($names); $i++) {
 
@@ -230,48 +231,58 @@ class HomeController extends Controller
                     $id3 = DB::getPdo()->lastInsertId();
                     $cartChildrenData[] = $id3 ;
 
-                    DB::table('membership_invoices')->insert([
-                        'invoice_date' => now(),
-                        'vat_perc' => '0.14',
-                        'user_id' => Auth::user()->id,
-                    ]);
+                    $cildrenIds[] = $id ;// will get from it child_id
 
-                    $id2 = DB::getPdo()->lastInsertId();
 
-                    DB::table('membership_details')
-                    ->where('id', $id3)
-                    ->update(['invoice_id' => $id2]);
 
-                    $id4 = DB::getPdo()->lastInsertId();
+
 
                     $totalFees += $sportFees->membership_fees ;
 
                     $firstDay = Sports_day::select('firstday_id')->where('sport_id' ,$selectSports[$i])->first();
-                $secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
+                    $secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
 
-                $childSessionDays = getDaysBetweenDates($startDates[$i], $endDates[$i], (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
+                    $childSessionDays = getDaysBetweenDates($startDates[$i], $endDates[$i], (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
 
-                foreach($childSessionDays as $key => $value){
-                    DB::table('attendances')->insert([
-                                'session_date' => $value,
-                                'session_no' => $key + 1 ,
-                                'membership_details_id' => $id3,
-                                'child_id' => $id,
-                            ]);
-                }
+                    foreach($childSessionDays as $key => $value){
+                        DB::table('attendances')->insert([
+                                    'session_date' => $value,
+                                    'session_no' => $key + 1 ,
+                                    'membership_details_id' => $id3,
+                                    'child_id' => $id,
+                                ]);
+                    }
 
 
             }
-            
-            DB::commit(); 
-            DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-                    DB::table('membership_invoices')
-                    ->where('id', $id2)
-                    ->update(['order_total' => $totalFees * 0.14 + $totalFees]);
-                    toast('Success Adding Children','success');
 
-                    return redirect()->route('dashboard.slider_image.index');
+
+                    DB::table('membership_invoices')->insert([
+                        'invoice_date' => now(),
+                        'order_total' => $totalFees * 0.14 + $totalFees ,
+                        'vat_perc' => '0.14',
+                        'user_id' => Auth::user()->id,
+                    ]);
+                    $id2 = DB::getPdo()->lastInsertId();
+
+                    foreach($cildrenIds as $childId){
+                        DB::table('membership_details')
+                            ->where('child_id', $childId)
+                            ->update(['invoice_id' => $id2]);
+                    }
+
+                    DB::commit();
+                    DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+                    if(LaravelLocalization::getCurrentLocale() == 'en'){
+                        return redirect()->route('web.sports');
+
+                    }else{
+                        return redirect()->route('web.sports_ar');
+
+                    }
+
                     // DB::commit();
 
                  } catch (\Exception $e) {
