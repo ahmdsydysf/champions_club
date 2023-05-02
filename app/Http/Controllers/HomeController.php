@@ -72,12 +72,15 @@ class HomeController extends Controller
             return view('web.single_news_ar');
         }
     }
-    public function sport()
+    public function sport($sportid)
     {
+        $thisSport = Sport::where('id' , $sportid)->first(['sport_title_en' , 'id' , 'sport_subtitle_en' , 'sport_image' , 'sport_overview_en']);
         if(LaravelLocalization::getCurrentLocale() == 'en'){
-            return view('web.sports');
+            $sportData = Sport::all('sport_title_en' , 'id' );
+            return view('web.sports' , compact('sportData','sportid','thisSport'));
         }else{
-            return view('web.sports_ar');
+            $sportData = Sport::all('sport_title_ar' , 'id' );
+            return view('web.sports_ar', compact('sportData','sportid','thisSport'));
         }
     }
     public function viewUserCart()
@@ -127,8 +130,29 @@ class HomeController extends Controller
     }
     public function storeChildSport(Request $request)
     {
+
+        function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
+            $days = array();
+            $currentDate = strtotime($startDate);
+            $endDate = strtotime($endDate);
+
+            while ($currentDate <= $endDate) {
+                $dayNumber = date('N', $currentDate);
+                if ($dayNumber == $day1 || $dayNumber == $day2) {
+                    $days[] = date('Y-m-d', $currentDate);
+                }
+                $currentDate = strtotime('+1 day', $currentDate);
+            }
+
+            if (count($days) > 8) {
+                $days = array_slice($days, 0, 8);
+            }
+
+            return $days;
+        }
         DB::beginTransaction();
         try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
                 $names = $request->input('name');
                 $birthdates = $request->input('birthdate');
                 $hights = $request->input('hight');
@@ -144,6 +168,9 @@ class HomeController extends Controller
                 $birth_image = $request->file('birth_image');
 
                 $totalFees = 0 ;
+
+                $cartChildrenData= [];
+
                 for ($i = 0; $i < count($names); $i++) {
 
                 // $request->validate([
@@ -201,7 +228,7 @@ class HomeController extends Controller
                         'user_comment' =>$userComments[$i]
                     ]);
                     $id3 = DB::getPdo()->lastInsertId();
-
+                    $cartChildrenData[] = $id3 ;
 
                     DB::table('membership_invoices')->insert([
                         'invoice_date' => now(),
@@ -220,26 +247,8 @@ class HomeController extends Controller
                     $totalFees += $sportFees->membership_fees ;
 
                     $firstDay = Sports_day::select('firstday_id')->where('sport_id' ,$selectSports[$i])->first();
-$secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
-function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
-    $days = array();
-    $currentDate = strtotime($startDate);
-    $endDate = strtotime($endDate);
+                $secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
 
-    while ($currentDate <= $endDate) {
-        $dayNumber = date('N', $currentDate);
-        if ($dayNumber == $day1 || $dayNumber == $day2) {
-            $days[] = date('Y-m-d', $currentDate);
-        }
-        $currentDate = strtotime('+1 day', $currentDate);
-    }
-
-    if (count($days) > 8) {
-        $days = array_slice($days, 0, 8);
-    }
-
-    return $days;
-}
                 $childSessionDays = getDaysBetweenDates($startDates[$i], $endDates[$i], (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
 
                 foreach($childSessionDays as $key => $value){
@@ -252,24 +261,25 @@ function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
                 }
 
 
-                    DB::commit();
-    }
+            }
+            
+            DB::commit(); 
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-            DB::table('membership_invoices')
-            ->where('id', $id2)
-            ->update(['order_total' => $totalFees * 0.14 + $totalFees]);
+                    DB::table('membership_invoices')
+                    ->where('id', $id2)
+                    ->update(['order_total' => $totalFees * 0.14 + $totalFees]);
+                    toast('Success Adding Children','success');
 
-            // DB::commit();
+                    return redirect()->route('dashboard.slider_image.index');
+                    // DB::commit();
 
                  } catch (\Exception $e) {
 
-                    dd($e);
                         DB::rollback();
-
-
                         Log::error($e->getMessage());
-
-
+                        dd($e);
+                        return redirect()->back()->withInput();
                     }
 
 

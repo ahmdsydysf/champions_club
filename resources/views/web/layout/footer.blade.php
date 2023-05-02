@@ -38,21 +38,20 @@
                 <!-- end col-4 -->
                 <div class="col-lg-2 col-md-6 wow fadeIn">
                     <ul class="footer-menu">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">News and Events</a></li>
-                        <li><a href="#">Media</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="{{ route('welcome') }}">Home</a></li>
+                        <li><a href="{{ url('/sport/1') }}">Sports</a></li>
+                        <li><a href="{{ route('allNews') }}">News and Events</a></li>
+                        <li><a href="{{ route('media') }}">Media</a></li>
+                        <li><a href="{{ route('contact') }}">Contact us</a></li>
                     </ul>
                 </div>
                 <!-- end col-2 -->
                 <div class="col-lg-2 col-md-6 wow fadeIn">
                     <ul class="footer-menu">
-                        <li><a href="#">Football</a></li>
-                        <li><a href="#">Handball</a></li>
-                        <li><a href="#">Tennis</a></li>
-                        <li><a href="#">Swemming</a></li>
-                        <li><a href="#">Body Building</a></li>
+                        @foreach ($sports as $sport)
+                        <li><a href="{{ url('/sport/' . $sport->id) }}">{{ $sport->sport_title_en }}</a></li>
+                        @endforeach
+
                     </ul>
                 </div>
                 <!-- end col-2 -->
@@ -126,21 +125,19 @@
                 <!-- end col-4 -->
                 <div class="col-lg-2 col-md-6 wow fadeIn">
                     <ul class="footer-menu">
-                        <li><a href="{{ url('/') }}">الرئيسية</a></li>
-                        <li><a href="#">الرياضات</a></li>
-                        <li><a href="#">أخبار وأحداث</a></li>
-                        <li><a href="#">ميديا</a></li>
-                        <li><a href="#">تواصل معنا</a></li>
+                        <li><a <a href="{{ route('welcome')}}">الرئيسية</a></li>
+                        <li><a <a href="{{ url('/sport/1') }}">الرياضات</a></li>
+                        <li><a <a href="{{ route('allNews')}}">أخبار وأحداث</a></li>
+                        <li><a <a href="{{ route('media') }}">ميديا</a></li>
+                        <li><a <a href="{{ route('contact')}}">تواصل معنا</a></li>
                     </ul>
                 </div>
                 <!-- end col-2 -->
                 <div class="col-lg-2 col-md-6 wow fadeIn">
                     <ul class="footer-menu">
-                        <li><a href="#">كرة قدم</a></li>
-                        <li><a href="#">كرة يد</a></li>
-                        <li><a href="#">تنس</a></li>
-                        <li><a href="#">سباحة</a></li>
-                        <li><a href="#">كمال الاجسام</a></li>
+                        @foreach ($sports as $sport)
+                        <li><a href="{{ url('/sport/' . $sport->id) }}">{{ $sport->sport_title_ar }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <!-- end col-2 -->
