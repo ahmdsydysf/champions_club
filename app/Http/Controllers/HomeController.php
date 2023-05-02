@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Membership_detail;
+use App\Models\User_children;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -85,11 +87,15 @@ class HomeController extends Controller
     }
     public function viewUserCart()
     {
+        $childrenIds = request()->session()->get('cildrenIds');
+        $membershipDetails = request()->session()->get('membershipDetails');
+
         if(LaravelLocalization::getCurrentLocale() == 'en'){
-            return view('web.user_children_cart');
+            return view('web.user_children_cart' , compact('childrenIds' , 'membershipDetails'));
         }else{
-            return view('web.user_children_cart_ar');
+            return view('web.user_children_cart_ar', compact('childrenIds' , 'membershipDetails'));
         }
+        // ['cildrenIds'=>$cildrenIds ,'membershipDetails' => $membershipDetails]
     }
 
 
@@ -168,9 +174,10 @@ class HomeController extends Controller
                 $birth_image = $request->file('birth_image');
 
                 $totalFees = 0 ;
-
-                $cartChildrenData= [];
                 $cildrenIds = [];
+                $membershipDetails = [];
+                $fullChildren = [];
+                $fullMember = [];
 
                 for ($i = 0; $i < count($names); $i++) {
 
@@ -229,13 +236,10 @@ class HomeController extends Controller
                         'user_comment' =>$userComments[$i]
                     ]);
                     $id3 = DB::getPdo()->lastInsertId();
-                    $cartChildrenData[] = $id3 ;
+
 
                     $cildrenIds[] = $id ;// will get from it child_id
-
-
-
-
+                    $membershipDetails[] = $id3 ;
 
                     $totalFees += $sportFees->membership_fees ;
 
@@ -246,18 +250,13 @@ class HomeController extends Controller
 
                     foreach($childSessionDays as $key => $value){
                         DB::table('attendances')->insert([
-                                    'session_date' => $value,
-                                    'session_no' => $key + 1 ,
-                                    'membership_details_id' => $id3,
-                                    'child_id' => $id,
-                                ]);
+                            'session_date' => $value,
+                            'session_no' => $key + 1 ,
+                            'membership_details_id' => $id3,
+                            'child_id' => $id,
+                        ]);
                     }
-
-
             }
-
-
-
                     DB::table('membership_invoices')->insert([
                         'invoice_date' => now(),
                         'order_total' => $totalFees * 0.14 + $totalFees ,
@@ -274,26 +273,24 @@ class HomeController extends Controller
 
                     DB::commit();
                     DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-                    if(LaravelLocalization::getCurrentLocale() == 'en'){
-                        return redirect()->route('web.sports');
-
-                    }else{
-                        return redirect()->route('web.sports_ar');
-
+                    foreach($cildrenIds as $childdid){
+                        $fullChildren[] = User_children::where('id' ,  $childdid)->first();
                     }
+                    foreach($membershipDetails as $memDetail){
+                        $fullMember[] = Membership_detail::with(['sport' , 'child' , 'invoice'])->where('id' ,  $memDetail)->first();
+                    }
+                    if(LaravelLocalization::getCurrentLocale() == 'en'){
 
-                    // DB::commit();
-
-                 } catch (\Exception $e) {
-
+                        return redirect('/user/children/cart')->with(['cildrenIds'=>$fullChildren ,'membershipDetails' => $fullMember]);
+                    }else{
+                        return redirect('/user/children/cart')->with(['cildrenIds'=>$fullChildren ,'membershipDetails' => $fullMember]);
+                    }
+                } catch (\Exception $e) {
                         DB::rollback();
                         Log::error($e->getMessage());
-                        dd($e);
+
                         return redirect()->back()->withInput();
-                    }
-
-
+                }
     }
 
     /**

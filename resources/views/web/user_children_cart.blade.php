@@ -118,26 +118,30 @@
             margin-bottom: 25px;
         }
     </style>
+
     <div class="container">
         <div class="row justify-content-center">
-            <div class="child-full-data row">
+            @if(isset($childrenIds) && !empty($childrenIds) && isset($membershipDetails) && !empty($membershipDetails))
+            @for($i = 0 ; $i < count($childrenIds) ; $i++) <div class="child-full-data row">
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title">Child Data For <span>Ahmed Sayed</span></h4>
+                            <h4 class="widget-title">Child Data For <span>{{ $childrenIds[$i]->name }}</span></h4>
                             <div class="container">
                                 <div class="row">
                                     <div class="content-box wow fadeIn col-6"
                                         style="visibility: visible; animation-name: fadeIn;">
                                         <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('web_assets/images/blog2.jpg') }}" alt="Image">
+                                                src="{{ asset('uploads/children_data/' . $childrenIds[$i]->personal_image) }}"
+                                                alt="Image">
                                         </figure>
                                         <h4>Personal Image</h4>
                                     </div>
                                     <div class="content-box wow fadeIn col-6"
                                         style="visibility: visible; animation-name: fadeIn;">
                                         <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('web_assets/images/team01.jpg') }}" alt="Image">
+                                                src="{{ asset('uploads/children_data/' . $childrenIds[$i]->birth_image) }}"
+                                                alt="Image">
                                         </figure>
                                         <h4>Birthdate Certificate</h4>
                                     </div>
@@ -147,10 +151,19 @@
                             <h4 class="widget-title">Personal Data</h4>
                             <div class="container">
                                 <div class="row">
-                                    <h5 class="widget-title col-6">Birthdate : <span>01-01-2023</span></h5>
-                                    <h5 class="widget-title col-6">Hight : <span>130</span></h5>
-                                    <h5 class="widget-title col-6">Weight : <span>60</span></h5>
-                                    <h5 class="widget-title col-6">Level : <span>Profisional</span></h5>
+                                    <h5 class="widget-title col-6">Birthdate :
+                                        <span>{{ $childrenIds[$i]->bithdate}}</span>
+                                    </h5>
+                                    <h5 class="widget-title col-6">Hight :
+                                        <span>{{ $childrenIds[$i]->height }}</span>
+                                    </h5>
+                                    <h5 class="widget-title col-6">Weight : <span>
+                                            {{ $childrenIds[$i]->width}}</span>
+                                    </h5>
+                                    <h5 class="widget-title col-6">Level :
+                                        <span>{{ $childrenIds[$i]->level }}
+                                        </span>
+                                    </h5>
                                 </div>
                             </div>
                             <!-- end side-menu -->
@@ -163,24 +176,24 @@
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title">Sport Data For <span>Ahmed Sayed</span></h4>
+                            <h4 class="widget-title">Sport Data For <span>{{ $childrenIds[$i]->name }}</span></h4>
 
-                            <h4 class="widget-title">Football</h4>
+                            <h4 class="widget-title">{{ $membershipDetails[$i]->sport->sport_title_en }}</h4>
                             <div class="container">
                                 <div class="row">
-                                    <h5 class="widget-title col-6">start at : <span>01-01-2023</span></h5>
-                                    <h5 class="widget-title col-6">ends at : <span>01-01-2023</span></h5>
+                                    <h5 class="widget-title col-6">
+                                        start at : <span>{{$membershipDetails[$i]->start_date}}
+                                        </span></h5>
+                                    <h5 class="widget-title col-6">ends at : <span>
+                                            {{$membershipDetails[$i]->end_date }}</span></h5>
                                     <blockquote>
                                         <h5 class="widget-title" style="color:#fff !important">Comments</h5>
-                                        <p>Weighing in at a whopping 3310g and measuring 38cm in length, the Sigma 500mm
-                                            f/4
-                                            DG OS HSM Sports is an incredibly big and heavy lens indeed, although that
-                                            does
-                                            include the non-removable tripod collar.</p>
+                                        <p>{{ $membershipDetails[$i]->user_comment }}</p>
                                     </blockquote>
                                     <div class="widget download-box">
-                                        <i class="fa fa-dollar"></i> <a href="#">1500 LE</a> <small>Sport
-                                            Cost</small>
+                                        <i class="fa fa-dollar"></i> <a href="#">
+                                            {{ $membershipDetails[$i]->fees}} LE</a>
+                                        <small>Sport Cost</small>
                                     </div>
                                 </div>
                             </div>
@@ -190,159 +203,89 @@
                     </aside>
                     <!-- end side-bar -->
                 </div>
-            </div>
-            <div class="child-full-data row">
-                <div class="col-md-6 col-12">
-                    <aside class="sidebar" style="max-width: 100%;position:relative !important">
-                        <div class="widget categories">
-                            <h4 class="widget-title">Child Data For <span>Ahmed Sayed</span></h4>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="content-box wow fadeIn col-6"
-                                        style="visibility: visible; animation-name: fadeIn;">
-                                        <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('web_assets/images/blog2.jpg') }}" alt="Image">
-                                        </figure>
-                                        <h4>Personal Image</h4>
-                                    </div>
-                                    <div class="content-box wow fadeIn col-6"
-                                        style="visibility: visible; animation-name: fadeIn;">
-                                        <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('web_assets/images/team01.jpg') }}" alt="Image">
-                                        </figure>
-                                        <h4>Birthdate Certificate</h4>
-                                    </div>
+        </div>
+        @endfor
+        @endif
 
-                                </div>
-                            </div>
-                            <h4 class="widget-title">Personal Data</h4>
-                            <div class="container">
-                                <div class="row">
-                                    <h5 class="widget-title col-6">Birthdate : <span>01-01-2023</span></h5>
-                                    <h5 class="widget-title col-6">Hight : <span>130</span></h5>
-                                    <h5 class="widget-title col-6">Weight : <span>60</span></h5>
-                                    <h5 class="widget-title col-6">Level : <span>Profisional</span></h5>
-                                </div>
-                            </div>
-                            <!-- end side-menu -->
+
+        <section class="career" style="padding-top:10px !important">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>Cart Full Data</h2>
                         </div>
-
-                    </aside>
-                    <!-- end side-bar -->
-                </div>
-                <!-- end col-4 -->
-                <div class="col-md-6 col-12">
-                    <aside class="sidebar" style="max-width: 100%;position:relative !important">
-                        <div class="widget categories">
-                            <h4 class="widget-title">Sport Data For <span>Ahmed Sayed</span></h4>
-
-                            <h4 class="widget-title">Football</h4>
-                            <div class="container">
-                                <div class="row">
-                                    <h5 class="widget-title col-6">start at : <span>01-01-2023</span></h5>
-                                    <h5 class="widget-title col-6">ends at : <span>01-01-2023</span></h5>
-                                    <blockquote>
-                                        <h5 class="widget-title" style="color:#fff !important">Comments</h5>
-                                        <p>Weighing in at a whopping 3310g and measuring 38cm in length, the Sigma 500mm
-                                            f/4
-                                            DG OS HSM Sports is an incredibly big and heavy lens indeed, although that
-                                            does
-                                            include the non-removable tripod collar.</p>
-                                    </blockquote>
-                                    <div class="widget download-box">
-                                        <i class="fa fa-dollar"></i> <a href="#">1500 LE</a> <small>Sport
-                                            Cost</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end side-menu -->
-                        </div>
-
-                    </aside>
-                    <!-- end side-bar -->
-                </div>
-            </div>
-
-            <section class="career" style="padding-top:10px !important">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="section-title">
-                                <h2>Cart Full Data</h2>
-                            </div>
-                            <!-- end section-title -->
-                        </div>
-                        <!-- end col-12 -->
-                        <div class="col-12">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">name</th>
-                                        <th scope="col">sport</th>
-                                        <th scope="col">start</th>
-                                        <th scope="col">end</th>
-                                        <th scope="col">cost</th>
+                        <!-- end section-title -->
+                    </div>
+                    <!-- end col-12 -->
+                    <div class="col-12">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">name</th>
+                                    <th scope="col">sport</th>
+                                    <th scope="col">start</th>
+                                    <th scope="col">end</th>
+                                    <th scope="col">cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(isset($childrenIds) && !empty($childrenIds) && isset($membershipDetails) &&
+                                !empty($membershipDetails))
+                                @for($i = 0 ; $i < count($childrenIds) ; $i++) <tr>
+                                    <th scope="row">{{ $childrenIds[$i]->name }}</th>
+                                    <td>{{ $membershipDetails[$i]->sport->sport_title_en }}</td>
+                                    <td>
+                                        {{$membershipDetails[$i]->start_date }}
+                                    </td>
+                                    <td>
+                                        {{$membershipDetails[$i]->end_date }}</td>
+                                    <td>
+                                        {{ $membershipDetails[$i]->fees}} LE
+                                    </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Ahmed sayed</th>
-                                        <td>Football</td>
-                                        <td>20-02-2000</td>
-                                        <td>20-03-2000</td>
-                                        <td>1300 LE</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Ahmed sayed</th>
-                                        <td>Football</td>
-                                        <td>20-02-2000</td>
-                                        <td>20-03-2000</td>
-                                        <td>1300 LE</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Ahmed sayed</th>
-                                        <td>Football</td>
-                                        <td>20-02-2000</td>
-                                        <td>20-03-2000</td>
-                                        <td>1300 LE</td>
-                                    </tr>
+                                    @endfor
 
-                                </tbody>
-                                <tfoot>
-                                    <tr class='total'>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="total-price">3900 LE</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <div class="row">
-                                <div class="col-12 row justify-content-center">
-                                    <button form="add-player" class="submit-btn btn btn-primary reg float-left">Confirm
-                                        Data</button>
-                                </div>
 
+
+                            </tbody>
+                            <tfoot>
+                                <tr class='total'>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="total-price">{{ $membershipDetails[0]->invoice->order_total }} LE</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        @endif
+
+                        <div class="row">
+                            <div class="col-12 row justify-content-center">
+                                <button form="add-player" class="submit-btn btn btn-primary reg float-left">Confirm
+                                    Data</button>
                             </div>
 
                         </div>
-
-                        <!-- end col-12 -->
-
 
                     </div>
 
+                    <!-- end col-12 -->
+
+
                 </div>
 
-        </div>
+            </div>
+
+    </div>
 </section>
 
 </div>
