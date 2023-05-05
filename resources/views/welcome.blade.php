@@ -543,7 +543,10 @@
         <h3>{{ $aboutUs->membership_title_en }}</h3>
         <h6>{{ $aboutUs->membership_text_en }}</p>
             <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
-            <a href="{{ route('register') }}" class="join-us btn">Join Us<span> Now</span></a>
+            <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+                @csrf
+            </form>
+            <button form='goToAdd' class="join-us btn">Join Us<span> Now</span></a>
     </div>
 </section>
 <!-- end info-box -->

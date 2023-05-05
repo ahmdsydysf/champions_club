@@ -92,6 +92,12 @@
         padding: 0 40px;
         font-weight: 600;
     }
+
+    .row .child-full-data {
+        background-color: #dee2e6;
+        border-radius: 5px;
+        margin-bottom: 25px;
+    }
 </style>
 @endsection
 
@@ -111,14 +117,6 @@
 </section>
 <!-- end page-header -->
 <section class="blog">
-    <style>
-        .row .child-full-data {
-            background-color: #dee2e6;
-            border-radius: 5px;
-            margin-bottom: 25px;
-        }
-    </style>
-
     <div class="container">
         <div class="row justify-content-center">
             @if(isset($childrenIds) && !empty($childrenIds) && isset($membershipDetails) && !empty($membershipDetails))

@@ -8,6 +8,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Middleware\AuthenticateDashboard;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +60,14 @@ Route::group(
             ----------------------------------
             */
             Route::middleware('auth')->group(function () {
-                Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-                Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-                Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+                Route::get('/profile/Userdata', [UserProfileController::class, 'edit'])->name('profile.edit');
+                Route::patch('/profile/Userdata', [UserProfileController::class, 'update'])->name('profile.update');
+                // Route::delete('/profile/Userdata', [UserProfileController::class, 'destroy'])->name('profile.destroy');
+
+                // Route::get('/profile/Userdata', [UserProfileController::class, 'userProfile'])->name('profile.data');
+                Route::get('/profile/Members', [UserProfileController::class, 'relativesMembers'])->name('profile.members');
+                Route::get('/profile/Membership', [UserProfileController::class, 'yourMembership'])->name('profile.membership');
+
             });
 
             // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');
