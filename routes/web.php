@@ -53,7 +53,7 @@ Route::group(
 
 
             Route::get('/user/children/cart', [HomeController::class , 'viewUserCart'])->name('viewUserCart');
-
+            Route::post('/user/children/cart', [HomeController::class , 'changeCartStatus'])->name('changeCartStatus');
             /*
             ----------------------------------
             ========== user profile ==========

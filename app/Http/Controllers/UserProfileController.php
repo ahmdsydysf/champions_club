@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Membership_detail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class UserProfileController extends Controller
@@ -52,11 +53,11 @@ class UserProfileController extends Controller
 
     public function relativesMembers(){
         $user_id = Auth::user()->id ;
-
-        $user_data = User::with('Children')->where('id',$user_id)->get();
-
-        return view('web.profile.user_profile_members' , compact('user_data'));
+        $user_data = User::with('Children')->where('id',$user_id)->first();
+        $member_ship_details = Membership_detail::with('sport')->get();
+        return view('web.profile.user_profile_members' , compact('user_data','member_ship_details'));
     }
+
     public function yourMembership(){
         return view('web.profile.user_profile_membership');
     }

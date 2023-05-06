@@ -20,6 +20,18 @@
         padding: 0 40px;
         font-weight: 600;
     }
+
+    .post-content {
+        background-color: #dee2e6;
+        border-radius: 5px;
+        margin-bottom: 25px;
+        padding: 35px;
+    }
+
+    h4 span,
+    h5 span {
+        color: #526199;
+    }
 </style>
 @endsection
 @section('content')
@@ -73,61 +85,77 @@
             <div class="col-md-8 col-12">
                 <section class="blog">
                     <div class="container">
-                        @dd($user_data)
+
+                        {{-- @dd($child->name) --}}
                         <div class="row justify-content-center">
-                            {{-- @for($i = 0 ; $i < count($childrenIds) ; $i++) <div class="child-full-data row">
-                                <div class="col-md-6 col-12">
-                                    <aside class="sidebar" style="max-width: 100%;position:relative !important">
+                            <div class="child-full-data row">
+                                @foreach ($user_data->Children as $child )
+                                <div class="col-md-6 col-12 ">
+                                    <aside class="sidebar post-content"
+                                        style="max-width: 100%;position:relative !important">
                                         <div class="widget categories">
-                                            <h4 class="widget-title">Child Data For <span>{{ $childrenIds[$i]->name
+                                            <h4 class="widget-title">Child Data For <span>{{ $child->name
                                                     }}</span></h4>
                                             <div class="container">
                                                 <div class="row">
-                                                    <div class="content-box wow fadeIn col-6"
+                                                    <div class="content-box wow fadeIn col-12"
                                                         style="visibility: visible; animation-name: fadeIn;">
                                                         <figure><img style="height: 250px;width:100%"
-                                                                src="{{ asset('uploads/children_data/' . $childrenIds[$i]->personal_image) }}"
+                                                                src="{{ asset('uploads/children_data/' . $child->personal_image) }}"
                                                                 alt="Image">
                                                         </figure>
-                                                        <h4>Personal Image</h4>
-                                                    </div>
-                                                    <div class="content-box wow fadeIn col-6"
-                                                        style="visibility: visible; animation-name: fadeIn;">
-                                                        <figure><img style="height: 250px;width:100%"
-                                                                src="{{ asset('uploads/children_data/' . $childrenIds[$i]->birth_image) }}"
-                                                                alt="Image">
-                                                        </figure>
-                                                        <h4>Birthdate Certificate</h4>
-                                                    </div>
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <h4 class="widget-title">Personal Data</h4>
                                             <div class="container">
                                                 <div class="row">
                                                     <h5 class="widget-title col-6">Birthdate :
-                                                        <span>{{ $childrenIds[$i]->bithdate}}</span>
+                                                        <span>{{ $child->birthdate}}</span>
                                                     </h5>
                                                     <h5 class="widget-title col-6">Hight :
-                                                        <span>{{ $childrenIds[$i]->height }}</span>
+                                                        <span>{{ $child->height }}</span>
                                                     </h5>
                                                     <h5 class="widget-title col-6">Weight : <span>
-                                                            {{ $childrenIds[$i]->width}}</span>
+                                                            {{ $child->width}}</span>
                                                     </h5>
                                                     <h5 class="widget-title col-6">Level :
-                                                        <span>{{ $childrenIds[$i]->level }}
+                                                        <span>{{ $child->level }}
                                                         </span>
                                                     </h5>
                                                 </div>
                                             </div>
+                                            <!-- end side-menu -->
+                                            @foreach($member_ship_details as $membership)
+                                            @if($membership->child_id == $child->id)
+
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <h5 class="widget-title col-12">Sport :
+                                                        <span>{{ $membership->sport->sport_title_en }}</span>
+                                                    </h5>
+                                                    <h5 class="widget-title col-6">Start :
+                                                        <span>{{ $membership->start_date }}</span>
+                                                    </h5>
+                                                    <h5 class="widget-title col-6">End : <span>
+                                                            {{ $membership->end_date }}</span>
+                                                    </h5>
+
+                                                </div>
+                                            </div>
+                                            @endif
+                                            @endforeach
                                             <!-- end side-menu -->
                                         </div>
 
                                     </aside>
                                     <!-- end side-bar -->
                                 </div>
+                                @endforeach
+
                                 <!-- end col-4 -->
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
                                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                                         <div class="widget categories">
                                             <h4 class="widget-title">Sport Data For <span>{{ $childrenIds[$i]->name
@@ -159,15 +187,14 @@
 
                                     </aside>
                                     <!-- end side-bar -->
-                                </div>
+                                </div> --}}
+                            </div>
                         </div>
-                        @endfor --}}
-
+                        <!-- end col-8 -->
                     </div>
-                    <!-- end col-8 -->
+                    <!-- end row -->
             </div>
-            <!-- end row -->
-        </div>
-        <!-- end container -->
+            <!-- end container -->
+
 </section>
 @endsection

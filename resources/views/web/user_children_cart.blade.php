@@ -118,19 +118,21 @@
 <!-- end page-header -->
 <section class="blog">
     <div class="container">
+
         <div class="row justify-content-center">
-            @if(isset($childrenIds) && !empty($childrenIds) && isset($membershipDetails) && !empty($membershipDetails))
-            @for($i = 0 ; $i < count($childrenIds) ; $i++) <div class="child-full-data row">
+            @if(session('childrenIds') && session('membershipDetails'))
+            @for($i = 0 ; $i < count(session('childrenIds')) ; $i++) <div class="child-full-data row">
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title">Child Data For <span>{{ $childrenIds[$i]->name }}</span></h4>
+                            <h4 class="widget-title">Child Data For <span>{{ session('childrenIds')[$i]->name }}</span>
+                            </h4>
                             <div class="container">
                                 <div class="row">
                                     <div class="content-box wow fadeIn col-6"
                                         style="visibility: visible; animation-name: fadeIn;">
                                         <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('uploads/children_data/' . $childrenIds[$i]->personal_image) }}"
+                                                src="{{ asset('uploads/children_data/' . session('childrenIds')[$i]->personal_image) }}"
                                                 alt="Image">
                                         </figure>
                                         <h4>Personal Image</h4>
@@ -138,7 +140,7 @@
                                     <div class="content-box wow fadeIn col-6"
                                         style="visibility: visible; animation-name: fadeIn;">
                                         <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('uploads/children_data/' . $childrenIds[$i]->birth_image) }}"
+                                                src="{{ asset('uploads/children_data/' . session('childrenIds')[$i]->birth_image) }}"
                                                 alt="Image">
                                         </figure>
                                         <h4>Birthdate Certificate</h4>
@@ -150,16 +152,16 @@
                             <div class="container">
                                 <div class="row">
                                     <h5 class="widget-title col-6">Birthdate :
-                                        <span>{{ $childrenIds[$i]->bithdate}}</span>
+                                        <span>{{ session('childrenIds')[$i]->bithdate}}</span>
                                     </h5>
                                     <h5 class="widget-title col-6">Hight :
-                                        <span>{{ $childrenIds[$i]->height }}</span>
+                                        <span>{{ session('childrenIds')[$i]->height }}</span>
                                     </h5>
                                     <h5 class="widget-title col-6">Weight : <span>
-                                            {{ $childrenIds[$i]->width}}</span>
+                                            {{ session('childrenIds')[$i]->width}}</span>
                                     </h5>
                                     <h5 class="widget-title col-6">Level :
-                                        <span>{{ $childrenIds[$i]->level }}
+                                        <span>{{ session('childrenIds')[$i]->level }}
                                         </span>
                                     </h5>
                                 </div>
@@ -174,23 +176,24 @@
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title">Sport Data For <span>{{ $childrenIds[$i]->name }}</span></h4>
+                            <h4 class="widget-title">Sport Data For <span>{{ session('childrenIds')[$i]->name }}</span>
+                            </h4>
 
-                            <h4 class="widget-title">{{ $membershipDetails[$i]->sport->sport_title_en }}</h4>
+                            <h4 class="widget-title">{{ session('membershipDetails')[$i]->sport->sport_title_en }}</h4>
                             <div class="container">
                                 <div class="row">
                                     <h5 class="widget-title col-6">
-                                        start at : <span>{{$membershipDetails[$i]->start_date}}
+                                        start at : <span>{{ session('membershipDetails')[$i]->start_date}}
                                         </span></h5>
                                     <h5 class="widget-title col-6">ends at : <span>
-                                            {{$membershipDetails[$i]->end_date }}</span></h5>
+                                            {{ session('membershipDetails')[$i]->end_date }}</span></h5>
                                     <blockquote>
                                         <h5 class="widget-title" style="color:#fff !important">Comments</h5>
-                                        <p>{{ $membershipDetails[$i]->user_comment }}</p>
+                                        <p>{{ session('membershipDetails')[$i]->user_comment }}</p>
                                     </blockquote>
                                     <div class="widget download-box">
                                         <i class="fa fa-dollar"></i> <a href="#">
-                                            {{ $membershipDetails[$i]->fees}} LE</a>
+                                            {{ session('membershipDetails')[$i]->fees}} LE</a>
                                         <small>Sport Cost</small>
                                     </div>
                                 </div>
@@ -228,18 +231,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(isset($childrenIds) && !empty($childrenIds) && isset($membershipDetails) &&
-                                !empty($membershipDetails))
-                                @for($i = 0 ; $i < count($childrenIds) ; $i++) <tr>
-                                    <th scope="row">{{ $childrenIds[$i]->name }}</th>
-                                    <td>{{ $membershipDetails[$i]->sport->sport_title_en }}</td>
+                                @if(session('childrenIds') && session('membershipDetails'))
+                                @for($i = 0 ; $i < count(session('childrenIds')) ; $i++) <tr>
+                                    <th scope="row">{{ session('childrenIds')[$i]->name }}</th>
+                                    <td>{{ session('membershipDetails')[$i]->sport->sport_title_en }}</td>
                                     <td>
-                                        {{$membershipDetails[$i]->start_date }}
+                                        {{session('membershipDetails')[$i]->start_date }}
                                     </td>
                                     <td>
-                                        {{$membershipDetails[$i]->end_date }}</td>
+                                        {{session('membershipDetails')[$i]->end_date }}</td>
                                     <td>
-                                        {{ $membershipDetails[$i]->fees}} LE
+                                        {{ session('membershipDetails')[$i]->fees}} LE
                                     </td>
                                     </tr>
                                     @endfor
@@ -260,22 +262,28 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td class="total-price">{{ $membershipDetails[0]->invoice->order_total }} LE</td>
+                                    <td class="total-price">{{ session('membershipDetails')[0]->invoice->order_total }}
+                                        LE</td>
                                 </tr>
                             </tfoot>
                         </table>
-                        @endif
 
                         <div class="row">
                             <div class="col-12 row justify-content-center">
-                                <button form="add-player" class="submit-btn btn btn-primary reg float-left">Confirm
-                                    Data</button>
+                                <form action="{{ route('changeCartStatus') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{ session('membershipDetails')[0]->invoice_id }}"
+                                        name="invoice_status">
+                                    <button type="submit" class="submit-btn btn btn-primary reg float-left">Confirm
+                                        Data</button>
+                                </form>
                             </div>
 
                         </div>
 
                     </div>
 
+                    @endif
                     <!-- end col-12 -->
 
 

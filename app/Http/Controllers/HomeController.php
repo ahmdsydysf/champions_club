@@ -7,13 +7,15 @@ use App\Models\Sport;
 use App\Models\Day_new;
 use App\Models\Sports_day;
 use Illuminate\Http\Request;
+use App\Models\User_children;
+use App\Models\Membership_detail;
+use App\Models\Membership_invoice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\Membership_detail;
-use App\Models\User_children;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -279,8 +281,12 @@ class HomeController extends Controller
                     foreach($membershipDetails as $memDetail){
                         $fullMember[] = Membership_detail::with(['sport' , 'child' , 'invoice'])->where('id' ,  $memDetail)->first();
                     }
-                    if(LaravelLocalization::getCurrentLocale() == 'en'){
+                    // session(['cildrenIds' => $fullChildren]);
+                    // session(['membershipDetails' => $fullMember]);
+                    $request->session()->put('childrenIds', $fullChildren);
+                    $request->session()->put('membershipDetails', $fullMember);
 
+                    if(LaravelLocalization::getCurrentLocale() == 'en'){
                         return redirect('/user/children/cart')->with(['cildrenIds'=>$fullChildren ,'membershipDetails' => $fullMember]);
                     }else{
                         return redirect('/user/children/cart')->with(['cildrenIds'=>$fullChildren ,'membershipDetails' => $fullMember]);
@@ -292,6 +298,12 @@ class HomeController extends Controller
                         return redirect()->back()->withInput();
                 }
     }
+
+        public function changeCartStatus(Request $request){
+            // dd($request->invoice_status);
+            Membership_invoice::where('id' , $request->invoice_status )->update(['invoice_status' => '1']);
+            return view('web.congrate');
+        }
 
     /**
      * Show the application dashboard.
