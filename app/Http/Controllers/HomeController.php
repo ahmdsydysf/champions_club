@@ -364,7 +364,6 @@ class HomeController extends Controller
 
         }
         public function changeCartStatus(Request $request){
-            // dd($request->invoice_status);
             Membership_invoice::where('id' , $request->invoice_status )->update(['invoice_status' => '1']);
             return view('web.congrate');
         }

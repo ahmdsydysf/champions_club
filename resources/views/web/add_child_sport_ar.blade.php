@@ -191,8 +191,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-5 order-5 personal-photo">
                         <label for="formFile" class="form-label">صورة شخصية</label>
-                        <input data-reset='on' class="form-control important-input" name="personal_image[0]" type="file"
-                            id="formFile">
+                        <input data-reset='on' required class="form-control important-input" name="personal_image[0]"
+                            type="file" id="formFile">
                         @if($errors->any())
 
                         @error('personal_image.'.$i)
@@ -202,8 +202,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-6 order-6 birth-certificate">
                         <label for="formFile2" class="form-label">شهادة الميلاد</label>
-                        <input data-reset='on' class="form-control important-input" name="birth_image[0]" type="file"
-                            id="formFile2">
+                        <input data-reset='on' required class="form-control important-input" name="birth_image[0]"
+                            type="file" id="formFile2">
                         @if($errors->any())
 
                         @error('birth_image.'.$i)

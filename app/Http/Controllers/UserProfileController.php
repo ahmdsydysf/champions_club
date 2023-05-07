@@ -6,32 +6,35 @@ use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
+use App\Models\Membership_detail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Membership_detail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserProfileController extends Controller
 {
 
-    // private $user_id;
 
-    // public function __construct()
-    // {
-    //     $this->user_id = Auth::user()->id;
-    // }
-
-/**
+    /**
      * Display the user's profile form.
      */
     public function edit(Request $request)
     {
-        return view('web.profile.user_profile', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.profile.user_profile', [
+                'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+                'status' => session('status'),
+            ]);
+        }else{
+            return view('web.profile.user_profile_ar', [
+                'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+                'status' => session('status'),
+            ]);
+        }
+
     }
 
     /**
@@ -55,11 +58,25 @@ class UserProfileController extends Controller
         $user_id = Auth::user()->id ;
         $user_data = User::with('Children')->where('id',$user_id)->first();
         $member_ship_details = Membership_detail::with('sport')->get();
-        return view('web.profile.user_profile_members' , compact('user_data','member_ship_details'));
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.profile.user_profile_members' , compact('user_data','member_ship_details'));
+
+        }else{
+            return view('web.profile.user_profile_members_ar' , compact('user_data','member_ship_details'));
+
+        }
+
     }
 
     public function yourMembership(){
-        return view('web.profile.user_profile_membership');
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.profile.user_profile_membership');
+
+        }else{
+            return view('web.profile.user_profile_membership_ar');
+
+        }
+
     }
 
 }
