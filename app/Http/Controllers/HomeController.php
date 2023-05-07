@@ -13,6 +13,7 @@ use App\Models\Membership_invoice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
@@ -121,7 +122,8 @@ class HomeController extends Controller
         $sportDays = Sports_day::where('id', $sport_id)->firstOrFail();
         $firstday_name = Day_new::where('id', $sportDays->firstday_id)->firstOrFail();
         $secondday_name =Day_new::where('id', $sportDays->secondday_id)->firstOrFail();
-        $output = '
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            $output = '
                 <div class="card-header sport_title">' .
                 $SportData[0]->sport_title_en  .'Details
                 </div>
@@ -133,8 +135,28 @@ class HomeController extends Controller
                 </div>
         ';
 
-
         return response()->json(['data' => $output , 'firstday' => $firstday_name->en_day , 'secondday' => $secondday_name->en_day , 'dayid' =>$sportDays->id ]);
+
+        }else{
+            $output = '
+            <div class="card-header sport_title">' .
+            $SportData[0]->sport_title_ar  .'تفاصيل
+            </div>
+            <div class="card-body">
+                <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_ar .'</h5>
+                <p class="card-text sport_overview">'. $SportData[0]->sport_overview_ar .'</p>
+                <h5 class="card-title">تكلفة الرياضة</h5>
+                <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' جنيه</p>
+            </div>
+    ';
+
+    return response()->json(['data' => $output , 'firstday' => $firstday_name->ar_day , 'secondday' => $secondday_name->ar_day , 'dayid' =>$sportDays->id ]);
+
+        }
+
+
+
+
     }
     public function storeChildSport(Request $request)
     {
@@ -158,6 +180,22 @@ class HomeController extends Controller
 
             return $days;
         }
+
+        // $request->validate([
+        //     'personal_image.*' => 'image|mimes:jpeg,png,jpg|max:4048',
+        //     'birth_image.*' => 'image|mimes:jpeg,png,jpg|max:4048',
+        //     'name.*' => 'required',
+        //     'birthdate.*' => 'required|date',
+        //     'hight.*' => 'required',
+        //     'weight.*' => 'required',
+        //     'selectSport.*' => 'required',
+        //     'level.*' => 'required',
+        //     'selectDay.*' => 'required',
+        //     'startDate.*' => 'required',
+        //     'endDate.*' => 'required',
+        //     'paymentMethod.*' => 'required',
+        //     'userComment.*' => 'required',
+        // ]);
         DB::beginTransaction();
         try {
             DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -181,25 +219,13 @@ class HomeController extends Controller
                 $fullChildren = [];
                 $fullMember = [];
 
+                session()->put('child_img', []);
+                session()->put('child_id', []);
+                session()->put('Member_detail', []);
+                session()->put('attendance', []);
+                session()->put('member_invoices', []);
+
                 for ($i = 0; $i < count($names); $i++) {
-
-                // $request->validate([
-                //             'personal_image['.$i.']' => 'image|mimes:jpeg,png,jpg|max:4048',
-                //             'birth_image['.$i.']' => 'image|mimes:jpeg,png,jpg|max:4048',
-                //             'name['.$i.']' => 'required',
-                //             'birthdate['.$i.']' => 'required|date',
-                //             'hight['.$i.']' => 'required',
-                //             'weight['.$i.']' => 'required',
-                //             'selectSport['.$i.']' => 'required',
-                //             'level['.$i.']' => 'required',
-                //             'selectDay['.$i.']' => 'required',
-                //             'startDate['.$i.']' => 'required',
-                //             'endDate['.$i.']' => 'required',
-                //             'paymentMethod['.$i.']' => 'required',
-                //             'userComment['.$i.']' => 'required',
-                //         ]);
-                //         dd('first');
-
                 $request_data = $request->except('personal_image['.$i.']', 'birth_image['.$i.']' ,'_token');
                 if ($personal_image[$i]) {
                             $myimageName = uniqid() . $personal_image[$i]->getClientOriginalName();
@@ -207,6 +233,8 @@ class HomeController extends Controller
                                 $constraint->aspectRatio();
                             })->save(public_path('uploads/children_data/' . $myimageName));
                             $personal_image[$i] = $myimageName;
+
+                            session()->push('child_img', $myimageName);
                     }
                 if ($birth_image[$i]) {
                             $myimageName = uniqid() . $birth_image[$i]->getClientOriginalName();
@@ -214,6 +242,7 @@ class HomeController extends Controller
                                 $constraint->aspectRatio();
                             })->save(public_path('uploads/children_data/' . $myimageName));
                             $birth_image[$i] = $myimageName;
+                            session()->push('child_img', $myimageName);
                     }
                     DB::table('user_childrens')->insert([
                                 'name' => $names[$i],
@@ -226,6 +255,8 @@ class HomeController extends Controller
                                 'user_id' => Auth::user()->id,
                     ]);
                     $id = DB::getPdo()->lastInsertId();
+                    session()->push('child_id', $id);
+
                     $sportFees = Sport::select('membership_fees')->where('id',$selectSports[$i])->first();
 
                     DB::table('membership_details')->insert([
@@ -238,7 +269,7 @@ class HomeController extends Controller
                         'user_comment' =>$userComments[$i]
                     ]);
                     $id3 = DB::getPdo()->lastInsertId();
-
+                    session()->push('Member_detail', $id3);
 
                     $cildrenIds[] = $id ;// will get from it child_id
                     $membershipDetails[] = $id3 ;
@@ -257,6 +288,9 @@ class HomeController extends Controller
                             'membership_details_id' => $id3,
                             'child_id' => $id,
                         ]);
+                    $id_attend = DB::getPdo()->lastInsertId();
+                    session()->push('attendance', $id_attend);
+
                     }
             }
                     DB::table('membership_invoices')->insert([
@@ -266,6 +300,7 @@ class HomeController extends Controller
                         'user_id' => Auth::user()->id,
                     ]);
                     $id2 = DB::getPdo()->lastInsertId();
+                    session()->push('member_invoices', $id2);
 
                     foreach($cildrenIds as $childId){
                         DB::table('membership_details')
@@ -287,7 +322,7 @@ class HomeController extends Controller
                     $request->session()->put('membershipDetails', $fullMember);
 
                     if(LaravelLocalization::getCurrentLocale() == 'en'){
-                        return redirect('/user/children/cart')->with(['cildrenIds'=>$fullChildren ,'membershipDetails' => $fullMember]);
+                        return redirect('/user/children/cart')->with(['cildrenIds'=>$fullChildren ,'membershipDetails' => $fullMember ]);
                     }else{
                         return redirect('/user/children/cart')->with(['cildrenIds'=>$fullChildren ,'membershipDetails' => $fullMember]);
                     }
@@ -299,6 +334,35 @@ class HomeController extends Controller
                 }
     }
 
+        public function discardCartChanges(){
+            foreach(session()->get('child_img') as $img){
+                unlink(public_path('uploads/children_data/' . $img));
+            }
+            foreach(session()->get('child_id') as $c_id){
+                $table1Data = User_children::where('id', $c_id)->first();
+                $table1Data->delete();
+            }
+            foreach(session()->get('Member_detail') as $c_mem){
+                $table1Data = Membership_detail::where('id', $c_mem)->first();
+                $table1Data->delete();
+            }
+            foreach(session()->get('attendance') as $att){
+                $table1Data = Attendance::where('id', $att)->first();
+                $table1Data->delete();
+            }
+            foreach(session()->get('member_invoices') as $inv){
+                $table1Data = Membership_invoice::where('id', $inv)->first();
+                $table1Data->delete();
+            }
+            session()->remove('child_img');
+            session()->remove('child_id');
+            session()->remove('Member_detail');
+            session()->remove('attendance');
+            session()->remove('member_invoices');
+                return redirect()->route('childSport');
+
+
+        }
         public function changeCartStatus(Request $request){
             // dd($request->invoice_status);
             Membership_invoice::where('id' , $request->invoice_status )->update(['invoice_status' => '1']);
