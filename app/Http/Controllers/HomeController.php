@@ -212,14 +212,22 @@ class HomeController extends Controller
 
                     $id2 = DB::getPdo()->lastInsertId();
 
+
                     DB::table('membership_details')
                     ->where('id', $id3)
                     ->update(['invoice_id' => $id2]);
+
 
                     $id4 = DB::getPdo()->lastInsertId();
 
                     $totalFees += $sportFees->membership_fees ;
 
+                    $firstDay = Sports_day::select('firstday_id')->where('sport_id' ,$selectSports[$i])->first();
+$secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$selectSports[$i])->first();
+function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
+    $days = array();
+    $currentDate = strtotime($startDate);
+    $endDate = strtotime($endDate);
 
                     $start_date = $startDates[$i]; // replace with user input
 
@@ -232,6 +240,17 @@ class HomeController extends Controller
 
                     $firstDay = Sports_day::where('sport_id' ,$selectSports[$i])->first();
 
+    while ($currentDate <= $endDate) {
+        $dayNumber = date('N', $currentDate);
+        if ($dayNumber == $day1 || $dayNumber == $day2) {
+            $days[] = date('Y-m-d', $currentDate);
+        }
+        $currentDate = strtotime('+1 day', $currentDate);
+    }
+
+    if (count($days) > 8) {
+        $days = array_slice($days, 0, 8);
+    }
 
                     $objDays = [];
                     while ($start_date1 <= $end_date) {
@@ -258,6 +277,18 @@ class HomeController extends Controller
                                 $start_date1->addDay();
                             }
 
+    return $days;
+}
+                $childSessionDays = getDaysBetweenDates($startDates[$i], $endDates[$i], (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
+
+                foreach($childSessionDays as $key => $value){
+                    DB::table('attendances')->insert([
+                                'session_date' => $value,
+                                'session_no' => $key + 1 ,
+                                'membership_details_id' => $id3,
+                                'child_id' => $id,
+                            ]);
+                }
 
 
                     }
