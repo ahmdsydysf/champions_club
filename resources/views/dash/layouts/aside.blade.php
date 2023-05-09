@@ -101,12 +101,12 @@
                         </a>
 
                         <a class="menu-link {{ Request::segment(2) == 'memberships' ? 'active' : '' }} "
-                        href="{{ route('dashboard.memberships.index') }}">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">Memberships</span>
-                    </a>
+                            href="{{ route('dashboard.memberships.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Memberships</span>
+                        </a>
                     </div>
 
                 </div>
@@ -235,10 +235,10 @@
                             <div class="menu-item px-5">
                                 <form action="{{ route('dashboard.logout') }}" method="post">
                                     @csrf
-                                    <button style="background: transparent;
+                                    <button type="submit" style="background: transparent;
                                     border: none;
-                                    font-weight: bold;" class="menu-link px-5">Sign
-                                        Out</button>
+                                    font-weight: bold;" class="menu-link px-5">logout
+                                    </button>
 
                                 </form>
                             </div>
