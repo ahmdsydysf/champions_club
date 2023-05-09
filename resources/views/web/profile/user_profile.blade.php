@@ -60,8 +60,7 @@
                             <li class="{{ Request::segment(3) == 'Members' ? 'active' : '' }}"><a
                                     href="{{ route('profile.members') }}">Relatives
                                     Members</a></li>
-                            <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}"><a
-                                    href="{{ route('profile.membership') }}">Your
+                            <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}"><a href="#">Your
                                     Membership</a></li>
                         </ul>
                         <!-- end side-menu -->

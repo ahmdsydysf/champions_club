@@ -59,7 +59,7 @@
                             <li class="{{ Request::segment(3) == 'Members' ? 'active' : '' }}"><a
                                     href="{{ route('profile.members') }}">الاعضاء التابعين</a></li>
                             <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}"><a
-                                    href="{{ route('profile.membership') }}">اشتراكاتك</a></li>
+                                    href="#">اشتراكاتك</a></li>
                         </ul>
                         <!-- end side-menu -->
                     </div>
