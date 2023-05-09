@@ -8,6 +8,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Middleware\AuthenticateDashboard;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,23 +46,29 @@ Route::group(
             Route::get('/contact', [HomeController::class , 'contact'])->name('contact')->withoutMiddleware(['auth']);
             Route::get('/media', [HomeController::class , 'media'])->name('media')->withoutMiddleware(['auth']);
             Route::get('/singleNews', [HomeController::class , 'singleNews'])->name('singleNews')->withoutMiddleware(['auth']);
-            Route::get('/sport', [HomeController::class , 'sport'])->name('sport')->withoutMiddleware(['auth']);
+            Route::get('/sport/{sportid}', [HomeController::class , 'sport'])->name('sport')->withoutMiddleware(['auth']);
             Route::get('/child/sport', [HomeController::class , 'child_sport'])->name('childSport');
             Route::post('/child/sport/add', [HomeController::class , 'storeChildSport'])->name('addChildSport');
             Route::post('/child/sports/data', [HomeController::class , 'childSportData'])->name('childSportData');
 
 
             Route::get('/user/children/cart', [HomeController::class , 'viewUserCart'])->name('viewUserCart');
-
+            Route::post('/user/children/cart', [HomeController::class , 'changeCartStatus'])->name('changeCartStatus');
+            Route::post('/user/children/discard', [HomeController::class , 'discardCartChanges'])->name('discardCartChanges');
             /*
             ----------------------------------
             ========== user profile ==========
             ----------------------------------
             */
             Route::middleware('auth')->group(function () {
-                Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-                Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-                Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+                Route::get('/profile/Userdata', [UserProfileController::class, 'edit'])->name('profile.edit');
+                Route::patch('/profile/Userdata', [UserProfileController::class, 'update'])->name('profile.update');
+                // Route::delete('/profile/Userdata', [UserProfileController::class, 'destroy'])->name('profile.destroy');
+
+                // Route::get('/profile/Userdata', [UserProfileController::class, 'userProfile'])->name('profile.data');
+                Route::get('/profile/Members', [UserProfileController::class, 'relativesMembers'])->name('profile.members');
+                Route::get('/profile/Membership', [UserProfileController::class, 'yourMembership'])->name('profile.membership');
+
             });
 
             // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');

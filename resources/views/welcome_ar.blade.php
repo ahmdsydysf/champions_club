@@ -22,55 +22,7 @@
                 <!-- end slide-inner -->
             </div>
             @endforeach
-            {{-- <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide01.jpg')}}"
-                    data-text="كيف تهتم<span>بصحتك العضلية</span>">
-                    <div class="container">
-                        <h6 data-swiper-parallax="100">جـيم</h6>
-                        <h2 data-swiper-parallax="200"><span>.</span>بناء الجسم</h2>
-                        <p data-swiper-parallax="300">حتى التعريف الأكثر عمومية للجوهرة له العديد من الاستثناءات. تعلم
-                            ماذا
-                            تم استخدام الصفات لتحديد الأحجار الكريمة علميا وشعبيا.</p>
-                        <div class="clearfix"></div>
-                        <a href="#" data-swiper-parallax="200">اكتشف اكثر<span></span></a>
-                    </div>
-                    <!-- end container -->
-                </div>
-                <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide -->
-            <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide02.jpg')}}"
-                    data-text="حمامات سباحة<span>معدات</span>">
-                    <div class="container">
-                        <h6 data-swiper-parallax="100">حوض سباحة</h6>
-                        <h2 data-swiper-parallax="200"><span>.</span>حمامات أولمبية</h2>
-                        <p data-swiper-parallax="300">مع كل المضايقات المصاحبة لها وبالطبع التأمين
-                            ارتفاع معدلات. مع كل هذه الأشياء التي تدور في ذهنك بعد وقوع حادث.</p>
-                        <div class="clearfix"></div>
-                        <a href="#" data-swiper-parallax="200">اكتشف اكثر<span></span></a>
-                    </div>
-                    <!-- end container -->
-                </div>
-                <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide -->
-            <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide03.jpg')}}"
-                    data-text="كن مثل <span>محمد صلاح</span>">
-                    <div class="container">
-                        <h6 data-swiper-parallax="100">كرة قدم</h6>
-                        <h2 data-swiper-parallax="200"><span>.</span>اكاديمية متخصصة</h2>
-                        <p data-swiper-parallax="300">قد يكون من الصعب ترتيب كل شيء. يمكنك اتخاذ عدة خطوات
-                            لضمان السلامة وتقليل الخسائر المحتملة بعد وقوع حادث.</p>
-                        <div class="clearfix"></div>
-                        <a href="#" data-swiper-parallax="200">اكتشف اكثر<span></span></a>
-                    </div>
-                    <!-- end container -->
-                </div>
-                <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide --> --}}
+
         </div>
         <!-- end swiper-wrapper -->
         <div class="swiper-custom-pagination"></div>
@@ -89,27 +41,7 @@
                 <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
             </div>
             @endforeach
-            {{-- <div class="content-box wow fadeIn"> <span></span>
-                <h3>تمرين شخصي</h3>
-                <p>تقدم العديد من النوادي الرياضية جلسات تدريب شخصية فردية مع مدربين معتمدين يمكنهم مساعدة الأعضاء
-                    تطوير خطط تمرين شخصية </p>
-                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-            </div>
-            <!-- end content-box -->
-            <div class="content-box wow fadeIn"> <span></span>
-                <h3>فصول لياقة جماعية</h3>
-                <p>تعتبر فصول اللياقة الجماعية طريقة شائعة للأعضاء للبقاء متحفزين ومشاركين أثناء ممارسة الرياضة</p>
-                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-            </div>
-            <!-- end content-box -->
-            <div class="content-box wow fadeIn"> <span></span>
-                <h3>المنشآت الرياضية</h3>
-                <p>بالنسبة للعديد من الأعضاء ، يعد الوصول إلى المرافق الرياضية عالية الجودة سببًا رئيسيًا للانضمام إلى
-                    النادي
-                    الرياضي. هؤلاء
-                    يمكن أن تشمل المرافق حمامات السباحة وملاعب التنس وملاعب كرة السلة وملاعب كرة القدم والمزيد</p>
-                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-            </div> --}}
+
             <!-- end content-box -->
         </div>
         <!-- end container -->
@@ -179,60 +111,7 @@
                             </figure>
                         </div>
                         @endforeach
-                        {{-- <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image04.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>كرة قدم</h4>
-                                    <small>استشارات الأعمال</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image05.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>تنس</h4>
-                                    <small>استشارات التنمية</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image06.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>سباحة</h4>
-                                    <small>استشارة تدريبية</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image07.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>كرة سلة</h4>
-                                    <small>استشارات محاسبية</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image08.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>بناء الجسم</h4>
-                                    <small>استشارات التحفيز</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image09.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>كرة يد</h4>
-                                    <small>استشارات الأعمال</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide --> --}}
+
                     </div>
                     <!--end swiper-wrapper -->
                     <div class="swiper-button-next"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}"
@@ -287,133 +166,7 @@
                                 <!-- end flip-box -->
                             </div>
                             @endforeach
-                            {{-- <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-1.jpg')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>كأس التنس</h4>
-                                            <p>بدلاً من الاستسلام فورًا ، لا داعي للعودة إلى الرسم. عليا العمل اكثر
-                                                لتحقيق بطولات اكثر
-                                                واستمرار النجاح</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide -->
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-2.jpg')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>كأس كرة القدم</h4>
-                                            <p>بدلاً من الاستسلام فورًا ، لا داعي للعودة إلى الرسم. عليا العمل اكثر
-                                                لتحقيق بطولات اكثر
-                                                واستمرار النجاح</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide -->
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-3.webp')}}"
-                                                    alt="Image">
-                                            </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>كأس كرة اليد</h4>
-                                            <p>بدلاً من الاستسلام فورًا ، لا داعي للعودة إلى الرسم. عليا العمل اكثر
-                                                لتحقيق بطولات اكثر
-                                                واستمرار النجاح</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide -->
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-4.jpg')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>كأس السباحة</h4>
-                                            <p>بدلاً من الاستسلام فورًا ، لا داعي للعودة إلى الرسم. عليا العمل اكثر
-                                                لتحقيق بطولات اكثر
-                                                واستمرار النجاح</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide -->
 
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-6.jpg')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>المركز الاول</h4>
-                                            <p>بدلاً من الاستسلام فورًا ، لا داعي للعودة إلى الرسم. عليا العمل اكثر
-                                                لتحقيق بطولات اكثر
-                                                واستمرار النجاح</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide --> --}}
                         </div>
                         <!--end swiper-wrapper -->
 
@@ -450,51 +203,7 @@
                         More<span></span></a>
                 </div>
                 @endforeach
-                {{-- <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image01.jpg') }}" alt="Image"></figure>
-                    <h4>تدريبات خاصة</h4>
-                    <p>يعد التدريب الشخصي خدمة رائعة لتقديمها لأنها تتيح للأعضاء العمل بشكل فردي مع اللياقة البدنية
-                        محترف يمكنه أولئك الذين لديهم احتياجات أو أولئك الذين لديهم احتياجات أو إنشاء خطط تمرين مخصصة
-                        وتقديم
-                        التوجيه والتحفيز الشخصي.
-                        يمكن أن تكون هذه الخدمة مفيدة بشكل خاص للمبتدئين أو أولئك الذين لديهم احتياجات أو أهداف لياقة
-                        معينة.</p>
-                    <a class="dis-btn-service" href="single-news-ar.html" data-swiper-parallax="200">تعرف
-                        اكثر<span></span></a>
-                </div>
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image02.jpg.webp') }}" alt="Image"></figure>
-                    <h4>فصول لياقة جماعية</h4>
-                    <p>تعتبر فصول اللياقة الجماعية طريقة شائعة للأعضاء للبقاء متحفزين ومشاركين أثناء ممارسة الرياضة.
-                        هؤلاء
-                        يمكن أن تشمل الفصول الدراسية مجموعة واسعة من الأنشطة مثل اليوجا والبيلاتس والغزل والزومبا
-                        والمزيد. بواسطة
-                        تقدم الأندية الرياضية مجموعة متنوعة من الفصول ، ويمكن أن تروق للأعضاء ذوي الاهتمامات واللياقة
-                        البدنية
-                        ا</p>
-                    <a class="dis-btn-service" href="single-news-ar.html" data-swiper-parallax="200">تعرف
-                        اكثر<span></span></a>
 
-                </div>
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image03.jpg') }}" alt="Image"></figure>
-                    <h4>المنشآت الرياضية</h4>
-                    <p>بالنسبة للعديد من الأعضاء ، يعد الوصول إلى المرافق الرياضية عالية الجودة سببًا رئيسيًا للانضمام
-                        إلى نادٍ
-                        رياضي.
-                        يمكن أن تشمل هذه المرافق حمامات السباحة وملاعب التنس وملاعب كرة السلة وملاعب كرة القدم والمزيد.
-                        بواسطة
-                        من خلال توفير مرافق من الدرجة الأولى ، يمكن للأندية الرياضية جذب الأعضاء الجادين بشأن رياضتهم
-                        والذين
-                        يرغبون في ذلك
-                        للتدريب في بيئة مهنية.</p>
-                    <a class="dis-btn-service" href="single-news-ar.html" data-swiper-parallax="200">تعرف
-                        اكثر<span></span></a>
-
-                </div>
-                <!-- end content-box --> --}}
             </div>
             <!-- end col-12 -->
         </div>
@@ -528,32 +237,7 @@
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
                 @endforeach
-                {{--
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn"> <span>نصائح ، تقنية ، تطوير</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog2.jpg')}}" alt="" srcset="">
-                    <h4>سألنا بعض سيدات الأعمال الرائدات</h4>
-                    <small>21 فبراير 2018</small>
-                    <p>المخاريط الذكور الأصغر تطلق حبوب اللقاح</p>
-                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-                </div>
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn"> <span>استراتيجية التنمية</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog3.jpg')}}" alt="" srcset="">
-                    <h4>كيفية تطوير عنصر لسوقنا</h4>
-                    <small>21 فبراير 2018</small>
-                    <p>لدينا استراتيجيات قوية ومحللين اداء ومستوي علي اعلي الامكانيات</p>
-                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-                </div>
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn"> <span>التكنولوجيا ، والأعمال التجارية ، والشراكة</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog4.jpg')}}" alt="" srcset="">
-                    <h4>لا تقلل أبدًا من قوة وسائل التواصل الاجتماعي</h4>
-                    <small>21 فبراير 2018</small>
-                    <p>دائما علي تواصل مباشر ومتاحينا علطول</p>
-                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-                </div>
-                <!-- end content-box --> --}}
+
             </div>
             <!-- end col-12 -->
         </div>
@@ -564,15 +248,13 @@
 <!-- end latest-news -->
 <section class="info-box">
     <div class="container wow fadeIn">
-        {{-- <h3>
-            عن العضوية</h3>
-        <h6>لنتعرف علي اهم المميزات في الاشتراكات معانا</h6>
-        <p>ويرجع السبب في ذلك عدم وجود دافع للالتزام و الكسل، و لتخلص من هذا الأمر يأتي دور مميزات النادي الرياضي حيث
-            يعطيك الشعور بالالتزام وتنظيم وقتك. فتكون أيام التمرين بمعدل ستة أو خمسة أيام في الأسبوع،</p> --}}
         <h3>{{ $aboutUs->membership_title_ar }}</h3>
         <h6>{{ $aboutUs->membership_text_ar }}</p>
             <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
-            <a href="{{ route('register') }}" class="join-us btn">اشترك معـــنا<span> الان</span></a>
+            <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+                @csrf
+            </form>
+            <button form='goToAdd' class="join-us btn">اشترك معـــنا<span> الان</span></a>
     </div>
 </section>
 <!-- end info-box -->

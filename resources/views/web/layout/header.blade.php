@@ -86,15 +86,15 @@
                 <!-- end logo -->
                 <ul class="nav-menu">
                     <li><a href="{{ url('/') }}" class="{{ Request::segment(2) == null ? 'active' : '' }}">Home</a></li>
-                    <li><a href="{{ route('sport') }}"
-                            class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">Sports</a>
+                    <li><a href="" class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">Sports</a>
                         <ul class="dropdown">
-                            <li><a href="#">Football</a></li>
-                            <li><a href="#">Handball</a></li>
-                            <li><a href="#">Basketball</a></li>
-                            <li><a href="#">Tennis</a></li>
-                            <li><a href="#">Swimming</a></li>
-                            <li><a href="#">Body Building</a></li>
+                            @foreach ($sports as $sport )
+
+                            <li><a href="{{ url('/sport/' . $sport->id) }}">{{ $sport->sport_title_en }}</a></li>
+
+
+                            @endforeach
+
                         </ul>
                     </li>
 
@@ -192,15 +192,17 @@
                 <ul class="nav-menu">
                     <li><a href="{{ url('/') }}" class="{{ Request::segment(2) == null ? 'active' : '' }}">الرئيسية</a>
                     </li>
-                    <li><a href="{{ route('sport') }}"
-                            class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">رياضات</a>
+                    <li><a href="" class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">رياضات</a>
                         <ul class="dropdown">
-                            <li><a href="#">كرة قدم</a></li>
-                            <li><a href="#">كرة يد</a></li>
-                            <li><a href="#">كرة سلة</a></li>
-                            <li><a href="#">تنس</a></li>
-                            <li><a href="#">سباحة</a></li>
-                            <li><a href="#">كمال الاجسام</a></li>
+                            @foreach ($sports as $sport )
+
+
+                            <li><a href="{{ url('/sport/' . $sport->id) }}">{{ $sport->sport_title_ar }}</a></li>
+
+
+
+                            @endforeach
+
                         </ul>
                     </li>
 

@@ -29,9 +29,9 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Home</a></li>
 
-            <li class="breadcrumb-item active" aria-current="page">sports</li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
         </ol>
-        <h2>sports</h2>
+        <h2>User Profiles</h2>
         <p>As the person who owns the legal rights to intellectual property, an author.</p>
     </div>
     <!-- end container -->
@@ -44,12 +44,19 @@
             <div class="col-md-4 col-12">
                 <aside class="sidebar pull-left">
                     <div class="widget categories">
-                        <h4 class="widget-title">Sports</h4>
+                        <h4 class="widget-title">Profile</h4>
                         <ul>
-                            @foreach ($sportData as $row )
-                            <li class="{{ $thisSport->id == $row->id ? 'active' : '' }}"><a
-                                    href="{{ url('/sport/' . $row->id) }}">{{ $row->sport_title_en }}</a></li>
-                            @endforeach
+
+                            <li class="{{ Request::segment(2) == 'Userdata' ? 'active' : '' }}"><a
+                                    href="{{ route('profile.data') }}">Profile
+                                    Info</a>
+                            </li>
+                            <li class="{{ Request::segment(2) == 'Members' ? 'active' : '' }}"><a
+                                    href="{{ route('profile.members') }}">Relatives
+                                    Members</a></li>
+                            <li class="{{ Request::segment(2) == 'Membership' ? 'active' : '' }}"><a
+                                    href="{{ route('profile.membership') }}">Your
+                                    Membership</a></li>
 
                         </ul>
                         <!-- end side-menu -->

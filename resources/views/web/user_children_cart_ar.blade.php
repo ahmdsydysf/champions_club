@@ -1,6 +1,6 @@
 @extends('web.layout.app')
 
-@section('custom_css')
+@section('custom_css_ar')
 <style>
     .career .job-list li span:first-child {
         width: 20% !important;
@@ -106,12 +106,12 @@
     <div class="container">
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('welcome') }}">الرئيسية</a></li>
 
-            <li class="breadcrumb-item active" aria-current="page">Children Sport</li>
+            <li class="breadcrumb-item active" aria-current="page">رياضات الاطفال</li>
         </ol>
-        <h2>Children Data</h2>
-        <p>As the person who owns the legal rights to intellectual property, an author.</p>
+        <h2>معلومات الاطفال</h2>
+        <p>هنا نوضح لك كل ماهو من بيانات الاطفال</p>
     </div>
     <!-- end container -->
 </section>
@@ -125,7 +125,7 @@
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title">Child Data For <span>{{ session('childrenIds')[$i]->name }}</span>
+                            <h4 class="widget-title"><span>{{ session('childrenIds')[$i]->name }}</span>بيانات الطفل :
                             </h4>
                             <div class="container">
                                 <div class="row">
@@ -135,7 +135,7 @@
                                                 src="{{ asset('uploads/children_data/' . session('childrenIds')[$i]->personal_image) }}"
                                                 alt="Image">
                                         </figure>
-                                        <h4>Personal Image</h4>
+                                        <h4>الصورة الشخصية</h4>
                                     </div>
                                     <div class="content-box wow fadeIn col-6"
                                         style="visibility: visible; animation-name: fadeIn;">
@@ -143,24 +143,24 @@
                                                 src="{{ asset('uploads/children_data/' . session('childrenIds')[$i]->birth_image) }}"
                                                 alt="Image">
                                         </figure>
-                                        <h4>Birthdate Certificate</h4>
+                                        <h4>شهادة الميلاد</h4>
                                     </div>
 
                                 </div>
                             </div>
-                            <h4 class="widget-title">Personal Data</h4>
+                            <h4 class="widget-title">معلومات شخصية</h4>
                             <div class="container">
                                 <div class="row">
-                                    <h5 class="widget-title col-6">Birthdate :
+                                    <h5 class="widget-title col-6">تاريخ الميلاد :
                                         <span>{{ session('childrenIds')[$i]->bithdate}}</span>
                                     </h5>
-                                    <h5 class="widget-title col-6">Hight :
+                                    <h5 class="widget-title col-6">الطول :
                                         <span>{{ session('childrenIds')[$i]->height }}</span>
                                     </h5>
-                                    <h5 class="widget-title col-6">Weight : <span>
+                                    <h5 class="widget-title col-6">الوزن : <span>
                                             {{ session('childrenIds')[$i]->width}}</span>
                                     </h5>
-                                    <h5 class="widget-title col-6">Level :
+                                    <h5 class="widget-title col-6">المستوي :
                                         <span>{{ session('childrenIds')[$i]->level }}
                                         </span>
                                     </h5>
@@ -176,25 +176,25 @@
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title">Sport Data For <span>{{ session('childrenIds')[$i]->name }}</span>
+                            <h4 class="widget-title">معلومات الرياضة <span>{{ session('childrenIds')[$i]->name }}</span>
                             </h4>
 
-                            <h4 class="widget-title">{{ session('membershipDetails')[$i]->sport->sport_title_en }}</h4>
+                            <h4 class="widget-title">{{ session('membershipDetails')[$i]->sport->sport_title_ar }}</h4>
                             <div class="container">
                                 <div class="row">
                                     <h5 class="widget-title col-6">
-                                        start at : <span>{{ session('membershipDetails')[$i]->start_date}}
+                                        يبدأ في : <span>{{ session('membershipDetails')[$i]->start_date}}
                                         </span></h5>
-                                    <h5 class="widget-title col-6">ends at : <span>
+                                    <h5 class="widget-title col-6">ينتهي في : <span>
                                             {{ session('membershipDetails')[$i]->end_date }}</span></h5>
                                     <blockquote>
-                                        <h5 class="widget-title" style="color:#fff !important">Comments</h5>
+                                        <h5 class="widget-title" style="color:#fff !important">تعليقات</h5>
                                         <p>{{ session('membershipDetails')[$i]->user_comment }}</p>
                                     </blockquote>
                                     <div class="widget download-box">
                                         <i class="fa fa-dollar"></i> <a href="#">
-                                            {{ session('membershipDetails')[$i]->fees}} LE</a>
-                                        <small>Sport Cost</small>
+                                            {{ session('membershipDetails')[$i]->fees}} جنيه</a>
+                                        <small>تكلفة الرياضة</small>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h2>Cart Full Data</h2>
+                            <h2>كل معلومات الاضافه</h2>
                         </div>
                         <!-- end section-title -->
                     </div>
@@ -223,18 +223,18 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">name</th>
-                                    <th scope="col">sport</th>
-                                    <th scope="col">start</th>
-                                    <th scope="col">end</th>
-                                    <th scope="col">cost</th>
+                                    <th scope="col">الاسم</th>
+                                    <th scope="col">الرياضة</th>
+                                    <th scope="col">تبدأ</th>
+                                    <th scope="col">تنتهي</th>
+                                    <th scope="col">التكلفة</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if(session('childrenIds') && session('membershipDetails'))
                                 @for($i = 0 ; $i < count(session('childrenIds')) ; $i++) <tr>
                                     <th scope="row">{{ session('childrenIds')[$i]->name }}</th>
-                                    <td>{{ session('membershipDetails')[$i]->sport->sport_title_en }}</td>
+                                    <td>{{ session('membershipDetails')[$i]->sport->sport_title_ar }}</td>
                                     <td>
                                         {{session('membershipDetails')[$i]->start_date }}
                                     </td>
@@ -255,7 +255,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>Total</td>
+                                    <td>الاجمالي</td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -263,7 +263,7 @@
                                     <td></td>
                                     <td></td>
                                     <td class="total-price">{{ session('membershipDetails')[0]->invoice->order_total }}
-                                        LE</td>
+                                        جنيه</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -274,8 +274,13 @@
                                     @csrf
                                     <input type="hidden" value="{{ session('membershipDetails')[0]->invoice_id }}"
                                         name="invoice_status">
-                                    <button type="submit" class="submit-btn btn btn-primary reg float-left">Confirm
-                                        Data</button>
+                                    <button type="submit" class="submit-btn btn btn-primary reg float-left">تأكيد
+                                        الاشتراكات</button>
+                                </form>
+                                <form action="{{ route('discardCartChanges') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="submit-btn btn btn-primary reg float-left">
+                                        الرجوع</button>
                                 </form>
                             </div>
 

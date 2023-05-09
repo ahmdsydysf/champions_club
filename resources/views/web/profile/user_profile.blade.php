@@ -20,6 +20,13 @@
         padding: 0 40px;
         font-weight: 600;
     }
+
+    .post-content {
+        background-color: #dee2e6;
+        border-radius: 5px;
+        margin-bottom: 25px;
+        padding: 35px;
+    }
 </style>
 @endsection
 @section('content')
@@ -29,9 +36,9 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Home</a></li>
 
-            <li class="breadcrumb-item active" aria-current="page">sports</li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
         </ol>
-        <h2>sports</h2>
+        <h2>User Profiles</h2>
         <p>As the person who owns the legal rights to intellectual property, an author.</p>
     </div>
     <!-- end container -->
@@ -44,13 +51,18 @@
             <div class="col-md-4 col-12">
                 <aside class="sidebar pull-left">
                     <div class="widget categories">
-                        <h4 class="widget-title">Sports</h4>
+                        <h4 class="widget-title">Profile Data</h4>
                         <ul>
-                            @foreach ($sportData as $row )
-                            <li class="{{ $thisSport->id == $row->id ? 'active' : '' }}"><a
-                                    href="{{ url('/sport/' . $row->id) }}">{{ $row->sport_title_en }}</a></li>
-                            @endforeach
-
+                            <li class="{{ Request::segment(3) == 'Userdata' ? 'active' : '' }}"><a
+                                    href="{{ route('profile.edit') }}">Profile
+                                    Info</a>
+                            </li>
+                            <li class="{{ Request::segment(3) == 'Members' ? 'active' : '' }}"><a
+                                    href="{{ route('profile.members') }}">Relatives
+                                    Members</a></li>
+                            <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}"><a
+                                    href="{{ route('profile.membership') }}">Your
+                                    Membership</a></li>
                         </ul>
                         <!-- end side-menu -->
                     </div>
@@ -66,37 +78,28 @@
             <!-- end col-4 -->
             <div class="col-md-8 col-12">
                 <div class="post no-margin">
-                    <figure class="post-image"> <img src="{{ asset('uploads/sport/' . $thisSport->sport_image) }}"
-                            alt="{{ $thisSport->sport_image }}">
-                    </figure>
-                    <div class="post-content">
 
-                        <h4>How to develope item for</h4>
+                    <div class="post-content">
+                        <h4>Update Your Data</h4>
                         <small>{{ date('F j, Y') }}</small>
 
-                        <p>{{ $thisSport->sport_overview_en }}</p>
-                        <blockquote>
-                            <p>
-
-                                {{ $thisSport->sport_subtitle_en }}
-
-                            </p>
-                            <h5>Admin</h5>
-                        </blockquote>
-                        <p>{{ $thisSport->sport_overview_en }}</p>
-
-                        <p> Cooperative: Often referred to as a "co-op", a cooperative is a limited-liability business
-                        <div class="row">
-                            <form id="goToAdd" action="{{ route('childSport') }}" method="get">
-                                @csrf
-                            </form>
-                            <div class="col-6 my-5 ">
-                                <button form="goToAdd" class="submit-btn btn btn-primary reg float-left">Add
-                                    Your
-                                    Children Now</button>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                    @include('profile.partials.update-profile-information-form')
+                                </div>
+                                <div class="col-6">
+                                    @include('profile.partials.update-password-form')
+                                </div>
                             </div>
-
                         </div>
+
+
+
+
+
+
+
                     </div>
                     <!-- end post-content -->
                 </div>

@@ -49,4 +49,8 @@ class User extends Authenticatable
             get: fn ($value) =>  ["user", "admin"][$value],
         );
     }
+
+    public function Children(){
+        return $this->hasMany(User_children::class,'user_id');
+    }
 }
