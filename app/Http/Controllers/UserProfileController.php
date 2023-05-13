@@ -58,8 +58,12 @@ class UserProfileController extends Controller
 
     public function relativesMembers(){
         $user_id = Auth::user()->id ;
-        $user_data = User::with('Children')->where('id',$user_id)->first();
-        $member_ship_details = Membership_detail::with('sport')->get();
+        // $user_data = User::with(['Children','Children.memberships','Children.memberships.invoice'])->where('id',$user_id)->first();
+        $user_data =User::with('Children.memberships.invoice')->where('id',$user_id)->first();
+        // $user_child_member = $user_childrens->memberships')->get();
+        // $user_child_member_invo = $user_child_member->with('invoice')->get();
+        
+        $member_ship_details = Membership_detail::with(['invoice' ,'sport'])->get();
         if(LaravelLocalization::getCurrentLocale() == 'en'){
             return view('web.profile.user_profile_members' , compact('user_data','member_ship_details'));
 

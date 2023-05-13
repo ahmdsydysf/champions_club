@@ -24,7 +24,6 @@ class Membership_detail extends Model
 
     public function child(){
         return $this->belongsTo(User_children::class,'child_id');
-
     }
 
     public function sport(){

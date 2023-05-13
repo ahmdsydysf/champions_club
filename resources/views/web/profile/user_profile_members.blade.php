@@ -88,7 +88,13 @@
                         {{-- @dd($child->name) --}}
                         <div class="row justify-content-center">
                             <div class="child-full-data row">
+                                {{-- هجيب الطفل و الميمبرشيب الخاصبيه ومنها هجيب الانفويس واتشيك علي الستيتس --}}
                                 @foreach ($user_data->Children as $child )
+
+                                @foreach ($child->memberships as $member)
+                                @if ($member->invoice->invoice_status == 1 )
+
+                                {{-- @if ($invo->invoice_status == 1) --}}
                                 <div class="col-md-6 col-12 ">
                                     <aside class="sidebar post-content"
                                         style="max-width: 100%;position:relative !important">
@@ -151,7 +157,13 @@
                                     </aside>
                                     <!-- end side-bar -->
                                 </div>
+                                @endif
                                 @endforeach
+                                @endforeach
+
+
+
+
 
                                 <!-- end col-4 -->
                                 {{-- <div class="col-md-6 col-12">

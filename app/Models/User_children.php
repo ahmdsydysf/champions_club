@@ -25,4 +25,9 @@ class User_children extends Model
         return $this->belongsTo(User::class,'user_id');
 
     }
+
+    public function memberships(){
+        return $this->hasMany(Membership_detail::class,'child_id');
+    }
+
 }
