@@ -13,6 +13,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User_children;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -62,15 +63,66 @@ class UserProfileController extends Controller
         $user_data =User::with('Children.memberships.invoice')->where('id',$user_id)->first();
         // $user_child_member = $user_childrens->memberships')->get();
         // $user_child_member_invo = $user_child_member->with('invoice')->get();
-        
-        $member_ship_details = Membership_detail::with(['invoice' ,'sport'])->get();
+
+        // $member_ship_details = Membership_detail::with(['invoice' ,'sport'])->get();
         if(LaravelLocalization::getCurrentLocale() == 'en'){
-            return view('web.profile.user_profile_members' , compact('user_data','member_ship_details'));
+            return view('web.profile.user_profile_members' , compact('user_data'));
 
         }else{
-            return view('web.profile.user_profile_members_ar' , compact('user_data','member_ship_details'));
+            return view('web.profile.user_profile_members_ar' , compact('user_data'));
 
         }
+
+    }
+    public function childProfile($id){
+
+        $child = User_children::where('id',$id)->first() ;
+
+        return view('web.profile.child_profile' , compact('child'));
+        // if(LaravelLocalization::getCurrentLocale() == 'en'){
+
+        // }else{
+        //     return view('web.profile.child_profile_ar' , compact('child'));
+
+        // }
+
+    }
+    public function childUpdate($id , Request $request)
+    {
+        $request->validate([
+            'name' => 'required' ,
+            'personal_image' => 'image|mimes:jpeg,png,jpg|max:2048' ,
+            'birth_image' => 'image|mimes:jpeg,png,jpg|max:2048' ,
+            'birthdate' => 'required' ,
+            'level' => 'required' ,
+            'height' => 'required',
+            'weight' => 'required',
+        ]);
+
+        $child = User_children::where('id',$id)->first() ;
+
+        $request_data = $request->except('personal_image', 'birth_image', '_token');
+
+        if ($request->file('personal_image')) {
+            Storage::disk('public_uploads')->delete("/children_data/$child->personal_image");
+            $myimageName = uniqid() . $request->file('personal_image')->getClientOriginalName();
+            Image::make($request->file('personal_image'))->resize(260, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/children_data/' . $myimageName));
+            $request_data['personal_image'] = $myimageName;
+        }
+        if ($request->file('birth_image')) {
+            Storage::disk('public_uploads')->delete("/children_data/$child->birth_image");
+            $myimageName = uniqid() . $request->file('birth_image')->getClientOriginalName();
+            Image::make($request->file('birth_image'))->resize(260, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/children_data/' . $myimageName));
+            $request_data['birth_image'] = $myimageName;
+        }
+
+        $child->update($request_data);
+
+        return redirect()->route('childProfile' , $id);
 
     }
     public function userImage($user_id , Request $request){

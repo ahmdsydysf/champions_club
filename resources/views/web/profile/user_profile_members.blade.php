@@ -99,14 +99,24 @@
                                     <aside class="sidebar post-content"
                                         style="max-width: 100%;position:relative !important">
                                         <div class="widget categories">
-                                            <h4 class="widget-title">Child Data For <span>{{ $child->name
-                                                    }}</span></h4>
+                                            <a href="{{ route('childProfile' , $child->id ) }}">
+                                                <h4 class="widget-title"><span>{{ $child->name
+                                                        }}</span></h4>
+                                            </a>
                                             <div class="container">
                                                 <div class="row">
-                                                    <div class="content-box wow fadeIn col-12"
+                                                    <div class="content-box wow fadeIn col-6"
                                                         style="visibility: visible; animation-name: fadeIn;">
                                                         <figure><img style="height: 250px;width:100%"
                                                                 src="{{ asset('uploads/children_data/' . $child->personal_image) }}"
+                                                                alt="Image">
+                                                        </figure>
+
+                                                    </div>
+                                                    <div class="content-box wow fadeIn col-6"
+                                                        style="visibility: visible; animation-name: fadeIn;">
+                                                        <figure><img style="height: 250px;width:100%"
+                                                                src="{{ asset('uploads/children_data/' . $child->birth_image) }}"
                                                                 alt="Image">
                                                         </figure>
 
@@ -124,33 +134,11 @@
                                                     <h5 class="widget-title col-6">Weight : <span>
                                                             {{ $child->width}}</span>
                                                     </h5>
-                                                    <h5 class="widget-title col-6">Level :
-                                                        <span>{{ $child->level }}
-                                                        </span>
-                                                    </h5>
+
                                                 </div>
                                             </div>
                                             <!-- end side-menu -->
-                                            @foreach($member_ship_details as $membership)
-                                            @if($membership->child_id == $child->id)
 
-
-                                            <div class="container">
-                                                <div class="row">
-                                                    <h5 class="widget-title col-12">Sport :
-                                                        <span>{{ $membership->sport->sport_title_en }}</span>
-                                                    </h5>
-                                                    <h5 class="widget-title col-6">Start :
-                                                        <span>{{ $membership->start_date }}</span>
-                                                    </h5>
-                                                    <h5 class="widget-title col-6">End : <span>
-                                                            {{ $membership->end_date }}</span>
-                                                    </h5>
-
-                                                </div>
-                                            </div>
-                                            @endif
-                                            @endforeach
                                             <!-- end side-menu -->
                                         </div>
 
@@ -161,44 +149,6 @@
                                 @endforeach
                                 @endforeach
 
-
-
-
-
-                                <!-- end col-4 -->
-                                {{-- <div class="col-md-6 col-12">
-                                    <aside class="sidebar" style="max-width: 100%;position:relative !important">
-                                        <div class="widget categories">
-                                            <h4 class="widget-title">Sport Data For <span>{{ $childrenIds[$i]->name
-                                                    }}</span></h4>
-
-                                            <h4 class="widget-title">{{ $membershipDetails[$i]->sport->sport_title_en }}
-                                            </h4>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <h5 class="widget-title col-6">
-                                                        start at : <span>{{$membershipDetails[$i]->start_date}}
-                                                        </span></h5>
-                                                    <h5 class="widget-title col-6">ends at : <span>
-                                                            {{$membershipDetails[$i]->end_date }}</span></h5>
-                                                    <blockquote>
-                                                        <h5 class="widget-title" style="color:#fff !important">Comments
-                                                        </h5>
-                                                        <p>{{ $membershipDetails[$i]->user_comment }}</p>
-                                                    </blockquote>
-                                                    <div class="widget download-box">
-                                                        <i class="fa fa-dollar"></i> <a href="#">
-                                                            {{ $membershipDetails[$i]->fees}} LE</a>
-                                                        <small>Sport Cost</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end side-menu -->
-                                        </div>
-
-                                    </aside>
-                                    <!-- end side-bar -->
-                                </div> --}}
                             </div>
                         </div>
                         <!-- end col-8 -->

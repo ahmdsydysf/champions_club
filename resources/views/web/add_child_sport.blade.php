@@ -171,7 +171,7 @@
                     <div class="col-md-3 col-sm-4 col-12  order-md-3 order-3 height-input">
                         <label for="inputAddress" class="form-label">Height</label>
                         <input data-reset='on' type="number" name="hight[0]" class="form-control important-input"
-                            min="100" id="inputAddress" placeholder="Height">
+                            min="70" id="inputAddress" placeholder="Height">
                         @if($errors->any())
                         @error('hight.'.$i)
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -181,7 +181,7 @@
                     <div class="col-md-3 col-sm-4 col-12  order-md-4 order-4 weight-input">
                         <label for="inputAddress2" class="form-label">Weight</label>
                         <input data-reset='on' type="number" name="weight[0]" class="form-control important-input"
-                            min="35" id="inputAddress2" placeholder="Weight">
+                            min="20" id="inputAddress2" placeholder="Weight">
                         @if($errors->any())
 
                         @error('weight.'.$i)
@@ -238,7 +238,7 @@
                         <select id="inputState1" name="level[0]" class="form-control custom-select important-input">
                             <option value="1" selected>Amateur</option>
                             <option value="2">Mid level</option>
-                            <option value="3">professional</option>
+                            <option value="3">Professional</option>
                         </select>
                         @if($errors->any())
 

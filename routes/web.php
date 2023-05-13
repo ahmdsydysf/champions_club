@@ -70,6 +70,8 @@ Route::group(
                 Route::get('/profile/Membership', [UserProfileController::class, 'yourMembership'])->name('profile.membership');
                 Route::patch('/profile/userImage/{id}', [UserProfileController::class, 'userImage'])->name('user.image');
 
+                Route::get('/profile/childProfile/{id}', [UserProfileController::class, 'childProfile'])->name('childProfile');
+                Route::patch('/profile/updateChildProfile/{id}', [UserProfileController::class, 'childUpdate'])->name('childUpdate');
             });
 
             // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');

@@ -16,4 +16,21 @@ return [
     'New Password' => 'New Password',
     'Confirm Password' => 'Confirm Password',
 
+
+    'Update' => 'Update',
+    'Weight' => 'Weight',
+    'Height' => 'Height',
+    'Amateur' => 'Amateur',
+    'Mid level' => 'Mid level',
+    'Professional' => 'Professional',
+    'Birthdate' => 'Birthdate',
+    'Change Image' => 'Change Image',
+    'Profile' => 'Profile',
+    'Profile Info' => 'Profile Info',
+    'Relative Members' => 'Relative Members',
+    'Your Membership' => 'Your Membership',
+    'Home' => 'Home',
+    'Child Profile' => 'Child Profile',
+    'Profile title' => 'Here is some of child profile data',
+    'Home' => 'Home',
 ];

@@ -88,18 +88,31 @@
                         <div class="row justify-content-center">
                             <div class="child-full-data row">
                                 @foreach ($user_data->Children as $child )
+
+                                @foreach ($child->memberships as $member)
+                                @if ($member->invoice->invoice_status == 1 )
                                 <div class="col-md-6 col-12 ">
                                     <aside class="sidebar post-content"
                                         style="max-width: 100%;position:relative !important">
                                         <div class="widget categories">
-                                            <h4 class="widget-title">بينات الطفل <span>{{ $child->name
-                                                    }}</span></h4>
+                                            <a href="{{ route('childProfile' , $child->id ) }}">
+                                                <h4 class="widget-title"><span>{{ $child->name
+                                                        }}</span></h4>
+                                            </a>
                                             <div class="container">
                                                 <div class="row">
-                                                    <div class="content-box wow fadeIn col-12"
+                                                    <div class="content-box wow fadeIn col-6"
                                                         style="visibility: visible; animation-name: fadeIn;">
                                                         <figure><img style="height: 250px;width:100%"
                                                                 src="{{ asset('uploads/children_data/' . $child->personal_image) }}"
+                                                                alt="Image">
+                                                        </figure>
+
+                                                    </div>
+                                                    <div class="content-box wow fadeIn col-6"
+                                                        style="visibility: visible; animation-name: fadeIn;">
+                                                        <figure><img style="height: 250px;width:100%"
+                                                                src="{{ asset('uploads/children_data/' . $child->birth_image) }}"
                                                                 alt="Image">
                                                         </figure>
 
@@ -117,39 +130,19 @@
                                                     <h5 class="widget-title col-6">الوزن : <span>
                                                             {{ $child->width}}</span>
                                                     </h5>
-                                                    <h5 class="widget-title col-6">المستوي :
-                                                        <span>{{ $child->level }}
-                                                        </span>
-                                                    </h5>
+
                                                 </div>
                                             </div>
                                             <!-- end side-menu -->
-                                            @foreach($member_ship_details as $membership)
-                                            @if($membership->child_id == $child->id)
 
-
-                                            <div class="container">
-                                                <div class="row">
-                                                    <h5 class="widget-title col-12">الرياضة :
-                                                        <span>{{ $membership->sport->sport_title_ar }}</span>
-                                                    </h5>
-                                                    <h5 class="widget-title col-6">يبدأ :
-                                                        <span>{{ $membership->start_date }}</span>
-                                                    </h5>
-                                                    <h5 class="widget-title col-6">ينتهي : <span>
-                                                            {{ $membership->end_date }}</span>
-                                                    </h5>
-
-                                                </div>
-                                            </div>
-                                            @endif
-                                            @endforeach
                                             <!-- end side-menu -->
                                         </div>
 
                                     </aside>
                                     <!-- end side-bar -->
                                 </div>
+                                @endif
+                                @endforeach
                                 @endforeach
 
                                 <!-- end col-4 -->
