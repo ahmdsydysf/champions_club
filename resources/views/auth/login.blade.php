@@ -63,18 +63,6 @@
                         name="password" required autocomplete="new-password" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
-                    <div class="remember">
-                        <input class="form-check-input" type="checkbox" class="checked_input" value=""
-                            id="flexCheckDefault">
-                        <label class="form-check-label confirmed" for="flexCheckDefault">
-                            {{ __('Remember me') }} </a>
-                        </label>
-                    </div>
-                    @if (Route::has('password.request'))
-                    <a class="mb-3" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                    @endif
 
                     <x-primary-button class="btn sign_button">
                         {{ __('Log in') }}

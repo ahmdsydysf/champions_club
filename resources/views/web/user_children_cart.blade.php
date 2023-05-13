@@ -277,6 +277,11 @@
                                     <button type="submit" class="submit-btn btn btn-primary reg float-left">Confirm
                                         Data</button>
                                 </form>
+                                <form action="{{ route('discardCartChanges') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="submit-btn btn btn-primary reg float-left">
+                                        Back</button>
+                                </form>
                             </div>
 
                         </div>

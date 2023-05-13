@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Membership_detail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -65,6 +67,32 @@ class UserProfileController extends Controller
             return view('web.profile.user_profile_members_ar' , compact('user_data','member_ship_details'));
 
         }
+
+    }
+    public function userImage($user_id , Request $request){
+
+         $user_data = User::find($user_id) ;
+
+         $request->validate([
+            'image' => 'image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $request_data = $request->except('image', '_token');
+
+        if ($request->file('image')) {
+            if ($user_data->image != 'user_default.png') {
+                Storage::disk('public_uploads')->delete('user/' . $user_data->image);
+            }
+            $imageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/user/' . $imageName));
+
+            $request_data['image'] = $imageName;
+        }
+        $user_data->image =  $imageName;
+        $user_data->save();
+        return back()->with('success', 'your profile data updated successfully');
 
     }
 

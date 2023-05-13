@@ -67,9 +67,6 @@
                     </div>
                     <!-- end widget -->
 
-                    <style>
-
-                    </style>
 
                 </aside>
                 <!-- end side-bar -->
@@ -84,6 +81,28 @@
 
                         <div class="container">
                             <div class="row">
+                                <div class="col-12">
+                                    <div class="content-box wow fadeIn"
+                                        style="visibility: visible; animation-name: fadeIn;">
+                                        <figure class="text-center"><img id="img-preview"
+                                                style="height: 250px;width:50%;border-radius:5px" class="img-thumbnail"
+                                                src="{{ asset('uploads/user/' . Auth::user()->image) }}" alt="Image">
+                                        </figure>
+                                        <form action="{{ route('user.image' , Auth::user()->id) }}"
+                                            enctype="multipart/form-data" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <div>
+                                                <label for="formFileLg" class="form-label">Change Image</label>
+                                                <input onchange="showPreview(event)"
+                                                    class="form-control form-control-lg" name="image" id="formFileLg"
+                                                    type="file">
+                                            </div>
+                                            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                            <x-primary-button>{{ __('Change') }}</x-primary-button>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="col-6">
                                     @include('profile.partials.update-profile-information-form')
                                 </div>
@@ -110,4 +129,16 @@
     </div>
     <!-- end container -->
 </section>
+@endsection
+
+@section('custom_js')
+<script>
+    function showPreview(event){
+        if(event.target.files.length > 0){
+            let src = URL.createObjectURL(event.target.files[0]);
+            let preview = document.getElementById('img-preview');
+            preview.src = src;
+        }
+    }
+</script>
 @endsection

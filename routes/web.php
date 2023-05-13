@@ -68,6 +68,7 @@ Route::group(
                 // Route::get('/profile/Userdata', [UserProfileController::class, 'userProfile'])->name('profile.data');
                 Route::get('/profile/Members', [UserProfileController::class, 'relativesMembers'])->name('profile.members');
                 Route::get('/profile/Membership', [UserProfileController::class, 'yourMembership'])->name('profile.membership');
+                Route::patch('/profile/userImage/{id}', [UserProfileController::class, 'userImage'])->name('user.image');
 
             });
 
