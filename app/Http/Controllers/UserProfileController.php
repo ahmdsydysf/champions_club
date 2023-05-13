@@ -79,12 +79,13 @@ class UserProfileController extends Controller
         $child = User_children::where('id',$id)->first() ;
 
         return view('web.profile.child_profile' , compact('child'));
-        // if(LaravelLocalization::getCurrentLocale() == 'en'){
 
-        // }else{
-        //     return view('web.profile.child_profile_ar' , compact('child'));
+    }
+    public function childSports($id){
 
-        // }
+        $child = User_children::where('id',$id)->first() ;
+
+        return view('web.profile.child_profile' , compact('child'));
 
     }
     public function childUpdate($id , Request $request)

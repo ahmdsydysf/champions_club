@@ -62,8 +62,8 @@
                             <li class="{{ Request::segment(3) == 'childProfile' ? 'active' : '' }}"><a
                                     href="{{ route('childProfile' , $child->id ) }}">{{ __('main.Profile Info') }}</a>
                             </li>
-                            <li class="{{ Request::segment(3) == 'Members' ? 'active' : '' }}"><a
-                                    href="{{ route('profile.members') }}">{{ __('main.Relative Members') }}</a></li>
+                            <li class="{{ Request::segment(3) == 'mySports' ? 'active' : '' }}"><a
+                                    href="{{ route('childSports', $child->id) }}">{{ __('main.My Sports') }}</a></li>
                             <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}">
                                 <a href="#">{{ __('main.Your Membership') }}</a>
                             </li>
