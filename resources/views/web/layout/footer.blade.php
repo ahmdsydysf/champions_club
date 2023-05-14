@@ -43,6 +43,7 @@
                         <li><a href="{{ route('allNews') }}">News and Events</a></li>
                         <li><a href="{{ route('media') }}">Media</a></li>
                         <li><a href="{{ route('contact') }}">Contact us</a></li>
+                        <li><a href="{{ route('suggest-sport') }}">Suggest Sport</a></li>
                     </ul>
                 </div>
                 <!-- end col-2 -->
