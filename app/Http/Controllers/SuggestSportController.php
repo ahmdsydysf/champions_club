@@ -14,16 +14,59 @@ class SuggestSportController extends Controller
     }
     public function suggest(Request $request)
     {
-        // echo json_encode(array("output", 'vvvv'));
-        $sports=Sport::all();
-        $xx='';
-        foreach ($sports as $index=>$row) {
-            $xx .='
+        /*=========
+        height: height,
+        gender: gender,
+        age: age,
+        weight: weight,
+        flexRadioDefault: flexRadioDefault,
+        disease1: disease1,
+        disease2: disease2,
+        disease3: disease3,
+        ==========*/
+        \Log::info($request->all());
+        $sugest = [];
+        if ($request->get('gender') == 1 && $request->get('height') >= 100) {
+            $sports = Sport::where('id', 1)->get();
+            foreach ($sports as $sport) {
+
+            array_push($sugest, $sport);
+                }
+
+        }
+        if ($request->get('gender') == 2 && $request->get('height') >= 100) {
+            $sports = Sport::where('id', 2)->get();
+            foreach ($sports as $sport) {
+
+                array_push($sugest, $sport);
+                }
+
+        }
+        if ($request->get('height') >= 100 && $request->get('weight') >= 40) {
+            $sports = Sport::whereIn('id', [2,1])->get();
+            foreach ($sports as $sport) {
+
+                array_push($sugest, $sport);
+                }
+
+        }
+        $test=[];
+        foreach ($sugest as $obj) {
+            if(!in_array($obj, $test)){
+            array_push($test, $obj);
+            }
+        }
+
+        // $sports = Sport::all();
+        \Log::info($sugest);
+        $xx = '';
+        foreach ($test as $index => $row) {
+            $xx .= '
             <div   class="container col-12 order-12 sport-details my-3">
             <div class="row col-sm-12">
             <div class="card col-sm-12 full_sport_details">
                 <div class="card-header sport_title">
-                Suggested sport no '.($index+1).'
+                Suggested sport no ' . ($index + 1) . '
 
                 </div>
                 <div class="card-body">
@@ -35,7 +78,7 @@ class SuggestSportController extends Controller
 </div>
         </div>';
 
+        }
+        echo $xx;
     }
-    echo $xx;
-}
 }

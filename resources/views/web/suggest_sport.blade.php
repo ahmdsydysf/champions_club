@@ -168,8 +168,8 @@
                         </div>
                         <div class="col-md-3 col-sm-4 col-12   height-input">
                             <label for="inputAddress" class="form-label">Height</label>
-                            <input data-reset='on' type="number" name="hight" class="form-control important-input"
-                                min="70" id="inputAddress" placeholder="Height">
+                            <input data-reset='on' id="height" type="number" name="Height" class="form-control important-input"
+                                min="70"  placeholder="Height">
                             @if ($errors->any())
                                 @error('hight.' . $i)
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -192,7 +192,7 @@
                         <div class="col-md-6 col-sm-6 col-12  order-md-6  gender-input mt-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="disease1" value=""
-                                    id="flexCheckDefault" />
+                                    id="flexCheckDefault" checked />
                                 <label class="form-check-label" for="flexCheckDefault">chest illness</label>
                             </div>
 
