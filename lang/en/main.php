@@ -32,5 +32,7 @@ return [
     'Home' => 'Home',
     'Child Profile' => 'Child Profile',
     'Profile title' => 'Here is some of child profile data',
-    'Home' => 'Home',
+     'My Sports' => 'My Sports',
+     'Child Sports' => 'Child Sports',
+     'Child All Sports' => 'Child All Sports',
 ];

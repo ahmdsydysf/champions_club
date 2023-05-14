@@ -82,6 +82,7 @@ Route::group(
 
                 Route::get('/profile/childProfile/{id}', [UserProfileController::class, 'childProfile'])->name('childProfile');
                 Route::patch('/profile/updateChildProfile/{id}', [UserProfileController::class, 'childUpdate'])->name('childUpdate');
+                Route::patch('/profile/mySports/{id}', [UserProfileController::class, 'childSports'])->name('childSports');
             });
 
             // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');
