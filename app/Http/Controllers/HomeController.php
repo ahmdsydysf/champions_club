@@ -180,22 +180,6 @@ class HomeController extends Controller
 
             return $days;
         }
-
-        // $request->validate([
-        //     'personal_image.*' => 'image|mimes:jpeg,png,jpg|max:4048',
-        //     'birth_image.*' => 'image|mimes:jpeg,png,jpg|max:4048',
-        //     'name.*' => 'required',
-        //     'birthdate.*' => 'required|date',
-        //     'hight.*' => 'required',
-        //     'weight.*' => 'required',
-        //     'selectSport.*' => 'required',
-        //     'level.*' => 'required',
-        //     'selectDay.*' => 'required',
-        //     'startDate.*' => 'required',
-        //     'endDate.*' => 'required',
-        //     'paymentMethod.*' => 'required',
-        //     'userComment.*' => 'required',
-        // ]);
         DB::beginTransaction();
         try {
             DB::statement('SET FOREIGN_KEY_CHECKS=0');

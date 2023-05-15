@@ -80,14 +80,15 @@ Route::group(
                 Route::get('/profile/Membership', [UserProfileController::class, 'yourMembership'])->name('profile.membership');
                 Route::patch('/profile/userImage/{id}', [UserProfileController::class, 'userImage'])->name('user.image');
 /*===================new membership===============*/
-Route::get('/profile/user_membership', [UserProfileController::class, 'userMembership'])->name('profile.user_membership');
+                Route::get('/profile/user_membership', [UserProfileController::class, 'userMembership'])->name('profile.user_membership');
                 Route::get('/profile/renew/anuual', [UserProfileController::class, 'renewAnuual'])->name('renewAnuual');
 
                 Route::post('/store/Annual', [UserProfileController::class, 'storeAnnual'])->name('storeAnnual');
-Route::get('/profile/childProfile/{id}', [UserProfileController::class, 'childProfile'])->name('childProfile');
+                Route::get('/profile/childProfile/{id}', [UserProfileController::class, 'childProfile'])->name('childProfile');
                 Route::patch('/profile/updateChildProfile/{id}', [UserProfileController::class, 'childUpdate'])->name('childUpdate');
                 Route::get('/profile/mySports/{id}', [UserProfileController::class, 'childSports'])->name('childSports');
                 Route::get('/profile/renew/sport', [UserProfileController::class, 'renewSport'])->name('renewSport');
+                Route::put('/profile/renew/sport', [UserProfileController::class, 'sportRenew'])->name('sportRenew');
             });
 
             // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');

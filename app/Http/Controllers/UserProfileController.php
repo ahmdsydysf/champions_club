@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Sport;
 use Inertia\Response;
+use App\Models\Company;
+use App\Models\Sports_day;
 use Illuminate\Http\Request;
+use App\Models\User_children;
+use App\Models\User_membership;
 use App\Models\Membership_detail;
+use App\Models\Membership_invoice;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Company;
-use App\Models\Sport;
-use App\Models\User_children;
-use App\Models\User_membership;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -99,12 +104,78 @@ class UserProfileController extends Controller
         $sport_details = Sport::where('id',$request->sport_id)->first();
         return view('web.profile.child_renew_sport' , compact('sport_details','child'));
     }
+
+    public function sportRenew(Request $request)
+    {
+        function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
+            $days = array();
+            $currentDate = strtotime($startDate);
+            $endDate = strtotime($endDate);
+
+            while ($currentDate <= $endDate) {
+                $dayNumber = date('N', $currentDate);
+                if ($dayNumber == $day1 || $dayNumber == $day2) {
+                    $days[] = date('Y-m-d', $currentDate);
+                }
+                $currentDate = strtotime('+1 day', $currentDate);
+            }
+
+            if (count($days) > 8) {
+                $days = array_slice($days, 0, 8);
+            }
+
+            return $days;
+        }
+    $child_id = $request->child_id ;
+    $user_id = $request->user_id ;
+    $total = $request->total ;
+    $sport_id = $request->sport_id ;
+
+    $invoice = new Membership_invoice;
+    $invoice->invoice_date = Carbon::now();
+    $invoice->order_total = $total;
+    $invoice->vat_perc = 0.14;
+    $invoice->user_id = $user_id;
+    $invoice->invoice_status = 1;
+    $invoice->save();
+
+    $invoice_new_id = $invoice->id;
+
+    $firstDay = Sports_day::select('firstday_id')->where('sport_id' ,$sport_id)->first();
+    $secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$sport_id)->first();
+    $startDate = Carbon::now();
+    $endDate = Carbon::now()->addMonth();
+
+
+    $childSessionDays = getDaysBetweenDates($startDate, $endDate, (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
+    $updated_member = Membership_detail::where('child_id',$child_id )->where('sport_id' ,$sport_id )->first();
+    foreach($childSessionDays as $key => $value){
+        DB::table('attendances')->insert([
+            'session_date' => $value,
+            'session_no' => $key + 1 ,
+            'membership_details_id' => $updated_member->id,
+            'child_id' => $child_id,
+        ]);
+    }
+    $updated_member->update([
+        'invoice_id' => $invoice_new_id,
+        'start_date' => $startDate,
+        'end_date' => $endDate,
+    ]);
+    if(LaravelLocalization::getCurrentLocale() == 'en'){
+        return view('web.congrate');
+    }else{
+        return view('web.congrate_ar');
+    }
+
+}
+
     public function childUpdate($id , Request $request)
     {
         $request->validate([
             'name' => 'required' ,
-            'personal_image' => 'image|mimes:jpeg,png,jpg|max:2048' ,
-            'birth_image' => 'image|mimes:jpeg,png,jpg|max:2048' ,
+            'personal_image' => 'image|mimes:jpeg,png,jpg' ,
+            'birth_image' => 'image|mimes:jpeg,png,jpg' ,
             'birthdate' => 'required' ,
             'level' => 'required' ,
             'height' => 'required',
@@ -135,7 +206,7 @@ class UserProfileController extends Controller
     {
         $user_data = User::find($user_id) ;
         $request->validate([
-            'image' => 'image|mimes:jpg,jpeg,png|max:2048'
+            'image' => 'image|mimes:jpg,jpeg,png'
         ]);
         $request_data = $request->except('image', '_token');
         if ($request->file('image')) {
