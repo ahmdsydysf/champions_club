@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnualMembersController;
 use App\Http\Controllers\SliderImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -55,6 +56,7 @@ use App\Http\Controllers\SportController;
                         'general_service' => GeneralServiceController::class ,
                         'sponsor' => SponsorController::class ,
                         'memberships' => MembershipsController::class ,
+                        'annual-members' => AnnualMembersController::class ,
                     ]);
 
                     Route::resource('company' , CompanyController::class)->only(['edit' , 'update']);

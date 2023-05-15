@@ -15,4 +15,8 @@ class User_membership extends Model
     'fees_paid',
     'approved',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
