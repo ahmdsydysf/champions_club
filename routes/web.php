@@ -8,6 +8,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Middleware\AuthenticateDashboard;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\SuggestSportController;
 use App\Http\Controllers\UserProfileController;
 
 /*
@@ -55,6 +56,15 @@ Route::group(
             Route::get('/user/children/cart', [HomeController::class , 'viewUserCart'])->name('viewUserCart');
             Route::post('/user/children/cart', [HomeController::class , 'changeCartStatus'])->name('changeCartStatus');
             Route::post('/user/children/discard', [HomeController::class , 'discardCartChanges'])->name('discardCartChanges');
+
+
+          /*==============suggest sport ================*/
+          Route::get('/suggest-sport', [SuggestSportController::class , 'index'])->name('suggest-sport');
+          //dynamicSuggest.fetch
+          Route::get('dynamicSuggest/fetch', [SuggestSportController::class , 'suggest'])->name('dynamicSuggest.fetch');
+
+
+
             /*
             ----------------------------------
             ========== user profile ==========
