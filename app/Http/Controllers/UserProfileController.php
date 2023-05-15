@@ -13,8 +13,10 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Company;
 use App\Models\Sport;
 use App\Models\User_children;
+use App\Models\User_membership;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -162,4 +164,45 @@ class UserProfileController extends Controller
 
     }
 
+    /***
+     * userMembership
+     */
+    public function userMembership(){
+        $user_id = Auth::user()->id ;
+        $mem_details = User_membership::where('user_id',$user_id) ->orderByDesc('created_at')->get();
+       $lastMem= User_membership::where('user_id',$user_id)->latest('end_date')->first();
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+            return view('web.profile.user_year_membership',compact(['mem_details','lastMem']));
+
+        }else{
+            return view('web.profile.user_year_membership_ar',compact(['mem_details','lastMem']));
+
+        }
+
+    }
+
+    public function renewAnuual(){
+$company=Company::first();
+        return view('web.profile.member_annual_renew',compact('company'));
+
+    }
+
+    public function  storeAnnual(Request $request){
+$annual=new User_membership();
+$annual->user_id=Auth::user()->id ;
+$annual->start_date=$request->get('start_date') ;
+$annual->end_date=$request->get('end_date') ;
+$annual->fees_paid=$request->get('fees_paid') ;
+  $annual->save();
+  $user_id = Auth::user()->id ;
+  $mem_details = User_membership::where('user_id',$user_id) ->orderByDesc('created_at')->get();
+ $lastMem= User_membership::where('user_id',$user_id)->latest('end_date')->first();
+  if(LaravelLocalization::getCurrentLocale() == 'en'){
+      return view('web.profile.user_year_membership',compact(['mem_details','lastMem']));
+
+  }else{
+      return view('web.profile.user_year_membership_ar',compact(['mem_details','lastMem']));
+
+  }
+    }
 }

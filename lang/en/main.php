@@ -49,5 +49,8 @@ return [
     'Cart Data' => 'Cart Data',
     'Cost' => 'Cost',
     'Your diet plan' => 'Your diet plan',
+    'Annual Membership' =>'Annual Membership',
+    'Annual desc' =>'Renew Your Annual Membership',
+    'approved'=>'Status',
     //  'Name' => 'Name',
 ];

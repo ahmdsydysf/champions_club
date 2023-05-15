@@ -35,5 +35,6 @@ class Company extends Model
             'news_text_ar',
             'news_title_en',
             'news_title_ar',
+            'club_member_fees'
     ];
 }

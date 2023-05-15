@@ -50,5 +50,8 @@ return [
     'Name' => 'الاسم',
     'Cart Data' => 'كل البيانات',
     'Your diet plan' => ' انظمتك الغذائية',
+    'Annual Membership' =>'العضوية السنوية',
+    'Annual desc' =>'جدد اشتراكك السنوي',
+    'approved'=>'الحالة',
 
 ];
