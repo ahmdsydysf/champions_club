@@ -107,6 +107,15 @@
                             </span>
                             <span class="menu-title">Memberships</span>
                         </a>
+
+
+                        <a class="menu-link {{ Request::segment(2) == 'annual-members' ? 'active' : '' }} "
+                        href="{{ route('dashboard.annual-members.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title"> Annual Members</span>
+                    </a>
                     </div>
 
                 </div>
