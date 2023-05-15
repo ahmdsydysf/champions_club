@@ -94,8 +94,9 @@ class UserProfileController extends Controller
     public function childSports($id)
     {
         $child = User_children::where('id',$id)->first() ;
+        $sport = Sport::all();
         $child_mem_details = Membership_detail::with('sport')->where('child_id',$id) ->orderByDesc('created_at')->get();
-        return view('web.profile.child_sports' , compact('child_mem_details','child' ));
+        return view('web.profile.child_sports' , compact('child_mem_details','child','sport'));
     }
 
     public function renewSport(Request $request){
