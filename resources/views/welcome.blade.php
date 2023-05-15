@@ -130,7 +130,7 @@
             <video src="{{ $aboutUs->about_video ?? '' }}" loop autoplay muted></video>
         </div>
         <!-- end video -->
-        <a href="{{ $aboutUs->about_video ??'' }}" class="play-btn" data-fancybox>
+        <a href="{{ $aboutUs->about_video ?? '' }}" class="play-btn" data-fancybox>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                 y="0px" viewBox="0 0 104 104" enable-background="new 0 0 104 104" xml:space="preserve">
                 <path fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" d="M26,35h52L52,81L26,35z" />
@@ -148,11 +148,11 @@
             </div>
             <!-- end section-title -->
             <ul class="counter">
-                <li> <span class="odometer" id="1"></span><span class="symbol">+</span> <small>New Member</small>
+                @foreach ( $counter as $coun )
+
+                <li> <span class="odometer" id="{{ $coun->id }}"></span> <small>{{ $coun->text_en }}</small>
                 </li>
-                <li> <span class="odometer" id="2"></span><span class="symbol">k</span> <small>Members</small> </li>
-                <li> <span class="odometer" id="3"></span><span class="symbol">%</span> <small>Satisfaction</small>
-                </li>
+                @endforeach
             </ul>
             <p>{{ $aboutUs->about_details_en ?? '' }}</p>
 

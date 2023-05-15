@@ -14,7 +14,7 @@
     button.submit-btn.reg:hover {
         border: none;
         background: #405089;
-        color: #f65935;
+        color: #fff;
         height: 54px;
         border: 1px solid #405089;
         padding: 0 40px;
@@ -65,7 +65,7 @@
                             <li class="{{ Request::segment(3) == 'mySports' ? 'active' : '' }}"><a
                                     href="{{ route('childSports', $child->id) }}">{{ __('main.My Sports') }}</a></li>
                             <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}">
-                                <a href="#">{{ __('main.Your Membership') }}</a>
+                                <a href="#">{{ __('main.Your diet plan') }}</a>
                             </li>
                         </ul>
                         <!-- end side-menu -->

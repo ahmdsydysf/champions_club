@@ -220,7 +220,7 @@
                     </div>
                     <!-- end col-12 -->
                     <div class="col-12">
-                        <table class="table table-hover">
+                        <table class="table table-hover" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
                             <thead>
                                 <tr>
                                     <th scope="col">name</th>
@@ -255,7 +255,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>Total</td>
+                                    <td>Total After Adding 14% Tax</td>
                                 </tr>
                                 <tr>
                                     <td></td>

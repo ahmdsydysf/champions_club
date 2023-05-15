@@ -266,7 +266,8 @@ class HomeController extends Controller
                         'start_date' => $startDates[$i],
                         'end_date' => $endDates[$i],
                         'fees' => $sportFees->membership_fees,
-                        'user_comment' =>$userComments[$i]
+                        'user_comment' =>$userComments[$i],
+                        'created_at' => Carbon::now()
                     ]);
                     $id3 = DB::getPdo()->lastInsertId();
                     session()->push('Member_detail', $id3);

@@ -13,6 +13,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Sport;
 use App\Models\User_children;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -74,6 +75,7 @@ class UserProfileController extends Controller
         }
 
     }
+
     public function childProfile($id){
 
         $child = User_children::where('id',$id)->first() ;
@@ -81,12 +83,19 @@ class UserProfileController extends Controller
         return view('web.profile.child_profile' , compact('child'));
 
     }
-    public function childSports($id){
 
+    public function childSports($id)
+    {
         $child = User_children::where('id',$id)->first() ;
+        $child_mem_details = Membership_detail::with('sport')->where('child_id',$id) ->orderByDesc('created_at')->get();
+        return view('web.profile.child_sports' , compact('child_mem_details','child' ));
+    }
 
-        return view('web.profile.child_profile' , compact('child'));
+    public function renewSport(Request $request){
 
+        $child = User_children::where('id',$request->child_id)->first();
+        $sport_details = Sport::where('id',$request->sport_id)->first();
+        return view('web.profile.child_renew_sport' , compact('sport_details','child'));
     }
     public function childUpdate($id , Request $request)
     {
@@ -99,11 +108,8 @@ class UserProfileController extends Controller
             'height' => 'required',
             'weight' => 'required',
         ]);
-
         $child = User_children::where('id',$id)->first() ;
-
         $request_data = $request->except('personal_image', 'birth_image', '_token');
-
         if ($request->file('personal_image')) {
             Storage::disk('public_uploads')->delete("/children_data/$child->personal_image");
             $myimageName = uniqid() . $request->file('personal_image')->getClientOriginalName();
@@ -120,22 +126,16 @@ class UserProfileController extends Controller
             })->save(public_path('uploads/children_data/' . $myimageName));
             $request_data['birth_image'] = $myimageName;
         }
-
         $child->update($request_data);
-
         return redirect()->route('childProfile' , $id);
-
     }
-    public function userImage($user_id , Request $request){
-
-         $user_data = User::find($user_id) ;
-
-         $request->validate([
+    public function userImage($user_id , Request $request)
+    {
+        $user_data = User::find($user_id) ;
+        $request->validate([
             'image' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
-
         $request_data = $request->except('image', '_token');
-
         if ($request->file('image')) {
             if ($user_data->image != 'user_default.png') {
                 Storage::disk('public_uploads')->delete('user/' . $user_data->image);
@@ -144,13 +144,11 @@ class UserProfileController extends Controller
             Image::make($request->file('image'))->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/user/' . $imageName));
-
             $request_data['image'] = $imageName;
         }
         $user_data->image =  $imageName;
         $user_data->save();
         return back()->with('success', 'your profile data updated successfully');
-
     }
 
     public function yourMembership(){

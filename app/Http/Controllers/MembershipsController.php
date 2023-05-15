@@ -16,7 +16,7 @@ class MembershipsController extends Controller
 
         $this->object = $object;
         $this->viewName = 'dash.memberships.';
-    $this->routeName = 'memberships.';
+        $this->routeName = 'memberships.';
     }
     /**
      * Display a listing of the resource.

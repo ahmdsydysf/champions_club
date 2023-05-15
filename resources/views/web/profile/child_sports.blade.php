@@ -14,7 +14,7 @@
     button.submit-btn.reg:hover {
         border: none;
         background: #405089;
-        color: #f65935;
+        color: #fff;
         height: 54px;
         border: 1px solid #405089;
         padding: 0 40px;
@@ -31,6 +31,11 @@
     h4 span,
     h5 span {
         color: #526199;
+    }
+
+    .table td,
+    .table th {
+        vertical-align: inherit !important;
     }
 </style>
 @endsection
@@ -60,12 +65,13 @@
                         <ul>
 
                             <li class="{{ Request::segment(3) == 'childProfile' ? 'active' : '' }}"><a
-                                    href="{{ route('childProfile' , $child->id ) }}">{{ __('main.Profile Info') }}</a>
+                                    href="{{ route('childProfile' , $child->id ) }}">{{
+                                    __('main.Profile Info') }}</a>
                             </li>
                             <li class="{{ Request::segment(3) == 'mySports' ? 'active' : '' }}"><a
                                     href="{{ route('childSports', $child->id) }}">{{ __('main.My Sports') }}</a></li>
                             <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}">
-                                <a href="#">{{ __('main.Your Membership') }}</a>
+                                <a href="#">{{ __('main.Your diet plan') }}</a>
                             </li>
                         </ul>
                         <!-- end side-menu -->
@@ -86,87 +92,66 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="section-title">
-                                    <h2>{{ __('Child All Sports') }}</h2>
+                                    <h2>{{ __('main.Child All Sports') }}</h2>
                                 </div>
                                 <!-- end section-title -->
                             </div>
                             <!-- end col-12 -->
                             <div class="col-12">
-                                <table class="table table-hover">
+                                <table class="table table-hover"
+                                    dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
                                     <thead>
                                         <tr>
 
-                                            <th scope="col">{{ __('Sport Name') }}</th>
-                                            <th scope="col">{{ __('Start Date') }}</th>
-                                            <th scope="col">{{ __('End Date') }}</th>
-                                            <th scope="col">{{ __('Attendance Days') }}</th>
-                                            <th scope="col">{{ __('Absent Days') }}</th>
-                                            <th scope="col">{{ __('Level') }}</th>
-                                            <th scope="col">{{ __('Action') }}</th>
+                                            <th scope="col">{{ __('main.Sport Name') }}</th>
+                                            <th scope="col">{{ __('main.Start Date') }}</th>
+                                            <th scope="col">{{ __('main.End Date') }}</th>
+                                            <th scope="col">{{ __('main.Attendance Days') }}</th>
+                                            <th scope="col">{{ __('main.Absent Days') }}</th>
+                                            <th scope="col">{{ __('main.Level') }}</th>
+                                            <th scope="col">{{ __('main.Renew') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if(session('childrenIds') && session('membershipDetails'))
-                                        @for($i = 0 ; $i < count(session('childrenIds')) ; $i++) <tr>
-                                            <th scope="row">{{ session('childrenIds')[$i]->name }}</th>
-                                            <td>{{ session('membershipDetails')[$i]->sport->sport_title_en }}</td>
-                                            <td>
-                                                {{session('membershipDetails')[$i]->start_date }}
-                                            </td>
-                                            <td>
-                                                {{session('membershipDetails')[$i]->end_date }}</td>
-                                            <td>
-                                                {{ session('membershipDetails')[$i]->fees}} LE
-                                            </td>
-                                            </tr>
-                                            @endfor
 
+                                        @foreach ( $child_mem_details as $mem)
+                                        @if (app()->getLocale() == 'ar')
+                                        <td>{{ $mem->sport->sport_title_ar}}</td>
+                                        @else
+                                        <td>{{ $mem->sport->sport_title_en}}</td>
+                                        @endif
+                                        <td>{{ $mem->start_date}}</td>
+                                        <td>{{ $mem->end_date}}</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>{{ $child->level}}</td>
+                                        <td>
+                                            @if ($mem->end_date > now()->format('Y-m-d'))
+                                            <button type="button" class="btn btn-lg submit-btn reg" disabled>{{
+                                                __('main.Renew') }}</button>
+                                            @else
+                                            <form action="{{ route('renewSport') }}" method="get">
+                                                @csrf
+                                                <input type="hidden" value="{{ $child->id }}" name="child_id">
+                                                <input type="hidden" value="{{ $mem->sport->id }}" name="sport_id">
+                                                <button type="submit" class="btn btn-lg submit-btn reg">{{
+                                                    __('main.Renew') }}</button>
+                                            </form>
+                                            @endif
+                                        </td>
+
+                                        @endforeach
 
 
                                     </tbody>
-                                    <tfoot>
-                                        <tr class='total'>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>Total</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="total-price">{{
-                                                session('membershipDetails')[0]->invoice->order_total }}
-                                                LE</td>
-                                        </tr>
-                                    </tfoot>
+
                                 </table>
 
-                                <div class="row">
-                                    <div class="col-12 row justify-content-center">
-                                        <form action="{{ route('changeCartStatus') }}" method="post">
-                                            @csrf
-                                            <input type="hidden"
-                                                value="{{ session('membershipDetails')[0]->invoice_id }}"
-                                                name="invoice_status">
-                                            <button type="submit"
-                                                class="submit-btn btn btn-primary reg float-left">Confirm
-                                                Data</button>
-                                        </form>
-                                        <form action="{{ route('discardCartChanges') }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="submit-btn btn btn-primary reg float-left">
-                                                Back</button>
-                                        </form>
-                                    </div>
 
-                                </div>
 
                             </div>
 
-                            @endif
+
                             <!-- end col-12 -->
 
 

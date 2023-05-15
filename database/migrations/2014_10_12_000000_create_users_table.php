@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email',191)->unique();
             $table->string('image')->default('user_default.png');
-            $table->string('mobile')->default('0000000000');
-            $table->string('address')->default('egypt,cairo');
+            $table->string('mobile')->nullable();
+            $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('type')->default(0);

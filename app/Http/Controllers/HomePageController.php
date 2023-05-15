@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Counter;
 use App\Models\Cup;
 use App\Models\NewsEvent;
 use App\Models\Service;
@@ -22,6 +23,7 @@ class HomePageController extends Controller
         $services = Service::all();
         $news = NewsEvent::all();
         $sponsors = Sponsor::all();
+        $counter = Counter::all();
         if(LaravelLocalization::getCurrentLocale() == 'en'){
             return view('welcome' , get_defined_vars());
         }else{

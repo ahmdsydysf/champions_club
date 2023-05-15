@@ -34,5 +34,21 @@ return [
     'Profile title' => 'اليك بيانات الطفل ',
     'My Sports' => 'رياضاتي',
     'Child Sports' => 'رياضات الطفل',
+    'Child Sport' => 'رياضة الطفل',
+
     'Child All Sports' => 'بيانات الرياضات ',
+    'Sport Name' => 'اسم الرياضة',
+    'Start Date' => 'تاريخ البدأ',
+    'End Date' => 'تاريخ الانتهاء',
+    'Attendance Days' => 'ايام الحضور',
+    'Absent Days' => 'ايام الغياب',
+    'Level' => 'المستوي',
+    'Renew' => 'تجديد',
+    'Vat' => 'الاجمالي بعد اضافة 14% ضريبه',
+    'LE' => 'جنيه',
+    'Cost' => 'التكلفة',
+    'Name' => 'الاسم',
+    'Cart Data' => 'كل البيانات',
+    'Your diet plan' => ' انظمتك الغذائية',
+
 ];

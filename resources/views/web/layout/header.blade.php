@@ -49,7 +49,7 @@
     @endif
 </head>
 
-<body>
+<body style="direction:{{ LaravelLocalization::getCurrentLocaleDirection() }} !important">
 
     @if (LaravelLocalization::getCurrentLocale() == 'en')
     <header class="header">
