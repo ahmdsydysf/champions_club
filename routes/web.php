@@ -89,7 +89,8 @@ Route::group(
                 Route::get('/profile/mySports/{id}', [UserProfileController::class, 'childSports'])->name('childSports');
                 Route::get('/profile/renew/sport', [UserProfileController::class, 'renewSport'])->name('renewSport');
                 Route::put('/profile/renew/sport', [UserProfileController::class, 'sportRenew'])->name('sportRenew');
-                Route::post('/profile/renew/sport', [UserProfileController::class, 'addAnotherChildSport'])->name('addAnotherChildSport');
+                Route::post('/profile/add/child/sport', [UserProfileController::class, 'addAnotherChildSport'])->name('addAnotherChildSport');
+                Route::put('/child/renew/sport', [UserProfileController::class, 'newaddedsportrenew'])->name('newaddedsportrenew');
             });
 
             // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');

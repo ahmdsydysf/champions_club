@@ -99,16 +99,97 @@ class UserProfileController extends Controller
         return view('web.profile.child_sports' , compact('child_mem_details','child','sport'));
     }
 
-    public function renewSport(Request $request){
+    public function renewSport(Request $request)
+    {
 
         $child = User_children::where('id',$request->child_id)->first();
         $sport_details = Sport::where('id',$request->sport_id)->first();
         return view('web.profile.child_renew_sport' , compact('sport_details','child'));
     }
 
+    public function newaddedsportrenew(Request $request)
+    {
+
+        $invoice_id = $request->invoice_id ;
+        Membership_invoice::where('id' , $invoice_id)->update(['invoice_status' => 1]);
+
+        if(LaravelLocalization::getCurrentLocale() == 'en'){
+        return view('web.congrate');
+        }else{
+            return view('web.congrate_ar');
+        }
+    }
+
+
+
+    public function addAnotherChildSport(Request $request)
+    {
+        function getDaysBetweenDates1($startDate, $endDate, $day1, $day2) {
+            $days = array();
+            $currentDate = strtotime($startDate);
+            $endDate = strtotime($endDate);
+
+            while ($currentDate <= $endDate) {
+                $dayNumber = date('N', $currentDate);
+                if ($dayNumber == $day1 || $dayNumber == $day2) {
+                    $days[] = date('Y-m-d', $currentDate);
+                }
+                $currentDate = strtotime('+1 day', $currentDate);
+            }
+
+            if (count($days) > 8) {
+                $days = array_slice($days, 0, 8);
+            }
+
+            return $days;
+        }
+        $request->validate([
+            'select_sport' => 'required',
+        ]);
+        $child = User_children::where('id',$request->child_id)->first();
+        $sport_details = Sport::where('id',$request->select_sport)->first();
+        $endate = Carbon::parse($request->start_date);
+        $endate->addMonth();
+        $totalFees = Sport::select('membership_fees')->where('id',$request->select_sport)->first();
+        $totalAfterVat = $totalFees->membership_fees * 0.14 + $totalFees->membership_fees;
+        DB::table('membership_invoices')->insert([
+            'invoice_date' => now(),
+            'order_total' => $totalAfterVat ,
+            'vat_perc' => '0.14',
+            'user_id' => Auth::user()->id,
+        ]);
+        $invoice_id = DB::getPdo()->lastInsertId();
+
+        $sports_days = Sports_day::where('sport_id' , $request->select_sport)->first();
+        $childSessionDays = getDaysBetweenDates1($request->start_date, $endate, (string)$sports_days->firstday_id, (string)$sports_days->secondday_id);
+        $start = $request->start_date;
+        $end = $endate;
+        DB::table('membership_details')->insert([
+            'child_id' => $request->child_id,
+            'sport_id' => $request->select_sport,
+            'sport_days_id' => $request->select_days,
+            'start_date' => $request->start_date,
+            'end_date' => $endate,
+            'fees' => $totalFees->membership_fees,
+            'invoice_id' => $invoice_id,
+            'created_at' => Carbon::now()
+        ]);
+        $member_id = DB::getPdo()->lastInsertId();
+        foreach($childSessionDays as $key => $value){
+            DB::table('attendances')->insert([
+                'session_date' => $value,
+                'session_no' => $key + 1 ,
+                'membership_details_id' => $member_id,
+                'child_id' => $request->child_id,
+            ]);
+        }
+
+        return view('web.profile.child_new_sport_pay' , compact('child' , 'sport_details' ,'totalAfterVat','start' ,'end' ,'invoice_id'));
+    }
+
     public function sportRenew(Request $request)
     {
-        function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
+         function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
             $days = array();
             $currentDate = strtotime($startDate);
             $endDate = strtotime($endDate);

@@ -64,7 +64,7 @@
 
     .contact .add-new-player-form {
         border-radius: 5px;
-        background: #fff;
+        background: #c9c9c9;
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 8px 30px rgba(0, 0, 0, 0.1);
 
     }
@@ -180,31 +180,32 @@
                                     <tbody>
 
                                         @foreach ( $child_mem_details as $mem)
-                                        @if (app()->getLocale() == 'ar')
-                                        <td>{{ $mem->sport->sport_title_ar}}</td>
-                                        @else
-                                        <td>{{ $mem->sport->sport_title_en}}</td>
-                                        @endif
-                                        <td>{{ $mem->start_date}}</td>
-                                        <td>{{ $mem->end_date}}</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>{{ $child->level}}</td>
-                                        <td>
-                                            @if ($mem->end_date > now()->format('Y-m-d'))
-                                            <button type="button" class="btn btn-lg submit-btn reg" disabled>{{
-                                                __('main.Renew') }}</button>
+                                        <tr>
+                                            @if (app()->getLocale() == 'ar')
+                                            <td>{{ $mem->sport->sport_title_ar}}</td>
                                             @else
-                                            <form action="{{ route('renewSport') }}" method="get">
-                                                @csrf
-                                                <input type="hidden" value="{{ $child->id }}" name="child_id">
-                                                <input type="hidden" value="{{ $mem->sport->id }}" name="sport_id">
-                                                <button type="submit" class="btn btn-lg submit-btn reg">{{
-                                                    __('main.Renew') }}</button>
-                                            </form>
+                                            <td>{{ $mem->sport->sport_title_en}}</td>
                                             @endif
-                                        </td>
-
+                                            <td>{{ $mem->start_date}}</td>
+                                            <td>{{ $mem->end_date}}</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>{{ $child->level}}</td>
+                                            <td>
+                                                @if ($mem->end_date > now()->format('Y-m-d'))
+                                                <button type="button" class="btn btn-lg submit-btn reg" disabled>{{
+                                                    __('main.Renew') }}</button>
+                                                @else
+                                                <form action="{{ route('renewSport') }}" method="get">
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $child->id }}" name="child_id">
+                                                    <input type="hidden" value="{{ $mem->sport->id }}" name="sport_id">
+                                                    <button type="submit" class="btn btn-lg submit-btn reg">{{
+                                                        __('main.Renew') }}</button>
+                                                </form>
+                                                @endif
+                                            </td>
+                                        </tr>
                                         @endforeach
 
 
@@ -229,7 +230,9 @@
                                 <div class="section-title">
                                     <h2>{{ __('main.Add New Sport') }}</h2>
                                 </div>
-                                <form id="add-player" action="{{ route('addAnotherChildSport') }}" method="POST">
+                                <form id="add-player"
+                                    action="{{ route('addAnotherChildSport' , ['child_id'=> $child->id]) }}"
+                                    method="POST">
                                     @csrf
                                     <div class="form-container">
                                         <div class="row g-3 add-new-player-form p-5">
@@ -255,9 +258,12 @@
 
 
                                                 </select>
+                                                @error('select_sport')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col-6 trainer-days">
-                                                <label for="inputState12" class="form-label ">{{ __('main.Select Days')
+                                                <label for="inputState12" class="form-label">{{ __('main.Select Days')
                                                     }}</label>
                                                 <select data-reset='clear' id="inputState12" name="select_days"
                                                     class="form-control custom-select selected-days important-input">
@@ -265,7 +271,24 @@
                                                 </select>
 
                                             </div>
-                                            <div class="col-6 trainer-level">
+                                            <div class="col-12 start-end-date">
+                                                <div class="form-group ">
+                                                    <label for="start-date" class="form-label mt-2">
+                                                        {{ __('main.Start Date')}}
+                                                    </label>
+                                                    <input type="date" required
+                                                        class="startDate form-control important-date" name="start_date"
+                                                        id="start-date" onchange="adjustDate(this)">
+                                                    <label for="end-date" class="form-label mt-2">{{ __('main.End Date')
+                                                        }}</label>
+                                                    <input type="date" required
+                                                        class="endDate form-control important-date" name="end_date"
+                                                        id="end-date" disabled>
+                                                </div>
+
+
+                                            </div>
+                                            {{-- <div class="col-6 trainer-level">
                                                 <label for="inputState1" class="form-label">{{ __('main.Level')
                                                     }}</label>
                                                 <select id="inputState1" name="level"
@@ -277,10 +300,10 @@
                                                     <option value="3">{{
                                                         __('main.Professional') }}</option>
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-6 row justify-content-end align-content-end">
                                                 <button form="add-player"
-                                                    class="submit-btn btn btn-primary reg col-11 ">{{
+                                                    class="submit-btn btn btn-primary reg col-12 ">{{
                                                     __('main.Register') }}</button>
                                             </div>
                                         </div>
@@ -304,6 +327,41 @@
 @endsection
 @section('custom_js')
 <script>
+    let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            // Set the default start date to tomorrow
+            document.getElementById("start-date").valueAsDate = tomorrow;
+
+
+            let startDate = new Date(document.getElementById("start-date").value);
+            let endDate = new Date(startDate);
+            endDate.setMonth(endDate.getMonth() + 1);
+            document.getElementById("end-date").valueAsDate = endDate;
+
+            function adjustDate(event) {
+                event.setAttribute('data-status', 'on');
+                var targetDiv = document.querySelector('input[data-status]');
+                if (document.contains(targetDiv)) {
+                    // Get tomorrow's date
+                    function updateEndDate() {
+                        let startDate = new Date(targetDiv.value);
+                        let selectedDate = new Date(targetDiv.value);
+                        if (selectedDate < tomorrow) {
+                            targetDiv.valueAsDate = tomorrow;
+                        } else {
+
+                            let endDate = new Date(startDate);
+                            endDate.setMonth(endDate.getMonth() + 1);
+                            targetDiv.nextElementSibling.nextElementSibling.valueAsDate = endDate;
+                        }
+                    }
+
+                    // Function to update the end date when the start date is changed
+
+                    updateEndDate();
+                    event.removeAttribute('data-status');
+                }
+            }
     function handleSportChange(trigger) {
     let sportId = trigger.val();
     let _token = $('input[name="_token"]').val();
