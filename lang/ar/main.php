@@ -53,5 +53,11 @@ return [
     'Annual Membership' =>'العضوية السنوية',
     'Annual desc' =>'جدد اشتراكك السنوي',
     'approved'=>'الحالة',
+    'Payment'=>'طرق الدفع',
+    'Add New Sport'=>'اضافة رياضة جديده للطفل',
+    'Register'=>'اشتراك',
+    'Select Sport'=>'اختر الرياضة',
+    'Select Days'=>'اختر الايام',
+    'Days From Here'=>'الايام من هنا',
 
 ];

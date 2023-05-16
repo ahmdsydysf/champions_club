@@ -52,5 +52,11 @@ return [
     'Annual Membership' =>'Annual Membership',
     'Annual desc' =>'Renew Your Annual Membership',
     'approved'=>'Status',
-    //  'Name' => 'Name',
+    'Payment'=>'Payment',
+    'Add New Sport'=>'Add New Sport To Child',
+    'Register'=>'Register',
+    'Select Sport'=>'Select Sport',
+    'Select Days'=>'Select Days',
+    'Days From Here'=>'Days From Here',
+
 ];

@@ -226,8 +226,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-
-                            <h2>{{ __('main.Cart Data') }}  </h2>
+                            <h2>{{ __('main.Cart Data') }}</h2>
                         </div>
                         <!-- end section-title -->
                         <div class="row g-3 m-3">
@@ -375,41 +374,16 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ now()->format('Y-m-d') }}
+                                            {{ $start }}
                                         </td>
                                         <td>
-                                            @php
-                                            $enddate = new DateTime();
-                                            $enddate->modify('+1 month');
-
-                                            @endphp
-                                            {{ $enddate->format('Y-m-d') }}
+                                            {{ $end }}
                                         </td>
 
 
                                         <td>
-                                            @php
-                                             $annual=null;
-                                            $annual=App\Models\User_membership::where('user_id',$child->user_id)->
-                                            where('end_date','>',now()->format('Y-m-d'))->where('approved',1)->first();
 
-                                            if($annual){
-                                                $vat = $sport_details->membership_disc_fees * 0.14;
-                                            $NewTotal = $sport_details->membership_disc_fees + $vat;
-
-                                        }else{
-                                                $vat = $sport_details->membership_fees * 0.14;
-                                            $NewTotal = $sport_details->membership_fees + $vat;
-
-                                        }
-
-                                            @endphp
-                                            @if ($annual !== null)
-                                            {{ $sport_details->membership_disc_fees }}
-                                              @else
-                                              {{ $sport_details->membership_fees }}
-                                            @endif
-                                            {{ __('main.LE') }}
+                                            {{ $sport_details->membership_fees }} {{ __('main.LE') }}
                                         </td>
                                     </tr>
 
@@ -432,7 +406,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="total-price">{{ $NewTotal }}
+                                        <td class="total-price">{{ $totalAfterVat }}
                                             {{ __('main.LE') }}</td>
                                     </tr>
                                 </tfoot>
@@ -440,8 +414,7 @@
 
                             <div class="row">
                                 <div class="col-12 row justify-content-center">
-                                    <form
-                                        action="{{ route('sportRenew' , ['user_id'=>Auth::user()->id,'total'=>$NewTotal,'child_id'=>$child->id,'sport_id'=>$sport_details->id] ) }}"
+                                    <form action="{{ route('newaddedsportrenew' , ['invoice_id'=> $invoice_id] ) }}"
                                         method="post">
                                         @csrf
                                         @method('PUT')
