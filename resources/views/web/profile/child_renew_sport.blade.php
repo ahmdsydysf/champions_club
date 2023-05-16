@@ -124,7 +124,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h2>{{ __('main.Cart Data') }}</h2>
+
+                            <h2>{{ __('main.Cart Data') }}  </h2>
                         </div>
                         <!-- end section-title -->
                     </div>
@@ -168,10 +169,27 @@
 
                                     <td>
                                         @php
-                                        $vat = $sport_details->membership_fees * 0.14;
-                                        $NewTotal = $sport_details->membership_fees + $vat
+                                         $annual=null;
+                                        $annual=App\Models\User_membership::where('user_id',$child->user_id)->
+                                        where('end_date','>',now()->format('Y-m-d'))->where('approved',1)->first();
+
+                                        if($annual){
+                                            $vat = $sport_details->membership_disc_fees * 0.14;
+                                        $NewTotal = $sport_details->membership_disc_fees + $vat;
+
+                                    }else{
+                                            $vat = $sport_details->membership_fees * 0.14;
+                                        $NewTotal = $sport_details->membership_fees + $vat;
+
+                                    }
+
                                         @endphp
-                                        {{ $sport_details->membership_fees }} {{ __('main.LE') }}
+                                        @if ($annual !== null)
+                                        {{ $sport_details->membership_disc_fees }}
+                                          @else
+                                          {{ $sport_details->membership_fees }}
+                                        @endif
+                                        {{ __('main.LE') }}
                                     </td>
                                 </tr>
 
