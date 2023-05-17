@@ -64,8 +64,10 @@
                             </li>
                             <li class="{{ Request::segment(3) == 'mySports' ? 'active' : '' }}"><a
                                     href="{{ route('childSports', $child->id) }}">{{ __('main.My Sports') }}</a></li>
-                            <li class="{{ Request::segment(3) == 'Membership' ? 'active' : '' }}">
-                                <a href="#">{{ __('main.Your diet plan') }}</a>
+                            <li class="{{ Request::segment(3) == 'sportsDiet' ? 'active' : '' }}">
+                                <a href="{{ route('childSportDiet' , ['child_id'=>$child->id]) }}">
+                                    {{ __('main.Your diet plan') }}
+                                </a>
                             </li>
                         </ul>
                         <!-- end side-menu -->

@@ -25,7 +25,12 @@ class Sport extends Model
         'membership_fees' ,
         'membership_en_notes',
         'membership_ar_notes',
+        'feed_recommend',
+        'membership_disc_fees',
     ];
 
-
+    public function SportDietLinks()
+    {
+        return $this->hasMany(SportDietLink::class, 'sport_id', 'id');
+    }
 }

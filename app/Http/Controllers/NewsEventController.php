@@ -6,6 +6,7 @@ use App\Models\NewsEvent;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+
 class NewsEventController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class NewsEventController extends Controller
     {
         $data = NewsEvent::paginate(5);
 
-        return view('dash.news_event.all_news_event' , compact('data'));
+        return view('dash.news_event.all_news_event', compact('data'));
     }
 
 
@@ -36,7 +37,7 @@ class NewsEventController extends Controller
         'date' => 'required',
         'brief_en' => 'required',
         'brief_ar' => 'required',
-        'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+        'image' => 'image|mimes:jpeg,png,jpg',
         ]);
 
         $request_data = $request->except('image', '_token');
@@ -50,7 +51,7 @@ class NewsEventController extends Controller
         }
         NewsEvent::create($request_data);
 
-        toast('Success Adding New Event','success');
+        toast('Success Adding New Event', 'success');
 
         return redirect()->route('dashboard.news_event.index');
     }
@@ -71,28 +72,28 @@ class NewsEventController extends Controller
             'date' => 'required',
             'brief_en' => 'required',
             'brief_ar' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             ]);
 
-            $request_data = $request->except('image', '_token');
+        $request_data = $request->except('image', '_token');
 
-            if ($request->file('image')) {
+        if ($request->file('image')) {
 
-                if ($newsEvent->image != 'default_event.jpg') {
-                    Storage::disk('public_uploads')->delete("/event/$newsEvent->image");
-                }
-                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-                Image::make($request->file('image'))->resize(250, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/event/' . $myimageName));
-                $request_data['image'] = $myimageName;
+            if ($newsEvent->image != 'default_event.jpg') {
+                Storage::disk('public_uploads')->delete("/event/$newsEvent->image");
             }
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(250, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/event/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
 
-            $newsEvent->update($request_data);
+        $newsEvent->update($request_data);
 
-            toast('Success Updating Event','warning');
+        toast('Success Updating Event', 'warning');
 
-            return redirect()->route('dashboard.news_event.index');
+        return redirect()->route('dashboard.news_event.index');
     }
 
     /**
@@ -107,7 +108,7 @@ class NewsEventController extends Controller
             Storage::disk('public_uploads')->delete("/event/$newsEvent->image");
         }
         $newsEvent->delete();
-        toast('Success Deleteing event','error');
+        toast('Success Deleteing event', 'error');
         return redirect()->route('dashboard.news_event.index');
     }
 }

@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
 
-            // UserSeeder::class,
-            // SocialLinkSeeder::class,
-            // CompanySeeder::class,
-            // DaysSeeder::class,
+            UserSeeder::class,
+            SocialLinkSeeder::class,
+            CompanySeeder::class,
+            DaysSeeder::class,
             CounterSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();

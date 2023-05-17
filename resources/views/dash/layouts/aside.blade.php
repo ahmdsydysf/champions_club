@@ -109,13 +109,22 @@
                         </a>
 
 
+                        <a class="menu-link {{ Request::segment(2) == 'feedRecommend' ? 'active' : '' }} "
+                            href="{{ route('dashboard.feedRecommend.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Feed Recommend</span>
+                        </a>
+
+
                         <a class="menu-link {{ Request::segment(2) == 'annual-members' ? 'active' : '' }} "
-                        href="{{ route('dashboard.annual-members.index') }}">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title"> Annual Members</span>
-                    </a>
+                            href="{{ route('dashboard.annual-members.index') }}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title"> Annual Members</span>
+                        </a>
                     </div>
 
                 </div>

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -22,6 +21,8 @@ return new class extends Migration
             $table->string('sport_image')->default('default_sport.jpg');
             $table->text('sport_overview_en')->nullable();
             $table->text('sport_overview_ar')->nullable();
+            // $table->text('sport_diet_en')->nullable();
+            // $table->text('sport_diet_ar')->nullable();
             $table->timestamps();
         });
     }

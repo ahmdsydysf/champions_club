@@ -16,6 +16,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SocialLinkController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\SportController;
+use App\Http\Controllers\SportDietLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,43 +31,42 @@ use App\Http\Controllers\SportController;
 
 //=========================================================================
 
-            /*
-            ----------------------------------
-            ========== Admin Dashboard =======
-            ----------------------------------
-            */
+/*
+----------------------------------
+========== Admin Dashboard =======
+----------------------------------
+*/
 
 
-            Route::prefix('dashboard')
-            ->name('dashboard.')
-            ->group(function () {
+Route::prefix('dashboard')
+->name('dashboard.')
+->group(function () {
 
-                Route::middleware('isAdmin')->group(function(){
-                    Route::get('/' , function(){
-                        return view('dashboard');
-                    })->name('main');
-                    // slider images route
-                    Route::resources([
-                        'slider_image' => SliderImageController::class ,
-                        'sport' => SportController::class ,
-                        'branch' => BranchController::class ,
-                        'news_event' => NewsEventController::class ,
-                        'service' => ServiceController::class ,
-                        'cup' => CupController::class ,
-                        'general_service' => GeneralServiceController::class ,
-                        'sponsor' => SponsorController::class ,
-                        'memberships' => MembershipsController::class ,
-                        'annual-members' => AnnualMembersController::class ,
-                    ]);
+    Route::middleware('isAdmin')->group(function () {
+        Route::get('/', function () {
+            return view('dashboard');
+        })->name('main');
+        // slider images route
+        Route::resources([
+            'slider_image' => SliderImageController::class ,
+            'sport' => SportController::class ,
+            'branch' => BranchController::class ,
+            'news_event' => NewsEventController::class ,
+            'service' => ServiceController::class ,
+            'cup' => CupController::class ,
+            'general_service' => GeneralServiceController::class ,
+            'sponsor' => SponsorController::class ,
+            'memberships' => MembershipsController::class ,
+            'annual-members' => AnnualMembersController::class ,
+            'feedRecommend' => SportDietLinkController::class ,
+        ]);
 
-                    Route::resource('company' , CompanyController::class)->only(['edit' , 'update']);
-                    Route::resource('social' , SocialLinkController::class)->only(['edit' , 'update']);
-                    Route::post('/storeAttend',[MembershipsController::class, 'saveAttend'])->name('storeAttend');
-                });
-
-
-
-                require __DIR__.'/admin_auth.php';
-            });
+        Route::resource('company', CompanyController::class)->only(['edit' , 'update']);
+        Route::resource('social', SocialLinkController::class)->only(['edit' , 'update']);
+        Route::post('/storeAttend', [MembershipsController::class, 'saveAttend'])->name('storeAttend');
+    });
 
 
+
+    require __DIR__.'/admin_auth.php';
+});

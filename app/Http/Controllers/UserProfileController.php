@@ -27,19 +27,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserProfileController extends Controller
 {
-
-
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request)
     {
-        if(LaravelLocalization::getCurrentLocale() == 'en'){
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
             return view('web.profile.user_profile', [
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
             ]);
-        }else{
+        } else {
             return view('web.profile.user_profile_ar', [
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
@@ -65,57 +63,66 @@ class UserProfileController extends Controller
     }
 
 
-    public function relativesMembers(){
+    public function relativesMembers()
+    {
         $user_id = Auth::user()->id ;
         // $user_data = User::with(['Children','Children.memberships','Children.memberships.invoice'])->where('id',$user_id)->first();
-        $user_data =User::with('Children.memberships.invoice')->where('id',$user_id)->first();
+        $user_data =User::with('Children.memberships.invoice')->where('id', $user_id)->first();
         // $user_child_member = $user_childrens->memberships')->get();
         // $user_child_member_invo = $user_child_member->with('invoice')->get();
 
         // $member_ship_details = Membership_detail::with(['invoice' ,'sport'])->get();
-        if(LaravelLocalization::getCurrentLocale() == 'en'){
-            return view('web.profile.user_profile_members' , compact('user_data'));
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
+            return view('web.profile.user_profile_members', compact('user_data'));
 
-        }else{
-            return view('web.profile.user_profile_members_ar' , compact('user_data'));
+        } else {
+            return view('web.profile.user_profile_members_ar', compact('user_data'));
 
         }
 
     }
 
-    public function childProfile($id){
+    public function childProfile($id)
+    {
 
-        $child = User_children::where('id',$id)->first() ;
+        $child = User_children::where('id', $id)->first() ;
 
-        return view('web.profile.child_profile' , compact('child'));
+        return view('web.profile.child_profile', compact('child'));
 
     }
 
     public function childSports($id)
     {
-        $child = User_children::where('id',$id)->first() ;
+        $child = User_children::where('id', $id)->first() ;
         $sport = Sport::all();
-        $child_mem_details = Membership_detail::with('sport')->where('child_id',$id) ->orderByDesc('created_at')->get();
-        return view('web.profile.child_sports' , compact('child_mem_details','child','sport'));
+        $child_mem_details = Membership_detail::with('sport')->where('child_id', $id) ->orderByDesc('created_at')->get();
+        return view('web.profile.child_sports', compact('child_mem_details', 'child', 'sport'));
+    }
+
+    public function childSportDiet(Request $request)
+    {
+        $child = User_children::with('memberships.sport.SportDietLinks')->where('id', $request->child_id)->first() ;
+
+        return view('web.profile.child_diet_sport', compact('child'));
     }
 
     public function renewSport(Request $request)
     {
 
-        $child = User_children::where('id',$request->child_id)->first();
-        $sport_details = Sport::where('id',$request->sport_id)->first();
-        return view('web.profile.child_renew_sport' , compact('sport_details','child'));
+        $child = User_children::where('id', $request->child_id)->first();
+        $sport_details = Sport::where('id', $request->sport_id)->first();
+        return view('web.profile.child_renew_sport', compact('sport_details', 'child'));
     }
 
     public function newaddedsportrenew(Request $request)
     {
 
         $invoice_id = $request->invoice_id ;
-        Membership_invoice::where('id' , $invoice_id)->update(['invoice_status' => 1]);
+        Membership_invoice::where('id', $invoice_id)->update(['invoice_status' => 1]);
 
-        if(LaravelLocalization::getCurrentLocale() == 'en'){
-        return view('web.congrate');
-        }else{
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
+            return view('web.congrate');
+        } else {
             return view('web.congrate_ar');
         }
     }
@@ -124,7 +131,8 @@ class UserProfileController extends Controller
 
     public function addAnotherChildSport(Request $request)
     {
-        function getDaysBetweenDates1($startDate, $endDate, $day1, $day2) {
+        function getDaysBetweenDates1($startDate, $endDate, $day1, $day2)
+        {
             $days = array();
             $currentDate = strtotime($startDate);
             $endDate = strtotime($endDate);
@@ -146,11 +154,11 @@ class UserProfileController extends Controller
         $request->validate([
             'select_sport' => 'required',
         ]);
-        $child = User_children::where('id',$request->child_id)->first();
-        $sport_details = Sport::where('id',$request->select_sport)->first();
+        $child = User_children::where('id', $request->child_id)->first();
+        $sport_details = Sport::where('id', $request->select_sport)->first();
         $endate = Carbon::parse($request->start_date);
         $endate->addMonth();
-        $totalFees = Sport::select('membership_fees')->where('id',$request->select_sport)->first();
+        $totalFees = Sport::select('membership_fees')->where('id', $request->select_sport)->first();
         $totalAfterVat = $totalFees->membership_fees * 0.14 + $totalFees->membership_fees;
         DB::table('membership_invoices')->insert([
             'invoice_date' => now(),
@@ -160,7 +168,7 @@ class UserProfileController extends Controller
         ]);
         $invoice_id = DB::getPdo()->lastInsertId();
 
-        $sports_days = Sports_day::where('sport_id' , $request->select_sport)->first();
+        $sports_days = Sports_day::where('sport_id', $request->select_sport)->first();
         $childSessionDays = getDaysBetweenDates1($request->start_date, $endate, (string)$sports_days->firstday_id, (string)$sports_days->secondday_id);
         $start = $request->start_date;
         $end = $endate;
@@ -175,7 +183,7 @@ class UserProfileController extends Controller
             'created_at' => Carbon::now()
         ]);
         $member_id = DB::getPdo()->lastInsertId();
-        foreach($childSessionDays as $key => $value){
+        foreach($childSessionDays as $key => $value) {
             DB::table('attendances')->insert([
                 'session_date' => $value,
                 'session_no' => $key + 1 ,
@@ -184,12 +192,13 @@ class UserProfileController extends Controller
             ]);
         }
 
-        return view('web.profile.child_new_sport_pay' , compact('child' , 'sport_details' ,'totalAfterVat','start' ,'end' ,'invoice_id'));
+        return view('web.profile.child_new_sport_pay', compact('child', 'sport_details', 'totalAfterVat', 'start', 'end', 'invoice_id'));
     }
 
     public function sportRenew(Request $request)
     {
-         function getDaysBetweenDates($startDate, $endDate, $day1, $day2) {
+        function getDaysBetweenDates($startDate, $endDate, $day1, $day2)
+        {
             $days = array();
             $currentDate = strtotime($startDate);
             $endDate = strtotime($endDate);
@@ -208,51 +217,51 @@ class UserProfileController extends Controller
 
             return $days;
         }
-    $child_id = $request->child_id ;
-    $user_id = $request->user_id ;
-    $total = $request->total ;
-    $sport_id = $request->sport_id ;
+        $child_id = $request->child_id ;
+        $user_id = $request->user_id ;
+        $total = $request->total ;
+        $sport_id = $request->sport_id ;
 
-    $invoice = new Membership_invoice;
-    $invoice->invoice_date = Carbon::now();
-    $invoice->order_total = $total;
-    $invoice->vat_perc = 0.14;
-    $invoice->user_id = $user_id;
-    $invoice->invoice_status = 1;
-    $invoice->save();
+        $invoice = new Membership_invoice();
+        $invoice->invoice_date = Carbon::now();
+        $invoice->order_total = $total;
+        $invoice->vat_perc = 0.14;
+        $invoice->user_id = $user_id;
+        $invoice->invoice_status = 1;
+        $invoice->save();
 
-    $invoice_new_id = $invoice->id;
+        $invoice_new_id = $invoice->id;
 
-    $firstDay = Sports_day::select('firstday_id')->where('sport_id' ,$sport_id)->first();
-    $secondDay = Sports_day::select('secondday_id')->where('sport_id' ,$sport_id)->first();
-    $startDate = Carbon::now();
-    $endDate = Carbon::now()->addMonth();
+        $firstDay = Sports_day::select('firstday_id')->where('sport_id', $sport_id)->first();
+        $secondDay = Sports_day::select('secondday_id')->where('sport_id', $sport_id)->first();
+        $startDate = Carbon::now();
+        $endDate = Carbon::now()->addMonth();
 
 
-    $childSessionDays = getDaysBetweenDates($startDate, $endDate, (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
-    $updated_member = Membership_detail::where('child_id',$child_id )->where('sport_id' ,$sport_id )->first();
-    foreach($childSessionDays as $key => $value){
-        DB::table('attendances')->insert([
-            'session_date' => $value,
-            'session_no' => $key + 1 ,
-            'membership_details_id' => $updated_member->id,
-            'child_id' => $child_id,
+        $childSessionDays = getDaysBetweenDates($startDate, $endDate, (string)$firstDay->firstday_id, (string)$secondDay->secondday_id);
+        $updated_member = Membership_detail::where('child_id', $child_id)->where('sport_id', $sport_id)->first();
+        foreach($childSessionDays as $key => $value) {
+            DB::table('attendances')->insert([
+                'session_date' => $value,
+                'session_no' => $key + 1 ,
+                'membership_details_id' => $updated_member->id,
+                'child_id' => $child_id,
+            ]);
+        }
+        $updated_member->update([
+            'invoice_id' => $invoice_new_id,
+            'start_date' => $startDate,
+            'end_date' => $endDate,
         ]);
-    }
-    $updated_member->update([
-        'invoice_id' => $invoice_new_id,
-        'start_date' => $startDate,
-        'end_date' => $endDate,
-    ]);
-    if(LaravelLocalization::getCurrentLocale() == 'en'){
-        return view('web.congrate');
-    }else{
-        return view('web.congrate_ar');
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
+            return view('web.congrate');
+        } else {
+            return view('web.congrate_ar');
+        }
+
     }
 
-}
-
-    public function childUpdate($id , Request $request)
+    public function childUpdate($id, Request $request)
     {
         $request->validate([
             'name' => 'required' ,
@@ -263,7 +272,7 @@ class UserProfileController extends Controller
             'height' => 'required',
             'weight' => 'required',
         ]);
-        $child = User_children::where('id',$id)->first() ;
+        $child = User_children::where('id', $id)->first() ;
         $request_data = $request->except('personal_image', 'birth_image', '_token');
         if ($request->file('personal_image')) {
             Storage::disk('public_uploads')->delete("/children_data/$child->personal_image");
@@ -282,9 +291,9 @@ class UserProfileController extends Controller
             $request_data['birth_image'] = $myimageName;
         }
         $child->update($request_data);
-        return redirect()->route('childProfile' , $id);
+        return redirect()->route('childProfile', $id);
     }
-    public function userImage($user_id , Request $request)
+    public function userImage($user_id, Request $request)
     {
         $user_data = User::find($user_id) ;
         $request->validate([
@@ -306,11 +315,12 @@ class UserProfileController extends Controller
         return back()->with('success', 'your profile data updated successfully');
     }
 
-    public function yourMembership(){
-        if(LaravelLocalization::getCurrentLocale() == 'en'){
+    public function yourMembership()
+    {
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
             return view('web.profile.user_profile_membership');
 
-        }else{
+        } else {
             return view('web.profile.user_profile_membership_ar');
 
         }
@@ -320,42 +330,45 @@ class UserProfileController extends Controller
     /***
      * userMembership
      */
-    public function userMembership(){
+    public function userMembership()
+    {
         $user_id = Auth::user()->id ;
-        $mem_details = User_membership::where('user_id',$user_id) ->orderByDesc('created_at')->get();
-       $lastMem= User_membership::where('user_id',$user_id)->latest('end_date')->first();
-        if(LaravelLocalization::getCurrentLocale() == 'en'){
-            return view('web.profile.user_year_membership',compact(['mem_details','lastMem']));
+        $mem_details = User_membership::where('user_id', $user_id) ->orderByDesc('created_at')->get();
+        $lastMem= User_membership::where('user_id', $user_id)->latest('end_date')->first();
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
+            return view('web.profile.user_year_membership', compact(['mem_details','lastMem']));
 
-        }else{
-            return view('web.profile.user_year_membership_ar',compact(['mem_details','lastMem']));
+        } else {
+            return view('web.profile.user_year_membership_ar', compact(['mem_details','lastMem']));
 
         }
 
     }
 
-    public function renewAnuual(){
-$company=Company::first();
-        return view('web.profile.member_annual_renew',compact('company'));
+    public function renewAnuual()
+    {
+        $company=Company::first();
+        return view('web.profile.member_annual_renew', compact('company'));
 
     }
 
-    public function  storeAnnual(Request $request){
-$annual=new User_membership();
-$annual->user_id=Auth::user()->id ;
-$annual->start_date=$request->get('start_date') ;
-$annual->end_date=$request->get('end_date') ;
-$annual->fees_paid=$request->get('fees_paid') ;
-  $annual->save();
-  $user_id = Auth::user()->id ;
-  $mem_details = User_membership::where('user_id',$user_id) ->orderByDesc('created_at')->get();
- $lastMem= User_membership::where('user_id',$user_id)->latest('end_date')->first();
-  if(LaravelLocalization::getCurrentLocale() == 'en'){
-      return view('web.profile.user_year_membership',compact(['mem_details','lastMem']));
+    public function storeAnnual(Request $request)
+    {
+        $annual=new User_membership();
+        $annual->user_id=Auth::user()->id ;
+        $annual->start_date=$request->get('start_date') ;
+        $annual->end_date=$request->get('end_date') ;
+        $annual->fees_paid=$request->get('fees_paid') ;
+        $annual->save();
+        $user_id = Auth::user()->id ;
+        $mem_details = User_membership::where('user_id', $user_id) ->orderByDesc('created_at')->get();
+        $lastMem= User_membership::where('user_id', $user_id)->latest('end_date')->first();
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
+            return view('web.profile.user_year_membership', compact(['mem_details','lastMem']));
 
-  }else{
-      return view('web.profile.user_year_membership_ar',compact(['mem_details','lastMem']));
+        } else {
+            return view('web.profile.user_year_membership_ar', compact(['mem_details','lastMem']));
 
-  }
+        }
     }
 }

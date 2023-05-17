@@ -58,5 +58,8 @@ return [
     'Select Sport'=>'Select Sport',
     'Select Days'=>'Select Days',
     'Days From Here'=>'Days From Here',
+    'diet title'=>'This suggested diet for you based on the description of the body and the sport involved in it',
+    'diet sys'=>'This suggested diet',
+    'diet links'=>'This suggested Links for your Diet',
 
 ];
