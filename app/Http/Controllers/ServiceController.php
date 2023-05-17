@@ -18,7 +18,7 @@ class ServiceController extends Controller
     {
         $data = Service::paginate(5);
 
-        return view('dash.service.all_service' , compact('data'));
+        return view('dash.service.all_service', compact('data'));
     }
 
     public function store(Request $request)
@@ -28,23 +28,23 @@ class ServiceController extends Controller
             'title_ar' => 'required',
             'brief_en' => 'required',
             'brief_ar' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             ]);
 
-            $request_data = $request->except('image', '_token');
+        $request_data = $request->except('image', '_token');
 
-            if ($request->file('image')) {
-                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-                Image::make($request->file('image'))->resize(770, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/service/' . $myimageName));
-                $request_data['image'] = $myimageName;
-            }
-            Service::create($request_data);
+        if ($request->file('image')) {
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(770, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/service/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
+        Service::create($request_data);
 
-            toast('Success Adding New service','success');
+        toast('Success Adding New service', 'success');
 
-            return redirect()->route('dashboard.service.index');
+        return redirect()->route('dashboard.service.index');
     }
 
     /**
@@ -61,28 +61,28 @@ class ServiceController extends Controller
             'title_ar' => 'required',
             'brief_en' => 'required',
             'brief_ar' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             ]);
 
-            $request_data = $request->except('image', '_token');
+        $request_data = $request->except('image', '_token');
 
-            if ($request->file('image')) {
+        if ($request->file('image')) {
 
-                if ($service->image != 'default_service.jpg') {
-                    Storage::disk('public_uploads')->delete("/service/$service->image");
-                }
-                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-                Image::make($request->file('image'))->resize(770, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/service/' . $myimageName));
-                $request_data['image'] = $myimageName;
+            if ($service->image != 'default_service.jpg') {
+                Storage::disk('public_uploads')->delete("/service/$service->image");
             }
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(770, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/service/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
 
-            $service->update($request_data);
+        $service->update($request_data);
 
-            toast('Success Updating service','warning');
+        toast('Success Updating service', 'warning');
 
-            return redirect()->route('dashboard.service.index');
+        return redirect()->route('dashboard.service.index');
     }
 
     /**
@@ -97,7 +97,7 @@ class ServiceController extends Controller
             Storage::disk('public_uploads')->delete("/service/$service->image");
         }
         $service->delete();
-        toast('Success Deleteing service','error');
+        toast('Success Deleteing service', 'error');
         return redirect()->route('dashboard.service.index');
     }
 }

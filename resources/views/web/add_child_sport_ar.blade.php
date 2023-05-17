@@ -50,7 +50,7 @@
     button.submit-btn:hover {
         border: none;
         background: #405089;
-        color: #f65935;
+        color: #fff;
         height: 54px;
         border: 1px solid #405089;
         padding: 0 40px;
@@ -60,7 +60,7 @@
     button.add-new {
         border: none;
         background: #405089;
-        color: #f65935;
+        color: #fff;
         height: 54px;
         border: 1px solid #405089;
         padding: 0 40px;
@@ -171,7 +171,7 @@
                     <div class="col-md-3 col-sm-4 col-12  order-md-3 order-3 height-input">
                         <label for="inputAddress" class="form-label">الطول</label>
                         <input data-reset='on' type="number" name="hight[0]" class="form-control important-input"
-                            min="100" id="inputAddress" placeholder="الطول">
+                            min="70" id="inputAddress" placeholder="الطول">
                         @if($errors->any())
                         @error('hight.'.$i)
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -181,7 +181,7 @@
                     <div class="col-md-3 col-sm-4 col-12  order-md-4 order-4 weight-input">
                         <label for="inputAddress2" class="form-label">الوزن</label>
                         <input data-reset='on' type="number" name="weight[0]" class="form-control important-input"
-                            min="35" id="inputAddress2" placeholder="الوزن">
+                            min="20" id="inputAddress2" placeholder="الوزن">
                         @if($errors->any())
 
                         @error('weight.'.$i)

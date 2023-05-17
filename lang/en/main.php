@@ -61,5 +61,9 @@ return [
     'diet title'=>'This suggested diet for you based on the description of the body and the sport involved in it',
     'diet sys'=>'This suggested diet',
     'diet links'=>'This suggested Links for your Diet',
+    'card number'=>'card number',
+    'Expiry Date'=>'Expiry Date',
+    'ssl'=>'Your transaction is secured with ssl certificate',
+    'Credit card'=>'Credit card',
 
 ];

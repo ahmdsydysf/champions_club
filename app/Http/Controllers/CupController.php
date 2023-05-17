@@ -18,7 +18,7 @@ class CupController extends Controller
     {
         $data = Cup::paginate(5);
 
-        return view('dash.cup.all_cup' , compact('data'));
+        return view('dash.cup.all_cup', compact('data'));
     }
 
 
@@ -36,23 +36,23 @@ class CupController extends Controller
             'title_ar' => 'required',
             'brief_en' => 'required',
             'brief_ar' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             ]);
 
-            $request_data = $request->except('image', '_token');
+        $request_data = $request->except('image', '_token');
 
-            if ($request->file('image')) {
-                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-                Image::make($request->file('image'))->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/cups/' . $myimageName));
-                $request_data['image'] = $myimageName;
-            }
-            Cup::create($request_data);
+        if ($request->file('image')) {
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/cups/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
+        Cup::create($request_data);
 
-            toast('Success Adding New Cup','success');
+        toast('Success Adding New Cup', 'success');
 
-            return redirect()->route('dashboard.cup.index');
+        return redirect()->route('dashboard.cup.index');
     }
 
 
@@ -70,28 +70,28 @@ class CupController extends Controller
             'title_ar' => 'required',
             'brief_en' => 'required',
             'brief_ar' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             ]);
 
-            $request_data = $request->except('image', '_token');
+        $request_data = $request->except('image', '_token');
 
-            if ($request->file('image')) {
+        if ($request->file('image')) {
 
-                if ($cup->image != 'default_cup.jpg') {
-                    Storage::disk('public_uploads')->delete("/cups/$cup->image");
-                }
-                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-                Image::make($request->file('image'))->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/cups/' . $myimageName));
-                $request_data['image'] = $myimageName;
+            if ($cup->image != 'default_cup.jpg') {
+                Storage::disk('public_uploads')->delete("/cups/$cup->image");
             }
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/cups/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
 
-            $cup->update($request_data);
+        $cup->update($request_data);
 
-            toast('Success Updating Cup','warning');
+        toast('Success Updating Cup', 'warning');
 
-            return redirect()->route('dashboard.cup.index');
+        return redirect()->route('dashboard.cup.index');
     }
 
     /**
@@ -106,7 +106,7 @@ class CupController extends Controller
             Storage::disk('public_uploads')->delete("/cups/$cup->image");
         }
         $cup->delete();
-        toast('Success Deleteing Cup','error');
+        toast('Success Deleteing Cup', 'error');
         return redirect()->route('dashboard.cup.index');
     }
 }

@@ -50,7 +50,7 @@
     button.submit-btn:hover {
         border: none;
         background: #405089;
-        color: #f65935;
+        color: #fff;
         height: 54px;
         border: 1px solid #405089;
         padding: 0 40px;
@@ -60,7 +60,7 @@
     button.add-new {
         border: none;
         background: #405089;
-        color: #f65935;
+        color: #fff;
         height: 54px;
         border: 1px solid #405089;
         padding: 0 40px;
