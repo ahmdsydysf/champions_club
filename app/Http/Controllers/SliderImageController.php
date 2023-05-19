@@ -10,12 +10,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SliderImageController extends Controller
 {
-
     public function index()
     {
-        $data = SliderImage::select('id' ,'image', 'title_en', 'title_ar', 'subtitle_en', 'subtitle_ar')->paginate(5);
+        $data = SliderImage::select('id', 'image', 'title_en', 'title_ar', 'subtitle_en', 'subtitle_ar')->paginate(5);
 
-        return view('dash.slider_image.all_slider_images' , compact('data'));
+        return view('dash.slider_image.all_slider_images', compact('data'));
     }
 
 
@@ -33,7 +32,7 @@ class SliderImageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             'title_en' => 'required',
             'title_ar' => 'required',
             'subtitle_en' => 'required',
@@ -58,7 +57,7 @@ class SliderImageController extends Controller
 
         SliderImage::create($request_data);
 
-        toast('Success Adding New Slider','success');
+        toast('Success Adding New Slider', 'success');
 
         return redirect()->route('dashboard.slider_image.index');
     }
@@ -67,14 +66,14 @@ class SliderImageController extends Controller
 
     public function edit(SliderImage $sliderImage)
     {
-        return view('dash.slider_image.edit_slider_images' , compact('sliderImage'));
+        return view('dash.slider_image.edit_slider_images', compact('sliderImage'));
     }
 
 
     public function update(Request $request, SliderImage $sliderImage)
     {
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             'title_en' => 'required',
             'title_ar' => 'required',
             'subtitle_en' => 'required',
@@ -103,7 +102,7 @@ class SliderImageController extends Controller
 
         $sliderImage->update($request_data);
 
-        toast('Success Updating Slider','warning');
+        toast('Success Updating Slider', 'warning');
 
         return redirect()->route('dashboard.slider_image.index');
     }
@@ -114,7 +113,7 @@ class SliderImageController extends Controller
             Storage::disk('public_uploads')->delete("/slider/$sliderImage->image");
         }
         $sliderImage->delete();
-        toast('Success Deleteing Slider','error');
+        toast('Success Deleteing Slider', 'error');
         return redirect()->route('dashboard.slider_image.index');
     }
 }

@@ -9,7 +9,7 @@
             @foreach ( $sliderData as $row )
             <div class="swiper-slide">
                 <div class="slide-inner bg-image" data-background="{{asset('uploads/slider')}}/{{$row->image}}"
-                    data-text="كيف تهتم<span>{{ $row->title_ar }}</span>">
+                    data-text="{{ $row->subtitle_ar }}<span>{{ $row->title_ar }}</span>">
                     <div class="container">
                         <h6 data-swiper-parallax="100">{{ $row->title_ar }}</h6>
                         <h2 data-swiper-parallax="200"><span>.</span>{{ $row->subtitle_ar }}</h2>
@@ -34,14 +34,13 @@
 <section class="featured-services">
     <div class="content-wrapper">
         <div class="container">
-            @foreach ($sliderData as $row )
+            @foreach ($general_service as $row )
             <div class="content-box wow fadeIn"> <span></span>
-                <h3>{{ $row->nav_title_ar }}</h3>
-                <p>{{ $row->nav_subtitle_ar }}</p>
+                <h3>{{ $row->service_ar }}</h3>
+                <p>{{ $row->overview_ar }}</p>
                 <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
             </div>
             @endforeach
-
             <!-- end content-box -->
         </div>
         <!-- end container -->

@@ -6,6 +6,7 @@ use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+
 class SponsorController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class SponsorController extends Controller
     {
         $data = Sponsor::paginate(5);
 
-        return view('dash.sponsor.all_sponsor' , compact('data'));
+        return view('dash.sponsor.all_sponsor', compact('data'));
     }
 
     /**
@@ -30,23 +31,23 @@ class SponsorController extends Controller
     {
         $request->validate([
 
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             ]);
 
-            $request_data = $request->except('image', '_token');
+        $request_data = $request->except('image', '_token');
 
-            if ($request->file('image')) {
-                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-                Image::make($request->file('image'))->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/sponsor/' . $myimageName));
-                $request_data['image'] = $myimageName;
-            }
-            Sponsor::create($request_data);
+        if ($request->file('image')) {
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/sponsor/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
+        Sponsor::create($request_data);
 
-            toast('Success Adding New Sponsor','success');
+        toast('Success Adding New Sponsor', 'success');
 
-            return redirect()->route('dashboard.sponsor.index');
+        return redirect()->route('dashboard.sponsor.index');
     }
 
 
@@ -62,28 +63,28 @@ class SponsorController extends Controller
     {
         $request->validate([
 
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg',
             ]);
 
-            $request_data = $request->except('image', '_token');
+        $request_data = $request->except('image', '_token');
 
-            if ($request->file('image')) {
+        if ($request->file('image')) {
 
-                if ($sponsor->image != 'default_sponsor.png') {
-                    Storage::disk('public_uploads')->delete("/sponsor/$sponsor->image");
-                }
-                $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-                Image::make($request->file('image'))->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/sponsor/' . $myimageName));
-                $request_data['image'] = $myimageName;
+            if ($sponsor->image != 'default_sponsor.png') {
+                Storage::disk('public_uploads')->delete("/sponsor/$sponsor->image");
             }
+            $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
+            Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/sponsor/' . $myimageName));
+            $request_data['image'] = $myimageName;
+        }
 
-            $sponsor->update($request_data);
+        $sponsor->update($request_data);
 
-            toast('Success Updating sponsor','warning');
+        toast('Success Updating sponsor', 'warning');
 
-            return redirect()->route('dashboard.sponsor.index');
+        return redirect()->route('dashboard.sponsor.index');
     }
 
     /**
@@ -98,7 +99,7 @@ class SponsorController extends Controller
             Storage::disk('public_uploads')->delete("/sponsor/$sponsor->image");
         }
         $sponsor->delete();
-        toast('Success Deleteing sponsor','error');
+        toast('Success Deleteing sponsor', 'error');
         return redirect()->route('dashboard.sponsor.index');
     }
 }

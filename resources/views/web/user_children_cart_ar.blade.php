@@ -98,6 +98,108 @@
         border-radius: 5px;
         margin-bottom: 25px;
     }
+
+    .card {
+
+        border: none;
+    }
+
+    .card-header {
+        padding: .5rem 1rem;
+        margin-bottom: 0;
+        background-color: rgba(0, 0, 0, .03);
+        border-bottom: none;
+    }
+
+    .btn-light:focus {
+        color: #212529;
+        background-color: #e2e6ea;
+        border-color: #dae0e5;
+        box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, .5);
+    }
+
+    .form-control {
+
+        height: 50px;
+        border: 2px solid #eee;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #039be5;
+        outline: 0;
+        box-shadow: none;
+
+    }
+
+    .input {
+
+        position: relative;
+    }
+
+    .input i {
+
+        position: absolute;
+        top: 16px;
+        left: 11px;
+        color: #989898;
+    }
+
+    .input input {
+
+        text-indent: 25px;
+    }
+
+    .card-text {
+
+        font-size: 13px;
+        margin-left: 6px;
+    }
+
+    .certificate-text {
+
+        font-size: 12px;
+    }
+
+
+    .billing {
+        font-size: 11px;
+    }
+
+    .super-price {
+
+        top: 0px;
+        font-size: 22px;
+    }
+
+    .super-month {
+
+        font-size: 11px;
+    }
+
+
+    .line {
+        color: #bfbdbd;
+    }
+
+    .free-button {
+
+        background: #1565c0;
+        height: 52px;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+
+
+    .payment-card-body {
+
+        flex: 1 1 auto;
+        padding: 24px 1rem !important;
+
+    }
 </style>
 @endsection
 
@@ -125,7 +227,7 @@
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title"><span>{{ session('childrenIds')[$i]->name }}</span>بيانات الطفل :
+                            <h4 class="widget-title"><span>{{ session('childrenIds')[$i]->name }}</span>
                             </h4>
                             <div class="container">
                                 <div class="row">
@@ -152,7 +254,7 @@
                             <div class="container">
                                 <div class="row">
                                     <h5 class="widget-title col-6">تاريخ الميلاد :
-                                        <span>{{ session('childrenIds')[$i]->bithdate}}</span>
+                                        <span>{{ session('childrenIds')[$i]->birthdate}}</span>
                                     </h5>
                                     <h5 class="widget-title col-6">الطول :
                                         <span>{{ session('childrenIds')[$i]->height }}</span>
@@ -176,7 +278,7 @@
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title">معلومات الرياضة <span>{{ session('childrenIds')[$i]->name }}</span>
+                            <h4 class="widget-title"><span>{{ session('childrenIds')[$i]->name }}</span>
                             </h4>
 
                             <h4 class="widget-title">{{ session('membershipDetails')[$i]->sport->sport_title_ar }}</h4>
@@ -192,7 +294,7 @@
                                         <p>{{ session('membershipDetails')[$i]->user_comment }}</p>
                                     </blockquote>
                                     <div class="widget download-box">
-                                        <i class="fa fa-dollar"></i> <a href="#">
+                                        <i class="fa fa-money"></i> <a href="#">
                                             {{ session('membershipDetails')[$i]->fees}} جنيه</a>
                                         <small>تكلفة الرياضة</small>
                                     </div>
@@ -217,6 +319,126 @@
                             <h2>كل معلومات الاضافه</h2>
                         </div>
                         <!-- end section-title -->
+                        <div class="row g-3 m-3">
+
+                            <div class="col-12">
+                                <div class="section-title">
+                                    <h2>{{ __('main.Payment') }}</h2>
+                                </div>
+                                <div class="card">
+
+                                    <div class="accordion" id="accordionExample">
+
+                                        <div class="card">
+                                            <div class="card-header p-0" id="headingTwo">
+                                                <h2 class="mb-0">
+                                                    <button
+                                                        class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom"
+                                                        type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        <div class="d-flex align-items-center justify-content-between">
+
+                                                            <span>Paypal</span>
+                                                            <img src="{{ asset('web_assets/images/7kQEsHU.png') }}"
+                                                                width="30">
+
+                                                        </div>
+                                                    </button>
+                                                </h2>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <input type="text" class="form-control" placeholder="Paypal email">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header p-0">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-light btn-block text-left p-3 rounded-0"
+                                                        data-toggle="collapse" data-target="#collapseOne"
+                                                        aria-expanded="true" aria-controls="collapseOne">
+                                                        <div class="d-flex align-items-center justify-content-between">
+
+                                                            <span>{{ __('main.Credit card') }}</span>
+                                                            <div class="icons">
+                                                                <img src="{{ asset('web_assets/images/2ISgYja.png') }}"
+                                                                    width="30">
+                                                                <img src="{{ asset('web_assets/images/W1vtnOV.png') }}"
+                                                                    width="30">
+                                                                <img src="{{ asset('web_assets/images/35tC99g.png') }}"
+                                                                    width="30">
+                                                                <img src="{{ asset('web_assets/images/2ISgYja.png') }}"
+                                                                    width="30">
+                                                            </div>
+
+                                                        </div>
+                                                    </button>
+                                                </h2>
+                                            </div>
+
+                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                                data-parent="#accordionExample">
+                                                <div class="card-body payment-card-body">
+
+                                                    <span class="font-weight-normal card-text">{{ __('main.card number')
+                                                        }}</span>
+                                                    <div class="input">
+
+                                                        <i class="fa fa-credit-card"></i>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="0000 0000 0000 0000">
+
+                                                    </div>
+
+                                                    <div class="row mt-3 mb-3">
+
+                                                        <div class="col-md-6">
+
+                                                            <span class="font-weight-normal card-text">
+                                                                {{ __('main.Expiry Date') }}</span>
+                                                            <div class="input">
+
+                                                                <i class="fa fa-calendar"></i>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="MM/YY">
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="col-md-6">
+
+                                                            <span class="font-weight-normal card-text">CVC/CVV</span>
+                                                            <div class="input">
+
+                                                                <i class="fa fa-lock"></i>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="000">
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <span class="text-muted certificate-text"><i class="fa fa-lock"></i>
+                                                        {{ __('main.ssl') }}</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                     <!-- end col-12 -->
                     <div class="col-12">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Counter;
 use App\Models\Cup;
+use App\Models\GeneralService;
 use App\Models\NewsEvent;
 use App\Models\Service;
 use App\Models\SliderImage;
@@ -15,7 +16,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class HomePageController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $sliderData = SliderImage::all();
         $aboutUs = Company::find(1);
         $sports = Sport::all();
@@ -24,10 +26,11 @@ class HomePageController extends Controller
         $news = NewsEvent::all();
         $sponsors = Sponsor::all();
         $counter = Counter::all();
-        if(LaravelLocalization::getCurrentLocale() == 'en'){
-            return view('welcome' , get_defined_vars());
-        }else{
-            return view('welcome_ar' , get_defined_vars());
+        $general_service = GeneralService::all();
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
+            return view('welcome', get_defined_vars());
+        } else {
+            return view('welcome_ar', get_defined_vars());
         }
 
     }

@@ -8,7 +8,7 @@
             @foreach ( $sliderData as $row )
             <div class="swiper-slide">
                 <div class="slide-inner bg-image" data-background="{{asset('uploads/slider')}}/{{$row->image}}"
-                    data-text="HOW WE Make<span>{{ $row->title_en }}</span>">
+                    data-text="{{ $row->subtitle_en }}<span>{{ $row->title_en }}</span>">
                     <div class="container">
 
                         <h6 data-swiper-parallax="100">{{ $row->title_en }}</h6>
@@ -84,10 +84,10 @@
 <section class="featured-services">
     <div class="content-wrapper">
         <div class="container">
-            @foreach ($sliderData as $row )
+            @foreach ($general_service as $row )
             <div class="content-box wow fadeIn"> <span></span>
-                <h3>{{ $row->nav_title_en }}</h3>
-                <p>{{ $row->nav_subtitle_en }}</p>
+                <h3>{{ $row->service_en }}</h3>
+                <p>{{ $row->overview_en }}</p>
                 <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
             </div>
             @endforeach
