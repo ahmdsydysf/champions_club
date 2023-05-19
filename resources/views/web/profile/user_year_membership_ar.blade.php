@@ -96,7 +96,7 @@
                     <!-- end section-title -->
                     @if ($lastMem)
                     @if ($lastMem->end_date > now()->format('Y-m-d'))
-                    <button type="button" class="btn btn-lg submit-btn reg" disabled>{{
+                    <button type="button" style="width: 30%" class="btn btn-lg submit-btn reg" disabled>{{
                         __('main.Renew') }}</button>
                     @else
                     <form action="{{ route('renewAnuual') }}" method="get">

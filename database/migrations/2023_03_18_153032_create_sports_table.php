@@ -14,13 +14,13 @@ return new class () extends Migration {
     {
         Schema::create('sports', function (Blueprint $table) {
             $table->id();
-            $table->string('sport_title_en')->nullable();
-            $table->string('sport_title_ar')->nullable();
-            $table->string('sport_subtitle_en')->nullable();
-            $table->string('sport_subtitle_ar')->nullable();
-            $table->string('sport_image')->default('default_sport.jpg');
-            $table->text('sport_overview_en')->nullable();
-            $table->text('sport_overview_ar')->nullable();
+            $table->longText('sport_title_en')->nullable();
+            $table->longText('sport_title_ar')->nullable();
+            $table->longText('sport_subtitle_en')->nullable();
+            $table->longText('sport_subtitle_ar')->nullable();
+            $table->longText('sport_image')->default('default_sport.jpg');
+            $table->longText('sport_overview_en')->nullable();
+            $table->longText('sport_overview_ar')->nullable();
             // $table->text('sport_diet_en')->nullable();
             // $table->text('sport_diet_ar')->nullable();
             $table->timestamps();

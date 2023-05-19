@@ -15,7 +15,7 @@ return new class () extends Migration {
         Schema::table('sports', function (Blueprint $table) {
             //
             $table->double('membership_disc_fees', 8, 2)->nullable();
-            $table->text('feed_recommend')->nullable();
+            $table->longText('feed_recommend')->nullable();
         });
     }
 

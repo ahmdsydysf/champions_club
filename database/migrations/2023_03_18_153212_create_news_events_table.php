@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('news_events', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en')->nullable();
-            $table->string('title_ar')->nullable();
+            $table->longText('title_en')->nullable();
+            $table->longText('title_ar')->nullable();
             $table->date('date')->nullable();
-            $table->string('brief_en')->nullable();
-            $table->string('brief_ar')->nullable();
-            $table->string('image')->default('default_event.jpg');
+            $table->longText('brief_en')->nullable();
+            $table->longText('brief_ar')->nullable();
+            $table->longText('image')->default('default_event.jpg');
             $table->timestamps();
         });
     }

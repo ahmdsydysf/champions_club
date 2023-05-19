@@ -363,12 +363,24 @@ class UserProfileController extends Controller
         $user_id = Auth::user()->id ;
         $mem_details = User_membership::where('user_id', $user_id) ->orderByDesc('created_at')->get();
         $lastMem= User_membership::where('user_id', $user_id)->latest('end_date')->first();
+        // if(LaravelLocalization::getCurrentLocale() == 'en') {
+        //     return view('web.profile.user_year_membership', compact(['mem_details','lastMem']));
+
+        // } else {
+        //     return view('web.profile.user_year_membership_ar', compact(['mem_details','lastMem']));
+
+        // }
+
+
+        return redirect()->route('congratulation');
+    }
+
+
+    public function cong(){
         if(LaravelLocalization::getCurrentLocale() == 'en') {
-            return view('web.profile.user_year_membership', compact(['mem_details','lastMem']));
-
+            return view('web.congrate');
         } else {
-            return view('web.profile.user_year_membership_ar', compact(['mem_details','lastMem']));
-
+            return view('web.congrate_ar');
         }
     }
 }

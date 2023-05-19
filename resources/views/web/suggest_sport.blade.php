@@ -159,7 +159,7 @@
                         <div class="col-md-3 col-sm-4 col-12    age-input">
                             <label for="inputAddress2" class="form-label">Age</label>
                             <input id="age" type="number" name="age" class="form-control important-input"
-                                min="20" id="inputAddress2" placeholder="age">
+                                min="5" id="inputAddress2" placeholder="age">
                             @if ($errors->any())
                                 @error('age.' . $i)
                                     <div class="alert alert-danger">{{ $message }}</div>

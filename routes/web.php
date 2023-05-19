@@ -93,6 +93,9 @@ Route::group(
             Route::post('/profile/add/child/sport', [UserProfileController::class, 'addAnotherChildSport'])->name('addAnotherChildSport');
             Route::put('/child/renew/sport', [UserProfileController::class, 'newaddedsportrenew'])->name('newaddedsportrenew');
             Route::get('/child/sportsDiet', [UserProfileController::class, 'childSportDiet'])->name('childSportDiet');
+       /*===============to prevent resubmit return route===================*/
+       Route::get('/congratulation', [UserProfileController::class, 'cong'])->name('congratulation');
+
         });
 
         // Route::post('/site-login' , [AuthenticatedSessionController::class , 'loginCheck'])->name('site.login');
