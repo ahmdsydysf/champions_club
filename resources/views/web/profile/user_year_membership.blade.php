@@ -101,6 +101,7 @@
                     @else
                     <form action="{{ route('renewAnuual') }}" method="get">
 
+
                         {{-- <input type="hidden" value="{{ $child->id }}" name="child_id">
                         <input type="hidden" value="{{ $mem->sport->id }}" name="sport_id"> --}}
                         <button type="submit"  style="width: 30%" class="btn btn-lg submit-btn reg">{{
