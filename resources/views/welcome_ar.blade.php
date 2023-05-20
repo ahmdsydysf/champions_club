@@ -88,7 +88,7 @@
 <section class="image-content-over-box">
     <div class="container">
         <div class="row" style="direction: ltr !important">
-            <div class="col-lg-4">
+            <div class="col-lg-4" style="direction: ltr !important">
                 <div class="section-title wow fadeIn">
                     <h2>{{ $aboutUs->sports_title_ar }}</h2>
                     <h6>{{ $aboutUs->sports_text_ar }}</h6>
@@ -97,8 +97,8 @@
             </div>
             <!-- end col-3 -->
 
-            <div class="col-lg-8">
-                <div class="swiper-carousel wow fadeIn" >
+            <div class="col-lg-8" style="direction: ltr !important">
+                <div class="swiper-carousel wow fadeIn"  style="direction: ltr !important">
                     <div class="swiper-wrapper">
                         @foreach ( $sports as $row )
                         <div class="swiper-slide" >
