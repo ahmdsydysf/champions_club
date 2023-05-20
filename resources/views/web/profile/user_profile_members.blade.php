@@ -90,7 +90,8 @@
                             <div class="child-full-data row">
                                 {{-- هجيب الطفل و الميمبرشيب الخاصبيه ومنها هجيب الانفويس واتشيك علي الستيتس --}}
 
-                               @if(!empty($user_data->Children))
+                               @if(count($user_data->Children)>0)
+
                                @foreach ($user_data->Children as $child )
 
                                @foreach ($child->memberships as $member)
@@ -151,6 +152,7 @@
                                @endforeach
                                @endforeach
                                @else
+
                                <form id="goToAdd" action="{{ route('childSport') }}" method="get">
 
                                </form>

@@ -87,7 +87,7 @@
                         {{-- @dd($child->name) --}}
                         <div class="row justify-content-center">
                             <div class="child-full-data row">
-                                @if(!empty($user_data->Children))
+                                @if(count($user_data->Children)>0)
                                 @foreach ($user_data->Children as $child )
 
                                 @foreach ($child->memberships as $member)
