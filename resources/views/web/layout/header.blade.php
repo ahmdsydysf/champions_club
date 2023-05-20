@@ -37,7 +37,9 @@
     {{-- arabic links --}}
     <link rel="stylesheet" href="{{ asset('web_assets/css/bootstrap-ar.min.css')}}">
     {{-- <link rel="stylesheet" href="{{ asset('web_assets/css/style-ar.css')}}"> --}}
-    <style>
+    <link rel="stylesheet" href="{{ asset('web_assets/css/style.css')}}">
+
+   <style>
         .header .navbar .container .nav-menu li {
             float: right !important;
         }
