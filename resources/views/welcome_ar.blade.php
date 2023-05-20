@@ -201,7 +201,11 @@
                     <a class="dis-btn-service" href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
                 </div>
                 @endforeach
-
+                <div class="owl-controls">
+                    <div class="owl-nav">
+                        <div class="owl-prev">prev</div>
+                        <div class="owl-next">next</div>
+                    </div>
             </div>
             <!-- end col-12 -->
         </div>

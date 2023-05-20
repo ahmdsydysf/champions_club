@@ -432,6 +432,11 @@
                         More<span></span></a>
                 </div>
                 @endforeach
+                <div class="owl-controls">
+                    <div class="owl-nav">
+                        <div class="owl-prev">prev</div>
+                        <div class="owl-next">next</div>
+                    </div>
                 {{--
                 <!-- end content-box -->
                 <div class="content-box service-container wow fadeIn">
