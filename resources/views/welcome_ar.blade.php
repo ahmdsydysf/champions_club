@@ -98,10 +98,10 @@
             <!-- end col-3 -->
 
             <div class="col-lg-8" style="direction: ltr !important">
-                <div class="swiper-carousel wow fadeIn"  style="direction: ltr !important">
+                <div class="swiper-carousel wow fadeIn" style="direction: ltr !important">
                     <div class="swiper-wrapper">
                         @foreach ( $sports as $row )
-                        <div class="swiper-slide" >
+                        <div class="swiper-slide">
                             <figure> <img src="{{ asset('uploads/sport/' . $row->sport_image)}}" alt="Image">
                                 <figcaption>
                                     <h4>{{ $row->sport_title_ar }}</h4>
@@ -194,11 +194,11 @@
             <!-- end col-12 -->
             <div id="owl-ar" class="col-12 owl-carousel" style="direction: ltr !important">
                 @foreach ($services as $row )
-                <div class="content-box service-container "  >
+                <div class="content-box service-container ">
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
                     <h4 style="color:#fff;display: block;width:100%;text-align: right">{{ $row->title_ar }}</h4>
                     <p style="color:#fff">{{ $row->brief_ar }}</p>
-                    <a  class="dis-btn-service"  href="#" data-swiper-parallax="200">لمعرفة المزيد <<<span></span></a>
+                    <a class="dis-btn-service" href="#" data-swiper-parallax="200">لمعرفة المزيد <<<span></span></a>
                 </div>
                 @endforeach
 
@@ -249,10 +249,19 @@
         <h3>{{ $aboutUs->membership_title_ar }}</h3>
         <h6>{{ $aboutUs->membership_text_ar }}</p>
             <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
+            @auth
+
             <form id="goToAdd" action="{{ route('childSport') }}" method="get">
                 @csrf
             </form>
-            <button form='goToAdd' class="join-us btn">اشترك معـــنا<span> الان</span></a>
+            <button form='goToAdd' class="join-us btn">اضف طفلك <span> الان</span></a>
+
+                @else
+
+                <a href="{{ route('register') }}" class="join-us btn">اشترك معنا<span> الان</span></a>
+
+                @endauth
+
     </div>
 </section>
 <!-- end info-box -->

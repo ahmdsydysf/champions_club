@@ -18,7 +18,7 @@ return new class () extends Migration {
             $table->longText('sport_title_ar')->nullable();
             $table->longText('sport_subtitle_en')->nullable();
             $table->longText('sport_subtitle_ar')->nullable();
-            $table->longText('sport_image')->default('default_sport.jpg');
+            $table->string('sport_image')->default('default_sport.jpg');
             $table->longText('sport_overview_en')->nullable();
             $table->longText('sport_overview_ar')->nullable();
             // $table->text('sport_diet_en')->nullable();

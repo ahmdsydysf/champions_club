@@ -22,57 +22,7 @@
                 <!-- end slide-inner -->
             </div>
             @endforeach
-            {{-- <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide01.jpg')}}"
-                    data-text="HOW WE Make<span>Body</span>">
-                    <div class="container">
-                        <h6 data-swiper-parallax="100">Gem</h6>
-                        <h2 data-swiper-parallax="200"><span>.</span>Body Build</h2>
-                        <p data-swiper-parallax="300">Even the most general definition of a gem has many exceptions.
-                            Learn what
-                            qualities have been used to identify gemstones both scientifically and popularly.</p>
-                        <div class="clearfix"></div>
-                        <a href="#" data-swiper-parallax="200">Discover More<span></span></a>
-                    </div>
-                    <!-- end container -->
-                </div>
-                <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide -->
-            <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide02.jpg')}}"
-                    data-text="Swimming Pools<span>EQUIPMENTS</span>">
-                    <div class="container">
-                        <h6 data-swiper-parallax="100">Swimming Pools</h6>
-                        <h2 data-swiper-parallax="200"><span>.</span>Olympic pools</h2>
-                        <p data-swiper-parallax="300">With all the inconvenience associated with it, and, of course,
-                            insurance
-                            rates going up. With all these things going through your mind after an accident.</p>
-                        <div class="clearfix"></div>
-                        <a href="#" data-swiper-parallax="200">Discover More<span></span></a>
-                    </div>
-                    <!-- end container -->
-                </div>
-                <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide -->
-            <div class="swiper-slide">
-                <div class="slide-inner bg-image" data-background="{{ asset('web_assets/images/slide03.jpg')}}"
-                    data-text="Be Like <span>Mo Salah</span>">
-                    <div class="container">
-                        <h6 data-swiper-parallax="100">Football</h6>
-                        <h2 data-swiper-parallax="200"><span>.</span>Special Academy</h2>
-                        <p data-swiper-parallax="300">It can be challenging to get everything in order. You can take
-                            several steps
-                            to ensure safety and reduce your potential losses after an accident.</p>
-                        <div class="clearfix"></div>
-                        <a href="#" data-swiper-parallax="200">Discover More<span></span></a>
-                    </div>
-                    <!-- end container -->
-                </div>
-                <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide --> --}}
+
         </div>
         <!-- end swiper-wrapper -->
         <div class="swiper-custom-pagination"></div>
@@ -91,30 +41,7 @@
                 <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
             </div>
             @endforeach
-            {{-- <div class="content-box wow fadeIn"> <span></span>
-                <h3>Personal Training</h3>
-                <p>Many sports clubs offer one-on-one personal training sessions with certified trainers who can
-                    help members
-                    develop personalized workout plans </p>
-                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-            </div>
-            <!-- end content-box -->
-            <div class="content-box wow fadeIn"> <span></span>
-                <h3>Group Fitness Classes</h3>
-                <p>Group fitness classes are a popular way for members to stay motivated and engaged while
-                    exercising</p>
-                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-            </div>
-            <!-- end content-box -->
-            <div class="content-box wow fadeIn"> <span></span>
-                <h3>Sports Facilities</h3>
-                <p>For many members, access to high-quality sports facilities is a key reason for joining a sports
-                    club. These
-                    facilities can include swimming pools, tennis courts, basketball courts, soccer fields, and more
-                </p>
-                <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-            </div>
-            <!-- end content-box --> --}}
+
         </div>
         <!-- end container -->
     </div>
@@ -190,60 +117,7 @@
                             </figure>
                         </div>
                         @endforeach
-                        {{-- <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image04.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>Football</h4>
-                                    <small>Business Constultation</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image05.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>Tennis</h4>
-                                    <small>Development Constultation</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image06.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>swimming</h4>
-                                    <small>Training Constultation</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image07.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>Basket Ball</h4>
-                                    <small>Accounting Constultation</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image08.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>Body Building</h4>
-                                    <small>Motivation Constultation</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide -->
-                        <div class="swiper-slide">
-                            <figure> <img src="{{ asset('web_assets/images/image09.jpg')}}" alt="Image">
-                                <figcaption>
-                                    <h4>Hand Ball</h4>
-                                    <small>Business Constultation</small>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <!-- end swiper-slide --> --}}
+
                     </div>
                     <!--end swiper-wrapper -->
                     <div class="swiper-button-next"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}"
@@ -298,105 +172,7 @@
                                 <!-- end flip-box -->
                             </div>
                             @endforeach
-                            {{--
-                            <!-- end swiper-slide -->
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-2.jpg')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>Footbal Cup</h4>
-                                            <p>Instead of giving up immediately, go back to the drawing doesn't
-                                                something need.</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide -->
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-3.webp')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>Handball Cup</h4>
-                                            <p>Instead of giving up immediately, go back to the drawing doesn't
-                                                something need.</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide -->
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-4.jpg')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>Swemming Cup</h4>
-                                            <p>Instead of giving up immediately, go back to the drawing doesn't
-                                                something need.</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide -->
 
-                            <div class="swiper-slide">
-                                <div class="flip-box" data-flip-direction="horizontal-to-left" data-h_text_align="left"
-                                    data-v_text_align="center">
-                                    <div class="flip-box-front" data-bg-overlay="true" data-text-color="light">
-                                        <div class="inner">
-                                            <figure> <img src="{{ asset('web_assets/images/trophy-6.jpg')}}"
-                                                    alt="Image"> </figure>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end flip-box-front -->
-                                    <div class="flip-box-back">
-                                        <div class="inner">
-                                            <h4>1st Place</h4>
-                                            <p>Instead of giving up immediately, go back to the drawing doesn't
-                                                something need.</p>
-                                        </div>
-                                        <!-- end inner -->
-                                    </div>
-                                    <!-- end end flip-box-back -->
-                                </div>
-                                <!-- end flip-box -->
-                            </div>
-                            <!-- end swiper-slide --> --}}
                         </div>
                         <!--end swiper-wrapper -->
 
@@ -428,44 +204,13 @@
                 <div class="content-box service-container ">
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
                     <h4 style="color:#fff">{{ $row->title_en }}</h4>
-                    <p style="color:#fff" >{{ $row->brief_en }}</p>
+                    <p style="color:#fff">{{ $row->brief_en }}</p>
                     <a class="dis-btn-service" href="#" data-swiper-parallax="200">Discover
                         More<span></span></a>
                 </div>
                 @endforeach
 
-                {{--
-                <!-- end content-box -->
-                <div class="content-box service-container wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image02.jpg.webp') }}" alt="Image"></figure>
-                    <h4>Group Fitness Classes</h4>
-                    <p>Group fitness classes are a popular way for members to stay motivated and engaged while
-                        exercising. These
-                        classes can include a wide range of activities such as yoga, Pilates, spinning, Zumba, and more.
-                        By
-                        offering a variety of classes, sport clubs can appeal to members with different interests and
-                        fitness
-                        levels.</p>
-                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
-                        More<span></span></a>
 
-                </div>
-                <!-- end content-box -->
-                <div class="content-box service-container wow fadeIn">
-                    <figure><img src="{{ asset('web_assets/images/image03.jpg') }}" alt="Image"></figure>
-                    <h4>Sports Facilities</h4>
-                    <p>For many members, access to high-quality sports facilities is a key reason for joining a sport
-                        club.
-                        These facilities can include swimming pools, tennis courts, basketball courts, soccer fields,
-                        and more. By
-                        providing top-notch facilities, sport clubs can attract members who are serious about their
-                        sport and want
-                        to train in a profession.</p>
-                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
-                        More<span></span></a>
-
-                </div>
-                <!-- end content-box --> --}}
             </div>
             <!-- end col-12 -->
         </div>
@@ -498,40 +243,7 @@
                     <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
                 </div>
                 @endforeach
-                {{-- <div class="content-box wow fadeIn">
-                    <span>Business, Tips,
-                        Account</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog.jpg')}}" alt="" srcset="">
-                    <h4>How to develope item for themeforest</h4>
-                    <small>February 21,2018</small>
-                    <p>Stop wasting time and money on technology</p>
-                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-                </div>
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn"> <span>Tips, Tech, Development</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog2.jpg')}}" alt="" srcset="">
-                    <h4>We asked some of the leading business women</h4>
-                    <small>February 21,2018</small>
-                    <p>The smaller mate cones release pollen</p>
-                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-                </div>
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn"> <span>Development, Strategy</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog3.jpg')}}" alt="" srcset="">
-                    <h4>How to develope item for our marketplace</h4>
-                    <small>February 21,2018</small>
-                    <p>Which fertilizes the femate cones’ ovula.</p>
-                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-                </div>
-                <!-- end content-box -->
-                <div class="content-box wow fadeIn"> <span>Tech, Business, Parnership</span>
-                    <img class="blog-main-img" src="{{ asset('web_assets/images/blog4.jpg')}}" alt="" srcset="">
-                    <h4>Never underestimate the power of social media</h4>
-                    <small>February 21,2018</small>
-                    <p>After this pollen release, mate cones</p>
-                    <a href="#"><img src="{{ asset('web_assets/images/icon-right-arrow.svg')}}" alt="Image"></a>
-                </div>
-                <!-- end content-box --> --}}
+
             </div>
             <!-- end col-12 -->
         </div>
@@ -545,10 +257,18 @@
         <h3>{{ $aboutUs->membership_title_en }}</h3>
         <h6>{{ $aboutUs->membership_text_en }}</p>
             <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
+            @auth
+
             <form id="goToAdd" action="{{ route('childSport') }}" method="get">
                 @csrf
             </form>
-            <button form='goToAdd' class="join-us btn">Join Us<span> Now</span></a>
+            <button form='goToAdd' class="join-us btn">Add your Child<span> Now</span></a>
+
+                @else
+
+                <a href="{{ route('register') }}" class="join-us btn">Join Our Club<span> Now</span></a>
+
+                @endauth
     </div>
 </section>
 <!-- end info-box -->

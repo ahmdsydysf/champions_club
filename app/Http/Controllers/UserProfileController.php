@@ -94,7 +94,13 @@ class UserProfileController extends Controller
     public function childSports($id)
     {
         $child = User_children::where('id', $id)->first() ;
-        $sport = Sport::all();
+        $sport = DB::table('sports')
+            ->whereNotIn('id', function ($query) use ($id) {
+                $query->select('sport_id')
+                ->from('membership_details')
+                ->where('child_id', $id);
+            })->get();
+        // $sport = Sport::all();
         $child_mem_details = Membership_detail::with('sport')->where('child_id', $id) ->orderByDesc('created_at')->get();
         return view('web.profile.child_sports', compact('child_mem_details', 'child', 'sport'));
     }
@@ -376,7 +382,8 @@ class UserProfileController extends Controller
     }
 
 
-    public function cong(){
+    public function cong()
+    {
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             return view('web.congrate');
         } else {
