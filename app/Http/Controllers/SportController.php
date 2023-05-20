@@ -60,7 +60,7 @@ class SportController extends Controller
         $request_data = $request->except('sport_image', '_token');
 
         if ($request->file('sport_image')) {
-            $myimageName = uniqid() . $request->file('sport_image')->getClientOriginalName();
+            $myimageName =$request->file('sport_image')->getClientOriginalName();
             Image::make($request->file('sport_image'))->resize(260, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/sport/' . $myimageName));
@@ -124,7 +124,7 @@ class SportController extends Controller
                 if ($sport->sport_image != 'default_sport.jpg') {
                     Storage::disk('public_uploads')->delete("/sport/$sport->sport_image");
                 }
-                $myimageName = uniqid() . $request->file('sport_image')->getClientOriginalName();
+                $myimageName =$request->file('sport_image')->getClientOriginalName();
                 Image::make($request->file('sport_image'))->resize(260, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path('uploads/sport/' . $myimageName));
