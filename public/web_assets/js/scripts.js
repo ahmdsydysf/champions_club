@@ -315,17 +315,26 @@
 			});
 
 
-			var owl = $('.owl-carousel');
-			owl.owlCarousel({
-				items: 3,
-				loop: true,
-				margin: 10,
-				autoplay: true,
-				autoplayTimeout: 3200,
-				autoplayHoverPause: true
-			});
+			// var owl = $('.owl-carousel');
+			// owl.owlCarousel({
+			// 	items: 3,
+			// 	loop: true,
+			// 	margin: 10,
+			// 	autoplay: true,
+			// 	autoplayTimeout: 3200,
+			// 	autoplayHoverPause: true
+			// });
 
-
+            $(".owl-carousel").owlCarousel({
+                autoPlay: 3000,
+                items : 1, // THIS IS IMPORTANT
+                responsive : {
+                      480 : { items : 1  }, // from zero to 480 screen width 4 items
+                      768 : { items : 2  }, // from 480 screen widthto 768 6 items
+                      1024 : { items : 3   // from 768 screen width to 1024 8 items
+                      }
+                  },
+            });
 
 
 
