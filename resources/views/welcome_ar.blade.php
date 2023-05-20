@@ -87,7 +87,7 @@
 <!-- end side-image-content -->
 <section class="image-content-over-box">
     <div class="container">
-        <div class="row">
+        <div class="row" style="direction: ltr !important">
             <div class="col-lg-4">
                 <div class="section-title wow fadeIn">
                     <h2>{{ $aboutUs->sports_title_ar }}</h2>
@@ -98,10 +98,10 @@
             <!-- end col-3 -->
 
             <div class="col-lg-8">
-                <div class="swiper-carousel wow fadeIn">
+                <div class="swiper-carousel wow fadeIn" >
                     <div class="swiper-wrapper">
                         @foreach ( $sports as $row )
-                        <div class="swiper-slide" style="direction: ltr !important">
+                        <div class="swiper-slide" >
                             <figure> <img src="{{ asset('uploads/sport/' . $row->sport_image)}}" alt="Image">
                                 <figcaption>
                                     <h4>{{ $row->sport_title_ar }}</h4>
