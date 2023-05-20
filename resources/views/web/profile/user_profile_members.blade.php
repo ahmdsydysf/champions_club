@@ -89,65 +89,81 @@
                         <div class="row justify-content-center">
                             <div class="child-full-data row">
                                 {{-- هجيب الطفل و الميمبرشيب الخاصبيه ومنها هجيب الانفويس واتشيك علي الستيتس --}}
-                                @foreach ($user_data->Children as $child )
 
-                                @foreach ($child->memberships as $member)
-                                @if ($member->invoice->invoice_status == 1 )
+                               @if(!empty($user_data->Children))
+                               @foreach ($user_data->Children as $child )
 
-                                {{-- @if ($invo->invoice_status == 1) --}}
-                                <div class="col-md-6 col-12 ">
-                                    <aside class="sidebar post-content"
-                                        style="max-width: 100%;position:relative !important">
-                                        <div class="widget categories">
-                                            <a href="{{ route('childProfile' , $child->id ) }}">
-                                                <h4 class="widget-title"><span>{{ $child->name
-                                                        }}</span></h4>
-                                            </a>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="content-box wow fadeIn col-6"
-                                                        style="visibility: visible; animation-name: fadeIn;">
-                                                        <figure><img style="height: 250px;width:100%"
-                                                                src="{{ asset('uploads/children_data/' . $child->personal_image) }}"
-                                                                alt="Image">
-                                                        </figure>
+                               @foreach ($child->memberships as $member)
+                               @if ($member->invoice->invoice_status == 1 )
 
-                                                    </div>
-                                                    <div class="content-box wow fadeIn col-6"
-                                                        style="visibility: visible; animation-name: fadeIn;">
-                                                        <figure><img style="height: 250px;width:100%"
-                                                                src="{{ asset('uploads/children_data/' . $child->birth_image) }}"
-                                                                alt="Image">
-                                                        </figure>
+                               {{-- @if ($invo->invoice_status == 1) --}}
+                               <div class="col-md-6 col-12 ">
+                                   <aside class="sidebar post-content"
+                                       style="max-width: 100%;position:relative !important">
+                                       <div class="widget categories">
+                                           <a href="{{ route('childProfile' , $child->id ) }}">
+                                               <h4 class="widget-title"><span>{{ $child->name
+                                                       }}</span></h4>
+                                           </a>
+                                           <div class="container">
+                                               <div class="row">
+                                                   <div class="content-box wow fadeIn col-6"
+                                                       style="visibility: visible; animation-name: fadeIn;">
+                                                       <figure><img style="height: 250px;width:100%"
+                                                               src="{{ asset('uploads/children_data/' . $child->personal_image) }}"
+                                                               alt="Image">
+                                                       </figure>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <h5 class="widget-title col-6">Birthdate :
-                                                        <span>{{ $child->birthdate}}</span>
-                                                    </h5>
-                                                    <h5 class="widget-title col-6">Hight :
-                                                        <span>{{ $child->height }}</span>
-                                                    </h5>
-                                                    <h5 class="widget-title col-6">Weight : <span>
-                                                            {{ $child->width}}</span>
-                                                    </h5>
+                                                   </div>
+                                                   <div class="content-box wow fadeIn col-6"
+                                                       style="visibility: visible; animation-name: fadeIn;">
+                                                       <figure><img style="height: 250px;width:100%"
+                                                               src="{{ asset('uploads/children_data/' . $child->birth_image) }}"
+                                                               alt="Image">
+                                                       </figure>
 
-                                                </div>
-                                            </div>
-                                            <!-- end side-menu -->
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="container">
+                                               <div class="row">
+                                                   <h5 class="widget-title col-6">Birthdate :
+                                                       <span>{{ $child->birthdate}}</span>
+                                                   </h5>
+                                                   <h5 class="widget-title col-6">Hight :
+                                                       <span>{{ $child->height }}</span>
+                                                   </h5>
+                                                   <h5 class="widget-title col-6">Weight : <span>
+                                                           {{ $child->width}}</span>
+                                                   </h5>
 
-                                            <!-- end side-menu -->
-                                        </div>
+                                               </div>
+                                           </div>
+                                           <!-- end side-menu -->
 
-                                    </aside>
-                                    <!-- end side-bar -->
-                                </div>
-                                @endif
-                                @endforeach
-                                @endforeach
+                                           <!-- end side-menu -->
+                                       </div>
+
+                                   </aside>
+                                   <!-- end side-bar -->
+                               </div>
+                               @endif
+                               @endforeach
+                               @endforeach
+                               @else
+                               <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+
+                               </form>
+                               <div class="col-6 my-5 ">
+                                   <button form="goToAdd" class="submit-btn btn btn-primary reg float-left">Add
+                                       Your
+                                       Children Now</button>
+                               </div>
+                               @endif
+
+
+
+
 
                             </div>
                         </div>
