@@ -424,7 +424,7 @@
             <!-- end col-12 -->
             <div class="col-12 owl-carousel">
                 @foreach ($services as $row )
-                <div class="content-box service-container wow fadeIn">
+                <div class="content-box service-container ">
                     {{-- <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure> --}}
                     <h4>{{ $row->title_en }}</h4>
                     <p>{{ $row->brief_en }}</p>
@@ -432,12 +432,7 @@
                         More<span></span></a>
                 </div>
                 @endforeach
-                <div class="owl-controls">
-                    <div class="owl-nav">
-                        <div class="owl-prev">prev</div>
-                        <div class="owl-next">next</div>
-                    </div>
-                </div>
+
                 {{--
                 <!-- end content-box -->
                 <div class="content-box service-container wow fadeIn">
