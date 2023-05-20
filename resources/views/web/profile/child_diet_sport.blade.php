@@ -122,13 +122,13 @@
                                             @if (app()->getLocale() == 'ar')
                                             <h4>
 
-                                                {{ $mem->sport->sport_subtitle_ar }}
+                                                {{ $mem->sport->sport_title_ar }}     -  {{ $mem->sport->sport_subtitle_ar }}
 
                                             </h4>
                                             @else
                                             <h4>
 
-                                                {{ $mem->sport->sport_subtitle_en }}
+                                                {{ $mem->sport->sport_title_ar }}     - {{ $mem->sport->sport_subtitle_en }}
 
                                             </h4>
                                             @endif

@@ -87,6 +87,7 @@
                         {{-- @dd($child->name) --}}
                         <div class="row justify-content-center">
                             <div class="child-full-data row">
+                                @if(count($user_data->Children)>0)
                                 @foreach ($user_data->Children as $child )
 
                                 @foreach ($child->memberships as $member)
@@ -144,6 +145,17 @@
                                 @endif
                                 @endforeach
                                 @endforeach
+
+                                @else
+                                <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+
+                                </form>
+                                <div class="col-6 my-5 ">
+                                    <button form="goToAdd" class="submit-btn btn btn-primary reg float-left">Add
+                                        Your
+                                        Children Now</button>
+                                </div>
+                                @endif
 
                                 <!-- end col-4 -->
                                 {{-- <div class="col-md-6 col-12">

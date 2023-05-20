@@ -190,8 +190,16 @@
                                             @endif
                                             <td>{{ $mem->start_date}}</td>
                                             <td>{{ $mem->end_date}}</td>
-                                            <td>0</td>
-                                            <td>0</td>
+                                            <td>
+                                                <?php
+$attend=App\Models\Attendance::where('membership_details_id',$mem->id)->where('session_date', '>', $mem->start_date)
+    ->where('session_date', '<', $mem->end_date)->where('child_id',$child->id)->where('attend',1)->get();
+$Absent=App\Models\Attendance::where('membership_details_id',$mem->id)->where('session_date', '>', $mem->start_date)
+    ->where('session_date', '<', $mem->end_date)->where('child_id',$child->id)->where('attend','!=',1)->get();
+
+                                               ?>
+                                               {{   $attend->count() }}</td>
+                                            <td>{{  $Absent->count() }}</td>
                                             <td>{{ $child->level}}</td>
                                             <td>
                                                 @if ($mem->end_date > now()->format('Y-m-d'))

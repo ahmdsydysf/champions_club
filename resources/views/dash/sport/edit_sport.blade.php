@@ -221,6 +221,25 @@
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
+
+                                     <!--begin::Input group-->
+                                     <div class="mb-10 fv-row fv-plugins-icon-container">
+                                        <!--begin::Label-->
+                                        <label class="required form-label">membership_disc_fees</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="membership_disc_fees" class="form-control mb-2"
+                                            placeholder="membership_disc_fees" value="{{ $sport->membership_disc_fees }}">
+                                        <!--end::Input-->
+                                        @error('membership_disc_fees')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                    <!--end::Input group-->
+
+
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row fv-plugins-icon-container">
                                         <!--begin::Label-->
