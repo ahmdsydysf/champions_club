@@ -50,7 +50,7 @@
                             </span>
                             <span class="menu-title">Sports</span>
                         </a>
-                        <a class="menu-link {{ Request::segment(2) == 'branch' ? 'active' : '' }} "
+                        {{-- <a class="menu-link {{ Request::segment(2) == 'branch' ? 'active' : '' }} "
                             href="{{ route('dashboard.branch.index') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
@@ -63,7 +63,7 @@
                                 <span class="bullet bullet-dot"></span>
                             </span>
                             <span class="menu-title">Social Links</span>
-                        </a>
+                        </a> --}}
                         <a class="menu-link {{ Request::segment(2) == 'news_event' ? 'active' : '' }} "
                             href="{{ route('dashboard.news_event.index') }}">
                             <span class="menu-bullet">
@@ -92,13 +92,13 @@
                             </span>
                             <span class="menu-title">Genaral Services</span>
                         </a>
-                        <a class="menu-link {{ Request::segment(2) == 'sponsor' ? 'active' : '' }} "
+                        {{-- <a class="menu-link {{ Request::segment(2) == 'sponsor' ? 'active' : '' }} "
                             href="{{ route('dashboard.sponsor.index') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
                             <span class="menu-title">Sponsors</span>
-                        </a>
+                        </a> --}}
 
                         <a class="menu-link {{ Request::segment(2) == 'memberships' ? 'active' : '' }} "
                             href="{{ route('dashboard.memberships.index') }}">
@@ -109,13 +109,13 @@
                         </a>
 
 
-                        <a class="menu-link {{ Request::segment(2) == 'feedRecommend' ? 'active' : '' }} "
+                        {{-- <a class="menu-link {{ Request::segment(2) == 'feedRecommend' ? 'active' : '' }} "
                             href="{{ route('dashboard.feedRecommend.index') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
                             <span class="menu-title">Feed Recommend</span>
-                        </a>
+                        </a> --}}
 
 
                         <a class="menu-link {{ Request::segment(2) == 'annual-members' ? 'active' : '' }} "

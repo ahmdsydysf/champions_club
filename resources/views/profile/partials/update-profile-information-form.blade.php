@@ -51,14 +51,14 @@
         </div>
         <div>
             <x-input-label for="mobile" class="mt-2" :value="__('main.mobile')" />
-            <x-text-input id="mobile" name="mobile" type="text" class="mt-1 block w-full"
+            <x-text-input id="mobile" name="mobile" type="text" minlength="12" class="mt-1 block w-full"
                 :value="old('mobile', Auth::user()->mobile)" required autofocus autocomplete="mobile" />
             <x-input-error class="mt-2" :messages="$errors->get('mobile')" />
         </div>
         <div>
             <x-input-label for="floatingTextarea2" class="mt-2" :value="__('main.Address')" />
             <div class="form-floating">
-                <textarea name="address" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                <textarea name="address" class="form-control" placeholder="Address" id="floatingTextarea2"
                     style="height: 100px">{{old('address', Auth::user()->address)}}</textarea>
             </div>
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
