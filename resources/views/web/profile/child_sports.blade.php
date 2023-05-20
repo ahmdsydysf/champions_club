@@ -192,7 +192,6 @@
                                             <td>{{ $mem->end_date}}</td>
                                             <td>
                                                 <?php
-                                                $child->id
 $attend=App\Models\Attendance::where('membership_details_id',$mem)->where('child_id',$child->id)->where('attend',1)->get();
 $Absent=App\Models\Attendance::where('membership_details_id',$mem)->where('child_id',$child->id)->where('attend',0)->get();
 
