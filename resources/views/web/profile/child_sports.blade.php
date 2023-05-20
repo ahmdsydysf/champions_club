@@ -192,8 +192,10 @@
                                             <td>{{ $mem->end_date}}</td>
                                             <td>
                                                 <?php
-$attend=App\Models\Attendance::where('membership_details_id',$mem)->where('child_id',$child->id)->where('attend',1)->get();
-$Absent=App\Models\Attendance::where('membership_details_id',$mem)->where('child_id',$child->id)->where('attend',0)->get();
+$attend=App\Models\Attendance::where('membership_details_id',$mem->id)->where('session_date', '>', $mem->start_date)
+    ->where('session_date', '<', $mem->end_date)->where('child_id',$child->id)->where('attend',1)->get();
+$Absent=App\Models\Attendance::where('membership_details_id',$mem->id)->where('session_date', '>', $mem->start_date)
+    ->where('session_date', '<', $mem->end_date)->where('child_id',$child->id)->where('attend','!=',1)->get();
 
                                                ?>
                                                {{   $attend->count() }}</td>
