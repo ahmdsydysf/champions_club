@@ -195,11 +195,10 @@
             <div class="col-12 owl-carousel">
                 @foreach ($services as $row )
                 <div class="content-box service-container wow fadeIn">
-                    <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
+                    {{-- <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure> --}}
                     <h4>{{ $row->title_ar }}</h4>
                     <p>{{ $row->brief_ar }}</p>
-                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
-                        More<span></span></a>
+                    <a class="dis-btn-service" href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
                 </div>
                 @endforeach
 
