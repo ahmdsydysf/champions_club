@@ -324,6 +324,15 @@
 				autoplayTimeout: 3200,
 				autoplayHoverPause: true
 			});
+            var owl = $('.owl-carousel-ar');
+			owl.owlCarousel({
+				items: 3,
+				loop: true,
+				margin: 10,
+				autoplay: true,
+				autoplayTimeout: 3200,
+				autoplayHoverPause: true
+			});
 
             // $(".owl-carousel").owlCarousel({
             //     autoPlay: 2000,
