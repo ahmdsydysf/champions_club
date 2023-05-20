@@ -192,9 +192,9 @@
                 <!-- end section-title -->
             </div>
             <!-- end col-12 -->
-            <div class="col-12 owl-carousel-ar">
+            <div id="owl-ar" class="col-12 owl-carousel">
                 @foreach ($services as $row )
-                <div class="content-box service-container ">
+                <div class="content-box service-container text-end">
                     {{-- <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure> --}}
                     <h4>{{ $row->title_ar }}</h4>
                     <p>{{ $row->brief_ar }}</p>
