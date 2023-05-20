@@ -132,7 +132,7 @@ class SportController extends Controller
             }
 
             $sport->update($request_data);
-dd($sport);
+dd($request->get('sport_image'));
             //update sport days
             $sportDay = Sports_day::where('sport_id', $sport->id)->first();
 
