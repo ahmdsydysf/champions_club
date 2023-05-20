@@ -326,10 +326,7 @@ class HomeController extends Controller
                 unlink(public_path('uploads/children_data/' . $img));
             }
 
-            foreach(session()->get('Member_detail') as $c_mem) {
-                $table1Data = Membership_detail::where('id', $c_mem)->first();
-                $table1Data->delete();
-            }
+
             foreach(session()->get('attendance') as $att) {
                 $table1Data = Attendance::where('id', $att)->first();
                 $table1Data->delete();
@@ -338,7 +335,10 @@ class HomeController extends Controller
                 $table1Data = Membership_invoice::where('id', $inv)->first();
                 $table1Data->delete();
             }
-
+            foreach(session()->get('Member_detail') as $c_mem) {
+                $table1Data = Membership_detail::where('id', $c_mem)->first();
+                $table1Data->delete();
+            }
             foreach(session()->get('child_id') as $c_id) {
                 $table1Data = User_children::where('id', $c_id)->first();
                 $table1Data->delete();
