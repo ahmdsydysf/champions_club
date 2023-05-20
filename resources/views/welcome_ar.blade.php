@@ -194,11 +194,11 @@
             <!-- end col-12 -->
             <div id="owl-ar" class="col-12 owl-carousel">
                 @foreach ($services as $row )
-                <div class="content-box service-container text-end">
+                <div class="content-box service-container ">
                     {{-- <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure> --}}
-                    <h4>{{ $row->title_ar }}</h4>
-                    <p>{{ $row->brief_ar }}</p>
-                    <a class="dis-btn-service" href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
+                    <h4 class="text-end">{{ $row->title_ar }}</h4>
+                    <p class="text-end">{{ $row->brief_ar }}</p>
+                    <a class="dis-btn-service text-center" href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
                 </div>
                 @endforeach
 
