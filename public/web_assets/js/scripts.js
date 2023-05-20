@@ -329,6 +329,7 @@
                 loop: true,
                 autoplay: true,
                 items : 3, // THIS IS IMPORTANT
+                autoplayTimeout: 3200,
                 responsive : {
                       480 : { items : 1  }, // from zero to 480 screen width 4 items
                       768 : { items : 2  }, // from 480 screen widthto 768 6 items
