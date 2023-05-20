@@ -181,7 +181,7 @@
                     <div class="swiper-wrapper">
                         @foreach ( $sports as $row )
                         <div class="swiper-slide">
-                            <figure> <img src="{{ asset('uploads/sport/' . $row->sport_image)}}" alt="Image">
+                            <figure> <img src="{{ asset('uploads/sport/'.$row->sport_image)}}" alt="Image">
                                 <figcaption>
                                     <h4>{{ $row->sport_title_en }}</h4>
                                     <small>{{ $row->sport_subtitle_en }}</small>
