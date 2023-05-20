@@ -198,7 +198,7 @@
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
                     <h4 style="color:#fff;display: block;width:100%;text-align: right">{{ $row->title_ar }}</h4>
                     <p style="color:#fff">{{ $row->brief_ar }}</p>
-                    <a  class="dis-btn-service"  href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
+                    <a  class="dis-btn-service"  href="#" data-swiper-parallax="200">لمعرفة المزيد <<<span></span></a>
                 </div>
                 @endforeach
 
