@@ -184,9 +184,9 @@
         <div class="row">
             <div class="col-12 wow fadeIn">
                 <div class="section-title">
-                    <a href="allnews-ar.html">
-                        <h2 style="color: white;">{{ $aboutUs->services_title_ar }}</h2>
-                        <h6 style=" color: white;">{{ $aboutUs->services_text_ar }}</h6>
+                    <a href="allnews.html">
+                        <h2 style="color: white;">{{ $aboutUs->services_title_en }}</h2>
+                        <h6 style="color: white;">{{ $aboutUs->services_text_en }}</h6>
                     </a>
                 </div>
                 <!-- end section-title -->
@@ -196,12 +196,44 @@
                 @foreach ($services as $row )
                 <div class="content-box service-container wow fadeIn">
                     {{-- <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure> --}}
-                    <h4>{{ $row->title_ar }}</h4>
-                    <p>{{ $row->brief_ar }}</p>
-                    <a class="dis-btn-service" href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
+                    <h4>{{ $row->title_en }}</h4>
+                    <p>{{ $row->brief_en }}</p>
+                    <a class="dis-btn-service" href="#" data-swiper-parallax="200">Discover
+                        More<span></span></a>
                 </div>
                 @endforeach
+                {{--
+                <!-- end content-box -->
+                <div class="content-box service-container wow fadeIn">
+                    <figure><img src="{{ asset('web_assets/images/image02.jpg.webp') }}" alt="Image"></figure>
+                    <h4>Group Fitness Classes</h4>
+                    <p>Group fitness classes are a popular way for members to stay motivated and engaged while
+                        exercising. These
+                        classes can include a wide range of activities such as yoga, Pilates, spinning, Zumba, and more.
+                        By
+                        offering a variety of classes, sport clubs can appeal to members with different interests and
+                        fitness
+                        levels.</p>
+                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
+                        More<span></span></a>
 
+                </div>
+                <!-- end content-box -->
+                <div class="content-box service-container wow fadeIn">
+                    <figure><img src="{{ asset('web_assets/images/image03.jpg') }}" alt="Image"></figure>
+                    <h4>Sports Facilities</h4>
+                    <p>For many members, access to high-quality sports facilities is a key reason for joining a sport
+                        club.
+                        These facilities can include swimming pools, tennis courts, basketball courts, soccer fields,
+                        and more. By
+                        providing top-notch facilities, sport clubs can attract members who are serious about their
+                        sport and want
+                        to train in a profession.</p>
+                    <a class="dis-btn-service" href="single-news.html" data-swiper-parallax="200">Discover
+                        More<span></span></a>
+
+                </div>
+                <!-- end content-box --> --}}
             </div>
             <!-- end col-12 -->
         </div>
