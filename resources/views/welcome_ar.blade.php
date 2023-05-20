@@ -196,9 +196,9 @@
                 @foreach ($services as $row )
                 <div class="content-box service-container "  >
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
-                    <h4 style="color:#fff">{{ $row->title_ar }}</h4>
+                    <h4 style="color:#fff;display: block;width:100%;text-align: right">{{ $row->title_ar }}</h4>
                     <p style="color:#fff">{{ $row->brief_ar }}</p>
-                    <a  class="dis-btn-service" href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
+                    <a  class="dis-btn-service" style="color:#fff;display: block;width:100%;text-align: right" href="#" data-swiper-parallax="200">لمعرفة المزيد<span></span></a>
                 </div>
                 @endforeach
 
