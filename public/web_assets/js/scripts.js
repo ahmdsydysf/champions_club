@@ -335,9 +335,12 @@
 			// });
 
             $("#owl-ar").owlCarousel({
-                loop: true,
-                autoplayTimeout: 3200,
-                items : 3, // THIS IS IMPORTANT
+               	items: 3,
+				loop: true,
+				margin: 10,
+				autoplay: true,
+				autoplayTimeout: 3200,
+			 	autoplayHoverPause: true, // THIS IS IMPORTANT
                 responsive : {
                       480 : { items : 1  }, // from zero to 480 screen width 4 items
                       768 : { items : 2  }, // from 480 screen widthto 768 6 items
@@ -347,9 +350,12 @@
             });
 
             $("#owl-en").owlCarousel({
-                loop: true,
-                autoplayTimeout: 3200,
-                items : 3, // THIS IS IMPORTANT
+                	items: 3,
+				loop: true,
+				margin: 10,
+				autoplay: true,
+				autoplayTimeout: 3200,
+			 	autoplayHoverPause: true, // THIS IS IMPORTANT
                 responsive : {
                       480 : { items : 1  }, // from zero to 480 screen width 4 items
                       768 : { items : 2  }, // from 480 screen widthto 768 6 items
