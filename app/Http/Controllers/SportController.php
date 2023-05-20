@@ -130,8 +130,9 @@ class SportController extends Controller
                 })->save(public_path('uploads/sport/' . $myimageName));
                 $request_data['sport_image'] = $myimageName;
             }
-dd($request_data);
+
             $sport->update($request_data);
+dd($sport);
             //update sport days
             $sportDay = Sports_day::where('sport_id', $sport->id)->first();
 
