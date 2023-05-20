@@ -35,9 +35,10 @@
 
     @if (LaravelLocalization::getCurrentLocale() == 'ar')
     {{-- arabic links --}}
-    <link rel="stylesheet" href="{{ asset('web_assets/css/bootstrap-ar.min.css')}}">
-    {{-- <link rel="stylesheet" href="{{ asset('web_assets/css/style-ar.css')}}"> --}}
-    <link rel="stylesheet" href="{{ asset('web_assets/css/style.css')}}">
+    {{-- <link rel="stylesheet" href="{{ asset('web_assets/css/bootstrap-ar.min.css')}}"> --}}
+    <link rel="stylesheet" href="{{ asset('web_assets/css/bootstrap.min.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('web_assets/css/style-ar.css')}}">
 
    <style>
         .header .navbar .container .nav-menu li {
