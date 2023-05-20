@@ -122,6 +122,33 @@ class HomeController extends Controller
         $sportDays = Sports_day::where('id', $sport_id)->firstOrFail();
         $firstday_name = Day_new::where('id', $sportDays->firstday_id)->firstOrFail();
         $secondday_name =Day_new::where('id', $sportDays->secondday_id)->firstOrFail();
+
+
+
+
+
+         $annual=null;
+        $annual=App\Models\User_membership::where('user_id',$child->user_id)->
+        where('end_date','>',now()->format('Y-m-d'))->where('approved',1)->first();
+
+
+        if ($annual !== null){
+           $member= $SportData[0]->membership_disc_fees;
+        }else
+        $member=$SportData[0]->membership_fees;
+     }
+
+
+
+
+
+
+
+
+
+
+
+
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             $output = '
                 <div class="card-header sport_title">' .
@@ -131,7 +158,7 @@ class HomeController extends Controller
                     <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_en .'</h5>
                     <p class="card-text sport_overview">'. $SportData[0]->sport_overview_en .'</p>
                     <h5 class="card-title">Sport Cost</h5>
-                    <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' EGP</p>
+                    <p class="card-text membership_fees">'. $member .' EGP</p>
                 </div>
         ';
 
@@ -146,7 +173,7 @@ class HomeController extends Controller
                 <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_ar .'</h5>
                 <p class="card-text sport_overview">'. $SportData[0]->sport_overview_ar .'</p>
                 <h5 class="card-title">تكلفة الرياضة</h5>
-                <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' جنيه</p>
+                <p class="card-text membership_fees">'. $member .' جنيه</p>
             </div>
     ';
 

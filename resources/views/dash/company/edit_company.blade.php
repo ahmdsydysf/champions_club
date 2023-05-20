@@ -382,7 +382,22 @@
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                     <!--end::Input group-->
+ <!--end::Input group-->
+ <div>
+    <!--begin::Label-->
+    <label class="required form-label">club_member_fees</label>
+    <!--end::Label-->
+    <!--begin::Input-->
+    <input type="text" name="club_member_fees" class="form-control mb-2"
+        placeholder="club_member_fees" value="{{ $company->club_member_fees }}">
+    <!--end::Input-->
+    @error('club_member_fees')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
+    <div class="fv-plugins-message-container invalid-feedback"></div>
+</div>
+<!--end::Input group-->
                                 </div>
                                 <!--end::Card header-->
                             </div>
