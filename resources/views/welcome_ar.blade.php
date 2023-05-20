@@ -101,7 +101,7 @@
                 <div class="swiper-carousel wow fadeIn">
                     <div class="swiper-wrapper">
                         @foreach ( $sports as $row )
-                        <div class="swiper-slide">
+                        <div class="swiper-slide" style="direction: ltr !important">
                             <figure> <img src="{{ asset('uploads/sport/' . $row->sport_image)}}" alt="Image">
                                 <figcaption>
                                     <h4>{{ $row->sport_title_ar }}</h4>
