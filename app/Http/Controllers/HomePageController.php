@@ -23,7 +23,7 @@ class HomePageController extends Controller
         $sports = Sport::all();
         $cups = Cup::all();
         $services = Service::all();
-        $news = NewsEvent::all();
+        $news = NewsEvent::take(4)->inRandomOrder()->get();
         $sponsors = Sponsor::all();
         $counter = Counter::all();
         $general_service = GeneralService::all();
