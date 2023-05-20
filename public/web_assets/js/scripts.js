@@ -315,7 +315,7 @@
 			});
 
 
-			var owl = $('.owl-carousel');
+			var owl = $('#owl-en');
 			owl.owlCarousel({
 				items: 3,
 				loop: true,
@@ -324,7 +324,7 @@
 				autoplayTimeout: 3200,
 				autoplayHoverPause: true
 			});
-            var owl = $('.owl-carousel-ar');
+            var owl = $('#owl-ar');
 			owl.owlCarousel({
 				items: 3,
 				loop: true,
