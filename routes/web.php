@@ -59,6 +59,8 @@ Route::group(
         Route::post('/user/children/discard', [HomeController::class , 'discardCartChanges'])->name('discardCartChanges');
 
 
+        /*============== user children sports status 0 ================*/
+        Route::post('/user/children/unsignedSport', [HomeController::class , 'completeChildSport'])->name('completeChildSport');
         /*==============suggest sport ================*/
         Route::get('/suggest-sport', [SuggestSportController::class , 'index'])->name('suggest-sport');
         //dynamicSuggest.fetch
@@ -93,8 +95,8 @@ Route::group(
             Route::post('/profile/add/child/sport', [UserProfileController::class, 'addAnotherChildSport'])->name('addAnotherChildSport');
             Route::put('/child/renew/sport', [UserProfileController::class, 'newaddedsportrenew'])->name('newaddedsportrenew');
             Route::get('/child/sportsDiet', [UserProfileController::class, 'childSportDiet'])->name('childSportDiet');
-       /*===============to prevent resubmit return route===================*/
-       Route::get('/congratulation', [UserProfileController::class, 'cong'])->name('congratulation');
+            /*===============to prevent resubmit return route===================*/
+            Route::get('/congratulation', [UserProfileController::class, 'cong'])->name('congratulation');
 
         });
 

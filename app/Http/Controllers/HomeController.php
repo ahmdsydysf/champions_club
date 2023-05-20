@@ -97,7 +97,23 @@ class HomeController extends Controller
         } else {
             return view('web.user_children_cart_ar', compact('childrenIds', 'membershipDetails'));
         }
-        // ['cildrenIds'=>$cildrenIds ,'membershipDetails' => $membershipDetails]
+
+    }
+
+    public function completeChildSport(Request $request)
+    {
+        $userID = $request->user_id;
+        $invoiceIDs = Membership_invoice::where('user_id', $userID)->where('invoice_status', 0)->pluck('id');
+
+        dd($invoiceIDs);
+        $memo = Membership_detail::where('invoice_id', $invoiceIDs)->get();
+        dd($memo);
+        if(LaravelLocalization::getCurrentLocale() == 'en') {
+            return view('web.user_children_cart', compact('childrenIds', 'membershipDetails'));
+        } else {
+            return view('web.user_children_cart_ar', compact('childrenIds', 'membershipDetails'));
+        }
+
     }
 
 
