@@ -86,7 +86,7 @@
                         </blockquote>
                         <p>{{ $thisSport->sport_overview_en }}</p> --}}
 
-                        <p> Cooperative: Often referred to as a "co-op", a cooperative is a limited-liability business
+                        {{-- <p> Cooperative: Often referred to as a "co-op", a cooperative is a limited-liability business --}}
                         <div class="row">
                             <form id="goToAdd" action="{{ route('childSport') }}" method="get">
 

@@ -60,10 +60,10 @@
                             alt="{{ $thisSport->sport_image }}">
                     </figure>
                     <div class="post-content">
-                        <h4> كيفية تطوير عنصر </h4>
+                        <h4> {{ $thisSport->sport_title_ar }}</h4>
                         <small>{{ date('j F, Y', strtotime($thisSport->created_at)) }}</small>
 
-                        <p>{!! $thisSport->sport_overview_en !!}</p>
+                        <p>{!! $thisSport->sport_overview_ar !!}</p>
 
                         {{-- <p>{{ $thisSport->sport_overview_ar }}</p>
                         <blockquote>
