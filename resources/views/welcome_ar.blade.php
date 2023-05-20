@@ -207,6 +207,7 @@
                         <div class="owl-next">next</div>
                     </div>
             </div>
+            </div>
             <!-- end col-12 -->
         </div>
         <!-- end row -->

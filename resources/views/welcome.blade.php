@@ -437,6 +437,7 @@
                         <div class="owl-prev">prev</div>
                         <div class="owl-next">next</div>
                     </div>
+                </div>
                 {{--
                 <!-- end content-box -->
                 <div class="content-box service-container wow fadeIn">
