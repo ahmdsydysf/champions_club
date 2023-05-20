@@ -61,9 +61,11 @@
                     </figure>
                     <div class="post-content">
                         <h4> كيفية تطوير عنصر </h4>
-                        <small>{{ date('F j, Y') }}</small>
+                        <small>{{ date('j F, Y', strtotime($thisSport->created_at)) }}</small>
 
-                        <p>{{ $thisSport->sport_overview_ar }}</p>
+                        <p>{!! $thisSport->sport_overview_en !!}</p>
+
+                        {{-- <p>{{ $thisSport->sport_overview_ar }}</p>
                         <blockquote>
                             <p>
 
@@ -72,19 +74,24 @@
                             </p>
                             <h5>رئيس مجلس الادارة</h5>
                         </blockquote>
-                        <p>{{ $thisSport->sport_overview_ar }}</p>
+                        <p>{{ $thisSport->sport_overview_ar }}</p> --}}
 
 
                     </div>
                     <div class="row">
                         <form id="goToAdd" action="{{ route('childSport') }}" method="get">
-                            @csrf
                         </form>
                         <div class="col-3 ">
                             <button form="goToAdd" class="submit-btn btn btn-primary reg float-right">اضف اطفالك
                                 الان</button>
                         </div>
+                        <form id="goToReg" action="{{ route('profile.members') }}" method="get">
 
+                        </form>
+                        <div class="col-3 ">
+                            <button form="goToReg" class="submit-btn btn btn-primary reg float-left">
+                                طفل سابق تسجيله</button>
+                        </div>
                     </div>
                 </div>
 

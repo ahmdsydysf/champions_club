@@ -78,7 +78,7 @@ class HomeController extends Controller
     }
     public function sport($sportid)
     {
-        $thisSport = Sport::where('id', $sportid)->first(['sport_title_en' , 'id' , 'sport_subtitle_en' , 'sport_image' , 'sport_overview_en']);
+        $thisSport = Sport::where('id', $sportid)->first(['sport_title_en' ,'created_at', 'id' , 'sport_subtitle_en' , 'sport_image' , 'sport_overview_en']);
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             $sportData = Sport::all('sport_title_en', 'id');
             return view('web.sports', compact('sportData', 'sportid', 'thisSport'));
