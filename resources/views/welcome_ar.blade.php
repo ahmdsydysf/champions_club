@@ -193,6 +193,7 @@
             </div>
             <!-- end col-12 -->
             <div class="col-12 owl-carousel">
+                @dd($services)
                 @foreach ($services as $row )
                 <div class="content-box service-container wow fadeIn">
                     {{-- <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure> --}}
