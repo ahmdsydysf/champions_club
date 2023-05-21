@@ -54,6 +54,11 @@
     @yield('custom_css_ar')
 
     @endif
+    <style>
+        @-ms-viewport{
+  width: device-width;
+}
+        </style>
 </head>
 
 <body style="direction:{{ LaravelLocalization::getCurrentLocaleDirection() }} !important">
