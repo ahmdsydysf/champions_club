@@ -66,4 +66,13 @@ return [
     'Expiry Date'=> 'تاريخ الانتهاء',
     'ssl'=>'معاملتك مضمونة بشهادة ssl',
     'Credit card'=>'كريدت كارد',
+    'Personal Image'=>'الصورة الشخصية',
+    'Birthdate Certificate'=>'شهادة الميلاد',
+    'Personal Data'=>'معلومات شخصية',
+    'Comment'=>'تعليقات',
+    'Sport Cost'=>'تكلفة الرياضة',
+    'Cart Full Data'=>'معلومات كاملة',
+    'Invoice Number'=>'رقم الفاتورة',
+    'Total with 14% Tax'=>'الاجمالي بعد 14% ضريبة',
+
 ];

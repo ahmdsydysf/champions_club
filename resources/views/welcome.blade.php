@@ -263,8 +263,7 @@
                 @csrf
             </form>
 
-            <form id="goToComm" action="{{ route('completeChildSport' , ['user_id'=>Auth::user()->id]) }}"
-                method="post">
+            <form id="goToComm" action="{{ route('completeChildSport' , ['id'=>Auth::user()->id]) }}" method="get">
                 @csrf
 
             </form>

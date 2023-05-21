@@ -65,5 +65,14 @@ return [
     'Expiry Date'=>'Expiry Date',
     'ssl'=>'Your transaction is secured with ssl certificate',
     'Credit card'=>'Credit card',
+    'Personal Image'=>'Personal Image',
+    'Birthdate Certificate'=>'Birthdate Certificate',
+    'Personal Data'=>'Personal Data',
+    'Comment'=>'Comment',
+    'Sport Cost'=>'Sport Cost',
+    'Cart Full Data'=>'Cart Full Data',
+    'Invoice Number'=>'Invoice Number',
+    'Total with 14% Tax'=>'Total with 14% Tax',
+
 
 ];

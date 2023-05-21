@@ -208,69 +208,70 @@
     <div class="container">
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('welcome') }}">{{ __('main.Home') }}</a></li>
 
-            <li class="breadcrumb-item active" aria-current="page">Children Sport</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ __('main.Child Sports') }}</li>
         </ol>
-        <h2>Children Data</h2>
-        <p>As the person who owns the legal rights to intellectual property, an author.</p>
+        <h2>{{ __('main.Child Sport') }}</h2>
+        <p>{{ __('main.Profile title') }}</p>
     </div>
     <!-- end container -->
 </section>
 <!-- end page-header -->
 <section class="blog">
     <div class="container">
-
         <div class="row justify-content-center">
-            @if(session('childrenIds') && session('membershipDetails'))
-            @for($i = 0 ; $i < count(session('childrenIds')) ; $i++) <div class="child-full-data row">
+            @foreach ( $memo as $snglChild )
+            <div class="child-full-data row">
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
+
                         <div class="widget categories">
-                            <h4 class="widget-title"><span>{{ session('childrenIds')[$i]->name }}</span>
+                            <h4 class="widget-title">
+                                <span>{{ $snglChild->child->name }}</span>
+
                             </h4>
                             <div class="container">
                                 <div class="row">
                                     <div class="content-box wow fadeIn col-6"
                                         style="visibility: visible; animation-name: fadeIn;">
                                         <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('uploads/children_data/' . session('childrenIds')[$i]->personal_image) }}"
+                                                src="{{ asset('uploads/children_data/' . $snglChild->child->personal_image) }}"
                                                 alt="Image">
                                         </figure>
-                                        <h4>Personal Image</h4>
+                                        <h4>{{ __('main.Personal Image') }}</h4>
                                     </div>
                                     <div class="content-box wow fadeIn col-6"
                                         style="visibility: visible; animation-name: fadeIn;">
                                         <figure><img style="height: 250px;width:100%"
-                                                src="{{ asset('uploads/children_data/' . session('childrenIds')[$i]->birth_image) }}"
+                                                src="{{ asset('uploads/children_data/' . $snglChild->child->birth_image) }}"
                                                 alt="Image">
                                         </figure>
-                                        <h4>Birthdate Certificate</h4>
+                                        <h4>{{ __('main.Birthdate Certificate') }}</h4>
                                     </div>
 
                                 </div>
                             </div>
-                            <h4 class="widget-title">Personal Data</h4>
+                            <h4 class="widget-title">{{ __('main.Personal Data') }}</h4>
                             <div class="container">
                                 <div class="row">
-                                    <h5 class="widget-title col-6">Birthdate :
-                                        <span>{{ session('childrenIds')[$i]->birthdate}}</span>
+                                    <h5 class="widget-title col-6">
+                                        <span>{{ $snglChild->child->birthdate}}</span>
                                     </h5>
-                                    <h5 class="widget-title col-6">Hight :
-                                        <span>{{ session('childrenIds')[$i]->height }}</span>
+                                    <h5 class="widget-title col-6">{{ __('main.Hight') }}
+                                        <span>{{ $snglChild->child->height }}</span>
                                     </h5>
-                                    <h5 class="widget-title col-6">Weight : <span>
-                                            {{ session('childrenIds')[$i]->width}}</span>
+                                    <h5 class="widget-title col-6">{{ __('main.Weight') }} <span>
+                                            {{ $snglChild->child->width}}</span>
                                     </h5>
-                                    <h5 class="widget-title col-6">Level :
-                                        <span>{{ session('childrenIds')[$i]->level }}
+                                    <h5 class="widget-title col-6">{{ __('main.Level') }}
+                                        <span>{{ $snglChild->child->level }}
                                         </span>
                                     </h5>
                                 </div>
                             </div>
                             <!-- end side-menu -->
                         </div>
-
                     </aside>
                     <!-- end side-bar -->
                 </div>
@@ -278,25 +279,26 @@
                 <div class="col-md-6 col-12">
                     <aside class="sidebar" style="max-width: 100%;position:relative !important">
                         <div class="widget categories">
-                            <h4 class="widget-title"><span>{{ session('childrenIds')[$i]->name }}</span>
+                            <h4 class="widget-title"><span>{{ $snglChild->child->name }}</span>
                             </h4>
 
-                            <h4 class="widget-title">{{ session('membershipDetails')[$i]->sport->sport_title_en }}</h4>
+                            <h4 class="widget-title">{{ $snglChild->sport->sport_title_en }}</h4>
                             <div class="container">
                                 <div class="row">
                                     <h5 class="widget-title col-6">
-                                        start at : <span>{{ session('membershipDetails')[$i]->start_date}}
+                                        {{ __('main.Start Date') }} <span>{{ $snglChild->start_date}}
                                         </span></h5>
-                                    <h5 class="widget-title col-6">ends at : <span>
-                                            {{ session('membershipDetails')[$i]->end_date }}</span></h5>
+                                    <h5 class="widget-title col-6">{{ __('main.End Date') }} <span>
+                                            {{ $snglChild->end_date }}</span></h5>
                                     <blockquote>
-                                        <h5 class="widget-title" style="color:#fff !important">Comments</h5>
-                                        <p>{{ session('membershipDetails')[$i]->user_comment }}</p>
+                                        <h5 class="widget-title" style="color:#fff !important">{{ __('main.Comment') }}
+                                        </h5>
+                                        <p>{{ $snglChild->user_comment }}</p>
                                     </blockquote>
                                     <div class="widget download-box">
                                         <i class="fa fa-money"></i> <a href="#">
-                                            {{ session('membershipDetails')[$i]->fees}} LE</a>
-                                        <small>Sport Cost</small>
+                                            {{ $snglChild->fees}} {{ __('main.LE') }}</a>
+                                        <small>{{ __('main.Sport Cost') }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -306,219 +308,252 @@
                     </aside>
                     <!-- end side-bar -->
                 </div>
-        </div>
-        @endfor
-        @endif
+
+            </div>
+            @endforeach
 
 
-        <section class="career" style="padding-top:10px !important">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title">
-                            <h2>Cart Full Data</h2>
-                        </div>
-                        <!-- end section-title -->
-                        <div class="row g-3 m-3">
 
-                            <div class="col-12">
-                                <div class="section-title">
-                                    <h2>{{ __('main.Payment') }}</h2>
-                                </div>
-                                <div class="card">
+            <section class="career" style="padding-top:10px !important">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h2>{{ __('main.Cart Full Data') }}</h2>
+                            </div>
+                            <!-- end section-title -->
+                            <div class="row g-3 m-3">
 
-                                    <div class="accordion" id="accordionExample">
+                                <div class="col-12">
+                                    <div class="section-title">
+                                        <h2>{{ __('main.Payment') }}</h2>
+                                    </div>
+                                    <div class="card">
 
-                                        <div class="card">
-                                            <div class="card-header p-0" id="headingTwo">
-                                                <h2 class="mb-0">
-                                                    <button
-                                                        class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom"
-                                                        type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">
-                                                        <div class="d-flex align-items-center justify-content-between">
+                                        <div class="accordion" id="accordionExample">
 
-                                                            <span>Paypal</span>
-                                                            <img src="{{ asset('web_assets/images/7kQEsHU.png') }}"
-                                                                width="30">
+                                            <div class="card">
+                                                <div class="card-header p-0" id="headingTwo">
+                                                    <h2 class="mb-0">
+                                                        <button
+                                                            class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom"
+                                                            type="button" data-toggle="collapse"
+                                                            data-target="#collapseTwo" aria-expanded="false"
+                                                            aria-controls="collapseTwo">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-between">
 
-                                                        </div>
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                                data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <input type="text" class="form-control" placeholder="Paypal email">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card">
-                                            <div class="card-header p-0">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-light btn-block text-left p-3 rounded-0"
-                                                        data-toggle="collapse" data-target="#collapseOne"
-                                                        aria-expanded="true" aria-controls="collapseOne">
-                                                        <div class="d-flex align-items-center justify-content-between">
-
-                                                            <span>{{ __('main.Credit card') }}</span>
-                                                            <div class="icons">
-                                                                <img src="{{ asset('web_assets/images/2ISgYja.png') }}"
+                                                                <span>Paypal</span>
+                                                                <img src="{{ asset('web_assets/images/7kQEsHU.png') }}"
                                                                     width="30">
-                                                                <img src="{{ asset('web_assets/images/W1vtnOV.png') }}"
-                                                                    width="30">
-                                                                <img src="{{ asset('web_assets/images/35tC99g.png') }}"
-                                                                    width="30">
-                                                                <img src="{{ asset('web_assets/images/2ISgYja.png') }}"
-                                                                    width="30">
+
                                                             </div>
-
-                                                        </div>
-                                                    </button>
-                                                </h2>
-                                            </div>
-
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                                data-parent="#accordionExample">
-                                                <div class="card-body payment-card-body">
-
-                                                    <span class="font-weight-normal card-text">{{ __('main.card number')
-                                                        }}</span>
-                                                    <div class="input">
-
-                                                        <i class="fa fa-credit-card"></i>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
                                                         <input type="text" class="form-control"
-                                                            placeholder="0000 0000 0000 0000">
-
+                                                            placeholder="Paypal email">
                                                     </div>
-
-                                                    <div class="row mt-3 mb-3">
-
-                                                        <div class="col-md-6">
-
-                                                            <span class="font-weight-normal card-text">
-                                                                {{ __('main.Expiry Date') }}</span>
-                                                            <div class="input">
-
-                                                                <i class="fa fa-calendar"></i>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="MM/YY">
-
-                                                            </div>
-
-                                                        </div>
-
-
-                                                        <div class="col-md-6">
-
-                                                            <span class="font-weight-normal card-text">CVC/CVV</span>
-                                                            <div class="input">
-
-                                                                <i class="fa fa-lock"></i>
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="000">
-
-                                                            </div>
-
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <span class="text-muted certificate-text"><i class="fa fa-lock"></i>
-                                                        {{ __('main.ssl') }}</span>
-
                                                 </div>
                                             </div>
+
+                                            <div class="card">
+                                                <div class="card-header p-0">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-light btn-block text-left p-3 rounded-0"
+                                                            data-toggle="collapse" data-target="#collapseOne"
+                                                            aria-expanded="true" aria-controls="collapseOne">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-between">
+
+                                                                <span>{{ __('main.Credit card') }}</span>
+                                                                <div class="icons">
+                                                                    <img src="{{ asset('web_assets/images/2ISgYja.png') }}"
+                                                                        width="30">
+                                                                    <img src="{{ asset('web_assets/images/W1vtnOV.png') }}"
+                                                                        width="30">
+                                                                    <img src="{{ asset('web_assets/images/35tC99g.png') }}"
+                                                                        width="30">
+                                                                    <img src="{{ asset('web_assets/images/2ISgYja.png') }}"
+                                                                        width="30">
+                                                                </div>
+
+                                                            </div>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+
+                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body payment-card-body">
+
+                                                        <span class="font-weight-normal card-text">{{ __('main.card
+                                                            number')
+                                                            }}</span>
+                                                        <div class="input">
+
+                                                            <i class="fa fa-credit-card"></i>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="0000 0000 0000 0000">
+
+                                                        </div>
+
+                                                        <div class="row mt-3 mb-3">
+
+                                                            <div class="col-md-6">
+
+                                                                <span class="font-weight-normal card-text">
+                                                                    {{ __('main.Expiry Date') }}</span>
+                                                                <div class="input">
+
+                                                                    <i class="fa fa-calendar"></i>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="MM/YY">
+
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="col-md-6">
+
+                                                                <span
+                                                                    class="font-weight-normal card-text">CVC/CVV</span>
+                                                                <div class="input">
+
+                                                                    <i class="fa fa-lock"></i>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="000">
+
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <span class="text-muted certificate-text"><i
+                                                                class="fa fa-lock"></i>
+                                                            {{ __('main.ssl') }}</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                     </div>
 
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <!-- end col-12 -->
-                    <div class="col-12">
-                        <table class="table table-hover" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
-                            <thead>
-                                <tr>
-                                    <th scope="col">name</th>
-                                    <th scope="col">sport</th>
-                                    <th scope="col">start</th>
-                                    <th scope="col">end</th>
-                                    <th scope="col">cost</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if(session('childrenIds') && session('membershipDetails'))
-                                @for($i = 0 ; $i < count(session('childrenIds')) ; $i++) <tr>
-                                    <th scope="row">{{ session('childrenIds')[$i]->name }}</th>
-                                    <td>{{ session('membershipDetails')[$i]->sport->sport_title_en }}</td>
-                                    <td>
-                                        {{session('membershipDetails')[$i]->start_date }}
-                                    </td>
-                                    <td>
-                                        {{session('membershipDetails')[$i]->end_date }}</td>
-                                    <td>
-                                        {{ session('membershipDetails')[$i]->fees}} LE
-                                    </td>
+                        <!-- end col-12 -->
+                        <div class="col-12">
+                            <table class="table table-hover"
+                                dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">{{ __('main.Name') }}</th>
+                                        <th scope="col">{{ __('main.Sport Name') }}</th>
+                                        <th scope="col">{{ __('main.Start Date') }}</th>
+                                        <th scope="col">{{ __('main.End Date') }}</th>
+                                        <th scope="col">{{ __('main.Cost') }}</th>
+                                        <th scope="col">{{ __('main.Renew') }}</th>
+                                        <th scope="col">{{ __('main.Invoice Number') }}</th>
+                                        <th scope="col">{{ __('main.Total with 14% Tax') }}</th>
                                     </tr>
-                                    @endfor
+                                </thead>
+                                <tbody>
+                                    @foreach ($memo as $snglChild )
+                                    <tr>
+                                        <th scope="row">{{ $snglChild->child->name }}</th>
+                                        <td>{{ $snglChild->sport->sport_title_en }}</td>
+                                        <td>
+                                            {{$snglChild->start_date }}
+                                        </td>
+                                        <td>
+                                            {{$snglChild->end_date }}</td>
+                                        <td>
+                                            {{ $snglChild->fees}} {{ __('main.LE') }}
+                                        </td>
+
+                                        <td>
+                                            <form action="{{ route('changeCartStatus') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" value="{{ $snglChild->invoice_id }}"
+                                                    name="invoice_status">
+                                                <button type="submit"
+                                                    class="submit-btn btn btn-primary reg float-left">{{
+                                                    __('main.Renew') }}</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            {{ $snglChild->invoice->id }}
+                                        </td>
+                                        <td>
+                                            {{ $snglChild->invoice->order_total }} {{ __('main.LE') }}
+                                        </td>
+                                    </tr>
+                                    @endforeach
 
 
 
-                            </tbody>
-                            <tfoot>
-                                <tr class='total'>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Total After Adding 14% Tax</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="total-price">{{ session('membershipDetails')[0]->invoice->order_total }}
-                                        LE</td>
-                                </tr>
-                            </tfoot>
-                        </table>
 
-                        <div class="row">
-                            <div class="col-12 row justify-content-center">
-                                <form action="{{ route('changeCartStatus') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" value="{{ session('membershipDetails')[0]->invoice_id }}"
-                                        name="invoice_status">
-                                    <button type="submit" class="submit-btn btn btn-primary reg float-left">Confirm
-                                        Data</button>
-                                </form>
-                                <form action="{{ route('discardCartChanges') }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="submit-btn btn btn-primary reg float-left">
-                                        Back</button>
-                                </form>
-                            </div>
+
+                                </tbody>
+                                {{-- <tfoot>
+                                    <tr class='total'>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total After Adding 14% Tax</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        @foreach ($memo as $snglChild )
+                                        <td class="total-price">{{ $snglChild->invoice->order_total }}
+                                            LE</td>
+                                        @endforeach
+                                    </tr>
+                                </tfoot> --}}
+                            </table>
+
+                            {{-- <div class="row">
+                                <div class="col-12 row justify-content-center">
+                                    <form action="{{ route('changeCartStatus') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="{{ session('membershipDetails')[0]->invoice_id }}"
+                                            name="invoice_status">
+                                        <button type="submit" class="submit-btn btn btn-primary reg float-left">Confirm
+                                            Data</button>
+                                    </form>
+                                    <form action="{{ route('discardCartChanges') }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="submit-btn btn btn-primary reg float-left">
+                                            Back</button>
+                                    </form>
+                                </div>
+
+                            </div> --}}
 
                         </div>
 
+
+                        <!-- end col-12 -->
+
+
                     </div>
-
-                    @endif
-                    <!-- end col-12 -->
-
 
                 </div>
 
-            </div>
-
-    </div>
+        </div>
 </section>
 
 </div>

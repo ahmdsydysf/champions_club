@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
-use App\Models\User_membership;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
@@ -79,7 +78,7 @@ class HomeController extends Controller
     }
     public function sport($sportid)
     {
-        $thisSport = Sport::where('id', $sportid)->first(['sport_title_en' ,'created_at', 'id' , 'sport_subtitle_en' , 'sport_image' , 'sport_overview_en']);
+        $thisSport = Sport::where('id', $sportid)->first(['sport_title_en' , 'id' , 'sport_subtitle_en' , 'sport_image' , 'sport_overview_en']);
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             $sportData = Sport::all('sport_title_en', 'id');
             return view('web.sports', compact('sportData', 'sportid', 'thisSport'));
@@ -101,19 +100,24 @@ class HomeController extends Controller
 
     }
 
-    public function completeChildSport(Request $request)
+    public function completeChildSport($id)
     {
-        $userID = $request->user_id;
-        $invoiceIDs = Membership_invoice::where('user_id', $userID)->where('invoice_status', 0)->pluck('id');
 
-        dd($invoiceIDs);
-        $memo = Membership_detail::where('invoice_id', $invoiceIDs)->get();
-        dd($memo);
-        if(LaravelLocalization::getCurrentLocale() == 'en') {
-            return view('web.user_children_cart', compact('childrenIds', 'membershipDetails'));
-        } else {
-            return view('web.user_children_cart_ar', compact('childrenIds', 'membershipDetails'));
-        }
+
+        // $memo = Membership_detail::with(['child' , 'sport' , 'invoice'])->where('invoice_id', function ($query) use ($userID) {
+
+        //     $query->select('id')
+        //     ->from('membership_invoices')
+        //     ->where('user_id', $userID)
+        //     ->where('invoice_status', '0');
+        // })->get();
+        $invoiceIDs = Membership_invoice::where('user_id', $id)->where('invoice_status', '0')->pluck('id');
+
+        $memo = Membership_detail::with(['child' , 'sport' , 'invoice'])->whereIn('invoice_id', $invoiceIDs)->get();
+
+
+        return view('web.user_children_complete_cart', compact('memo'));
+
 
     }
 
@@ -139,28 +143,6 @@ class HomeController extends Controller
         $sportDays = Sports_day::where('id', $sport_id)->firstOrFail();
         $firstday_name = Day_new::where('id', $sportDays->firstday_id)->firstOrFail();
         $secondday_name =Day_new::where('id', $sportDays->secondday_id)->firstOrFail();
-$annual=null;
-        $annual=User_membership::where('user_id',Auth::user()->id)->
-        where('end_date','>',now()->format('Y-m-d'))->where('approved',1)->first();
-
-
-        if ($annual !== null){
-           $member= $SportData[0]->membership_disc_fees;
-        }else{
-        $member=$SportData[0]->membership_fees;
-     }
-
-
-
-
-
-
-
-
-
-
-
-
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             $output = '
                 <div class="card-header sport_title">' .
@@ -170,7 +152,7 @@ $annual=null;
                     <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_en .'</h5>
                     <p class="card-text sport_overview">'. $SportData[0]->sport_overview_en .'</p>
                     <h5 class="card-title">Sport Cost</h5>
-                    <p class="card-text membership_fees">'. $member .' EGP</p>
+                    <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' EGP</p>
                 </div>
         ';
 
@@ -185,7 +167,7 @@ $annual=null;
                 <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_ar .'</h5>
                 <p class="card-text sport_overview">'. $SportData[0]->sport_overview_ar .'</p>
                 <h5 class="card-title">تكلفة الرياضة</h5>
-                <p class="card-text membership_fees">'. $member .' جنيه</p>
+                <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' جنيه</p>
             </div>
     ';
 
@@ -364,28 +346,22 @@ $annual=null;
             foreach(session()->get('child_img') as $img) {
                 unlink(public_path('uploads/children_data/' . $img));
             }
-
-
-            foreach(session()->get('attendance') as $att) {
-                $table1Data = Attendance::where('id', $att)->first();
+            foreach(session()->get('child_id') as $c_id) {
+                $table1Data = User_children::where('id', $c_id)->first();
                 $table1Data->delete();
             }
             foreach(session()->get('Member_detail') as $c_mem) {
                 $table1Data = Membership_detail::where('id', $c_mem)->first();
                 $table1Data->delete();
             }
-
-
-            foreach(session()->get('child_id') as $c_id) {
-                $table1Data = User_children::where('id', $c_id)->first();
+            foreach(session()->get('attendance') as $att) {
+                $table1Data = Attendance::where('id', $att)->first();
                 $table1Data->delete();
             }
             foreach(session()->get('member_invoices') as $inv) {
                 $table1Data = Membership_invoice::where('id', $inv)->first();
                 $table1Data->delete();
             }
-
-
             session()->remove('child_img');
             session()->remove('child_id');
             session()->remove('Member_detail');
