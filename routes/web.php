@@ -57,8 +57,11 @@ Route::group(
         Route::get('/user/children/cart', [HomeController::class , 'viewUserCart'])->name('viewUserCart');
         Route::post('/user/children/cart', [HomeController::class , 'changeCartStatus'])->name('changeCartStatus');
         Route::post('/user/children/discard', [HomeController::class , 'discardCartChanges'])->name('discardCartChanges');
+        Route::post('/user/children/complete/cart', [HomeController::class , 'changeCompleteCartStatus'])->name('changeCompleteCartStatus');
 
 
+        /*============== user children sports status 0 ================*/
+        Route::get('/user/{id}/children/unsignedSport', [HomeController::class , 'completeChildSport'])->name('completeChildSport');
         /*==============suggest sport ================*/
         Route::get('/suggest-sport', [SuggestSportController::class , 'index'])->name('suggest-sport');
         //dynamicSuggest.fetch
@@ -93,8 +96,8 @@ Route::group(
             Route::post('/profile/add/child/sport', [UserProfileController::class, 'addAnotherChildSport'])->name('addAnotherChildSport');
             Route::put('/child/renew/sport', [UserProfileController::class, 'newaddedsportrenew'])->name('newaddedsportrenew');
             Route::get('/child/sportsDiet', [UserProfileController::class, 'childSportDiet'])->name('childSportDiet');
-       /*===============to prevent resubmit return route===================*/
-       Route::get('/congratulation', [UserProfileController::class, 'cong'])->name('congratulation');
+            /*===============to prevent resubmit return route===================*/
+            Route::get('/congratulation', [UserProfileController::class, 'cong'])->name('congratulation');
 
         });
 
