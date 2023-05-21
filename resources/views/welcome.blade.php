@@ -186,7 +186,7 @@
     <!-- end container -->
 </section>
 <!-- end icon-content-box -->
-<section class="image-content-box serv" style="background: #405089;">
+{{-- <section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeIn">
@@ -196,9 +196,9 @@
                         <h6 style="color: white;">{{ $aboutUs->services_text_en }}</h6>
                     </a>
                 </div>
-                <!-- end section-title -->
+
             </div>
-            <!-- end col-12 -->
+
             <div id="owl-en" class="col-12 owl-carousel">
                 @foreach ($services as $row )
                 <div class="content-box service-container ">
@@ -212,12 +212,12 @@
 
 
             </div>
-            <!-- end col-12 -->
+
         </div>
-        <!-- end row -->
+
     </div>
-    <!-- end container -->
-</section>
+
+</section> --}}
 <!-- end image-content-box -->
 
 <section class="latest-news">
