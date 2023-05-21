@@ -203,9 +203,9 @@
 
             <div id="owl-en" class="col-12 owl-carousel">
                 @foreach ($services as $row)
+                <div class="col-md-3 col-sm-6 col-12">
 
                 <div class="content-box service-container ">
-                    <div class="col-md-3 col-sm-6 col-12">
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
                     <h4 style="color:#fff">{{ $row->title_en }}</h4>
                     <p style="color:#fff">{{ $row->brief_en }}</p>
