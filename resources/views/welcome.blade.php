@@ -205,16 +205,16 @@
                 @foreach ($services as $row)
 
                 <div class="content-box service-container ">
-                    <div class="col-md-3 col-sm-6 col-12">
-<div class="w-100">
+                    {{-- <div class="col-md-3 col-sm-6 col-12">
+<div class="w-100"> --}}
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
                     <h4 style="color:#fff">{{ $row->title_en }}</h4>
                     <p style="color:#fff">{{ $row->brief_en }}</p>
                     <a class="dis-btn-service" href="#" data-swiper-parallax="200">Discover
                         More<span></span></a>
                     </div>
-                </div>
-            </div>
+                {{-- </div>
+            </div> --}}
                 @endforeach
 
 
