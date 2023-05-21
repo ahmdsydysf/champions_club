@@ -249,19 +249,56 @@
         <h3>{{ $aboutUs->membership_title_ar }}</h3>
         <h6>{{ $aboutUs->membership_text_ar }}</p>
             <img src="{{ asset('web_assets/images/team-sports.jpg')}}" alt="Image">
-            @auth
 
-            <form id="goToAdd" action="{{ route('childSport') }}" method="get">
-                @csrf
-            </form>
-            <button form='goToAdd' class="join-us btn">اضف طفلك <span> الان</span></a>
 
-                @else
+                <div class="row">
+                    <div class="col-12">
+                        @auth
+                            <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+                                @csrf
+                            </form>
 
-                <a href="{{ route('register') }}" class="join-us btn">اشترك معنا<span> الان</span></a>
+                            <form id="goToComm" action="{{ route('completeChildSport', ['id' => Auth::user()->id]) }}"
+                                method="get">
+                                @csrf
 
-                @endauth
+                            </form>
 
+                            <style>
+                                button.submit-btn.reg {
+                                    border: none;
+                                    background: #f65935;
+                                    color: #fff;
+                                    height: 54px;
+                                    border: 1px solid #eaebee;
+                                    padding: 0 40px;
+                                    font-weight: 400;
+                                }
+
+                                button.submit-btn.reg:hover {
+                                    border: none;
+                                    background: #405089;
+                                    color: #fff;
+                                    height: 54px;
+                                    border: 1px solid #405089;
+                                    padding: 0 40px;
+                                    font-weight: 400;
+                                }
+                            </style>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <button form='goToAdd' class="submit-btn reg">اضف طفلك <span> الان</span></a>
+
+                                    <button form='goToComm' class="submit-btn  reg">> التسجيل <span> استكمل</span></a>
+
+                            </div>
+                        @else
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <a style="width: 100%;" href="{{ route('register') }}"
+                                 class="join-us btn">اشترك معنا<span> الان</span></a>
+                            </div>
+                        @endauth
+                    </div>
+                </div>
     </div>
 </section>
 <!-- end info-box -->

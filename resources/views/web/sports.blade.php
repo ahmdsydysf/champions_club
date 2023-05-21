@@ -88,24 +88,27 @@
 
                         {{-- <p> Cooperative: Often referred to as a "co-op", a cooperative is a limited-liability business --}}
                         <div class="row">
-                            <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+                            <div class=" col-12">
 
-                            </form>
                             <div class="col-6 my-5 ">
+                                <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+
+                                </form>
                                 <button form="goToAdd" class="submit-btn btn btn-primary reg float-left">Add
                                     Your
                                     Children Now</button>
                             </div>
 
-                            <form id="goToReg" action="{{ route('profile.members') }}" method="get">
 
-                            </form>
                             <div class="col-6 my-5 ">
+                                <form id="goToReg" action="{{ route('profile.members') }}" method="get">
+
+                                </form>
                                 <button form="goToReg" class="submit-btn btn btn-primary reg float-left">Add
                                     Already registered child</button>
                             </div>
 
-
+                            </div>
                         </div>
                     </div>
                     <!-- end post-content -->
