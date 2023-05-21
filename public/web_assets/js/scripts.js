@@ -340,7 +340,13 @@
 				margin: 10,
 				autoplay: true,
 				autoplayTimeout: 3200,
-			 	autoplayHoverPause: true, // THIS IS IMPORTANT
+			 	autoplayHoverPause: true,
+                 itemsDesktop : [1199,10],
+        itemsDesktopSmall : [980,9],
+        itemsTablet: [768,5],
+        itemsTabletSmall: false,
+        itemsMobile : [479,4],
+         // THIS IS IMPORTANT
                 responsive : {
                       480 : { items : 1  }, // from zero to 480 screen width 4 items
                       768 : { items : 2  }, // from 480 screen widthto 768 6 items
@@ -355,7 +361,13 @@
 				margin: 10,
 				autoplay: true,
 				autoplayTimeout: 3200,
-			 	autoplayHoverPause: true, // THIS IS IMPORTANT
+			 	autoplayHoverPause: true,
+                 itemsDesktop : [1199,10],
+        itemsDesktopSmall : [980,9],
+        itemsTablet: [768,5],
+        itemsTabletSmall: false,
+        itemsMobile : [479,4],
+        // THIS IS IMPORTANT
                 responsive : {
                       480 : { items : 1  }, // from zero to 480 screen width 4 items
                       768 : { items : 2  }, // from 480 screen widthto 768 6 items
