@@ -191,7 +191,7 @@
      <section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
-            <div class="col-12 wow fadeIn">
+            <div class="col-12 ">
                 <div class="section-title">
                     <a href="allnews.html">
                         <h2 style="color: white;">{{ $aboutUs->services_title_en }}</h2>
@@ -201,11 +201,12 @@
 
             </div>
 
-            <div id="owl-en" class="col-12 owl-carousel">
+            <div id="owl-en" class="owl-carousel">
                 @foreach ($services as $row)
-                <div class="col-md-3 col-sm-6 col-12">
 
                 <div class="content-box service-container ">
+                    <div class="col-md-3 col-sm-6 col-12">
+
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
                     <h4 style="color:#fff">{{ $row->title_en }}</h4>
                     <p style="color:#fff">{{ $row->brief_en }}</p>
