@@ -335,7 +335,7 @@
 			// });
 
             $("#owl-ar").owlCarousel({
-               	items: 3,
+               	items: 1,
 				loop: true,
 				margin: 10,
 				autoplay: true,
@@ -350,7 +350,7 @@
             });
 
             $("#owl-en").owlCarousel({
-                	items: 3,
+                	items: 1,
 				loop: true,
 				margin: 10,
 				autoplay: true,
