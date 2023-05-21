@@ -4,7 +4,8 @@
 <head>
     <!-- META TAGS -->
     <meta charset="utf-8">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> --}}
+    {{--
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> --}}
     <title> Champion's Academy </title>
     <meta name="description" content="Champion's Academy">
     <meta name="keywords" content="businesscarousel, parallax, office, team">
@@ -40,7 +41,7 @@
 
     <link rel="stylesheet" href="{{ asset('web_assets/css/style-ar.css')}}">
 
-   <style>
+    <style>
         .header .navbar .container .nav-menu li {
             float: right !important;
         }
@@ -56,14 +57,68 @@
 
     @endif
     <style>
-        @-ms-viewport{
-  width: device-width;
-}
-        </style>
+        @-ms-viewport {
+            width: device-width;
+        }
+    </style>
 </head>
 
 <body style="direction:{{ LaravelLocalization::getCurrentLocaleDirection() }} !important">
+    <aside class="sandwich-menu d-lg-none d-block">
+        <div class="sandwich-btn d-lg-none d-block"> <span></span> <span></span> <span></span> </div>
+        <div class="logo">
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('web_assets/images/logo.png')}}" alt="Image">
+            </a>
+        </div>
+        <!-- end logo -->
+        <ul class="nav-menu">
+            <li><a href="{{ url('/') }}" class="{{ Request::segment(2) == null ? 'active' : '' }}">{{ __('main.Home')
+                    }}</a></li>
+            <li>
+                <a class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">{{ __('main.Sports') }}</a>
+                <ul class="dropdown">
+                    @foreach ($sports as $sport )
+                    @if (LaravelLocalization::getCurrentLocale() == 'en')
+                    <li><a href="{{ url('/sport/' . $sport->id) }}">{{ $sport->sport_title_en }}</a></li>
+                    @else
+                    <li><a href="{{ url('/sport/' . $sport->id) }}">{{ $sport->sport_title_ar }}</a></li>
+                    @endif
+                    @endforeach
+                </ul>
+            </li>
+            <li>
+                <a href="{{ route('allNews') }}" class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">{{
+                    __('main.All News') }}</a>
+            </li>
 
+            <li>
+                <a href="{{ route('media') }}" class="{{ Request::segment(2) == 'media' ? 'active' : '' }}">{{
+                    __('main.Media') }}</a>
+            </li>
+            <li>
+                <a href="{{ route('contact') }}" class="{{ Request::segment(2) == 'contact' ? 'active' : '' }}">
+                    {{ __('main.Contact') }}
+                </a>
+            </li>
+
+        </ul>
+        <!-- end nav-menu -->
+        <ul class="language">
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+            <li>
+
+                <a rel="alternate" class="{{ $localeCode == LaravelLocalization::getCurrentLocale() ? 'active' : '' }}"
+                    hreflang="{{ $localeCode }}"
+                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                    {{ strtoupper($localeCode) }}
+                </a>
+            </li>
+            @endforeach
+
+        </ul>
+    </aside>
+    <!-- end sandwich-menu -->
     @if (LaravelLocalization::getCurrentLocale() == 'en')
     <header class="header">
         <div class="topbar">
@@ -142,6 +197,7 @@
 
                 </ul>
                 <!-- end language -->
+                <div class="sandwich-btn d-lg-none d-block"> <span></span> <span></span> <span></span> </div>
                 @auth
                 <div class="search-btn font-weight-bold">
                     <form action="{{ route('logout') }}" method="post">
@@ -200,27 +256,28 @@
         <!-- end topbar -->
         <nav class="navbar">
             <div class="container">
-                <div class="logo"> <a href="{{ url('/') }}"> <img src="{{ asset('web_assets/images/logo.png')}}"
-                            alt="Image"> </a>
+                <div class="logo">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('web_assets/images/logo.png')}}" alt="Image">
+                    </a>
                 </div>
+                <style>
+                    .header .navbar .container .logo {
+                        margin-right: unset !important;
+                    }
+                </style>
                 <!-- end logo -->
                 <ul class="nav-menu">
-                    <li><a href="{{ url('/') }}" class="{{ Request::segment(2) == null ? 'active' : '' }}">الرئيسية</a>
+                    <li>
+                        <a href="{{ url('/') }}" class="{{ Request::segment(2) == null ? 'active' : '' }}">الرئيسية</a>
                     </li>
                     <li><a href="" class="{{ Request::segment(2) == 'sport' ? 'active' : '' }}">رياضات</a>
                         <ul class="dropdown">
                             @foreach ($sports as $sport )
-
-
                             <li><a href="{{ url('/sport/' . $sport->id) }}">{{ $sport->sport_title_ar }}</a></li>
-
-
-
                             @endforeach
-
                         </ul>
                     </li>
-
                     <li>
                         <a href="{{ route('allNews') }}"
                             class="{{ Request::segment(2) == 'news' ? 'active' : '' }}">أخبار وأحداث</a>
@@ -248,6 +305,7 @@
                     @endforeach
                 </ul>
                 <!-- end language -->
+                <div class="sandwich-btn d-lg-none d-block"> <span></span> <span></span> <span></span> </div>
                 @auth
                 <div class="search-btn font-weight-bold">
                     <form action="{{ route('logout') }}" method="post">
@@ -256,8 +314,9 @@
                     </form>
                 </div>
                 <!-- end search-btn -->
-                <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">{{ Auth::user()->name
-                        }}</a> </div>
+                <div class="search-btn font-weight-bold"> <a href="{{ route('profile.edit') }}">
+                        {{ Auth::user()->name }}</a>
+                </div>
                 <!-- end sandwich-btn -->
                 @else
                 <div class="search-btn font-weight-bold"> <a href="{{ route('login') }}">تسجيل دخول </a> </div>

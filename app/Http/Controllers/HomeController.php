@@ -91,34 +91,18 @@ class HomeController extends Controller
     {
         $childrenIds = request()->session()->get('cildrenIds');
         $membershipDetails = request()->session()->get('membershipDetails');
-
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             return view('web.user_children_cart', compact('childrenIds', 'membershipDetails'));
         } else {
             return view('web.user_children_cart_ar', compact('childrenIds', 'membershipDetails'));
         }
-
     }
 
     public function completeChildSport($id)
     {
-
-
-        // $memo = Membership_detail::with(['child' , 'sport' , 'invoice'])->where('invoice_id', function ($query) use ($userID) {
-
-        //     $query->select('id')
-        //     ->from('membership_invoices')
-        //     ->where('user_id', $userID)
-        //     ->where('invoice_status', '0');
-        // })->get();
         $invoiceIDs = Membership_invoice::where('user_id', $id)->where('invoice_status', '0')->pluck('id');
-
         $memo = Membership_detail::with(['child' , 'sport' , 'invoice'])->whereIn('invoice_id', $invoiceIDs)->get();
-
-
         return view('web.user_children_complete_cart', compact('memo'));
-
-
     }
 
 
@@ -126,19 +110,15 @@ class HomeController extends Controller
     {
         $sports = Sport::all();
         if(LaravelLocalization::getCurrentLocale() == 'en') {
-
             return view('web.add_child_sport', compact('sports'));
-
         } else {
             return view('web.add_child_sport_ar', compact('sports'));
-
         }
     }
 
     public function childSportData(Request $request)
     {
         $sport_id = $request->get('sport_id');
-
         $SportData = Sport::where('id', $sport_id)->get();
         $sportDays = Sports_day::where('id', $sport_id)->firstOrFail();
         $firstday_name = Day_new::where('id', $sportDays->firstday_id)->firstOrFail();
@@ -155,9 +135,7 @@ class HomeController extends Controller
                     <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' EGP</p>
                 </div>
         ';
-
             return response()->json(['data' => $output , 'firstday' => $firstday_name->en_day , 'secondday' => $secondday_name->en_day , 'dayid' =>$sportDays->id ]);
-
         } else {
             $output = '
             <div class="card-header sport_title">' .
@@ -218,13 +196,11 @@ class HomeController extends Controller
             $userComments = $request->input('user_comments');
             $personal_image = $request->file('personal_image');
             $birth_image = $request->file('birth_image');
-
             $totalFees = 0 ;
             $cildrenIds = [];
             $membershipDetails = [];
             $fullChildren = [];
             $fullMember = [];
-
             session()->put('child_img', []);
             session()->put('child_id', []);
             session()->put('Member_detail', []);
@@ -374,7 +350,12 @@ class HomeController extends Controller
         public function changeCartStatus(Request $request)
         {
             Membership_invoice::where('id', $request->invoice_status)->update(['invoice_status' => '1']);
-            return view('web.congrate');
+            if(LaravelLocalization::getCurrentLocale() == 'en') {
+                return view('web.congrate');
+            } else {
+                return view('web.congrate_ar');
+            }
+
         }
 
     /**

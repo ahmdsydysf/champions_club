@@ -193,6 +193,7 @@
 <script src="{{ asset('web_assets/js/scripts.js') }}"></script>
 
 @yield('custom_js')
+
 </body>
 
 </html>

@@ -74,5 +74,9 @@ return [
     'Cart Full Data'=>'معلومات كاملة',
     'Invoice Number'=>'رقم الفاتورة',
     'Total with 14% Tax'=>'الاجمالي بعد 14% ضريبة',
+    'Sports' => 'رياضات',
+    'All News' => 'كل الاخبار',
+    'Media' => 'ميديا',
+    'Contact' => 'التواصل',
 
 ];
