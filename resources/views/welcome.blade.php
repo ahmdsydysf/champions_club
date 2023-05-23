@@ -184,7 +184,7 @@
     <!-- end container -->
 </section>
 <!-- end icon-content-box -->
-<section class="image-content-box serv" style="background: #405089;">
+{{-- <section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
             <div class="col-12 ">
@@ -197,7 +197,7 @@
 
             </div>
 
-            {{-- <div id="owl-en" class="owl-carousel">
+            <div id="owl-en" class="owl-carousel">
                 @foreach ($services as $row)
                 <div class="content-box service-container">
 
@@ -210,13 +210,13 @@
                 @endforeach
 
 
-            </div> --}}
+            </div>
 
         </div>
 
     </div>
 
-</section>
+</section> --}}
 
 <!-- end image-content-box -->
 
