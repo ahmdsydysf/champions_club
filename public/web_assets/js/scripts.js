@@ -362,18 +362,35 @@
 				autoplay: true,
 				autoplayTimeout: 3200,
 			 	autoplayHoverPause: true,
-                 itemsDesktop : [1199,10],
-        itemsDesktopSmall : [980,9],
-        itemsTablet: [768,5],
-        itemsTabletSmall: false,
-        itemsMobile : [479,4],
-        // THIS IS IMPORTANT
-                responsive : {
-                      480 : { items : 1  }, // from zero to 480 screen width 4 items
-                      768 : { items : 2  }, // from 480 screen widthto 768 6 items
-                      1024 : { items : 3   // from 768 screen width to 1024 8 items
-                      }
-                  },
+        //          itemsDesktop : [1199,10],
+        // itemsDesktopSmall : [980,9],
+        // itemsTablet: [768,5],
+        // itemsTabletSmall: false,
+        // itemsMobile : [479,4],
+        // // THIS IS IMPORTANT
+        //         responsive : {
+        //               480 : { items : 1  }, // from zero to 480 screen width 4 items
+        //               768 : { items : 2  }, // from 480 screen widthto 768 6 items
+        //               1024 : { items : 3   // from 768 screen width to 1024 8 items
+        //               }
+        //           },
+        responsive: {
+            0: {
+              items: 1
+            },
+
+            600: {
+              items: 2
+            },
+
+            1024: {
+              items: 3
+            },
+
+            1366: {
+              items: 3
+            }
+          }
             });
 
 
