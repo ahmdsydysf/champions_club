@@ -89,7 +89,7 @@
 <!-- end side-image-content -->
 
 
-{{-- <section class="image-content-over-box">
+<section class="image-content-over-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -128,9 +128,9 @@
         </div>
     </div>
     <!-- end container -->
-</section> --}}
+</section>
 <!-- end image-content-over-box -->
-<section class="icon-content-box">
+{{-- <section class="icon-content-box">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeIn">
@@ -181,7 +181,7 @@
         <!-- end row -->
     </div>
     <!-- end container -->
-</section>
+</section> --}}
 <!-- end icon-content-box -->
 <section class="image-content-box serv" style="background: #405089;">
     <div class="container">
