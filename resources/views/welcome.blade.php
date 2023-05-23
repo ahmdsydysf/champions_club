@@ -219,7 +219,7 @@
 
 <!-- end image-content-box -->
 
-{{-- <section class="latest-news">
+<section class="latest-news">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeIn">
@@ -248,9 +248,9 @@
         <!-- end row -->
     </div>
     <!-- end container -->
-</section> --}}
+</section>
 <!-- end latest-news -->
-<section class="info-box">
+{{-- <section class="info-box">
     <div class="container wow fadeIn">
         <h3>{{ $aboutUs->membership_title_en }}</h3>
         <h6>{{ $aboutUs->membership_text_en }}</p>
@@ -307,7 +307,7 @@
             </div>
 
     </div>
-</section>
+</section> --}}
 <!-- end info-box -->
 <section class="request-form">
     <div class="container">
