@@ -50,7 +50,7 @@
 
 
 <!-- end featured-services -->
-{{-- <section class="side-image-content moved-space" id="counter">
+<section class="side-image-content moved-space" id="counter">
     <div class="sides bg-image wow fadeIn" data-background="{{ asset('web_assets/images/side-image01.jpg') }}">
         <div class="video">
             <video src="{{ $aboutUs->about_video ?? '' }}" loop autoplay muted></video>
@@ -85,11 +85,11 @@
         <!-- end inner -->
     </div>
     <!-- end sides -->
-</section> --}}
+</section>
 <!-- end side-image-content -->
 
 
-<section class="image-content-over-box">
+{{-- <section class="image-content-over-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -106,7 +106,6 @@
                     <div class="swiper-wrapper">
                         @foreach ($sports as $row)
                         <div class="swiper-slide">
-                            {{-- {{ asset('uploads/sport/'.$row->sport_image)}} --}}
                             <figure> <img src="{{ asset('uploads/sport/' . $row->sport_image) }}" alt="Image">
                                 <figcaption>
                                     <h4>{{ $row->sport_title_en }}</h4>
@@ -129,7 +128,7 @@
         </div>
     </div>
     <!-- end container -->
-</section>
+</section> --}}
 <!-- end image-content-over-box -->
 <section class="icon-content-box">
     <div class="container">
