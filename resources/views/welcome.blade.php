@@ -1,7 +1,7 @@
 @extends('web.layout.app')
 
 @section('content')
-<section class="slider">
+{{--<section class="slider">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             @foreach ($sliderData as $row)
@@ -28,7 +28,7 @@
         <!-- end swiper-custom-pagination -->
     </div>
     <!-- end swiper-container -->
-</section>
+</section>--}}
 <!-- end slider -->
 <section class="featured-services">
     <div class="content-wrapper">
@@ -184,7 +184,7 @@
     <!-- end container -->
 </section>
 <!-- end icon-content-box -->
-{{-- <section class="image-content-box serv" style="background: #405089;">
+<section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
             <div class="col-12 ">
@@ -216,7 +216,7 @@
 
     </div>
 
-</section> --}}
+</section>
 
 <!-- end image-content-box -->
 
