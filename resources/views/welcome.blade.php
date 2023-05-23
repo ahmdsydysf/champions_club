@@ -250,53 +250,100 @@
     <!-- end container -->
 </section>
 <!-- end latest-news -->
-{{-- <section class="info-box">
+<section class="info-box">
     <div class="container wow fadeIn">
         <h3>{{ $aboutUs->membership_title_en }}</h3>
         <h6>{{ $aboutUs->membership_text_en }}</p>
             <img src="{{ asset('web_assets/images/team-sports.jpg') }}" alt="Image">
 
+
+
+            <div class="row">
+                <div class=" col-12">
+
+                <div class="col-6 my-5 ">
+                    <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+
+                    </form>
+                    <button form="goToAdd" class="submit-btn btn btn-primary reg float-left">Add
+                        Your
+                        Children Now</button>
+                </div>
+
+
+                <div class="col-6 my-5 ">
+                    <form id="goToReg" action="{{ route('profile.members') }}" method="get">
+
+                    </form>
+                    <button form="goToReg" class="submit-btn btn btn-primary reg float-left">Add
+                        Already registered child</button>
+                </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <style>
+                button.submit-btn.reg {
+                    border: none;
+                    background: #f65935;
+                    color: #fff;
+                    height: 54px;
+                    border: 1px solid #eaebee;
+                    padding: 0 40px;
+                    font-weight: 400;
+                }
+
+                button.submit-btn.reg:hover {
+                    border: none;
+                    background: #405089;
+                    color: #fff;
+                    height: 54px;
+                    border: 1px solid #405089;
+                    padding: 0 40px;
+                    font-weight: 400;
+                }
+            </style>
+             @auth
             <div class="row">
                 <div class="col-12">
-                    @auth
-                    <form id="goToAdd" action="{{ route('childSport') }}" method="get">
-                        @csrf
-                    </form>
+                    <div class="col-6 my-5 ">
+                        <form id="goToAdd" action="{{ route('childSport') }}" method="get">
+                            @csrf
+                        </form>
 
-                    <form id="goToComm" action="{{ route('completeChildSport', ['id' => Auth::user()->id]) }}"
-                        method="get">
-                        @csrf
-
-                    </form>
-
-                    <style>
-                        button.submit-btn.reg {
-                            border: none;
-                            background: #f65935;
-                            color: #fff;
-                            height: 54px;
-                            border: 1px solid #eaebee;
-                            padding: 0 40px;
-                            font-weight: 400;
-                        }
-
-                        button.submit-btn.reg:hover {
-                            border: none;
-                            background: #405089;
-                            color: #fff;
-                            height: 54px;
-                            border: 1px solid #405089;
-                            padding: 0 40px;
-                            font-weight: 400;
-                        }
-                    </style>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button form='goToAdd' class="submit-btn reg">Add Child</a>
-
-                            <button form='goToComm' class="submit-btn  reg">Complete
-                                Register</a>
+                        <button form='goToAdd' class="submit-btn reg">Add Child</button>
 
                     </div>
+
+                    <div class="col-6 my-5 ">
+                        <form id="goToComm" action="{{ route('completeChildSport', ['id' => Auth::user()->id]) }}"
+                            method="get">
+                            @csrf
+
+                        </form>
+
+                        <button form='goToComm' class="submit-btn  reg">Complete
+                            Register</button>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
                     @else
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                         <a style="width: 100%;" href="{{ route('register') }}" class="join-us btn">Join Our
@@ -307,7 +354,7 @@
             </div>
 
     </div>
-</section> --}}
+</section>
 <!-- end info-box -->
 <section class="request-form">
     <div class="container">
