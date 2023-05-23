@@ -183,7 +183,7 @@
     <!-- end container -->
 </section>
 <!-- end icon-content-box -->
-{{-- <section class="image-content-box serv" style="background: #405089;">
+<section class="image-content-box serv" style="background: #405089;">
     <div class="container">
         <div class="row">
             <div class="col-12 ">
@@ -215,11 +215,11 @@
 
     </div>
 
-</section> --}}
+</section>
 
 <!-- end image-content-box -->
 
-<section class="latest-news">
+{{-- <section class="latest-news">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeIn">
@@ -248,7 +248,7 @@
         <!-- end row -->
     </div>
     <!-- end container -->
-</section>
+</section> --}}
 <!-- end latest-news -->
 <section class="info-box">
     <div class="container wow fadeIn">
