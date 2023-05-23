@@ -345,9 +345,13 @@
 
 
                     @else
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <div class="row">
+                        <div class="col-12">
+                    {{-- <div class="d-grid gap-2 d-md-flex justify-content-md-center"> --}}
                         <a style="width: 100%;" href="{{ route('register') }}" class="join-us btn">Join Our
                             Club<span> Now</span></a>
+                    {{-- </div> --}}
+                        </div>
                     </div>
                     @endauth
                 </div>
