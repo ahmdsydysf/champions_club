@@ -30,7 +30,7 @@
     <!-- end swiper-container -->
 </section>
 <!-- end slider -->
-{{-- <section class="featured-services">
+<section class="featured-services">
     <div class="content-wrapper">
         <div class="container">
             @foreach ($general_service as $row)
@@ -46,11 +46,11 @@
     </div>
     <!-- end content-wrapper -->
 
-</section> --}}
+</section>
 
 
 <!-- end featured-services -->
-<section class="side-image-content moved-space" id="counter">
+{{-- <section class="side-image-content moved-space" id="counter">
     <div class="sides bg-image wow fadeIn" data-background="{{ asset('web_assets/images/side-image01.jpg') }}">
         <div class="video">
             <video src="{{ $aboutUs->about_video ?? '' }}" loop autoplay muted></video>
@@ -85,7 +85,7 @@
         <!-- end inner -->
     </div>
     <!-- end sides -->
-</section>
+</section> --}}
 <!-- end side-image-content -->
 
 
