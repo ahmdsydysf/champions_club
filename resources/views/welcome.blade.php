@@ -251,46 +251,10 @@
 </section>
 <!-- end latest-news -->
 <section class="info-box">
-    <div class="container wow fadeIn">
+    <div class="container ">
         <h3>{{ $aboutUs->membership_title_en }}</h3>
         <h6>{{ $aboutUs->membership_text_en }}</p>
-            <img src="{{ asset('web_assets/images/team-sports.jpg') }}" alt="Image">
-
-
-
-            <div class="row">
-                <div class=" col-12">
-
-                <div class="col-6 my-5 ">
-                    <form id="goToAdd" action="{{ route('childSport') }}" method="get">
-
-                    </form>
-                    <button form="goToAdd" class="submit-btn btn btn-primary reg float-left">Add
-                        Your
-                        Children Now</button>
-                </div>
-
-
-                <div class="col-6 my-5 ">
-                    <form id="goToReg" action="{{ route('profile.members') }}" method="get">
-
-                    </form>
-                    <button form="goToReg" class="submit-btn btn btn-primary reg float-left">Add
-                        Already registered child</button>
-                </div>
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
+            <img class="w-100" src="{{ asset('web_assets/images/team-sports.jpg') }}" alt="Image">
 
 
 
@@ -347,10 +311,8 @@
                     @else
                     <div class="row">
                         <div class="col-12">
-                    {{-- <div class="d-grid gap-2 d-md-flex justify-content-md-center"> --}}
                         <a style="width: 100%;" href="{{ route('register') }}" class="join-us btn">Join Our
                             Club<span> Now</span></a>
-                    {{-- </div> --}}
                         </div>
                     </div>
                     @endauth
