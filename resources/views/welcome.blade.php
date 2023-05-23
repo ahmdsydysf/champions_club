@@ -311,7 +311,7 @@
                     @else
                     <div class="row">
                         <div class="col-12">
-                        <a style="width: 100%;" href="{{ route('register') }}" class="join-us btn">Join Our
+                        <a style="width: 100%;font-size: 20px" href="{{ route('register') }}" class="join-us btn">Join Our
                             Club<span> Now</span></a>
                         </div>
                     </div>
