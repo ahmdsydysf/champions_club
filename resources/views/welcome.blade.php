@@ -197,20 +197,20 @@
 
             </div>
 
-            <div id="owl-en" class="owl-carousel">
+            {{-- <div id="owl-en" class="owl-carousel">
                 @foreach ($services as $row)
-                {{-- <div class="content-box service-container"> --}}
+                <div class="content-box service-container">
 
                     <figure><img src="{{ asset('uploads/service/' . $row->image) }}" alt="Image"></figure>
                     <h4 style="color:#fff">{{ $row->title_en }}</h4>
                     <p style="color:#fff">{{ $row->brief_en }}</p>
                     <a class="dis-btn-service" href="#" data-swiper-parallax="200">Discover
                         More<span></span></a>
-                {{-- </div> --}}
+                </div>
                 @endforeach
 
 
-            </div>
+            </div> --}}
 
         </div>
 
