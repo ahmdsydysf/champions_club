@@ -251,7 +251,18 @@ class HomeController extends Controller
                 $id = DB::getPdo()->lastInsertId();
                 session()->push('child_id', $id);
 
-                $sportFees = Sport::select('membership_fees')->where('id', $selectSports[$i])->first();
+                $sportFees = Sport::select(['membership_fees' ,'membership_disc_fees' ])->where('id', $selectSports[$i])->first();
+
+                $annual=null;
+                $annual=User_membership::where('user_id', Auth::user()->id)->
+                where('end_date', '>', now()->format('Y-m-d'))->where('approved', 1)->first();
+
+                if ($annual->approved == 1) {
+                    $member= $sportFees->membership_disc_fees;
+                } else {
+                    $member=$sportFees->membership_fees;
+                }
+
 
                 DB::table('membership_details')->insert([
                     'child_id' => $id,
@@ -259,7 +270,7 @@ class HomeController extends Controller
                     'sport_days_id' => $selectDays[$i],
                     'start_date' => $startDates[$i],
                     'end_date' => $endDates[$i],
-                    'fees' => $sportFees->membership_fees,
+                    'fees' => $member,
                     'user_comment' =>$userComments[$i],
                     'created_at' => Carbon::now()
                 ]);

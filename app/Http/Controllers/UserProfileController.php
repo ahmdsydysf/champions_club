@@ -164,8 +164,21 @@ class UserProfileController extends Controller
         $sport_details = Sport::where('id', $request->select_sport)->first();
         $endate = Carbon::parse($request->start_date);
         $endate->addMonth();
-        $totalFees = Sport::select('membership_fees')->where('id', $request->select_sport)->first();
-        $totalAfterVat = $totalFees->membership_fees * 0.14 + $totalFees->membership_fees;
+
+
+        $annual=null;
+        $annual=User_membership::where('user_id', Auth::user()->id)->
+        where('end_date', '>', now()->format('Y-m-d'))->where('approved', 1)->first();
+
+        if ($annual->approved == 1) {
+            $totalFees = Sport::select('membership_disc_fees')->where('id', $request->select_sport)->first();
+            $totalAfterVat = $totalFees->membership_disc_fees + ($totalFees->membership_disc_fees * 0.14);
+        } else {
+            $totalFees = Sport::select('membership_fees')->where('id', $request->select_sport)->first();
+            $totalAfterVat = $totalFees->membership_fees + ($totalFees->membership_fees * 0.14);
+        }
+
+
         DB::table('membership_invoices')->insert([
             'invoice_date' => now(),
             'order_total' => $totalAfterVat ,

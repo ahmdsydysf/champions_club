@@ -147,7 +147,7 @@
 
                     <div class="col-md-3 col-sm-4 col-12 order-md-1 order-1 username-input">
                         <label for="inputEmail4" class="form-label">Username</label>
-                        <input data-reset='on' type="text" name="name[0]" class="form-control important-input"
+                        <input required data-reset='on' type="text" name="name[0]" class="form-control important-input"
                             id="inputEmail4" placeholder="Full Name">
                         @if($errors->any())
                         @error('name.'.$i)
@@ -160,8 +160,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-2 order-2 birthdate-input">
                         <label for="inputPassword4" class="form-label">Birthdate</label>
-                        <input data-reset='on' type="date" name="birthdate[0]" class="form-control important-input"
-                            id="inputPassword4">
+                        <input required data-reset='on' type="date" name="birthdate[0]"
+                            class="form-control important-input" id="inputPassword4">
                         @if($errors->any())
                         @error('birthdate.'.$i)
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -170,8 +170,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-3 order-3 height-input">
                         <label for="inputAddress" class="form-label">Height</label>
-                        <input data-reset='on' type="number" name="hight[0]" class="form-control important-input"
-                            min="70" id="inputAddress" placeholder="Height">
+                        <input required data-reset='on' type="number" name="hight[0]"
+                            class="form-control important-input" min="70" id="inputAddress" placeholder="Height">
                         @if($errors->any())
                         @error('hight.'.$i)
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -180,8 +180,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12  order-md-4 order-4 weight-input">
                         <label for="inputAddress2" class="form-label">Weight</label>
-                        <input data-reset='on' type="number" name="weight[0]" class="form-control important-input"
-                            min="20" id="inputAddress2" placeholder="Weight">
+                        <input required data-reset='on' type="number" name="weight[0]"
+                            class="form-control important-input" min="20" id="inputAddress2" placeholder="Weight">
                         @if($errors->any())
 
                         @error('weight.'.$i)
@@ -191,8 +191,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-5 order-5 personal-photo">
                         <label for="formFile" class="form-label">Trainee Photo</label>
-                        <input data-reset='on' class="form-control important-input" name="personal_image[0]" type="file"
-                            id="formFile">
+                        <input required data-reset='on' class="form-control important-input" name="personal_image[0]"
+                            type="file" id="formFile">
                         @if($errors->any())
 
                         @error('personal_image.'.$i)
@@ -202,8 +202,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-6 order-6 birth-certificate">
                         <label for="formFile2" class="form-label">birth certificate</label>
-                        <input data-reset='on' class="form-control important-input" name="birth_image[0]" type="file"
-                            id="formFile2">
+                        <input required data-reset='on' class="form-control important-input" name="birth_image[0]"
+                            type="file" id="formFile2">
                         @if($errors->any())
 
                         @error('birth_image.'.$i)
@@ -213,7 +213,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-7 order-7 select-sport">
                         <label for="inputState" class="form-label">Select Sport</label>
-                        <select id="inputState" onchange="handleSportChange($(this))" name="select_sport[0]"
+                        <select required id="inputState" onchange="handleSportChange($(this))" name="select_sport[0]"
                             class="form-control custom-select allSports important-input">
                             <option value="" selected>Select Sport</option>
 
@@ -235,7 +235,8 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-12 my-md-3  order-md-8 order-8 trainer-level">
                         <label for="inputState1" class="form-label">Trainee level</label>
-                        <select id="inputState1" name="level[0]" class="form-control custom-select important-input">
+                        <select required id="inputState1" name="level[0]"
+                            class="form-control custom-select important-input">
                             <option value="1" selected>Amateur</option>
                             <option value="2">Mid level</option>
                             <option value="3">Professional</option>
@@ -250,7 +251,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 my-md-3  col-12  order-md-9 order-9 trainer-days row">
                         <label for="inputState12" class="form-label col-4">Select Days</label>
-                        <select data-reset='clear' id="inputState12" name="select_days[0]"
+                        <select required data-reset='clear' id="inputState12" name="select_days[0]"
                             class="form-control custom-select selected-days important-input col-8">
                             <option selected>Days From Here</option>
                         </select>
@@ -317,7 +318,7 @@
                                 </div>
                             </div>
                             <div class="form-floating col-sm-6">
-                                <textarea data-reset="textarea" class="form-control h-100 important-input"
+                                <textarea required data-reset="textarea" class="form-control h-100 important-input"
                                     placeholder="Leave a comment here" id="floatingTextarea2"
                                     name="user_comments[0]"></textarea>
                                 <label for="floatingTextarea2">notice</label>
