@@ -335,7 +335,7 @@ $sports=Sport::where('id',1)->first();
 
                                 <div class="col-6 my-5 ">
 
-                                    <a href="'.Url('sport/'.$row->id).'" class="submit-btn btn btn-primary reg float-left">
+                                    <a href="'.Url('sport/'.$row->id).'" class="submit-btn btn btn-primary reg float-left" style="color:#fff">
                                         Go To Our Sports >> </a>
                                 </div>
 
