@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\User_membership;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
@@ -78,6 +79,7 @@ class HomeController extends Controller
     }
     public function sport($sportid)
     {
+
         $thisSport = Sport::where('id', $sportid)->first(['sport_title_en' , 'id' , 'sport_subtitle_en' , 'sport_image' , 'sport_overview_en']);
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             $sportData = Sport::all('sport_title_en', 'id');
@@ -123,6 +125,16 @@ class HomeController extends Controller
         $sportDays = Sports_day::where('id', $sport_id)->firstOrFail();
         $firstday_name = Day_new::where('id', $sportDays->firstday_id)->firstOrFail();
         $secondday_name =Day_new::where('id', $sportDays->secondday_id)->firstOrFail();
+        $annual=null;
+        $annual=User_membership::where('user_id', Auth::user()->id)->
+        where('end_date', '>', now()->format('Y-m-d'))->where('approved', 1)->first();
+
+
+        if ($annual !== null) {
+            $member= $SportData[0]->membership_disc_fees;
+        } else {
+            $member=$SportData[0]->membership_fees;
+        }
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             $output = '
                 <div class="card-header sport_title">' .
@@ -132,7 +144,7 @@ class HomeController extends Controller
                     <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_en .'</h5>
                     <p class="card-text sport_overview">'. $SportData[0]->sport_overview_en .'</p>
                     <h5 class="card-title">Sport Cost</h5>
-                    <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' EGP</p>
+                    <p class="card-text membership_fees">'. $member .' EGP</p>
                 </div>
         ';
             return response()->json(['data' => $output , 'firstday' => $firstday_name->en_day , 'secondday' => $secondday_name->en_day , 'dayid' =>$sportDays->id ]);
@@ -145,7 +157,7 @@ class HomeController extends Controller
                 <h5 class="card-title sport_subtitle"> ' . $SportData[0]->sport_subtitle_ar .'</h5>
                 <p class="card-text sport_overview">'. $SportData[0]->sport_overview_ar .'</p>
                 <h5 class="card-title">تكلفة الرياضة</h5>
-                <p class="card-text membership_fees">'. $SportData[0]->membership_fees .' جنيه</p>
+                <p class="card-text membership_fees">'. $member.' جنيه</p>
             </div>
     ';
 
@@ -239,7 +251,18 @@ class HomeController extends Controller
                 $id = DB::getPdo()->lastInsertId();
                 session()->push('child_id', $id);
 
-                $sportFees = Sport::select('membership_fees')->where('id', $selectSports[$i])->first();
+                $sportFees = Sport::select(['membership_fees' ,'membership_disc_fees' ])->where('id', $selectSports[$i])->first();
+
+                $annual=null;
+                $annual=User_membership::where('user_id', Auth::user()->id)->
+                where('end_date', '>', now()->format('Y-m-d'))->where('approved', 1)->first();
+
+                if ($annual->approved == 1) {
+                    $member= $sportFees->membership_disc_fees;
+                } else {
+                    $member=$sportFees->membership_fees;
+                }
+
 
                 DB::table('membership_details')->insert([
                     'child_id' => $id,
@@ -247,7 +270,7 @@ class HomeController extends Controller
                     'sport_days_id' => $selectDays[$i],
                     'start_date' => $startDates[$i],
                     'end_date' => $endDates[$i],
-                    'fees' => $sportFees->membership_fees,
+                    'fees' => $member,
                     'user_comment' =>$userComments[$i],
                     'created_at' => Carbon::now()
                 ]);

@@ -27,8 +27,11 @@ class HomePageController extends Controller
         $sponsors = Sponsor::all();
         $counter = Counter::all();
         $general_service = GeneralService::all();
+
+
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             return view('welcome', get_defined_vars());
+
         } else {
             return view('welcome_ar', get_defined_vars());
         }
