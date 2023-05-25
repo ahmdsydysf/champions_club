@@ -103,10 +103,10 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     @include('profile.partials.update-profile-information-form')
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     @include('profile.partials.update-password-form')
                                 </div>
                             </div>

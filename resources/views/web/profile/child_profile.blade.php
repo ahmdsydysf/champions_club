@@ -83,7 +83,7 @@
             </div>
             <!-- end col-4 -->
             <div class="col-md-8 col-12">
-                <section class="blog">
+                {{-- <section class="blog"> --}}
                     <div class="container">
 
                         {{-- @dd($child->name) --}}
@@ -94,7 +94,7 @@
                                 {{-- @if ($invo->invoice_status == 1) --}}
                                 <div class="col-12 ">
                                     <aside class="sidebar post-content"
-                                        style="max-width: 100%;position:relative !important">
+                                        style="max-width: 100%;position:relative !important;padding:35px 0">
                                         <div class="widget categories">
                                             <form action="{{ route('childUpdate' ,$child->id ) }}"
                                                 enctype="multipart/form-data" method="post">
@@ -110,7 +110,7 @@
 
                                                 <div class="container">
                                                     <div class="row">
-                                                        <div class="content-box wow fadeIn col-6"
+                                                        <div class=" col-12"
                                                             style="visibility: visible; animation-name: fadeIn;">
                                                             <figure><img style="height: 250px;width:100%"
                                                                     src="{{ asset('uploads/children_data/' . $child->personal_image) }}"
@@ -125,7 +125,7 @@
                                                             <x-input-error :messages="$errors->get('personal_image')"
                                                                 class="mt-2" />
                                                         </div>
-                                                        <div class="content-box wow fadeIn col-6"
+                                                        <div class=" col-12"
                                                             style="visibility: visible; animation-name: fadeIn;">
                                                             <figure><img style="height: 250px;width:100%"
                                                                     src="{{ asset('uploads/children_data/' . $child->birth_image) }}"
@@ -144,7 +144,7 @@
                                                 </div>
                                                 <div class="container">
                                                     <div class="row">
-                                                        <h5 class="widget-title col-6">{{ __('main.Birthdate') }} :
+                                                        <h5 class=" col-12">{{ __('main.Birthdate') }} :
 
                                                             <input data-reset='on' value="{{ $child->birthdate }}"
                                                                 type="date" name="birthdate"
@@ -154,7 +154,7 @@
                                                                 :messages="$errors->get('birthdate')" />
 
                                                         </h5>
-                                                        <h5 class="widget-title col-6">{{ __('main.Level') }} :
+                                                        <h5 class=" col-12">{{ __('main.Level') }} :
                                                             <select id="level" name="level"
                                                                 class="form-control custom-select important-input">
                                                                 <option value="1" {{ $child->level == 1 ? 'selected' :
@@ -169,7 +169,7 @@
                                                                 :messages="$errors->get('level')" />
 
                                                         </h5>
-                                                        <h5 class="widget-title col-6">{{ __('main.Height') }} :
+                                                        <h5 class=" col-12">{{ __('main.Height') }} :
                                                             <input id="height" name="height" type="text"
                                                                 class="mt-1 block w-full" value="{{ $child->height }}"
                                                                 required autofocus autocomplete="name" />
@@ -177,7 +177,7 @@
                                                                 :messages="$errors->get('height')" />
 
                                                         </h5>
-                                                        <h5 class="widget-title col-6">{{ __('main.Weight') }} :
+                                                        <h5 class=" col-12">{{ __('main.Weight') }} :
                                                             <input id="width" name="weight" type="text"
                                                                 class="mt-1 block w-full" value="{{ $child->width}}"
                                                                 required autofocus autocomplete="name" />
@@ -187,13 +187,13 @@
                                                         </h5>
 
                                                         <x-primary-button>{{ __('main.Update') }}</x-primary-button>
-                                            </form>
-                                        </div>
-                                </div>
-                                <!-- end side-menu -->
 
-                                <!-- end side-menu -->
-                            </div>
+                                                    </div>
+                                                </div>
+
+                                                    </form>
+                                        </div>
+
 
                             </aside>
                             <!-- end side-bar -->
