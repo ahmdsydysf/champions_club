@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use PharIo\Manifest\Url;
 
 class SuggestSportController extends Controller
@@ -122,39 +123,77 @@ class SuggestSportController extends Controller
         \Log::info($sugest);
         $xx = '';
         foreach ($test as $index => $row) {
-            $xx .= '
-            <div   class="container col-12 order-12 sport-details my-3">
-            <div class="row col-sm-12">
-            <div class="card col-sm-12 full_sport_details">
-                <div class="card-header sport_title">
-                Suggested sport no ' . ($index + 1) . '
+            if(LaravelLocalization::getCurrentLocale() == 'en') {
+                $xx .= '
+                <div   class="container col-12 order-12 sport-details my-3">
+                <div class="row col-sm-12">
+                <div class="card col-sm-12 full_sport_details">
+                    <div class="card-header sport_title">
+                    Suggested sport no ' . ($index + 1) . '
 
-                </div>
-                <div class="card-body">
-                    <h5 id="ajName" class="card-title sport_subtitle">' . $test[$index]['sport_title_en'] . '</h5>
-                    <p id="ajDesc" class="card-text sport_overview">' . $test[$index]['sport_title_en'] . '</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 id="ajName" class="card-title sport_subtitle">' . $test[$index]['sport_title_en'] . '</h5>
+                        <p id="ajDesc" class="card-text sport_overview">' . $test[$index]['sport_title_en'] . '</p>
 
+                    </div>
                 </div>
+    </div>
+
             </div>
-</div>
+            <div class="row">
+                                <div class=" col-12">
 
-        </div>
-        <div class="row">
-                            <div class=" col-12">
+                                <div class="col-6 my-5 ">
 
-                            <div class="col-6 my-5 ">
-
-                                <a href="'.Url('sport/1').'" class="submit-btn btn btn-primary reg float-left">
-                                    Go To Our Sports >> </a>
-                            </div>
+                                    <a href="'.Url('sport/1').'" class="submit-btn btn btn-primary reg float-left">
+                                        Go To Our Sports >> </a>
+                                </div>
 
 
 
 
-                            </div>
-                        </div> ';
+                                </div>
+                            </div> ';
 
-        }
-        echo $xx;
+            }
+
+            else {
+                $xx .= '
+                <div   class="container col-12 order-12 sport-details my-3">
+                <div class="row col-sm-12">
+                <div class="card col-sm-12 full_sport_details">
+                    <div class="card-header sport_title">
+                    Suggested sport no ' . ($index + 1) . '
+
+                    </div>
+                    <div class="card-body">
+                        <h5 id="ajName" class="card-title sport_subtitle">' . $test[$index]['sport_title_ar'] . '</h5>
+                        <p id="ajDesc" class="card-text sport_overview">' . $test[$index]['sport_title_ar'] . '</p>
+
+                    </div>
+                </div>
+    </div>
+
+            </div>
+            <div class="row">
+                                <div class=" col-12">
+
+                                <div class="col-6 my-5 ">
+
+                                    <a href="'.Url('sport/1').'" class="submit-btn btn btn-primary reg float-left">
+                                        اذهب الى الرياضه >> </a>
+                                </div>
+
+
+
+
+                                </div>
+                            </div> ';
+
+            }
+
+            }
+            echo $xx;
     }
 }
