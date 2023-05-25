@@ -73,7 +73,7 @@
 
                         <h4>{{ $thisSport->sport_title_en }}</h4>
 
-                        <small>{{ date('j F, Y', strtotime($thisSport->created_at)) }}</small>
+                        {{-- <small>{{ date('j F, Y', strtotime($thisSport->created_at)) }}</small> --}}
 
                         <p>{!! $thisSport->sport_overview_en !!}</p>
                         {{-- <blockquote>

@@ -61,7 +61,7 @@
                     </figure>
                     <div class="post-content">
                         <h4> {{ $thisSport->sport_title_ar }}</h4>
-                        <small>{{ date('j F, Y', strtotime($thisSport->created_at)) }}</small>
+                        {{-- <small>{{ date('j F, Y', strtotime($thisSport->created_at)) }}</small> --}}
 
                         <p>{!! $thisSport->sport_overview_ar !!}</p>
 
