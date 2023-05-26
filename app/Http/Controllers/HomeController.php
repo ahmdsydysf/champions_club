@@ -262,7 +262,7 @@ class HomeController extends Controller
                 } else {
                     $member=$sportFees->membership_fees;
                 }
-
+                dd($member);
 
                 DB::table('membership_details')->insert([
                     'child_id' => $id,
