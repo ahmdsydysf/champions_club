@@ -335,7 +335,7 @@ class HomeController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());
-            dd($e->getMessage());
+
             return redirect()->back()->withInput();
         }
     }
