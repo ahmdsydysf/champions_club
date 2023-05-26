@@ -257,7 +257,7 @@ class HomeController extends Controller
                 $annual=User_membership::where('user_id', Auth::user()->id)->
                 where('end_date', '>', now()->format('Y-m-d'))->where('approved', 1)->first();
 
-                if ($annual->approved == 1) {
+                if ($annual && $annual->approved == 1) {
                     $member= $sportFees->membership_disc_fees;
                 } else {
                     $member=$sportFees->membership_fees;
