@@ -35,7 +35,7 @@ class ServiceController extends Controller
 
         if ($request->file('image')) {
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(770, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/service/' . $myimageName));
             $request_data['image'] = $myimageName;
@@ -72,7 +72,7 @@ class ServiceController extends Controller
                 Storage::disk('public_uploads')->delete("/service/$service->image");
             }
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(770, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/service/' . $myimageName));
             $request_data['image'] = $myimageName;

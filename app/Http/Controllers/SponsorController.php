@@ -38,7 +38,7 @@ class SponsorController extends Controller
 
         if ($request->file('image')) {
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/sponsor/' . $myimageName));
             $request_data['image'] = $myimageName;
@@ -74,7 +74,7 @@ class SponsorController extends Controller
                 Storage::disk('public_uploads')->delete("/sponsor/$sponsor->image");
             }
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/sponsor/' . $myimageName));
             $request_data['image'] = $myimageName;

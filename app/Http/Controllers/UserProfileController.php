@@ -66,12 +66,7 @@ class UserProfileController extends Controller
     public function relativesMembers()
     {
         $user_id = Auth::user()->id ;
-        // $user_data = User::with(['Children','Children.memberships','Children.memberships.invoice'])->where('id',$user_id)->first();
         $user_data =User::with('Children.memberships.invoice')->where('id', $user_id)->first();
-        // $user_child_member = $user_childrens->memberships')->get();
-        // $user_child_member_invo = $user_child_member->with('invoice')->get();
-
-        // $member_ship_details = Membership_detail::with(['invoice' ,'sport'])->get();
         if(LaravelLocalization::getCurrentLocale() == 'en') {
             return view('web.profile.user_profile_members', compact('user_data'));
 
@@ -100,7 +95,6 @@ class UserProfileController extends Controller
                 ->from('membership_details')
                 ->where('child_id', $id);
             })->get();
-        // $sport = Sport::all();
         $child_mem_details = Membership_detail::with('sport')->where('child_id', $id) ->orderByDesc('created_at')->get();
         return view('web.profile.child_sports', compact('child_mem_details', 'child', 'sport'));
     }
@@ -170,14 +164,13 @@ class UserProfileController extends Controller
         $annual=User_membership::where('user_id', Auth::user()->id)->
         where('end_date', '>', now()->format('Y-m-d'))->where('approved', 1)->first();
 
-        if ($annual->approved == 1) {
+        if ($annual != null && $annual->approved == 1) {
             $totalFees = Sport::select('membership_disc_fees')->where('id', $request->select_sport)->first();
             $totalAfterVat = $totalFees->membership_disc_fees + ($totalFees->membership_disc_fees * 0.14);
         } else {
             $totalFees = Sport::select('membership_fees')->where('id', $request->select_sport)->first();
             $totalAfterVat = $totalFees->membership_fees + ($totalFees->membership_fees * 0.14);
         }
-
 
         DB::table('membership_invoices')->insert([
             'invoice_date' => now(),
@@ -211,7 +204,7 @@ class UserProfileController extends Controller
             ]);
         }
 
-        return view('web.profile.child_new_sport_pay', compact('child', 'sport_details', 'totalAfterVat', 'start', 'end', 'invoice_id'));
+        return view('web.profile.child_new_sport_pay', compact('child', 'sport_details', 'totalAfterVat', 'totalFees', 'start', 'end', 'invoice_id'));
     }
 
     public function sportRenew(Request $request)
@@ -296,7 +289,7 @@ class UserProfileController extends Controller
         if ($request->file('personal_image')) {
             Storage::disk('public_uploads')->delete("/children_data/$child->personal_image");
             $myimageName = uniqid() . $request->file('personal_image')->getClientOriginalName();
-            Image::make($request->file('personal_image'))->resize(260, null, function ($constraint) {
+            Image::make($request->file('personal_image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/children_data/' . $myimageName));
             $request_data['personal_image'] = $myimageName;
@@ -304,7 +297,7 @@ class UserProfileController extends Controller
         if ($request->file('birth_image')) {
             Storage::disk('public_uploads')->delete("/children_data/$child->birth_image");
             $myimageName = uniqid() . $request->file('birth_image')->getClientOriginalName();
-            Image::make($request->file('birth_image'))->resize(260, null, function ($constraint) {
+            Image::make($request->file('birth_image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/children_data/' . $myimageName));
             $request_data['birth_image'] = $myimageName;
@@ -324,7 +317,7 @@ class UserProfileController extends Controller
                 Storage::disk('public_uploads')->delete('user/' . $user_data->image);
             }
             $imageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(300, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/user/' . $imageName));
             $request_data['image'] = $imageName;
@@ -382,14 +375,6 @@ class UserProfileController extends Controller
         $user_id = Auth::user()->id ;
         $mem_details = User_membership::where('user_id', $user_id) ->orderByDesc('created_at')->get();
         $lastMem= User_membership::where('user_id', $user_id)->latest('end_date')->first();
-        // if(LaravelLocalization::getCurrentLocale() == 'en') {
-        //     return view('web.profile.user_year_membership', compact(['mem_details','lastMem']));
-
-        // } else {
-        //     return view('web.profile.user_year_membership_ar', compact(['mem_details','lastMem']));
-
-        // }
-
 
         return redirect()->route('congratulation');
     }

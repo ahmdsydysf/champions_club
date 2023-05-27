@@ -43,7 +43,7 @@ class CupController extends Controller
 
         if ($request->file('image')) {
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(800, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/cups/' . $myimageName));
             $request_data['image'] = $myimageName;
@@ -81,7 +81,7 @@ class CupController extends Controller
                 Storage::disk('public_uploads')->delete("/cups/$cup->image");
             }
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(800, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/cups/' . $myimageName));
             $request_data['image'] = $myimageName;

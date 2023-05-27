@@ -122,13 +122,13 @@
                                             @if (app()->getLocale() == 'ar')
                                             <h4>
 
-                                                {{ $mem->sport->sport_title_ar }}     -  {{ $mem->sport->sport_subtitle_ar }}
+                                                {{ $mem->sport->sport_title_ar }} - {{ $mem->sport->sport_subtitle_ar }}
 
                                             </h4>
                                             @else
                                             <h4>
 
-                                                {{ $mem->sport->sport_title_ar }}     - {{ $mem->sport->sport_subtitle_en }}
+                                                {{ $mem->sport->sport_title_ar }} - {{ $mem->sport->sport_subtitle_en }}
 
                                             </h4>
                                             @endif
@@ -138,28 +138,6 @@
                                             <p>
                                                 {!! html_entity_decode($mem->sport->feed_recommend) !!}
                                             </p>
-                                            <h5 class="colr-or">
-                                                {{ __('main.diet links') }}
-                                            </h5>
-                                            <blockquote>
-                                                <p>
-                                                    @foreach ( $mem->sport->SportDietLinks as $link )
-                                                    <a href="{{ $link->url }}">
-                                                        @if (app()->getLocale() == 'ar')
-                                                        <h4>
-                                                            {{ $link->link_title_ar }}
-                                                        </h4>
-                                                        @else
-                                                        <h4>
-                                                            {{ $link->link_title_en }}
-                                                        </h4>
-                                                        @endif
-                                                    </a>
-                                                    @endforeach
-                                                </p>
-
-                                            </blockquote>
-
 
                                         </div>
 

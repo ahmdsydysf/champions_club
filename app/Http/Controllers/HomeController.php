@@ -223,7 +223,7 @@ class HomeController extends Controller
                 $request_data = $request->except('personal_image['.$i.']', 'birth_image['.$i.']', '_token');
                 if ($personal_image[$i]) {
                     $myimageName = uniqid() . $personal_image[$i]->getClientOriginalName();
-                    Image::make($personal_image[$i])->resize(300, null, function ($constraint) {
+                    Image::make($personal_image[$i])->resize(1080, null, function ($constraint) {
                         $constraint->aspectRatio();
                     })->save(public_path('uploads/children_data/' . $myimageName));
                     $personal_image[$i] = $myimageName;
@@ -232,7 +232,7 @@ class HomeController extends Controller
                 }
                 if ($birth_image[$i]) {
                     $myimageName = uniqid() . $birth_image[$i]->getClientOriginalName();
-                    Image::make($birth_image[$i])->resize(400, null, function ($constraint) {
+                    Image::make($birth_image[$i])->resize(1080, null, function ($constraint) {
                         $constraint->aspectRatio();
                     })->save(public_path('uploads/children_data/' . $myimageName));
                     $birth_image[$i] = $myimageName;
@@ -262,8 +262,6 @@ class HomeController extends Controller
                 } else {
                     $member=$sportFees->membership_fees;
                 }
-                dd($member);
-
                 DB::table('membership_details')->insert([
                     'child_id' => $id,
                     'sport_id' => $selectSports[$i],

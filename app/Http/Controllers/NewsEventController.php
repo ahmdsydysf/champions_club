@@ -44,7 +44,7 @@ class NewsEventController extends Controller
 
         if ($request->file('image')) {
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(255, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/event/' . $myimageName));
             $request_data['image'] = $myimageName;
@@ -83,7 +83,7 @@ class NewsEventController extends Controller
                 Storage::disk('public_uploads')->delete("/event/$newsEvent->image");
             }
             $myimageName = uniqid() . $request->file('image')->getClientOriginalName();
-            Image::make($request->file('image'))->resize(250, null, function ($constraint) {
+            Image::make($request->file('image'))->resize(1080, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/event/' . $myimageName));
             $request_data['image'] = $myimageName;

@@ -382,8 +382,14 @@
 
 
                                         <td>
+                                            @isset($totalFees->membership_disc_fees)
 
-                                            {{ $sport_details->membership_fees }} {{ __('main.LE') }}
+                                            {{ $totalFees->membership_disc_fees }} {{ __('main.LE') }}
+                                            @endisset
+                                            @isset($totalFees->membership_fees)
+                                            {{ $totalFees->membership_fees }} {{ __('main.LE') }}
+
+                                            @endisset
                                         </td>
                                     </tr>
 
